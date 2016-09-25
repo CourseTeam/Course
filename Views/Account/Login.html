@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <title>登录</title>
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
+    <style>
+        body{
+            background: #fff;
+        }
+        .container {
+            margin-top: 50px !important;
+        }
+
+        .row {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            height: 40px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            width: 100%;
+            padding-left: 5px;
+            padding-right: 5px;
+            outline: none;
+        }
+
+        input:focus {
+            border: 1px solid #00b38a;;
+        }
+
+        #btnLogin {
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            background-color: #00b38a;
+            height: 40px;
+        }
+
+        ::selection {
+            background:#00b38a;
+            color:#fff;
+        }
+        ::-moz-selection {
+            background:#00b38a;
+            color:#fff;
+        }
+        ::-webkit-selection {
+            background:#00b38a;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row text-center">
+        <h4><strong>请登录</strong></h4>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">用户名：</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12"><input type="text" id="UserName" name="UserName" placeholder="请输入用户名/手机号"/></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">密码：</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12"><input type="password" id="Pwd" name="Pwd" placeholder="请输入密码"/></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-right">
+            <button id="btnLogin">登 录</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            Copyright©摩英教育2006~2016 版权所有
+        </div>
+    </div>
+</div>
+
+<script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+<script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+<script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+<script src="../../Framework/layer_mobile/layer.js"></script>
+<script src="../../Scripts/Commen/CourseCommen.js"></script>
+<script src="../../Scripts/Login.js"></script>
+</body>
+</html>
