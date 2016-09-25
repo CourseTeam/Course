@@ -10,9 +10,9 @@ $(function ($) {
 });
 
 function Login() {
-    console.log(ApiUrl);
     var Ticket = eval($.cookie("Ticket")) || false;
     if (Ticket) {
+        window.location.href="http://www.baidu.com";
         return;
     }
     var UserName = $("#UserName").val();
@@ -40,7 +40,7 @@ function Login() {
             style: 'background-color:#00b38a; color:#fff; border:none;',
             time: 2
         });
-        $.cookie("Ticket",11111);
+        $.cookie("Ticket",11111111111111111111111111111111111111111111111111111);
     } else {
         layer.open({
             content: '用户名或密码错误！请重新输入！',
