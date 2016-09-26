@@ -12,7 +12,7 @@ $(function ($) {
 function Login() {
     var Ticket = eval($.cookie("Ticket")) || false;
     if (Ticket) {
-        window.location.href="http://www.baidu.com";
+        //window.location.href = "http://www.baidu.com";
         return;
     }
     var UserName = $("#UserName").val();
@@ -34,13 +34,16 @@ function Login() {
         });
         return;
     }
-    if (UserName == "admin" && Pwd == "admin") {
+
+    var result = $Course.GetAjaxJsonGet({UserName: UserName, Pwd: Pwd}, ApiUrl + "Account/Login");
+    console.log(result);
+    if (result.IsSuccess) {
         layer.open({
             content: '登录成功!',
             style: 'background-color:#00b38a; color:#fff; border:none;',
             time: 2
         });
-        $.cookie("Ticket",11111111111111111111111111111111111111111111111111111);
+        $.cookie("Ticket", "");
     } else {
         layer.open({
             content: '用户名或密码错误！请重新输入！',
