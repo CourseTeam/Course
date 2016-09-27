@@ -10,11 +10,11 @@ $(function ($) {
 });
 
 function Login() {
-    var Ticket = eval($.cookie("Ticket")) || false;
-    if (Ticket) {
-        //window.location.href = "http://www.baidu.com";
-        return;
-    }
+    // var Ticket = eval($.cookie("Ticket")) || false;
+    // if (Ticket) {
+    //     //window.location.href = "http://www.baidu.com";
+    //     return;
+    // }
     var UserName = $("#UserName").val();
     var Pwd = $("#Pwd").val();
 
@@ -35,7 +35,7 @@ function Login() {
         return;
     }
 
-    var result = $Course.GetAjaxJsonGet({UserName: UserName, Pwd: Pwd}, ApiUrl + "Account/Login");
+    var result = $Course.GetAjaxJsonGet({Tel: UserName, Pwd: Pwd}, ApiUrl + "Account/Login");
     console.log(result);
     if (result.IsSuccess) {
         layer.open({
@@ -43,7 +43,7 @@ function Login() {
             style: 'background-color:#00b38a; color:#fff; border:none;',
             time: 2
         });
-        $.cookie("Ticket", "");
+        $.cookie("UserInfo", $Course.stringify(result.Data));
     } else {
         layer.open({
             content: '用户名或密码错误！请重新输入！',
@@ -52,3 +52,9 @@ function Login() {
         });
     }
 }
+
+function CourseType_Edit() {
+    var result = $Course.PostAjaxJson({CourseTypeID: 0, CourseTypeName: 11111, Type: 1},ApiUrl + "CourseType/CourseType_Edit");
+    console.log(result);
+}
+CourseType_Edit();
