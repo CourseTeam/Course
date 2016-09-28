@@ -34,8 +34,8 @@ function Login() {
         });
         return;
     }
-
-    var result = $Course.GetAjaxJson({Tel: UserName, Pwd: Pwd}, ApiUrl + "Account/Login");
+    var param = {Tel: UserName, Pwd: Pwd};
+    var result = $Course.GetAjaxJson(param, ApiUrl + "Account/Login");
     console.log(result);
     if (result.IsSuccess) {
         layer.open({
