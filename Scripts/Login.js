@@ -35,7 +35,7 @@ function Login() {
         return;
     }
 
-    var result = $Course.GetAjaxJsonGet({Tel: UserName, Pwd: Pwd}, ApiUrl + "Account/Login");
+    var result = $Course.GetAjaxJson({Tel: UserName, Pwd: Pwd}, ApiUrl + "Account/Login");
     console.log(result);
     if (result.IsSuccess) {
         layer.open({
@@ -53,8 +53,8 @@ function Login() {
     }
 }
 
-function CourseType_Edit() {
-    var result = $Course.PostAjaxJson({CourseTypeID: 0, CourseTypeName: 11111, Type: 1},ApiUrl + "CourseType/CourseType_Edit");
-    console.log(result);
-}
-CourseType_Edit();
+// function CourseType_Edit() {
+//     var result = $Course.PostAjaxJson({CourseTypeID: 0, CourseTypeName: 11111, Type: 1},ApiUrl + "CourseType/CourseType_Edit");
+//     console.log(result);
+// }
+// CourseType_Edit();

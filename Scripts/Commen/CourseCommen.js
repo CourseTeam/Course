@@ -12,7 +12,8 @@ var ApiUrl = "http://localhost:60182/";
 //var ApiUrl = "http://120.26.218.68:1217/";
 
 //用户票据
-var Ticket = $.cookie("Ticket");
+//。。。。
+//var Ticket = $.cookie("UserInfo");
 
 //重写jquery请求数据方法
 (function ($) {
@@ -44,7 +45,7 @@ var Ticket = $.cookie("Ticket");
                 fn.success(data, textStatus);
             },
             beforeSend: function (XHR) {
-                XHR.setRequestHeader('Authorization', 'BasicAuth ' + Ticket);
+                XHR.setRequestHeader('Authorization', 'BasicAuth ' + "");
                 fn.beforeSend(XHR);
             },
             complete: function (XHR, TS) {
@@ -73,7 +74,7 @@ $Course.PostAjaxJson = function (params, url) {
 };
 
 //Get请求 返回json
-$Course.GetAjaxJsonGet = function (params, url) {
+$Course.GetAjaxJson = function (params, url) {
     var json;
     $.ajax({
         url: url, data: params, type: 'get', cache: false, async: false,
