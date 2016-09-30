@@ -10,6 +10,8 @@ $(document).ready(function () {
     //加载课程类型列表
     CourseType_List();
 });
+
+
 var courseTypeID = 0;
 //打开课程类别新增或编辑弹窗
 function Open_CourseType_Edit(id) {
