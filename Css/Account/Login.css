@@ -2,7 +2,7 @@ body{
     background: #fff;
 }
 .container {
-    margin-top: 50px !important;
+    margin-top: 30px !important;
 }
 .border_btm{
     border-bottom: 1px solid #eeeeee;}
@@ -20,7 +20,7 @@ input:focus {
     border: 1px solid #F24C4C;;
 }
 
-#btnLogin {
+#btnLogin,#btnSendSMS,#btnReg {
     width: 100%;
     border: none;
     border-radius: 5px;
