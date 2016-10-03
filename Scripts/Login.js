@@ -54,9 +54,23 @@ function Login() {
         });
     }
 }
-
-// function CourseType_Edit() {
-//     var result = $Course.PostAjaxJson({CourseTypeID: 0, CourseTypeName: 11111, Type: 1},ApiUrl + "CourseType/CourseType_Edit");
-//     console.log(result);
-// }
+//
+// layer.open({
+//     title:"nihao",
+//     content: '<input type="text" id="MM" >',
+//     style: 'background-color:#fff; border:1px solid #000;',
+//     time: 10,
+//     btn:["确定","取消"],
+//     yes:function (index) {
+//         alert($("#MM").val())
+//         layer.close(index);
+//     },
+//     no:function () {
+//         alert("取消了")
+//     }
+// });
+function CourseType_Edit() {
+    var result = $Course.PostAjaxJson({CourseTypeID: 0, CourseTypeName: 11111, Type: 1},ApiUrl + "CourseType/CourseType_Edit");
+    console.log(result);
+}
 // CourseType_Edit();

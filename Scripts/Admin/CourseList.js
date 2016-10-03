@@ -4,6 +4,10 @@
 $(document).ready(function () {
     //加载公用导航
     $("#header").load("../Commen/header.html");
+
+    $("#btnSearch").on("click",function(){
+        Course_list(1, 100);
+    });
     Course_list(1, 100);
 });
 
@@ -20,7 +24,7 @@ function Course_list(PageIndex, PageSize) {
         strHtml += '    <div class="row ">';
         strHtml += '        <div class="col-xs-3">课程名称</div>';
         strHtml += '        <div class="col-xs-2">课程类型</div>';
-        strHtml += '        <div class="col-xs-2">介绍</div>';
+        strHtml += '        <div class="col-xs-2">简介</div>';
         strHtml += '        <div class="col-xs-2">价格</div>';
         strHtml += '        <div class="col-xs-3">操作</div>';
         strHtml += '    </div>';
