@@ -77,7 +77,9 @@ function CourseInfo_Edit() {
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "Course/CourseInfo_Edit");
     if (result.Msg == "OK") {
-        window.location.href = "CourseList.html";
+        layer.msg("保存成功！", {icon: 2, time: 2000}, function () {
+            window.location.href = "CourseList.html";
+        });
     }
 }
 
@@ -90,6 +92,6 @@ function CourseInfo_Get(CourseID) {
     $("#summernote").summernote("code", result.Data.Intro);
     $("select").val(result.Data.CourseType);
     $("#imgbox").html("<img src='" + result.Data.CourseImgUrl + "' style='width: 150px;height: 150px;' />");
-    CourseImgUrl=result.Data.CourseImgUrl;
+    CourseImgUrl = result.Data.CourseImgUrl;
     //$(".file-preview").hide();
 }
