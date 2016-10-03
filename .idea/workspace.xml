@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ab03e504-a59f-4b8f-9d55-d520f5fd7499" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
+    <list id="f7071704-9e07-44e5-a3cc-c44adb128cba" name="Failed commit: Default" comment="Merge branch 'master' into dev&#10;&#10;# Conflicts:&#10;#&#9;Scripts/Login.js&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/Login.js" afterPath="$PROJECT_DIR$/Scripts/Login.js" />
     </list>
     <ignored path="Course.iws" />
@@ -474,18 +476,18 @@
       <workItem from="1475201903783" duration="23463000" />
       <workItem from="1475287207182" duration="15079000" />
       <workItem from="1475375759777" duration="15124000" />
-      <workItem from="1475459518285" duration="8433000" />
+      <workItem from="1475459518285" duration="8454000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160386000" />
+    <option name="totallyTimeSpent" value="160407000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="227" y="237" width="2372" height="1240" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29106382" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29106382" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -513,6 +515,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Merge branch 'master' into dev&#10;&#10;# Conflicts:&#10;#&#9;Scripts/Login.js&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' into dev&#10;&#10;# Conflicts:&#10;#&#9;Scripts/Login.js&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
