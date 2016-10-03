@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab03e504-a59f-4b8f-9d55-d520f5fd7499" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/Account/ChangePassword.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/Account/PersonalCenter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/Account/RetrievePassword.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Views/Account/ChangePassword.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Views/Account/PersonalCenter.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Views/Account/RetrievePassword.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/Commen/CourseCommen.js" afterPath="$PROJECT_DIR$/Scripts/Commen/CourseCommen.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Views/Account/Login.html" afterPath="$PROJECT_DIR$/Views/Account/Login.html" />
     </list>
     <ignored path="Course.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,8 +28,8 @@
       <file leaf-file-name="Login.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Views/Account/Login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="787">
-              <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+            <state relative-caret-position="262">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -47,8 +39,21 @@
         <entry file="file://$PROJECT_DIR$/Scripts/Login.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
-              <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-              <folding />
+              <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+              <folding>
+                <marker date="1475486270000" expanded="true" signature="70:143" ph="{...}" />
+                <marker date="1475486270000" expanded="true" signature="164:1515" ph="{...}" />
+                <marker date="1475486270000" expanded="true" signature="170:329" ph="//..." />
+                <marker date="1475486270000" expanded="true" signature="422:606" ph="{...}" />
+                <marker date="1475486270000" expanded="true" signature="443:582" ph="{&quot;content&quot;: '请输入用户名或手机号'...}" />
+                <marker date="1475486270000" expanded="true" signature="621:800" ph="{...}" />
+                <marker date="1475486270000" expanded="true" signature="642:776" ph="{&quot;content&quot;: '请输入密码'...}" />
+                <marker date="1475486270000" expanded="true" signature="979:1334" ph="{...}" />
+                <marker date="1475486270000" expanded="true" signature="989:1175" ph="//..." />
+                <marker date="1475486270000" expanded="true" signature="1340:1513" ph="{...}" />
+                <marker date="1475486270000" expanded="true" signature="1361:1505" ph="{&quot;content&quot;: '用户名或密码错误！请重新输入！'...}" />
+                <marker date="1475486270000" expanded="true" signature="2059:2082" ph="//..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -504,12 +509,12 @@
       <option name="presentableId" value="Default" />
       <updated>1474774822830</updated>
       <workItem from="1474774824020" duration="16633000" />
-      <workItem from="1475307867757" duration="35569000" />
+      <workItem from="1475307867757" duration="35987000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52202000" />
+    <option name="totallyTimeSpent" value="52620000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="22" width="1867" height="1178" extended-state="0" />
@@ -563,7 +568,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1475486270000" expanded="true" signature="70:143" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="164:1515" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="170:329" ph="//..." />
+            <marker date="1475486270000" expanded="true" signature="422:606" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="443:582" ph="{&quot;content&quot;: '请输入用户名或手机号'...}" />
+            <marker date="1475486270000" expanded="true" signature="621:800" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="642:776" ph="{&quot;content&quot;: '请输入密码'...}" />
+            <marker date="1475486270000" expanded="true" signature="979:1334" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="989:1175" ph="//..." />
+            <marker date="1475486270000" expanded="true" signature="1340:1513" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="1361:1505" ph="{&quot;content&quot;: '用户名或密码错误！请重新输入！'...}" />
+            <marker date="1475486270000" expanded="true" signature="2059:2082" ph="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -805,8 +823,21 @@
     <entry file="file://$PROJECT_DIR$/Scripts/Login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
-          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-          <folding />
+          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+          <folding>
+            <marker date="1475486270000" expanded="true" signature="70:143" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="164:1515" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="170:329" ph="//..." />
+            <marker date="1475486270000" expanded="true" signature="422:606" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="443:582" ph="{&quot;content&quot;: '请输入用户名或手机号'...}" />
+            <marker date="1475486270000" expanded="true" signature="621:800" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="642:776" ph="{&quot;content&quot;: '请输入密码'...}" />
+            <marker date="1475486270000" expanded="true" signature="979:1334" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="989:1175" ph="//..." />
+            <marker date="1475486270000" expanded="true" signature="1340:1513" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="1361:1505" ph="{&quot;content&quot;: '用户名或密码错误！请重新输入！'...}" />
+            <marker date="1475486270000" expanded="true" signature="2059:2082" ph="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -828,8 +859,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Views/Account/Login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="787">
-          <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+        <state relative-caret-position="262">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
         </state>
       </provider>
