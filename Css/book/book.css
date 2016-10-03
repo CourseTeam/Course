@@ -18,6 +18,10 @@ img {
   height: 100;
 }
 
+.title {
+   background-color: #FF0000;
+}
+
 .name {
 	padding-left: 0px;
 	font-size:14px;
@@ -33,5 +37,5 @@ img {
 }
 .button {
 	margin-top: 10px;
-	background-color: #FF0000
+	background-image: url(../../Images/book/book_button_bg.png);
 }
