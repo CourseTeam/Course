@@ -69,8 +69,25 @@ function Login() {
 //         alert("取消了")
 //     }
 // });
+
+layer.open({
+    title: '请选择转期课程',
+    content: "<div class='text-center' style='margin-bottom:15px; font-size: 16px;'><input style='height: 14px;width: 14px;' type='radio' name='course'  />英语集训营二阶 12期</div>"
+    + "<div class='text-center' style='margin-bottom:15px; font-size: 16px'><input style='height: 14px;width: 14px;' type='radio' name='course'  />英语集训营二阶 15期</div>"
+    + "<div class='text-center' style='margin-bottom:15px; font-size: 16px'><input style='height: 14px;width: 14px;' type='radio' name='course'  />英语集训营二阶 18期</div>",
+    btn: ["确 定", "取 消"],
+    style:"width:300px",
+    success: function () {
+        $(".layui-m-layerchild h3").css("height", "20px");
+        $(".layui-m-layerchild h3").css("line-height", "20px");
+    }
+});
 function CourseType_Edit() {
-    var result = $Course.PostAjaxJson({CourseTypeID: 0, CourseTypeName: 11111, Type: 1},ApiUrl + "CourseType/CourseType_Edit");
+    var result = $Course.PostAjaxJson({
+        CourseTypeID: 0,
+        CourseTypeName: 11111,
+        Type: 1
+    }, ApiUrl + "CourseType/CourseType_Edit");
     console.log(result);
 }
 // CourseType_Edit();
