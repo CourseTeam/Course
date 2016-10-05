@@ -18,6 +18,10 @@ $(function ($) {
     if (CourseID != null) {
         CourseInfo_Get(CourseID);
     }
+
+
+
+
 })
 
 
