@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>阶段预约列表</title>
+
+    <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../../../Css/Admin/Comm.css">
+    <style>
+        button {
+            width: 70px;
+            height: 30px
+        }
+        *{font-size: 13px!important;}
+    </style>
+</head>
+<body>
+<div id="header"></div>
+<div style="height: 80px"></div>
+<div class="container">
+    <div class="row" style="padding: 10px;background: #e5e5e5">
+        <div class="col-xs-5 text-left">
+            <h4><strong>阶段预约列表 — 摩英国际青少年领袖特训营一阶 12期</strong></h4>
+        </div>
+        <div class="col-xs-7 text-right">
+            <input type="text" style="width: 60%" id="SearchKey" placeholder="请输入搜索关键字" />
+            <button id="btnSearch">搜 索</button>
+            <button id="btnAdd">手动录入</button>
+            <button id="btnInport">导出Excel</button>
+        </div>
+    </div>
+    <div class="row" style="padding: 10px;background: #e5e5e5">
+        <div class="col-xs-12">
+            <ul class="list-group" id="orderList">
+                <li class="list-group-item header">
+                    <div class="row ">
+                        <div class="col-xs-1">姓名</div>
+                        <div class="col-xs-1">性别</div>
+                        <div class="col-xs-1">生日</div>
+                        <div class="col-xs-1">手机</div>
+                        <div class="col-xs-1">食宿费</div>
+                        <div class="col-xs-1">班级</div>
+                        <div class="col-xs-1">状态</div>
+                        <div class="col-xs-1">预约日期</div>
+                        <div class="col-xs-1">增值服务</div>
+                        <div class="col-xs-2">操作</div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row ">
+                        <div class="col-xs-1"><a href="#">王兵</a></div>
+                        <div class="col-xs-1">男</div>
+                        <div class="col-xs-1">1992/09/25</div>
+                        <div class="col-xs-1">15901857927</div>
+                        <div class="col-xs-1"><a href="#">0.00</a></div>
+                        <div class="col-xs-1">三年二班</div>
+                        <div class="col-xs-1">预约成功</div>
+                        <div class="col-xs-1">2016/12/12</div>
+                        <div class="col-xs-1"><a href="#">查看</a></div>
+                        <div class="col-xs-3">
+                            <button>修改状态</button>
+                            <button>备注</button>
+                            <button>签到</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row ">
+                        <div class="col-xs-1"><a href="#">王斌</a></div>
+                        <div class="col-xs-1">男</div>
+                        <div class="col-xs-1">1992/09/25</div>
+                        <div class="col-xs-1">15901857927</div>
+                        <div class="col-xs-1"><a href="#">0.00</a></div>
+                        <div class="col-xs-1">三年二班</div>
+                        <div class="col-xs-1">预约成功</div>
+                        <div class="col-xs-1">2016/12/12</div>
+                        <div class="col-xs-1"><a href="#">查看</a></div>
+                        <div class="col-xs-3">
+                            <button>修改状态</button>
+                            <button>备注</button>
+                            <button>签到</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="../../../Framework/Jqueryv2.4/jquery.min.js"></script>
+<script src="../../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+<script src="../../../Scripts/Commen/CourseCommen.js"></script>
+<script src="../../../Framework/layer-v2.4/layer/layer.js"></script>
+<script src="../../../Scripts/Admin/PhaseOrder.js"></script>
+</body>
+</html>
