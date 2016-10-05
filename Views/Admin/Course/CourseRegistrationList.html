@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>阶段列表</title>
+    <title>课程预约列表</title>
     <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../../../Css/Admin/Comm.css">
@@ -26,14 +26,6 @@
             background: #efefef;
             font-size: 15px;
         }
-
-        .list-group {
-            font-size: 12px
-        }
-
-        .header {
-            font-size: 12px
-        }
     </style>
 </head>
 <body>
@@ -42,29 +34,18 @@
 <div class="container">
     <div class="row" style="padding: 10px;background: #e5e5e5">
         <div class="col-xs-6 text-left">
-            <h4><strong>阶段课程管理</strong></h4>
+            <h4><strong id="CourseName"></strong></h4>
         </div>
         <div class="col-xs-6 text-right">
-            <!--<input type="text" style="width: 60%" id="SearchKey" placeholder="请输入搜索关键字"/>-->
-            <!--<button id="btnSearch">搜 索</button>-->
-            <button id="btnAdd">新 增</button>
+            <input type="text" style="width: 60%" id="SearchKey" placeholder="请输入搜索关键字" />
+            <button id="btnSearch">搜 索</button>
+            <button id="btnAdd" onclick="window.location.href='CourseEdit.html'">新 增</button>
         </div>
     </div>
     <div class="row" style="padding: 10px;background: #e5e5e5">
         <div class="col-xs-12">
-            <ul class="list-group" id="phase_list">
-                <!--<li class="list-group-item header">-->
-                    <!--<div class="row ">-->
-                        <!--<div class="col-lg-2">阶段课程名称</div>-->
-                        <!--<div class="col-lg-1">课程类型</div>-->
-                        <!--<div class="col-lg-1">开始时间</div>-->
-                        <!--<div class="col-lg-1">结束时间</div>-->
-                        <!--<div class="col-lg-2">举办地址</div>-->
-                        <!--<div class="col-lg-1">食宿费</div>-->
-                        <!--<div class="col-lg-1">招生名额</div>-->
-                        <!--<div class="col-lg-3">操作</div>-->
-                    <!--</div>-->
-                <!--</li>-->
+            <ul class="list-group" id="CourseReservation_List">
+
             </ul>
         </div>
     </div>
@@ -73,7 +54,6 @@
 <script src="../../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
 <script src="../../../Scripts/Commen/CourseCommen.js"></script>
 <script src="../../../Framework/layer-v2.4/layer/layer.js"></script>
-<script src="../../../Scripts/Admin/PhaseList.js"></script>
-
+<script src="../../../Scripts/Admin/CourseReservationList.js"></script>
 </body>
 </html>
