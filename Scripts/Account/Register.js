@@ -14,6 +14,9 @@ $(function ($) {
     })
 });
 
+
+
+
 var VerificationCode = 0;
 //获取验证码
 function GetSMSCode() {
