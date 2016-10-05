@@ -20,6 +20,11 @@ $(function ($) {
     }
 })
 
+
+
+
+
+
 var CourseID = $Course.RequestUrlParams("CourseID") || 0;
 console.log(CourseID);
 var CourseImgUrl = "";
