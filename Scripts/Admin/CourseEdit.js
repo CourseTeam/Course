@@ -77,7 +77,7 @@ function CourseInfo_Edit() {
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "Course/CourseInfo_Edit");
     if (result.Msg == "OK") {
-        layer.msg("保存成功！", {icon: 2, time: 2000}, function () {
+        layer.msg("保存成功！", {icon: 1, time: 2000}, function () {
             window.location.href = "CourseList.html";
         });
     }

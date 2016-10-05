@@ -40,9 +40,9 @@ function Phase_List() {
             strHtml += '      <div class="col-lg-1">' + row.AccommodationCost + '</div>';
             strHtml += '      <div class="col-lg-1">' + row.PeopleCount + '</div>';
             strHtml += '      <div class="col-lg-3">';
-            strHtml += '        <button onclick="Phase_List()">编辑</button>';
-            strHtml += '        <button>删除</button>';
-            strHtml += '        <button>预约列表</button>';
+            strHtml += '        <button onclick="Phase_Edit('+row.PhaseID+')">编辑</button>';
+            strHtml += '        <button onclick="CourseType_Del('+row.PhaseID+')">删除</button>';
+            strHtml += '        <button >预约列表</button>';
             strHtml += '      </div>';
             strHtml += '    </div>';
             strHtml += '</li>';
@@ -52,10 +52,10 @@ function Phase_List() {
 }
 
 //课程阶段删除
-function CourseType_Del(id) {
+function Phase_Del(id) {
     layer.confirm("确定要删除吗？", function () {
-        var param = {CourseTypeID: id};
-        var result = $Course.GetAjaxJson(param, ApiUrl + "CourseType/CourseType_Del");
+        var param = {PhaseID: id};
+        var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_Del");
         if (result.Msg == "OK") {
             if (result.Data) {
                 layer.msg("删除成功！", {icon: 1, time: 2000}, function () {
@@ -69,4 +69,9 @@ function CourseType_Del(id) {
             }
         }
     });
+}
+
+//编辑
+function Phase_Edit(id) {
+    window.location.href="PhaseEdit.html?PhaseID="+id;
 }
