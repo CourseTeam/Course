@@ -18,7 +18,7 @@ $(function ($) {
     });
     var TeacherID = $Course.RequestUrlParams("TeacherID");
     if (TeacherID != null) {
-        // TeacherInfo_Get(TeacherID);
+        TeacherInfo_Get(TeacherID);
     }
 })
 
@@ -70,17 +70,18 @@ function TeacherInfo_Edit() {
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "Teacher/TeacherInfo_Edit");
     if (result.Msg == "OK") {
-        layer.msg("保存成功！", {icon: 2, time: 2000}, function () {
+        layer.msg("保存成功！", {icon: 1, time: 2000}, function () {
             window.location.href = "TeacherList.html";
         });
     }
 }
 
-// function TeacherInfo_Get(TeacherID) {
-//     var param = {TeacherID:TeacherID};
-//     var result = $Course.GetAjaxJson{param, ApiUrl + ""};
-//     $("#TeacherName").val(result.Data.TeacherName);
-//     $("#summernote").summernote("code", result.Data.Intro);
-//     $("#imgbox").html("<img src='" + result.Data.TeacherImg + "' style='width: 150px;height: 150px;' />");
-//     TeacherImg = result.Data.TeacherImg;
-// }
+function TeacherInfo_Get(TeacherID) {
+
+    var param = {TeacherID: TeacherID};
+    var result = $Course.GetAjaxJson(param, ApiUrl + "Teacher/TeacherInfo_Get");
+    $("#TeacherName").val(result.Data.TeacherName);
+    $("#summernote").summernote("code", result.Data.Intro);
+    $("#imgbox").html("<img src='" + result.Data.TeacherImg + "' style='width: 150px;height: 150px;' />");
+    TeacherImg = result.Data.TeacherImg;
+}

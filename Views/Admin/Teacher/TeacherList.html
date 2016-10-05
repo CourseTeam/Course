@@ -26,6 +26,13 @@
             background: #efefef;
             font-size: 15px;
         }
+        div.test
+        {
+            white-space:nowrap;
+            width:33%;
+            overflow:hidden;
+            border:0px solid #000000;
+        }
     </style>
 </head>
 <body>
@@ -37,9 +44,7 @@
             <h4><strong>教师管理</strong></h4>
         </div>
         <div class="col-xs-6 text-right">
-            <input type="text" style="width: 60%" id="SearchKey" placeholder="请输入搜索关键字" />
-            <button id="btnSearch">搜 索</button>
-            <button id="btnAdd" onclick="window.location.href='TeacherEdit.html'">新 增</button>
+            <button id="btnAdd" onclick="window.location.href='TeacherEdit.html'" style="margin-top: 5px">新 增</button>
         </div>
     </div>
     <div class="row" style="padding: 10px;background: #e5e5e5">
