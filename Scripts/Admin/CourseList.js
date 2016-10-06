@@ -23,10 +23,10 @@ function Course_list(PageIndex, PageSize) {
         strHtml += '<li class="list-group-item header">';
         strHtml += '    <div class="row ">';
         strHtml += '        <div class="col-xs-3">课程名称</div>';
-        strHtml += '        <div class="col-xs-2">课程类型</div>';
-        strHtml += '        <div class="col-xs-2">简介</div>';
-        strHtml += '        <div class="col-xs-2">价格</div>';
-        strHtml += '        <div class="col-xs-3">操作</div>';
+        strHtml += '        <div class="col-xs-1">课程类型</div>';
+        strHtml += '        <div class="col-xs-3">简介</div>';
+        strHtml += '        <div class="col-xs-1">价格</div>';
+        strHtml += '        <div class="col-xs-4">操作</div>';
         strHtml += '    </div>';
         strHtml += '</li>';
         if (result.Data.length > 0) {
@@ -35,13 +35,14 @@ function Course_list(PageIndex, PageSize) {
                 strHtml += '<li class="list-group-item">';
                 strHtml += '    <div class="row ">';
                 strHtml += '        <div class="col-xs-3">' + row.CourseName + '</div>';
-                strHtml += '        <div class="col-xs-2">' + row.CourseType + '</div>';
-                strHtml += '        <div class="col-xs-2">' + row.Intro + '</div>';
-                strHtml += '        <div class="col-xs-2">' + row.Tuition + '</div>';
-                strHtml += '        <div class="col-xs-3">';
+                strHtml += '        <div class="col-xs-1">' + row.CourseType + '</div>';
+                strHtml += '        <div class="col-xs-3">' + row.Intro + '</div>';
+                strHtml += '        <div class="col-xs-1">' + row.Tuition + '</div>';
+                strHtml += '        <div class="col-xs-4">';
                 strHtml += '            <button onclick="Edit(' + row.CourseID + ')">编 辑</button>';
                 strHtml += '            <button onclick="CourseInfo_Del(' + row.CourseID + ')">删 除</button>';
                 strHtml += '            <button onclick="Phase_Edit(' + row.CourseID + ')">阶段列表</button>';
+                strHtml += '            <button style="width: 100px;" onclick="CourseRegistration_List(' + row.CourseID + ',this)" cname = "'+row.CourseName+'">课程预约列表</button>';
                 strHtml += '        </div>';
                 strHtml += '    </div>';
                 strHtml += '</li>';
@@ -76,4 +77,8 @@ function Edit(id) {
 //阶段列表
 function Phase_Edit(id) {
     window.location.href = "../Phase/PhaseList.html?CourseID=" + id;
+}
+
+function CourseRegistration_List(CourseID, obj) {
+    window.location.href = "CourseRegistrationList.html?CourseID=" + CourseID + "&" + "CourseName=" + $(obj).attr("cname");
 }

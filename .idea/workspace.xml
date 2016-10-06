@@ -3,7 +3,23 @@
   <component name="ChangeListManager">
 <<<<<<< HEAD
     <list default="true" id="ab03e504-a59f-4b8f-9d55-d520f5fd7499" name="Default" comment="">
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+=======
+<<<<<<< HEAD
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+=======
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/Account/ChangePassword.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/Account/PersonalCenter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/Account/RetrievePassword.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Views/Account/ChangePassword.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Views/Account/PersonalCenter.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Views/Account/RetrievePassword.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/Commen/CourseCommen.js" afterPath="$PROJECT_DIR$/Scripts/Commen/CourseCommen.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Views/Account/Login.html" afterPath="$PROJECT_DIR$/Views/Account/Login.html" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
+>>>>>>> a9e861b95d42e71207482f539db55844af84f5b2
     </list>
 =======
     <list default="true" id="ab03e504-a59f-4b8f-9d55-d520f5fd7499" name="Default" comment="" />
@@ -32,6 +48,7 @@
     <favorites_list name="Course" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
 <<<<<<< HEAD
       <file leaf-file-name="CourseList.js" pinned="false" current-in-tab="false">
@@ -95,11 +112,25 @@
             <state relative-caret-position="1584">
               <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
 >>>>>>> master
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Login.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Views/Account/Login.html">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="262">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+=======
+            <state relative-caret-position="787">
+              <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
+>>>>>>> a9e861b95d42e71207482f539db55844af84f5b2
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="CourseList.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Views/Admin/Course/CourseList.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -115,6 +146,86 @@
               <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
 >>>>>>> master
 >>>>>>> dev
+=======
+      <file leaf-file-name="Login.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Scripts/Login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+              <folding>
+                <marker date="1475486270000" expanded="true" signature="70:143" ph="{...}" />
+                <marker date="1475486270000" expanded="true" signature="164:1515" ph="{...}" />
+                <marker date="1475486270000" expanded="true" signature="170:329" ph="//..." />
+                <marker date="1475486270000" expanded="true" signature="422:606" ph="{...}" />
+                <marker date="1475486270000" expanded="true" signature="443:582" ph="{&quot;content&quot;: '请输入用户名或手机号'...}" />
+                <marker date="1475486270000" expanded="true" signature="621:800" ph="{...}" />
+                <marker date="1475486270000" expanded="true" signature="642:776" ph="{&quot;content&quot;: '请输入密码'...}" />
+                <marker date="1475486270000" expanded="true" signature="979:1334" ph="{...}" />
+                <marker date="1475486270000" expanded="true" signature="989:1175" ph="//..." />
+                <marker date="1475486270000" expanded="true" signature="1340:1513" ph="{...}" />
+                <marker date="1475486270000" expanded="true" signature="1361:1505" ph="{&quot;content&quot;: '用户名或密码错误！请重新输入！'...}" />
+                <marker date="1475486270000" expanded="true" signature="2059:2082" ph="//..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RetrievePassword.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Views/Account/RetrievePassword.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1365">
+              <caret line="91" column="65" selection-start-line="91" selection-start-column="65" selection-end-line="91" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Register.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Scripts/Account/Register.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RetrievePassword.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Scripts/Account/RetrievePassword.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1275">
+              <caret line="85" column="36" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChangePassword.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Scripts/Account/ChangePassword.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Register.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Views/Account/Register.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="862">
+              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="91" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Login.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Css/Account/Login.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="29" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="29" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
               <folding />
             </state>
           </provider>
@@ -160,6 +271,7 @@
         <option value="$PROJECT_DIR$/Views/PersonalCenter/CourseDetials.html" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Framework/layer_mobile/need/layer.css" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/Views/Appointment/CourseAppointment.html" />
         <option value="$PROJECT_DIR$/Scripts/Admin/CourseTypeEdit.js" />
         <option value="$PROJECT_DIR$/Scripts/Commen/CheckUserLogin.js" />
@@ -168,6 +280,8 @@
         <option value="$PROJECT_DIR$/Css/Admin/Commen/Commen.css" />
         <option value="$PROJECT_DIR$/Css/Admin/Comm.css" />
         <option value="$PROJECT_DIR$/Views/Admin/CourseType/CourseTypeEdit.html" />
+=======
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
         <option value="$PROJECT_DIR$/Scripts/Commen/CourseCommen.js" />
         <option value="$PROJECT_DIR$/Views/Account/Login.html" />
         <option value="$PROJECT_DIR$/Scripts/Admin/CourseTypeList.js" />
@@ -188,6 +302,15 @@
         <option value="$PROJECT_DIR$/Views/Admin/Phase/PhaseList.html" />
         <option value="$PROJECT_DIR$/Scripts/Admin/PhaseList.js" />
         <option value="$PROJECT_DIR$/Scripts/Login.js" />
+        <option value="$PROJECT_DIR$/Views/Account/PersonalCenter.html" />
+        <option value="$PROJECT_DIR$/Css/Account/Login.css" />
+        <option value="$PROJECT_DIR$/Scripts/Account/PersonalCenter.js" />
+        <option value="$PROJECT_DIR$/Views/Account/ChangePassword.html" />
+        <option value="$PROJECT_DIR$/Scripts/Account/ChangePassword.js" />
+        <option value="$PROJECT_DIR$/Views/Account/Register.html" />
+        <option value="$PROJECT_DIR$/Views/Account/RetrievePassword.html" />
+        <option value="$PROJECT_DIR$/Scripts/Account/RetrievePassword.js" />
+        <option value="$PROJECT_DIR$/Views/Account/Login.html" />
       </list>
     </option>
   </component>
@@ -198,10 +321,17 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
     <option name="x" value="227" />
     <option name="y" value="237" />
     <option name="width" value="2372" />
     <option name="height" value="1240" />
+=======
+    <option name="x" value="70" />
+    <option name="y" value="22" />
+    <option name="width" value="1867" />
+    <option name="height" value="1178" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -228,6 +358,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
+      <pane id="Scratches" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -275,7 +409,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <option name="myItemId" value="Admin" />
+=======
+              <option name="myItemId" value="Appointment" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -345,6 +483,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="User" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Course" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Course" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Account" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -377,7 +537,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="bootstrap-fileinput" />
+=======
+              <option name="myItemId" value="Account" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Course" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Course" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Images" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -395,10 +573,45 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Course" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Course" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Course" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Course" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Account" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+<<<<<<< HEAD
       <pane id="Scratches" />
+=======
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -507,16 +720,28 @@
       <workItem from="1475475940388" duration="6000" />
 =======
       <workItem from="1474774824020" duration="16633000" />
+<<<<<<< HEAD
+      <workItem from="1475307867757" duration="35987000" />
+=======
+<<<<<<< HEAD
       <workItem from="1475475704638" duration="97000" />
 <<<<<<< HEAD
       <workItem from="1475477578210" duration="104000" />
 =======
 >>>>>>> master
 >>>>>>> dev
+=======
+      <workItem from="1475307867757" duration="35569000" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
+>>>>>>> a9e861b95d42e71207482f539db55844af84f5b2
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="52620000" />
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="16834000" />
 =======
@@ -542,10 +767,30 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+=======
+    <option name="totallyTimeSpent" value="52202000" />
+>>>>>>> a9e861b95d42e71207482f539db55844af84f5b2
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="70" y="22" width="1867" height="1178" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36904123" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
 <<<<<<< HEAD
@@ -553,6 +798,9 @@
 =======
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
 >>>>>>> master
+=======
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -573,10 +821,13 @@
     <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' into dev&#10;&#10;# Conflicts:&#10;#&#9;Scripts/Login.js&#10;" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="5" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Views/Admin/Course/footer.html" />
     <entry file="file://$PROJECT_DIR$/Views/Admin/Course/CourseDetails.html">
@@ -594,11 +845,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1584">
           <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+=======
+    <entry file="file://$PROJECT_DIR$/Views/Account/Login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="77" column="21" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/Login.js">
+<<<<<<< HEAD
 >>>>>>> master
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1226">
@@ -616,13 +874,29 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/Login.js">
+=======
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1475486270000" expanded="true" signature="70:143" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="164:1515" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="170:329" ph="//..." />
+            <marker date="1475486270000" expanded="true" signature="422:606" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="443:582" ph="{&quot;content&quot;: '请输入用户名或手机号'...}" />
+            <marker date="1475486270000" expanded="true" signature="621:800" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="642:776" ph="{&quot;content&quot;: '请输入密码'...}" />
+            <marker date="1475486270000" expanded="true" signature="979:1334" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="989:1175" ph="//..." />
+            <marker date="1475486270000" expanded="true" signature="1340:1513" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="1361:1505" ph="{&quot;content&quot;: '用户名或密码错误！请重新输入！'...}" />
+            <marker date="1475486270000" expanded="true" signature="2059:2082" ph="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/README.md">
@@ -631,6 +905,8 @@
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
 =======
 >>>>>>> dev
+=======
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
     <entry file="file://$PROJECT_DIR$/Views/Course/CourseList.html" />
     <entry file="file://$PROJECT_DIR$/Css/Commen/Commen.css" />
     <entry file="file://$PROJECT_DIR$/Css/User/Login.css">
@@ -650,6 +926,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Views/Admin/Commen/footer.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="297">
           <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
@@ -673,11 +950,19 @@
         </state>
       </provider>
     </entry>
+=======
+        <state relative-caret-position="396">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
     <entry file="file://$PROJECT_DIR$/Framework/jquery-cookies/index.html" />
     <entry file="file://$PROJECT_DIR$/Views/Admin/CourseType/CourseTypeList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="4" column="16" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
+<<<<<<< HEAD
 >>>>>>> master
         </state>
       </provider>
@@ -701,20 +986,35 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Views/Appointment/CourseTransfer.html">
+=======
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Views/Admin/CourseType/CourseTypeEdit.html" />
+    <entry file="file://$PROJECT_DIR$/Views/Admin/User/UserList.html">
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
 <<<<<<< HEAD
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
 =======
           <caret line="4" column="16" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Views/index.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="528">
           <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+=======
+        <state relative-caret-position="264">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
         </state>
       </provider>
     </entry>
@@ -726,7 +1026,10 @@
 =======
         <state relative-caret-position="231">
           <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
         </state>
       </provider>
     </entry>
@@ -740,13 +1043,17 @@
           </folding>
 =======
           <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Views/Appointment/Course/CourseList.html" />
     <entry file="file://$PROJECT_DIR$/Css/Admin/Comm.css">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="1401">
           <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
@@ -773,12 +1080,22 @@
         </state>
       </provider>
     </entry>
+=======
+        <state relative-caret-position="231">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
     <entry file="file://$PROJECT_DIR$/Views/Admin/Course/footer.html" />
     <entry file="file://$PROJECT_DIR$/Views/Admin/Course/CourseDetails.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
         </state>
       </provider>
     </entry>
@@ -790,6 +1107,7 @@
 =======
         <state relative-caret-position="297">
           <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+<<<<<<< HEAD
 >>>>>>> master
         </state>
       </provider>
@@ -803,6 +1121,8 @@
         <state relative-caret-position="297">
           <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
 >>>>>>> master
+=======
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
         </state>
       </provider>
     </entry>
@@ -814,7 +1134,10 @@
 =======
         <state relative-caret-position="264">
           <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
         </state>
       </provider>
     </entry>
@@ -825,6 +1148,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Views/Admin/Commen/header.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -844,10 +1168,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2805">
           <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/Views/User/PersonalCenter.html" />
+    <entry file="file://$PROJECT_DIR$/Views/PersonalCenter/CourseTransfer.html" />
+    <entry file="file://$PROJECT_DIR$/Views/PersonalCenter/CourseAppointment.html" />
+    <entry file="file://$PROJECT_DIR$/Views/PersonalCenter/CourseCancellation.html" />
+    <entry file="file://$PROJECT_DIR$/Views/PersonalCenter/PersonalCenter.html" />
+    <entry file="file://$PROJECT_DIR$/Views/PersonalCenter/CourseDetials.html" />
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1226">
+          <caret line="403" column="0" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/layer_mobile/need/layer.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="2169" selection-start-line="0" selection-start-column="2169" selection-end-line="0" selection-end-column="2169" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Views/Admin/Index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Views/Appointment/CourseDetials.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Views/Admin/CourseType/CourseTypeList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1128">
@@ -992,11 +1359,80 @@
             <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/Scripts/Account/PersonalCenter">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Views/Account/Login.html">
+    <entry file="file://$PROJECT_DIR$/Framework/Bootstrap3.3.0/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="4" column="18857" selection-start-line="4" selection-start-column="18857" selection-end-line="4" selection-end-column="18857" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/web-forms.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="146" column="22" selection-start-line="146" selection-start-column="22" selection-end-line="146" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Views/Account/PersonalCenter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-857">
+          <caret line="44" column="31" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Views/Account/ChangePassword.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="742">
+          <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/Account/PersonalCenter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="57" />
+          <folding>
+            <marker date="1475471539000" expanded="true" signature="831:845" ph="..." />
+            <marker date="1475471539000" expanded="true" signature="2578:2648" ph="..." />
+            <marker date="1475471539000" expanded="true" signature="2788:2858" ph="..." />
+            <marker date="1475471539000" expanded="true" signature="2999:3069" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/Commen/CourseCommen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Css/Account/Login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="29" />
+          <folding />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Views/Account/Register.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="2574">
           <caret line="78" column="71" selection-start-line="78" selection-start-column="71" selection-end-line="78" selection-end-column="71" />
@@ -1004,10 +1440,15 @@
         <state relative-caret-position="1584">
           <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
 >>>>>>> master
+=======
+        <state relative-caret-position="862">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="91" selection-end-column="57" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Scripts/Admin/PhaseList.js">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -1020,11 +1461,27 @@
             <element signature="e#0#46#0" expanded="false" />
           </folding>
 >>>>>>> dev
+=======
+    <entry file="file://$PROJECT_DIR$/Scripts/Account/ChangePassword.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/Account/Register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/Login.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="412">
           <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
@@ -1037,6 +1494,52 @@
           <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
 >>>>>>> master
 >>>>>>> dev
+=======
+        <state relative-caret-position="345">
+          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+          <folding>
+            <marker date="1475486270000" expanded="true" signature="70:143" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="164:1515" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="170:329" ph="//..." />
+            <marker date="1475486270000" expanded="true" signature="422:606" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="443:582" ph="{&quot;content&quot;: '请输入用户名或手机号'...}" />
+            <marker date="1475486270000" expanded="true" signature="621:800" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="642:776" ph="{&quot;content&quot;: '请输入密码'...}" />
+            <marker date="1475486270000" expanded="true" signature="979:1334" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="989:1175" ph="//..." />
+            <marker date="1475486270000" expanded="true" signature="1340:1513" ph="{...}" />
+            <marker date="1475486270000" expanded="true" signature="1361:1505" ph="{&quot;content&quot;: '用户名或密码错误！请重新输入！'...}" />
+            <marker date="1475486270000" expanded="true" signature="2059:2082" ph="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/Account/RetrievePassword.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="85" column="36" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Views/Account/RetrievePassword.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1365">
+          <caret line="91" column="65" selection-start-line="91" selection-start-column="65" selection-end-line="91" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Views/Account/Login.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="262">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+=======
+        <state relative-caret-position="787">
+          <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+>>>>>>> 69596a85a4fee03f87ce831da0d95098bbfb21f5
+>>>>>>> a9e861b95d42e71207482f539db55844af84f5b2
           <folding />
         </state>
       </provider>
