@@ -51,7 +51,7 @@ function Phase_List() {
             strHtml += '      <div class="col-lg-3">';
             strHtml += '        <button onclick="Phase_Edit('+ CourseID +"," + row.PhaseID+')">编辑</button>';
             strHtml += '        <button onclick="CourseType_Del('+row.PhaseID+')">删除</button>';
-            strHtml += '        <button onclick="PhaseRegistration_List(' + row.PhaseID + ')">预约列表</button>';
+            strHtml += '        <button onclick="PhaseRegistration_List(' + row.PhaseID + ', this)"  cname = "'+row.CoursePhaseName+'">预约列表</button>';
             strHtml += '      </div>';
             strHtml += '    </div>';
             strHtml += '</li>';
@@ -85,6 +85,6 @@ function Phase_Edit(CourseID, PhaseID) {
     window.location.href="PhaseEdit.html?CourseID=" + CourseID + "&" + "PhaseID=" + PhaseID;
 }
 
-function PhaseRegistration_List(PhaseID) {
-    window.location.href="../Order/PhaseOrder.html?PhaseID=" + PhaseID;
+function PhaseRegistration_List(PhaseID, obj) {
+    window.location.href="../Order/PhaseOrder.html?PhaseID=" + PhaseID + "&" + "CoursePhaseName=" + $(obj).attr("cname");;
 }
