@@ -19,15 +19,7 @@ $(function ($) {
         CourseInfo_Get(CourseID);
     }
 
-
-
-
 })
-
-
-
-
-
 
 var CourseID = $Course.RequestUrlParams("CourseID") || 0;
 console.log(CourseID);
