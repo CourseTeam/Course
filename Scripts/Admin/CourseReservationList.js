@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     var CourseName=decodeURIComponent($Course.RequestUrlParams("CourseName"));
     $("#CourseName").html('课程预约列表 — ' +  CourseName);
-    
+
     $("#btnSearch").on("click",function(){
         CourseRegistration_List(1, 100);
     });
