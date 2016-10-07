@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加备注</title>
+    <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <style>
+        textarea {
+            width: 100%;
+            border: 1px solid #eee;
+            border-radius: 3px;
+            resize: none;
+            height: 100px;
+        }
+
+        ::selection {
+            background: #F24C4C;
+            color: #fff;
+        }
+
+        ::-moz-selection {
+            background: #F24C4C;
+            color: #fff;
+        }
+
+        ::-webkit-selection {
+            background: #F24C4C;
+            color: #fff;
+        }
+
+        .container {
+            margin-top: 10px
+        }
+        button{
+            background: #009f95;
+            width: 70px;
+            border: none;
+            border-radius: 3px;
+            height: 30px;
+            color: #fff;
+        }
+        .row{
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            备注:
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <textarea id="note"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            费用缴纳方式:
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <textarea id="money"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-right">
+            <button onclick="NoteEdit()">保 存</button>
+            <button onclick="closeBox()">取 消</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../../Framework/Jqueryv2.4/jquery.min.js"></script>
+<script src="../../../Framework/layer-v2.4/layer/layer.js"></script>
+<script src="../../../Framework/jquery-cookies/jquery.cookie.js"></script>
+<script src="../../../Scripts/Commen/CourseCommen.js"></script>
+<script src="../../../Scripts/Admin/Note.js"></script>
+</body>
+</html>
