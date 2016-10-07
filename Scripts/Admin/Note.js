@@ -25,6 +25,7 @@ function NoteEdit() {
     var param = {CourseRegistrationID:CourseRegistrationID,Note: $("#note").val(), Money: $("#money").val()};
     var result = $Course.GetAjaxJson(param, ApiUrl + "CourseRegistration/PhaseRegistration_PhaseStatus_Upd");
     if (result.Msg == "OK") {
+
         layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
             window.parent.layer.closeAll();
         })
