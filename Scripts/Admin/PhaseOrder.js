@@ -198,6 +198,7 @@ function PhaseStatus_Edit(PhaseReservationID, PhaseStatus) {
         content: $("#phaseStatusBox"),
         btn: ["确 定", '取 消'],
         yes: function (index) {
+            
             var PhaseID = $Course.RequestUrlParams("PhaseID");
             var param = {PhaseReservationID: PhaseReservationID, PhaseStatus:  $("#phaseStatusBox select").val()};
             var result = $Course.PostAjaxJson(param, "http://localhost:60182/" + "PhaseRegistration/PhaseStatus_Edit");
