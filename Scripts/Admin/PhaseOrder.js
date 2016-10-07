@@ -150,7 +150,7 @@ function AccommodationFeesPaid_Add(PhaseReservationID, money) {
         yes: function (index) {
             var PhaseID = $Course.RequestUrlParams("PhaseID");
             var param = {PhaseReservationID: PhaseReservationID, AccommodationFeesPaid: $("#money").val()};
-            var result = $Course.PostAjaxJson(param, "http://localhost:60182/" + "PhaseRegistration/AccommodationFeesPaid_Add");
+            var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/AccommodationFeesPaid_Add");
             if (result.Msg == "OK") {
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                     layer.closeAll();
@@ -175,7 +175,7 @@ function Phase_ClassName_Add(PhaseReservationID, obj) {
         yes: function (index) {
             var PhaseID = $Course.RequestUrlParams("PhaseID");
             var param = {PhaseReservationID: PhaseReservationID, ClassName: $("#className").val()};
-            var result = $Course.PostAjaxJson(param, "http://localhost:60182/" + "PhaseRegistration/Phase_ClassName_Add");
+            var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/Phase_ClassName_Add");
             if (result.Msg == "OK") {
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                     layer.closeAll();
@@ -198,10 +198,10 @@ function PhaseStatus_Edit(PhaseReservationID, PhaseStatus) {
         content: $("#phaseStatusBox"),
         btn: ["确 定", '取 消'],
         yes: function (index) {
-            
+
             var PhaseID = $Course.RequestUrlParams("PhaseID");
-            var param = {PhaseReservationID: PhaseReservationID, PhaseStatus:  $("#phaseStatusBox select").val()};
-            var result = $Course.PostAjaxJson(param, "http://localhost:60182/" + "PhaseRegistration/PhaseStatus_Edit");
+            var param = {PhaseReservationID: PhaseReservationID, PhaseStatus: $("#phaseStatusBox select").val()};
+            var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseStatus_Edit");
             if (result.Msg == "OK") {
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                     layer.closeAll();
