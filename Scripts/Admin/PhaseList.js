@@ -4,14 +4,22 @@
 $(document).ready(function () {
     //加载公用导航
     $("#header").load("../Commen/header.html");
+    $("#btnAdd").on("click", function () {
+        Phase_Add();
+    });
     Phase_List();
 });
 
 var CourseID = $Course.RequestUrlParams("CourseID");
 
+function Phase_Add() {
+    window.location.href = "PhaseEdit.html?CourseID=" + CourseID;
+}
+
 function Phase_List() {
     var param = {CourseID: CourseID};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List");
+    console.log(result);
     if (result.Msg == "OK") {
         var strHtml = "";
         strHtml += '<li class="list-group-item header">';
@@ -28,21 +36,22 @@ function Phase_List() {
         strHtml += '</li>';
         for (var i = 0; i < result.Data.length; i++) {
             var row = result.Data[i];
-            var startDate = row.StartTime.split(' ')[0];
-            var endDate = row.EndTime.split(' ')[0];
+            var startDate = row.StartTime?row.StartTime.split(' ')[0]:"待定";
+            var endDate = row.EndTime? row.EndTime.split(' ')[0]:"待定";
+            var Place = row.Place || "待定";
             strHtml += '<li class="list-group-item">';
             strHtml += '    <div class="row ">';
             strHtml += '      <div class="col-lg-2">' + row.CoursePhaseName + '</div>';
-            strHtml += '      <div class="col-lg-1">' + row.CourseTypeID + '</div>';
+            strHtml += '      <div class="col-lg-1">' + row.CourseTypeName + '</div>';
             strHtml += '      <div class="col-lg-1">' + startDate + '</div>';
             strHtml += '      <div class="col-lg-1">' + endDate + '</div>';
-            strHtml += '      <div class="col-lg-2">' + row.Place + '</div>';
+            strHtml += '      <div class="col-lg-2">' + Place + '</div>';
             strHtml += '      <div class="col-lg-1">' + row.AccommodationCost + '</div>';
             strHtml += '      <div class="col-lg-1">' + row.PeopleCount + '</div>';
             strHtml += '      <div class="col-lg-3">';
-            strHtml += '        <button onclick="Phase_Edit('+row.PhaseID+')">编辑</button>';
+            strHtml += '        <button onclick="Phase_Edit('+ CourseID +"," + row.PhaseID+')">编辑</button>';
             strHtml += '        <button onclick="CourseType_Del('+row.PhaseID+')">删除</button>';
-            strHtml += '        <button >预约列表</button>';
+            strHtml += '        <button onclick="PhaseRegistration_List(' + row.PhaseID + ')">预约列表</button>';
             strHtml += '      </div>';
             strHtml += '    </div>';
             strHtml += '</li>';
@@ -72,6 +81,10 @@ function Phase_Del(id) {
 }
 
 //编辑
-function Phase_Edit(id) {
-    window.location.href="PhaseEdit.html?PhaseID="+id;
+function Phase_Edit(CourseID, PhaseID) {
+    window.location.href="PhaseEdit.html?CourseID=" + CourseID + "&" + "PhaseID=" + PhaseID;
+}
+
+function PhaseRegistration_List(PhaseID) {
+    window.location.href="../Order/PhaseOrder.html?PhaseID=" + PhaseID;
 }
