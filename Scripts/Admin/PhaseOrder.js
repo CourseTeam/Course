@@ -70,7 +70,7 @@ function PhaseRegistration_List(PageIndex) {
             strHtml += '      <div class="col-xs-1">' + AddTime + '</div>';
             strHtml += '      <div class="col-xs-1"><a href="#" onclick="ValueAddedServicesShow(' + row.UserID + ')">查看</a></div>';
             strHtml += '      <div class="col-xs-3">';
-            strHtml += '        <button onclick="PhaseStatus_Edit(this)">修改状态</button>';
+            strHtml += '        <button onclick="PhaseStatus_Edit(' + row.CourseRegistrationID + ',' + row.PhaseStatus + ')" >修改状态</button>';
             strHtml += '        <button onclick="NoteEdit(' + row.CourseRegistrationID + ')">备注</button>';
             strHtml += '        <button>签到</button>';
             strHtml += '      </div>';
@@ -189,7 +189,7 @@ function Phase_ClassName_Add(PhaseReservationID, obj) {
 }
 
 //修改状态
-function PhaseStatus_Edit(obj) {
+function PhaseStatus_Edit(PhaseReservationID, PhaseStatus) {
     layer.open({
         type: 1,
         title: "修改状态",
@@ -199,7 +199,7 @@ function PhaseStatus_Edit(obj) {
         btn: ["确 定", '取 消'],
         yes: function (index) {
             var PhaseID = $Course.RequestUrlParams("PhaseID");
-            var param = {PhaseReservationID: PhaseReservationID, ClassName: $("#className").val()};
+            var param = {PhaseReservationID: PhaseReservationID, PhaseStatus:  $("#phaseStatusBox select").val()};
             var result = $Course.PostAjaxJson(param, "http://localhost:60182/" + "PhaseRegistration/PhaseStatus_Edit");
             if (result.Msg == "OK") {
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
@@ -208,7 +208,7 @@ function PhaseStatus_Edit(obj) {
             }
         },
         success: function () {
-            $("#phaseStatusBox").val($(obj).attr("cname"));
+            $("#phaseStatusBox select").val(PhaseStatus);
         }
     });
 }
