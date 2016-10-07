@@ -60,7 +60,7 @@ function PhaseRegistration_List(PageIndex) {
             var AddTime = row.AddTime ? row.AddTime.split(" ")[0].replace(/-/g, "/") : "";
             strHtml += '<li class="list-group-item">';
             strHtml += '    <div class="row ">';
-            strHtml += '      <div class="col-xs-1" title="点击查看用户详细信息"><a href="#">' + row.NickName + '</a></div>';
+            strHtml += '      <div class="col-xs-1" title="点击查看用户详细信息"><a href="../User/UserEdit.html?type=1&UserID="' + row.UserID + ' target="_blank">' + row.NickName + '</a></div>';
             strHtml += '      <div class="col-xs-1">' + row.Sex + '</div>';
             strHtml += '      <div class="col-xs-1">' + birthday + '</div>';
             strHtml += '      <div class="col-xs-1">' + row.Phone + '</div>';
