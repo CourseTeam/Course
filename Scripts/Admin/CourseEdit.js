@@ -18,6 +18,7 @@ $(function ($) {
     if (CourseID != null) {
         CourseInfo_Get(CourseID);
     }
+
 })
 
 var CourseID = $Course.RequestUrlParams("CourseID") || 0;
