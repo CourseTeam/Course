@@ -13,7 +13,7 @@ $(document).ready(function () {
     if (PhaseID != null) {
         Phase_Get(PhaseID);
     }
-    laydate.skin("molv")
+    laydate.skin("molv");
     laydate(start);
     laydate(end);
 });
@@ -64,7 +64,7 @@ function TeacherBox() {
     layer.open({
         type: 1,
         title: '选择教师',
-        area: ["320px", "320px"],
+        area: ["320px", "300px"],
         content: $("#TeacherBox"),
         success: function () {
 

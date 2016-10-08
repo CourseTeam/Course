@@ -9,12 +9,10 @@ $(function ($) {
     });
 
     //注册
-    $("#btnReg").on("click",function () {
+    $("#btnReg").on("click", function () {
         Register();
     })
 });
-
-
 
 
 var VerificationCode = 0;
@@ -25,23 +23,33 @@ function GetSMSCode() {
         layer.open({
             content: '请输入手机号',
             style: 'background-color:#fff; color:#000; border:none;width:60%',
-            time:2
+            time: 2
         });
         return;
     }
-    if (PhoneNum.length < 11) {
+    if (PhoneNum.length != 11) {
         layer.open({
             content: '请输入正确的手机号',
             style: 'background-color:#fff; color:#000; border:none;width:60%',
-            time:2
+            time: 2
         });
         return;
     }
+    var s = 60;
 
     var param = {Phone: PhoneNum, Type: 1};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Account/GetSMSCode");
     if (result.Msg == "OK") {
         VerificationCode = result.Data;
+        var time = setInterval(function () {
+
+            $("#btnSendSMS").html(s+'秒');
+            if (s == 0) {
+                clearInterval(time);
+                $("#btnSendSMS").html('发送验证码');
+            }
+            s--;
+        }, 1000);
     }
 }
 //注册
@@ -51,7 +59,7 @@ function Register() {
         layer.open({
             content: '请输入手机号',
             style: 'background-color:#fff; color:#000; border:none;width:60%',
-            time:2
+            time: 2
         });
         return;
     }
@@ -59,7 +67,7 @@ function Register() {
         layer.open({
             content: '请输入正确的手机号',
             style: 'background-color:#fff; color:#000; border:none;width:60%',
-            time:2
+            time: 2
         });
         return;
     }
@@ -68,7 +76,7 @@ function Register() {
         layer.open({
             content: '验证码错误!',
             style: 'background-color:#fff; color:#000; border:none;width:60%',
-            time:2
+            time: 2
         });
         return;
     }
@@ -77,7 +85,7 @@ function Register() {
         layer.open({
             content: '请输入密码！',
             style: 'background-color:#fff; color:#000; border:none;width:60%',
-            time:2
+            time: 2
         });
         return;
     }
