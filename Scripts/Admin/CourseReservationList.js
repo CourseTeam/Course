@@ -43,7 +43,7 @@ function CourseRegistration_List(PageIndex, PageSize) {
                 var Birthday = row.BirthDay?row.BirthDay.split(' ')[0]:"未设置";
                 strHtml += '<li class="list-group-item">';
                 strHtml += '    <div class="row ">';
-                strHtml += '        <div class="col-xs-2"><a href="">' + row.NickName + '</a></div>';
+                strHtml += '        <div class="col-xs-2"> <a href="../User/UserEdit.html?type=1&UserID='+ row.UserID+'" target="_blank">' + row.NickName + '</a></div>';
                 strHtml += '        <div class="col-xs-1">' + row.Phone + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.Sex + '</div>';
                 strHtml += '        <div class="col-xs-1">' + Birthday + '</div>';
