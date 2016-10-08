@@ -1,0 +1,27 @@
+
+
+.row {
+	background-color: #FFFFFF;
+	height: 44px;
+	border-bottom:1px solid #E6E6E6;
+	margin-left: 0!important;
+}
+.p {
+	font-size: 15px;
+	padding-top: 10px;
+}
+.container {
+	background-color: #FFFFFF;
+}
+
+.sureButton {
+	margin-left: 20px;
+	margin-right: 20px;
+	width: 95%;
+	height: 44px;
+	margin-top: 100px;
+	border-radius: 4px;
+	background-color: #F24D4D;
+	color: #FFFFFF;
+    border: 0;
+}

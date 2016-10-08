@@ -34,6 +34,7 @@ function Login() {
         });
         return;
     }
+
     var param = {Tel: UserName, Pwd: $Course.MD5(Pwd)};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Account/Login");
     console.log(result);
