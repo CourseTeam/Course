@@ -94,5 +94,5 @@ function CourseInfo_Details() {
 }
 
 function CourseRegistration_Add(CourseID) {
-    // window.location.href = "CourseDetials.html?CourseID=" + CourseID;
+    window.location.href = "../book/sign.html?CourseID=" + CourseID;
 }
