@@ -64,7 +64,7 @@ function TeacherBox() {
     layer.open({
         type: 1,
         title: '选择教师',
-        area: ["320px", "320px"],
+        area: ["320px", "300px"],
         content: $("#TeacherBox"),
         success: function () {
 
