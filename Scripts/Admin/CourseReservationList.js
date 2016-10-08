@@ -53,6 +53,7 @@ function CourseRegistration_List(PageIndex, PageSize) {
                 strHtml += '        <div class="col-xs-2">';
                 strHtml += '            <button onclick="CourseRegistration_Refund(' + row.UserID + ')">退费</button>';
                 strHtml += '            <button onclick="CourseRegistration_NoteAndMoney_Upd(' + row.CourseRegistrationID + ')">备注</button>';
+                row.CourseRegistrationID
                 strHtml += '        </div>';
                 strHtml += '    </div>';
                 strHtml += '</li>';
@@ -67,5 +68,12 @@ function CourseRegistration_Refund(UserID) {
 }
 
 function CourseRegistration_NoteAndMoney_Upd(CourseRegistrationID) {
+    layer.open({
+        type: 2,
+        skin: "layui-layer-molv",
+        title: '修改备注',
+        area: ["500px", "380px"],
+        content: "../Commen/Note.html?CourseRegistrationID=" + CourseRegistrationID
+    });
 
 }
