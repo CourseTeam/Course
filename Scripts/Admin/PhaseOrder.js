@@ -70,9 +70,11 @@ function PhaseRegistration_List(PageIndex) {
             strHtml += '      <div class="col-xs-1">' + AddTime + '</div>';
             strHtml += '      <div class="col-xs-1"><a href="#" onclick="ValueAddedServicesShow(' + row.UserID + ')">查看</a></div>';
             strHtml += '      <div class="col-xs-3">';
-            strHtml += '        <button onclick="PhaseStatus_Edit(' + row.CourseRegistrationID + ',' + row.PhaseStatus + ')" >修改状态</button>';
+            strHtml += '        <button onclick="PhaseStatus_Edit(' + row.PhaseReservationID + ',' + row.PhaseStatus + ')" >修改状态</button>';
             strHtml += '        <button onclick="NoteEdit(' + row.CourseRegistrationID + ')">备注</button>';
-            strHtml += '        <button>签到</button>';
+            if (row.PhaseStatus == 3) {
+                strHtml += '        <button onclick="PhaseStatus_Edit(' + row.PhaseReservationID + ',' + row.PhaseStatus + ')">签到</button>';
+            }
             strHtml += '      </div>';
             strHtml += '    </div>';
             strHtml += '</li>';
@@ -198,11 +200,10 @@ function PhaseStatus_Edit(PhaseReservationID, PhaseStatus) {
         content: $("#phaseStatusBox"),
         btn: ["确 定", '取 消'],
         yes: function (index) {
-
-            var PhaseID = $Course.RequestUrlParams("PhaseID");
             var param = {PhaseReservationID: PhaseReservationID, PhaseStatus: $("#phaseStatusBox select").val()};
-            var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseStatus_Edit");
+            var result = $Course.PostAjaxJson(param, 'http://localhost:60182/' + "PhaseRegistration/PhaseStatus_Edit");
             if (result.Msg == "OK") {
+                PhaseRegistration_List(1);
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                     layer.closeAll();
                 });
@@ -213,7 +214,7 @@ function PhaseStatus_Edit(PhaseReservationID, PhaseStatus) {
         }
     });
 }
-
+//修改备注
 function NoteEdit(CourseRegistrationID, uid) {
     layer.open({
         type: 2,
@@ -221,5 +222,19 @@ function NoteEdit(CourseRegistrationID, uid) {
         title: '修改备注',
         area: ["500px", "380px"],
         content: "../Commen/Note.html?CourseRegistrationID=" + CourseRegistrationID
+    });
+}
+
+//签到
+function Past(PhaseReservationID, PhaseStatus) {
+    layer.confirm("确定学员已到场？", function () {
+        var param = {PhaseReservationID: PhaseReservationID, PhaseStatus: $("#phaseStatusBox select").val()};
+        var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseStatus_Edit");
+        if (result.Msg == "OK") {
+            PhaseRegistration_List(1);
+            layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
+                layer.closeAll();
+            });
+        }
     });
 }
