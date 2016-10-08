@@ -10,7 +10,7 @@ ul {
 }
 
 .list {
-	padding-left: 0px
+	padding-left: 0px;
 }
 
 img {
@@ -47,7 +47,7 @@ img {
     color: #FFFFFF;
 }
 .button:active {
-
+	
     background: #9B9B9B;
 
 }
