@@ -6,6 +6,8 @@ $(document).ready(function () {
     $("#header").load("../Commen/header.html");
     layer.skin = "layui-layer-molv";
     PhaseRegistration_List(1);
+    var CoursePhaseName=$Course.RequestUrlParams("CoursePhaseName");
+    $("#paseName").html("阶段预约列表 — "+CoursePhaseName);
 });
 
 var PhaseRegistration_Items = [];
