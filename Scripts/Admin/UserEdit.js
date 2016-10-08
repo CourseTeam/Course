@@ -5,10 +5,15 @@ $(function ($) {
     $("#header").load("../Commen/header.html");
 
     var UserID = $Course.RequestUrlParams("UserID");
+    var  type = $Course.RequestUrlParams("type");
+    if (type == 1){
+        $("#btnSave").hide();
+    }
     $("#btnSave").on("click", function () {
         UserInfo_Edit(UserID);
     });
     if (UserID != null) {
+        debugger
         UserInfoEdit_Get(UserID);
     }
     laydate(start);
