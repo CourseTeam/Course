@@ -13,7 +13,7 @@ $(document).ready(function () {
     if (PhaseID != null) {
         Phase_Get(PhaseID);
     }
-    laydate.skin("molv")
+    laydate.skin("molv");
     laydate(start);
     laydate(end);
 });

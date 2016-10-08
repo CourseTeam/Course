@@ -6,7 +6,7 @@ $(document).ready(function () {
     $("#header").load("../Commen/header.html");
     layer.skin = "layui-layer-molv";
     PhaseRegistration_List(1);
-    var CoursePhaseName = $Course.RequestUrlParams("CoursePhaseName");
+    var CoursePhaseName = decodeURIComponent($Course.RequestUrlParams("CoursePhaseName"));
     $("#paseName").html("阶段预约列表 — " + CoursePhaseName);
 });
 
@@ -50,7 +50,7 @@ function PhaseRegistration_List(PageIndex) {
                     PhaseStatus = "预约成功";
                     break;
                 case 4:
-                    PhaseStatus = "已签到";
+                    PhaseStatus = "已参加";
                     break;
                 case 5:
                     PhaseStatus = "已退费";
@@ -217,7 +217,7 @@ function PhaseStatus_Edit(PhaseReservationID, PhaseStatus) {
     });
 }
 //修改备注
-function NoteEdit(CourseRegistrationID, uid) {
+function NoteEdit(CourseRegistrationID) {
     layer.open({
         type: 2,
         skin: "layui-layer-molv",
