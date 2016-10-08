@@ -1,0 +1,64 @@
+.top {
+	background-color: #FFFFFF;
+}
+
+.title {
+	color: #8C8C8C;
+	margin-left: 10px;
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+.text {
+	margin-left: 10px;
+	font-weight:bold;
+	margin-top: 10px;
+}
+
+.zengzhi_title {
+	margin-left: 10px;
+	color: #8C8C8C;
+}
+
+.other {
+	margin-top: 10px;
+	background-color: #FFFFFF;
+}
+
+#text_row {
+	border-bottom:1px solid #E6E6E6;
+}
+
+.sign {
+	background-color: #FFFFFF;
+}
+
+.zengzhi {
+	margin-top: 10px;
+	background-color: #FFFFFF;
+}
+
+#input {
+	margin-top: 10px;
+}
+
+.radio {
+	margin-left: 10px;
+}
+
+.sure {
+	background-color: #FFFFFF;
+	height: 100px;
+}
+
+.sureButton {
+	margin-left: 20px;
+	margin-right: 20px;
+	width: 95%;
+	height: 44px;
+	margin-top: 10px;
+	border-radius: 4px;
+	background-color: #F24D4D;
+	color: #FFFFFF;
+    border: 0;
+}

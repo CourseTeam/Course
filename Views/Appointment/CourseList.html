@@ -8,14 +8,96 @@
     <title>课程介绍</title>
     <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap-theme.css">
+    <style>
 
+        .typeButton {
+             height: 40px;
+             font-size: 15px;
+             background-color: #ffffff;
+             margin: 0px;
+             border: 0px;
+             padding: 0px;
+             outline: none;
+             border-bottom: 1px solid #ffffff;
+         }
+
+        .active {
+            border-bottom: 1px solid #ff0000;
+        }
+
+        .courseTitle {
+            background: transparent;
+            outline: none;
+            border: none;
+            width: 68%;
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+        }
+
+        .courseLine_leftImg {
+            float: left;
+            width: 75px;
+            height: 75px;
+            background-size: cover;
+        }
+
+        .registrationButton {
+            width: 30%;
+            font-size: 12px;
+            height: 30px;
+            border:0;
+            border-radius: 3px;
+            background: #F24D4D;
+            color: #fff;
+            outline: none;
+        }
+
+        .info {
+            overflow: hidden;
+            height: 18px;
+            font-size: 12px;
+            color: #9B9B9B;
+        }
+    </style>
 </head>
 <body>
 <div>
     <img src="../../Images/banner/banner01.png" style="width: 100%"/>
 </div>
+<div class="container">
+    <div class="row" style="border-bottom: 1px solid #dddddd">
+        <button class="col-xs-4 typeButton">课程类型</button>
+        <button class="col-xs-4 typeButton" id="studentButton">学生课程</button>
+        <button class="col-xs-4 typeButton" id="parentsButton">家长课程</button>
+    </div>
+</div>
+<div id="StudentList" class="container">
+
+</div>
+<div id="ParentsList" class="container">
+
+</div>
+<!--navbar-fixed-bottom-->
+<div style="height: 60px;width: 100%;"></div>
+<div class="container navbar-fixed-bottom" style="background: #FFF;">
+    <div class="row" style="border-top: 1px solid #EEEEEE;">
+        <div class="col-xs-4" style="height: 50px;line-height: 50px;text-align: center;font-size: 16px;">
+            <a style="color: #F24C4C;" href="/Course/Views/Appointment/CourseList.html">课程介绍</a>
+        </div>
+        <div class="col-xs-4" style="height: 50px;line-height: 50px;border-left: 1px solid #eee;text-align: center;font-size: 16px;">
+            <a style="color: #000;" href="/Course/Views/book/booking.html">我的预约</a>
+        </div>
+        <div class="col-xs-4" style="height: 50px;line-height: 50px;border-left: 1px solid #eee;text-align: center;font-size: 16px;">
+            <a style="color: #000;" href="/Course/Views/Account/PersonalCenter.html">个人中心</a>
+        </div>
+    </div>
+</div>
 <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
 <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
 <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+<script src="../../Framework/layer_mobile/layer.js"></script>
+<script src="../../Scripts/Commen/CourseCommen.js"></script>
+<script src="../../Scripts/Appointment/CourseList.js"></script>
 </body>
 </html>

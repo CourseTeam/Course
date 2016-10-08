@@ -22,22 +22,28 @@
         .pl15 {
             padding-left: 15px;
         }
+
         .pr15 {
             padding-right: 15px;
         }
+
         .border_btm {
             border-bottom: 1px solid #eeeeee;
         }
+
         .pdtb10 {
             padding-top: 10px;
             padding-bottom: 10px;
         }
+
         .display_block {
             display: block
         }
+
         .color_gray {
             color: gray;
         }
+
         #edit {
             width: 100%;
             height: 40px;
@@ -45,10 +51,11 @@
             border-radius: 7px;
             padding-left: 5px;
         }
+
         .layui-m-layerchild h3 {
-            font-size: 14px!important;
-            height: 20px!important;
-            line-height: 20px!important;
+            font-size: 14px !important;
+            height: 20px !important;
+            line-height: 20px !important;
         }
     </style>
 </head>
@@ -56,9 +63,9 @@
 <div class="container">
     <div class="row pdtb10 border_btm">
         <div class="col-xs-3 pl15 pr5">
-        <span class="display_block">登录名</span></div>
-    <div class="col-xs-9 pr15 pl5 text-right">
-        <span class="color_gray" id="account"></span></div>
+            <span class="display_block">登录名</span></div>
+        <div class="col-xs-9 pr15 pl5 text-right">
+            <span class="color_gray" id="account"></span></div>
     </div>
     <div class="row pdtb10 border_btm">
         <div class="col-xs-3 pl15 pr5">
@@ -151,8 +158,21 @@
             <span class="color_gray" id="address"></span></div>
     </div>
 </div>
-
-
+<!--navbar-fixed-bottom-->
+<div style="height: 60px;width: 100%;"></div>
+<div class="container navbar-fixed-bottom" style="background: #FFF;">
+    <div class="row" style="border-top: 1px solid #EEEEEE;">
+        <div class="col-xs-4" style="height: 50px;line-height: 50px;text-align: center;font-size: 16px;">
+            <a style="color: #000;" href="/Course/Views/Appointment/CourseList.html">课程介绍</a>
+        </div>
+        <div class="col-xs-4" style="height: 50px;line-height: 50px;border-left: 1px solid #eee;text-align: center;font-size: 16px;">
+            <a style="color: #000;" href="/Course/Views/book/booking.html">我的预约</a>
+        </div>
+        <div class="col-xs-4" style="height: 50px;line-height: 50px;border-left: 1px solid #eee;text-align: center;font-size: 16px;">
+            <a style="color: #F24C4C;" href="/Course/Views/Account/PersonalCenter.html">个人中心</a>
+        </div>
+    </div>
+</div>
 <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
 <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
 <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>

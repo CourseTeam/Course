@@ -4,8 +4,8 @@
 
 //用户票据
 //判断用户是否登录，没登录，跳到登录页面，请只在需要的页面添加引用
-var Ticket = $.cookie("Ticket") || "";
-if (Ticket == "") {
+var UserInfo = $.cookie("UserInfo") || "";
+if (UserInfo == "") {
     window.location.href = "/Course/Views/Account/Login.html"
 }
-console.log(Ticket);
+console.log(UserInfo);

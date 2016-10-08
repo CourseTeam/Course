@@ -8,7 +8,7 @@ console.log(UserInfo);
 
 $(function ($) {
     GetData()
-    $(".row").on("click",function(){
+    $(".border_btm").on("click",function(){
         var name=$(this).find("span").eq(0).html();
         var values=$(this).find("span").eq(1).html();
         var id = $(this).find("span").eq(1).attr("id");
