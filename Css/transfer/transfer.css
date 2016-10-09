@@ -14,12 +14,28 @@
 	background-color: #FFFFFF;
 }
 
-.sureButton {
+#sureButton {
 	margin-left: 20px;
 	margin-right: 20px;
 	width: 95%;
 	height: 44px;
 	margin-top: 100px;
+	border-radius: 4px;
+	background-color: #F24D4D;
+	color: #FFFFFF;
+    border: 0;
+}
+
+#my-course {
+	margin-top: 10px;
+}
+
+#course-list {
+	margin-left: 20px;
+	margin-right: 20px;
+	width: 95%;
+	height: 35px;
+	margin-top: 4px;
 	border-radius: 4px;
 	background-color: #F24D4D;
 	color: #FFFFFF;
