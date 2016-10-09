@@ -22,17 +22,18 @@ function CourseList(UserID, CourseTypeID) {
     var param = {UserID: UserID, CourseTypeID: CourseTypeID};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Course/Course_List_Type");
     console.log(result);
+    var strHtml = "";
     if (result.Msg == "OK" && result.Data.length > 0) {
         for (var i = 0 ; i < result.Data.length; i++) {
             var row = result.Data[i];
             var people = row.ReservationCount + '/' + row.PeopleCount;
             var full = row.ReservationCount >= row.PeopleCount? true : false;
-            var progress = "";
+            var progress = 0;
+            progress = row.ReservationCount / row.PeopleCount * 100;
+            progress = row.ReservationCount / row.PeopleCount * 100;
             if (full) {
-                progress = row.ReservationCount / row.PeopleCount * 100;
                 progress = progress >= 100 ? 100 : progress;
             }
-            var strHtml = "";
             strHtml += '   <div class="row" style="padding-bottom: 15px;border-bottom: 1px solid #eee; padding-top: 10px">';
             strHtml += '       <div class="col-xs-12" style="padding-right: 8px">';
             strHtml += '           <div class="courseLine_leftImg" style="background: url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;">';
