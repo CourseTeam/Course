@@ -38,7 +38,7 @@ function get_request(courseid) {
         var pos_start=str.indexOf(name) + name.length + 1;
         var pos_end=str.indexOf("&",pos_start);
         var pid = str.substring(pos_start);
-        get_data(pid);
+        get_data("23");
     }
 
 
@@ -51,27 +51,27 @@ function get_data(cid) {
 	var couseid = cid;
 	var param = {"CourseID":couseid};
 	var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
-	if (result.MSG == "OK") {
-		request = result.Data;
+	if (result.Msg == "OK") {
+		request = result.Data.phaselist[0];
 	}
 
 	var strHtml = "";
 
 	strHtml += '<div class="row">'
 	strHtml += '  <div class="col-xs-6">'
-	strHtml += '	<p>一阶开营时间：'+ request.time + '</p>'			
+	strHtml += '	<p>一阶开营时间：'+ request.StartTime.substr(0,10) + '</p>'			
 	strHtml += '  </div>'
 	strHtml += '  <div class="col-xs-6">'
-	strHtml += '	地点：' + request.location;			
+	strHtml += '	地点：' + request.Place;			
 	strHtml += '  </div>'
 	strHtml += '</div>'
 
 	strHtml += '<div class="row">'
 	strHtml += '  <div class="col-xs-6">'
-	strHtml += '	<p>剩余名额：'+ request.minge + '</p>'			
+	strHtml += '	<p>剩余名额：'+ (request.PeopleCount - request.ReservationCount) + '</p>'			
 	strHtml += '  </div>'
 	strHtml += '  <div class="col-xs-6">'
-	strHtml += '	预约截止时间：'+ request.outtime			
+	strHtml += '	预约截止时间：'+ request.endTime.substr(0,10)			
 	strHtml += '  </div>'
 	strHtml += '</div>'
 

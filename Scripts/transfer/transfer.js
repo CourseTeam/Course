@@ -16,7 +16,7 @@ var selCourseName;
 function go_transfer(){
 	var param = {"PhaseID":phaseID,"NewPhaseID":selCourseID};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Course/Phase_Change");
-    if (result.MSG == "OK") {
+    if (result.Msg == "OK") {
     	//转期成功
 
     }
