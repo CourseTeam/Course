@@ -203,7 +203,7 @@ function PhaseStatus_Edit(PhaseReservationID, PhaseStatus) {
         btn: ["确 定", '取 消'],
         yes: function (index) {
             var param = {PhaseReservationID: PhaseReservationID, PhaseStatus: $("#phaseStatusBox select").val()};
-            var result = $Course.PostAjaxJson(param, 'http://localhost:60182/' + "PhaseRegistration/PhaseStatus_Edit");
+            var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseStatus_Edit");
             if (result.Msg == "OK") {
                 PhaseRegistration_List(1);
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {

@@ -29,7 +29,7 @@ function Teacher_List() {
                 strHtml += '<li class="list-group-item">';
                 strHtml += '    <div class="row ">';
                 strHtml += '        <div class="col-xs-4">' + row.TeacherName + '</div>';
-                strHtml += '        <div class="col-xs-4 test" style="text-overflow: ellipsis;">' + row.Intro + '</div>';
+                strHtml += '        <div class="col-xs-4 test" style="height:20px;overflow:hidden; text-overflow: ellipsis;" title="' + $Course.DelHtmlTag(row.Intro) + '">' + row.Intro + '</div>';
                 strHtml += '        <div class="col-xs-4">';
                 strHtml += '            <button onclick="Edit(' + row.TeacherID + ')">编 辑</button>';
                 strHtml += '            <button onclick="TeacherInfo_Del(' + row.TeacherID + ')">删 除</button>';

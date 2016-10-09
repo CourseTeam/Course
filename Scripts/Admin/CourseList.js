@@ -5,7 +5,7 @@ $(document).ready(function () {
     //加载公用导航
     $("#header").load("../Commen/header.html");
 
-    $("#btnSearch").on("click",function(){
+    $("#btnSearch").on("click", function () {
         Course_list(1, 100);
     });
     Course_list(1, 100);
@@ -24,7 +24,7 @@ function Course_list(PageIndex, PageSize) {
         strHtml += '    <div class="row ">';
         strHtml += '        <div class="col-xs-3">课程名称</div>';
         strHtml += '        <div class="col-xs-1">课程类型</div>';
-        strHtml += '        <div class="col-xs-3">简介</div>';
+        strHtml += '        <div class="col-xs-3">课程简介</div>';
         strHtml += '        <div class="col-xs-1">价格</div>';
         strHtml += '        <div class="col-xs-4">操作</div>';
         strHtml += '    </div>';
@@ -36,13 +36,13 @@ function Course_list(PageIndex, PageSize) {
                 strHtml += '    <div class="row ">';
                 strHtml += '        <div class="col-xs-3">' + row.CourseName + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.CourseType + '</div>';
-                strHtml += '        <div class="col-xs-3">' + row.Intro + '</div>';
+                strHtml += '        <div class="col-xs-3" style="height: 20px;overflow: hidden;" title="' + $Course.DelHtmlTag(row.Intro) + '">' + row.Intro + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.Tuition + '</div>';
                 strHtml += '        <div class="col-xs-4">';
                 strHtml += '            <button onclick="Edit(' + row.CourseID + ')">编 辑</button>';
                 strHtml += '            <button onclick="CourseInfo_Del(' + row.CourseID + ')">删 除</button>';
-                strHtml += '            <button onclick="Phase_Edit(' + row.CourseID + ')">阶段列表</button>';
-                strHtml += '            <button style="width: 100px;" onclick="CourseRegistration_List(' + row.CourseID + ',this)" cname = "'+row.CourseName+'">课程预约列表</button>';
+                strHtml += '            <button onclick="Phase_Edit(' + row.CourseID + ')">阶段管理</button>';
+                strHtml += '            <button onclick="CourseRegistration_List(' + row.CourseID + ',this)" cname = "' + row.CourseName + '">报名表</button>';
                 strHtml += '        </div>';
                 strHtml += '    </div>';
                 strHtml += '</li>';
