@@ -41,7 +41,7 @@ function login() {
         var json = $Course.stringify(result.Data);
         $.cookie("UserInfo", json , {expires: 30, path: '/'});   
          get_bookingdata();
-
+         
         // window.location.href = "../Appointment/CourseList.html";
     } else {
         layer.open({
@@ -58,20 +58,22 @@ function login() {
 //cid CourseID 课程ID
 //ctid CoutseTypeID 课程阶段ID
 //tspan TimeSpan 剩余天数
+//cpname CoursePhaseName  课程名字
 
 // e CourseID, t--PhaseStatus
 // pt PhaseType 阶段
 // over OverCount 是否过期
-// name CourseTypeName 课程名
+// name CourseTypeName 课程类型名 0=亲子课程
 
-function book(pid,cid,ctid,crid,e,t,pt,over,name,tspan){
+function book(obj,pid,cid,ctid,crid,e,t,pt,over,name,tspan,cpname){
   var id = e;
   var status = t;
   phase_id = pid;
   course_id = cid;
   courseType_id = ctid;
   coursere_id = crid;
-
+  var coursename = $(obj).attr("cname");
+  
   if (tspan < 14) {
       layer.open({
         title:"",
@@ -82,13 +84,13 @@ function book(pid,cid,ctid,crid,e,t,pt,over,name,tspan){
       });
       return;
   }
-
+  
   if (over) {
     //跳转到转期界面
-    window.location.href = "../transfer/transfer.html";
+    window.location.href = "../transfer/transfer.html?phaseID=" + phase_id + "&coursename=" + coursename;
     return;
   }
-
+  
   if (name == "0") {
      layer.open({
         title:"参加亲子课程的是",
@@ -217,7 +219,7 @@ function create_bookinglist() {
       var color = isCost?"#F24D4D":"#9B9B9B";
        strHtml += '  <ul style="float: left;">'
        strHtml += '    <li>'
-       strHtml += '        <div><img id= img -'+ i +'width="100" height="100" src="http://s16.sinaimg.cn/mw690/001wMDbFzy6Lmwz7HJBaf&690"></div>'
+       strHtml += '        <div><img id= img -'+ i +'width="75" height="75" src="http://s16.sinaimg.cn/mw690/001wMDbFzy6Lmwz7HJBaf&690"></div>'
        strHtml += '    </li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float: left;">'
@@ -251,7 +253,7 @@ function create_willbooklist(){
       var img = isCost? "../../Images/book/cost_selected.png":"../../Images/book/cost_normal.png";
        strHtml += '  <ul style="float: left;">' 
        strHtml += '    <li>'
-       strHtml += '        <div><img id= img -'+ i +'width="100" height="100" src="http://s16.sinaimg.cn/mw690/001wMDbFzy6Lmwz7HJBaf&690"></div>'
+       strHtml += '        <div><img id= img -'+ i +'width="75" height="75" src="http://s16.sinaimg.cn/mw690/001wMDbFzy6Lmwz7HJBaf&690"></div>'
        strHtml += '    </li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float: left;">'
@@ -261,7 +263,7 @@ function create_willbooklist(){
        strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float:left;">'
-       strHtml += '    <button class="button" type="button" onclick="book(' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'
+       strHtml += '    <button class="button" type="button"  cname="'+ row.CoursePhaseName + '"    onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'
        strHtml += '  </ul>'
        strHtml += '<div style="clear: both;"></div>'
    }
@@ -282,7 +284,7 @@ function create_bookedlist() {
       var costImg = row.AccommodationFeedPaid > row.AccommodationCost? "../../Images/book/cost_normal.png":"../../Images/book/cost_selected.png";
        strHtml += '  <ul style="float: left;">' 
        strHtml += '    <li>'
-       strHtml += '        <div "><img id= img -'+ i +'width="100" height="100" src="http://s16.sinaimg.cn/mw690/001wMDbFzy6Lmwz7HJBaf&690"></div>'
+       strHtml += '        <div "><img id= img -'+ i +'width="75" height="75" src="http://s16.sinaimg.cn/mw690/001wMDbFzy6Lmwz7HJBaf&690"></div>'
        strHtml += '    </li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float: left;">'
