@@ -18,7 +18,7 @@ function go_transfer(){
     var result = $Course.GetAjaxJson(param, ApiUrl + "Course/Phase_Change");
     if (result.Msg == "OK") {
     	//转期成功
-
+        
     }
 }
 
