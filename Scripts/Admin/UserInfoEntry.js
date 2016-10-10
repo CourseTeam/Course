@@ -2,11 +2,19 @@
  * 录入学生信息
  * Created by wangbin on 2016/10/8.
  */
+
+var UserID = 0;
+var PhaseID = 0;
+var CourseID = 0;
+var PhaseType = 0;
+var Entry = 0 // 作为判断这个学生是否报名过这个课程的依据,默认为0,0代表没有报名过,1代表报名过
+
 $(document).ready(function () {
     //加载公用导航
     $("#header").load("../Commen/header.html");
+    PhaseID = $Course.RequestUrlParams("PhaseID");
     $("#btnSave").on("click", function () {
-        CourseOrPhase_Entry();
+        Course_Entry();
     });
     $("#choose").on("click", function () {
         StudentList_Show();
@@ -25,18 +33,13 @@ $(document).ready(function () {
     StudentList();
 });
 
-var UserID = 0;
-var PhaseID = 0;
-var CourseID = 0;
-var Entry = 0 // 作为判断这个学生是否报名过这个课程的依据,默认为0,0代表没有报名过,1代表报名过
-
 function Course_Entry() {
     var TuitionFeesPaid = $("#TuitionFeesPaid").val();
     var Note = $("#Note").val();
     var Money = $("#Money").val();
-    var ValueAddedServices = $("input[name=choose]:checked").val();
+    var ValueAddedServices = $("input[name=optionsRadios]:checked").val();
     var param = {UserID:UserID, CourseID: CourseID, TuitionFeesPaid:TuitionFeesPaid, Note:Note, Money:Money, ValueAddedServices:ValueAddedServices};
-    var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseReg_Add");
+    var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_Add");
     if (result.Msg == "OK"){
         Phase_Entry();
     }
@@ -44,10 +47,22 @@ function Course_Entry() {
 
 function Phase_Entry() {
     var AccommodationFeesPaid = $("#AccommodationFeesPaid").val();
-    var ParentsCount = $("#ParentsCount").val();
-    var ValueAddedServices = $("input[name=choose]:checked").val();
-    var param = {PhaseID:PhaseID, UserID:UserID, CourseID:CourseID, AccommodationFeesPaid:AccommodationFeesPaid, ParentsCount:ParentsCount,ValueAddedServices:ValueAddedServices};
-    var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/PhaseReg_Add");
+    var ParentsCount = $("#ParentsCount").val() || 0;
+    var ValueAddedServices = $("input[name=optionsRadios]:checked").val();
+    console.log($("input[name=optionsRadios]:checked").val());
+    var param = {PhaseID:PhaseID, UserID:UserID, CourseID:CourseID, AccommodationFeesPaid:AccommodationFeesPaid, ParentsCount:ParentsCount,PhaseType:PhaseType, ValueAddedServices:ValueAddedServices};
+    var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseReg_Add");
+    if (result.Msg == "OK") {
+        if (result.Data == 2) {
+            layer.msg("请不要重复录入",{icon:2,time:2000},function () {
+                // window.location.href = window.location.href;
+            });
+        } else {
+            layer.msg("录入成功",{icon:1,time:2000},function () {
+                // window.location.href = window.location.href;
+            });
+        }
+    }
 }
 
 function StudentList() {
@@ -100,11 +115,16 @@ function Student_Get() {
     console.log($("#StudentName").val());
     console.log(UserID);
 
-    var param = {UserID: UserID,PhaseID: 18};
+    var param = {UserID: UserID,PhaseID: PhaseID};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_Get_UserID");
     console.log(result);
     if (result.Msg == "OK") {
         var data = result.Data;
+        PhaseType = data.PhaseType;
+        CourseID = data.CourseID;
+        if (PhaseType >= 2) {
+            $("#service_five").hide();
+        }
         if (data.CourseRegistrationID > 0) { // 判断是否报名过课程,如果课程预约的ID为0就代表未报名过该课程
             Entry = 1;
             $("#experience").hide(); // 如果已经报过名那么就隐藏体验课程选项
@@ -136,6 +156,8 @@ function Div_Show() {
     $("#Note").val("");
     $("#Money").val("");
     Entry = 0;
+    PhaseType = 0;
+    CourseID = 0;
 }
 
 function StudentList_Show(strHtml) {
