@@ -10,9 +10,10 @@ $(document).ready(function () {
     $("#paseName").html("阶段预约列表 — " + CoursePhaseName);
 });
 
+var PageIndex = 1;
 var PhaseRegistration_Items = [];
 //阶段预约列表
-function PhaseRegistration_List(PageIndex) {
+function PhaseRegistration_List() {
     var PhaseID = $Course.RequestUrlParams("PhaseID");
     var SearchKey = $("#SearchKey").val();
     var param = {SearchKey: SearchKey, PhaseID: PhaseID, PageIndex: PageIndex, PageSize: 10};
@@ -38,7 +39,7 @@ function PhaseRegistration_List(PageIndex) {
             var row = result.Data[i];
             var birthday = row.Birthday ? row.Birthday.split(" ")[0].replace(/-/g, "/") : "";
             var PhaseStatus = "";
-            //1预约中, 2.候补中, 3.预约成功, 4.已签到, 5.已退费
+            //1预约中, 2.候补中, 3.预约成功, 4.已参加, 5.已退费
             switch (row.PhaseStatus) {
                 case 1:
                     PhaseStatus = "预约中";
@@ -91,9 +92,9 @@ function PhaseRegistration_List(PageIndex) {
         skin: '#AF0000',
         groups: 3, //连续显示分页数
         jump: function (obj, first) { //触发分页后的回调
-            //alert(obj.curr)
             if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
-                PhaseRegistration_List(obj.curr);
+                PageIndex = obj.curr;
+                PhaseRegistration_List();
             }
         }
     });
@@ -156,6 +157,7 @@ function AccommodationFeesPaid_Add(PhaseReservationID, money) {
             var param = {PhaseReservationID: PhaseReservationID, AccommodationFeesPaid: $("#money").val()};
             var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/AccommodationFeesPaid_Add");
             if (result.Msg == "OK") {
+                PhaseRegistration_List();
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                     layer.closeAll();
                 });
@@ -181,6 +183,7 @@ function Phase_ClassName_Add(PhaseReservationID, obj) {
             var param = {PhaseReservationID: PhaseReservationID, ClassName: $("#className").val()};
             var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/Phase_ClassName_Add");
             if (result.Msg == "OK") {
+                PhaseRegistration_List();
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                     layer.closeAll();
                 });
@@ -205,7 +208,7 @@ function PhaseStatus_Edit(PhaseReservationID, PhaseStatus) {
             var param = {PhaseReservationID: PhaseReservationID, PhaseStatus: $("#phaseStatusBox select").val()};
             var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseStatus_Edit");
             if (result.Msg == "OK") {
-                PhaseRegistration_List(1);
+                PhaseRegistration_List();
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                     layer.closeAll();
                 });
@@ -233,7 +236,7 @@ function Past(PhaseReservationID, PhaseStatus) {
         var param = {PhaseReservationID: PhaseReservationID, PhaseStatus: $("#phaseStatusBox select").val()};
         var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseStatus_Edit");
         if (result.Msg == "OK") {
-            PhaseRegistration_List(1);
+            PhaseRegistration_List();
             layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                 layer.closeAll();
             });
