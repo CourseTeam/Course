@@ -40,9 +40,8 @@ function login() {
         //将用户信息存入Cookie
         var json = $Course.stringify(result.Data);
         $.cookie("UserInfo", json , {expires: 30, path: '/'});   
-         get_bookingdata();
-
-        // window.location.href = "../Appointment/CourseList.html";
+        get_bookingdata();
+        
     } else {
         layer.open({
             content: '用户名或密码错误！请重新输入！',
@@ -58,20 +57,22 @@ function login() {
 //cid CourseID 课程ID
 //ctid CoutseTypeID 课程阶段ID
 //tspan TimeSpan 剩余天数
+//cpname CoursePhaseName  课程名字
 
 // e CourseID, t--PhaseStatus
 // pt PhaseType 阶段
 // over OverCount 是否过期
-// name CourseTypeName 课程名
+// name CourseTypeName 课程类型名 0=亲子课程
 
-function book(pid,cid,ctid,crid,e,t,pt,over,name,tspan){
+function book(obj,pid,cid,ctid,crid,e,t,pt,over,name,tspan,cpname){
   var id = e;
   var status = t;
   phase_id = pid;
   course_id = cid;
   courseType_id = ctid;
   coursere_id = crid;
-
+  var coursename = $(obj).attr("cname");
+  
   if (tspan < 14) {
       layer.open({
         title:"",
@@ -82,13 +83,13 @@ function book(pid,cid,ctid,crid,e,t,pt,over,name,tspan){
       });
       return;
   }
-
+  
   if (over) {
     //跳转到转期界面
-    window.location.href = "../transfer/transfer.html";
+    window.location.href = "../transfer/transfer.html?phaseID=" + phase_id + "&coursename=" + coursename;
     return;
   }
-
+  
   if (name == "0") {
      layer.open({
         title:"参加亲子课程的是",
@@ -214,10 +215,15 @@ function create_bookinglist() {
       var isCost = row.AccommodationFeedPaid > row.AccommodationCost;
       var img = isCost? "../../Images/book/cost_selected.png":"../../Images/book/cost_normal.png";
       var type = get_type(row.PhaseStatus);
+      var stateImg = get_stateImg(row.PhaseStatus);
       var color = isCost?"#F24D4D":"#9B9B9B";
        strHtml += '  <ul style="float: left;">'
        strHtml += '    <li>'
-       strHtml += '        <div><img id= img -'+ i +'width="100" height="100" src="http://s16.sinaimg.cn/mw690/001wMDbFzy6Lmwz7HJBaf&690"></div>'
+       if (stateImg != "") {
+          strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -'+ i +'width="75" height="75"  src="' + stateImg +'"></div>'
+       }else {
+          strHtml += '        <div><img id= img -'+ i +'width="75" height="75"  src="' + row.CourseImgUrl +'"></div>'
+       }
        strHtml += '    </li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float: left;">'
@@ -234,6 +240,8 @@ function create_bookinglist() {
   $(".list-li").append(strHtml);
 }
 
+
+//未预约
 function create_willbooklist(){
    var strHtml = "";
    strHtml += '  <ul class="title">未预约课程</ul>'
@@ -246,12 +254,17 @@ function create_willbooklist(){
       var isOverCount = row.ReservationCount >= row.PeopleCount;
       var name = row.CourseTypeName == "亲子课程"?"0":"1";
       var btnColor = row.TimeSpan < 14?"#E6E6E6":"#9B9B9B";
-      if (isOverCount) {type = "转期"};
+      var stateImg = get_stateImg(row.PhaseStatus);
+      if (isOverCount) {type = "预约"};
 
       var img = isCost? "../../Images/book/cost_selected.png":"../../Images/book/cost_normal.png";
        strHtml += '  <ul style="float: left;">' 
        strHtml += '    <li>'
-       strHtml += '        <div><img id= img -'+ i +'width="100" height="100" src="http://s16.sinaimg.cn/mw690/001wMDbFzy6Lmwz7HJBaf&690"></div>'
+       if (stateImg != "") {
+          strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -'+ i +'width="75" height="75"  src="' + stateImg +'"></div>'
+       }else {
+          strHtml += '        <div><img id= img -'+ i +'width="75" height="75"  src="' + row.CourseImgUrl +'"></div>'
+       }       
        strHtml += '    </li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float: left;">'
@@ -261,14 +274,13 @@ function create_willbooklist(){
        strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float:left;">'
-       strHtml += '    <button class="button" type="button" onclick="book(' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'
+       strHtml += '    <button class="button" type="button"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'
        strHtml += '  </ul>'
        strHtml += '<div style="clear: both;"></div>'
    }
   $(".list-li").append(strHtml);
 
 }
-
 
 
 function create_bookedlist() {
@@ -279,10 +291,15 @@ function create_bookedlist() {
       var isCost = row.AccommodationFeedPaid > row.AccommodationCost;
       var color = isCost?"#F24D4D":"#9B9B9B";
       var type = get_type(row.PhaseStatus);
+      var stateImg = get_stateImg(row.PhaseStatus);
       var costImg = row.AccommodationFeedPaid > row.AccommodationCost? "../../Images/book/cost_normal.png":"../../Images/book/cost_selected.png";
        strHtml += '  <ul style="float: left;">' 
        strHtml += '    <li>'
-       strHtml += '        <div "><img id= img -'+ i +'width="100" height="100" src="http://s16.sinaimg.cn/mw690/001wMDbFzy6Lmwz7HJBaf&690"></div>'
+       if (stateImg != "") {
+          strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -'+ i +'width="75" height="75"  src="' + stateImg +'"></div>'
+       }else {
+          strHtml += '        <div><img id= img -'+ i +'width="75" height="75"  src="' + row.CourseImgUrl +'"></div>'
+       }
        strHtml += '    </li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float: left;">'
@@ -322,7 +339,29 @@ function get_type(t){
       return "已退费";
     break;
    }
+}
 
+function get_stateImg(state){
+   switch(state){
+     case 0:
+      return "";
+    break;
+    case 1:
+      return "../../Images/book/yuyuezhong.png";
+    break;
+    case 2:
+      return "../../Images/book/houbuzhong.png";
+    break;
+    case 3:
+      return "../../Images/book/yuyuecg.png";
+    break;
+    case 4:
+      return "";
+    break;
+    case 5:
+      return "";
+    break;
+   }
 }
 
 function start_book() {

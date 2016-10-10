@@ -13,11 +13,6 @@ ul {
 	padding-left: 0px;
 }
 
-img {
-  width: 100;
-  height: 100;
-}
-
 .title {
    background-color: #FCFAFE;
    color: #4A4A4A;
@@ -40,14 +35,13 @@ img {
 .button {
 	margin-top: 10px;
     border: 0;
-    width: 80px;
+    width: 70px;
     outline: none;
     border-radius: 2px;
     background: #F24D4D;
     color: #FFFFFF;
 }
 .button:active {
-	
+	  
     background: #9B9B9B;
-
 }
