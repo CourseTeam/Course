@@ -6,10 +6,10 @@ $(document).ready(function () {
     //加载公用导航
     $("#header").load("../Commen/header.html");
 
-    var CourseName=decodeURIComponent($Course.RequestUrlParams("CourseName"));
-    $("#CourseName").html('课程预约列表 — ' +  CourseName);
+    var CourseName = decodeURIComponent($Course.RequestUrlParams("CourseName"));
+    $("#CourseName").html('课程预约列表 — ' + CourseName);
 
-    $("#btnSearch").on("click",function(){
+    $("#btnSearch").on("click", function () {
         CourseRegistration_List(1, 100);
     });
     CourseRegistration_List(1, 100);
@@ -40,10 +40,10 @@ function CourseRegistration_List(PageIndex, PageSize) {
             for (var i = 0; i < result.Data.length; i++) {
                 var row = result.Data[i];
                 var CreateTime = row.CreateTime.split(' ')[0];
-                var Birthday = row.BirthDay?row.BirthDay.split(' ')[0]:"未设置";
+                var Birthday = row.BirthDay ? row.BirthDay.split(' ')[0] : "未设置";
                 strHtml += '<li class="list-group-item">';
                 strHtml += '    <div class="row ">';
-                strHtml += '        <div class="col-xs-2"> <a href="../User/UserEdit.html?type=1&UserID='+ row.UserID+'" target="_blank">' + row.NickName + '</a></div>';
+                strHtml += '        <div class="col-xs-2"> <a href="../User/UserEdit.html?type=1&UserID=' + row.UserID + '" target="_blank">' + row.NickName + '</a></div>';
                 strHtml += '        <div class="col-xs-1">' + row.Phone + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.Sex + '</div>';
                 strHtml += '        <div class="col-xs-1">' + Birthday + '</div>';
@@ -60,6 +60,8 @@ function CourseRegistration_List(PageIndex, PageSize) {
             }
         }
         $("#CourseReservation_List").html(strHtml);
+
+
     }
 }
 
