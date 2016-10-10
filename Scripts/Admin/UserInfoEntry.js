@@ -6,19 +6,49 @@ $(document).ready(function () {
     //加载公用导航
     $("#header").load("../Commen/header.html");
     $("#btnSave").on("click", function () {
-        Edit();
+        CourseOrPhase_Entry();
     });
     $("#choose").on("click", function () {
         StudentList_Show();
     });
-    // $("#")
-    StudentList();
+    $("#isExperience").on("change", function () {
+        if ($(this).is(':checked')) {
+            $("#service").hide();
+            $("#TuitionFeesPaid").val("");
+            $("#Tuition").hide();
+        } else {
+            $("#service").show();
+            $("#Tuition").show();
 
+        }
+    });
+    StudentList();
 });
 
 var UserID = 0;
 var PhaseID = 0;
 var CourseID = 0;
+var Entry = 0 // 作为判断这个学生是否报名过这个课程的依据,默认为0,0代表没有报名过,1代表报名过
+
+function Course_Entry() {
+    var TuitionFeesPaid = $("#TuitionFeesPaid").val();
+    var Note = $("#Note").val();
+    var Money = $("#Money").val();
+    var ValueAddedServices = $("input[name=choose]:checked").val();
+    var param = {UserID:UserID, CourseID: CourseID, TuitionFeesPaid:TuitionFeesPaid, Note:Note, Money:Money, ValueAddedServices:ValueAddedServices};
+    var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseReg_Add");
+    if (result.Msg == "OK"){
+        Phase_Entry();
+    }
+}
+
+function Phase_Entry() {
+    var AccommodationFeesPaid = $("#AccommodationFeesPaid").val();
+    var ParentsCount = $("#ParentsCount").val();
+    var ValueAddedServices = $("input[name=choose]:checked").val();
+    var param = {PhaseID:PhaseID, UserID:UserID, CourseID:CourseID, AccommodationFeesPaid:AccommodationFeesPaid, ParentsCount:ParentsCount,ValueAddedServices:ValueAddedServices};
+    var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/PhaseReg_Add");
+}
 
 function StudentList() {
     var SearchKey = $("#SearchKey").val() || "";
@@ -76,6 +106,7 @@ function Student_Get() {
     if (result.Msg == "OK") {
         var data = result.Data;
         if (data.CourseRegistrationID > 0) { // 判断是否报名过课程,如果课程预约的ID为0就代表未报名过该课程
+            Entry = 1;
             $("#experience").hide(); // 如果已经报过名那么就隐藏体验课程选项
             if (data.ValueAddedServices == 1 || data.PhaseType >= 3) { // 判断是否有增值服务,如果一阶有选择增值服务5或者课程阶段在3阶及其之后隐藏增值服务选项
                 $("#service").hide();
@@ -85,20 +116,26 @@ function Student_Get() {
             $("#TuitionFeesPaid").val(data.TuitionFeesPaid);
             $("#Note").val(data.Note);
             $("#Money").val(data.Money);
-        } else {
-            // if ()
+            if (data.PhaseType >= 3) {
+                $("#Parents").show();
+            }
         }
     }
 }
 
 function Div_Show() {
+    document.getElementsByName('optionsRadios')[0].checked=true
+    document.getElementById('isExperience').checked = false;
+    $("#Tuition").show();
     $("#experience").show();
     $("#service").show();
     $("#service_five").show();
+    $("#Parents").hide();
+    $("#ParentsCount").val("");
     $("#TuitionFeesPaid").val("");
     $("#Note").val("");
     $("#Money").val("");
-    $("input[type=radio][name=optionsRadios][value=0]").attr("checked",'checked');
+    Entry = 0;
 }
 
 function StudentList_Show(strHtml) {
