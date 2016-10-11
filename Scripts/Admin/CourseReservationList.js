@@ -52,7 +52,7 @@ function CourseRegistration_List(PageIndex, PageSize) {
                 strHtml += '        <div class="col-xs-1">' + row.Phone + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.Sex + '</div>';
                 strHtml += '        <div class="col-xs-1">' + Birthday + '</div>';
-                strHtml += '        <div class="col-xs-1"><a href="#" onclick="TuitionFeesPaid_Eidt(' + row.TuitionFeesPaid + ',' + row.CourseRegistrationID + ')">' + row.TuitionFeesPaid + '</a></div>';
+                strHtml += '        <div class="col-xs-1" style="text-align: right;"><a href="#" onclick="TuitionFeesPaid_Eidt(' + row.TuitionFeesPaid + ',' + row.CourseRegistrationID + ')">' + row.TuitionFeesPaid + '</a>元</div>';
                 strHtml += '        <div class="col-xs-1"><a href="#" onclick="ValueAddedServicesShow(this)" va="' + row.ValueAddedServices + '">查看</a></div>';
                 strHtml += '        <div class="col-xs-2">' + CreateTime + '</div>';
                 strHtml += '        <div class="col-xs-2">';
@@ -145,30 +145,8 @@ function TuitionFeesPaid_Eidt(TuitionFeesPaid,CourseRegistrationID) {
             if (result.Msg == "OK") {
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                     window.location.href = window.location.href;
-                    layer.closeAll();
                 });
-            }
-        },
-        success: function () {
-            $("#TuitionFeesPaid").val(TuitionFeesPaid);
-        }
-    });
-}
-function TuitionFeesPaid_Eidt(TuitionFeesPaid,CourseRegistrationID) {
-    layer.open({
-        type: 1,
-        title: "已交学费",
-        skin: "layui-layer-molv",
-        area: ["340px", "220px"],
-        content: $("#Tuition"),
-        btn: ["确 定", '取 消'],
-        yes: function (index) {
-            var param = {CourseRegistrationID: CourseRegistrationID, TuitionFeesPaid: $("#TuitionFeesPaid").val()};
-            var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_TuitionFeesPaid_Upd");
-            if (result.Msg == "OK") {
-                layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
-                    layer.closeAll();
-                });
+                layer.close(index);
             }
         },
         success: function () {

@@ -34,7 +34,7 @@ function CourseList(UserID, CourseTypeID) {
             if (full) {
                 progress = progress >= 100 ? 100 : progress;
             }
-            strHtml += '   <div class="row" style="padding-bottom: 15px;border-bottom: 1px solid #eee; padding-top: 10px">';
+            strHtml += '   <div class="row" style="padding-bottom: 15px;border-bottom: 1px solid #eee; padding-top: 10px" onclick="CourseDetials(' + row.CourseID + ')">';
             strHtml += '       <div class="col-xs-12" style="padding-right: 8px">';
             strHtml += '           <div class="courseLine_leftImg" style="background: url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;">';
             if (full) {

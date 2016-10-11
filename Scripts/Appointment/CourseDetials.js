@@ -13,7 +13,7 @@ function CourseInfo_Details() {
     var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
     console.log(result);
     if (result.Msg == "OK") {
-        var CourseDetials = result.Data.courselist[0];
+        var CourseDetials = result.Data.courseInfo;
         var PhaseDetials = result.Data.phaselist[0];
         var Teachers = result.Data.teacherlist;
         var full = PhaseDetials.ReservationCount >= PhaseDetials.PeopleCount? true : false;
@@ -74,23 +74,33 @@ function CourseInfo_Details() {
         strHtml_Teachers += '</div>';
 
         var strHtml_Serve = "";
-        strHtml_Serve += '   <div class="pure divide"></div>';
-        strHtml_Serve += '   <div class="pure" style="width: 100%;height: 30px;overflow: auto">';
-        strHtml_Serve += '      <div class="pure" style="width: 2px;height: 20px;background-color: #F24D4D;margin-top: 5px;float: left;"></div>';
-        strHtml_Serve += '      <span style="font-size: 18px;float: left;padding-top: 2px;padding-left: 5px;">增值服务</span>';
-        strHtml_Serve += '   </div>';
-        strHtml_Serve += '   <ul class="list-unstyled" style="padding-left: 10px;padding-right: 10px;padding-top: 5px;font-size: 12px;">';
-        strHtml_Serve += '      <li>统一版摩英回忆视频300元(单阶7天)</li>';
-        strHtml_Serve += '      <li>VIP摩英大电影1980元(单阶7天)</li>';
-        strHtml_Serve += '      <li>VIP蜕变水晶相册1280元(单阶7天)</li>';
-        strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)</li>';
-        strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)</li>';
-        if (full) {
-            strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')">立即候补</button></li>';
+        if (CourseDetials.MaxPhaseType > 1) {
+            strHtml_Serve += '   <div class="pure divide"></div>';
+            strHtml_Serve += '   <div class="pure" style="width: 100%;height: 30px;overflow: auto">';
+            strHtml_Serve += '      <div class="pure" style="width: 2px;height: 20px;background-color: #F24D4D;margin-top: 5px;float: left;"></div>';
+            strHtml_Serve += '      <span style="font-size: 18px;float: left;padding-top: 2px;padding-left: 5px;">增值服务</span>';
+            strHtml_Serve += '   </div>';
+            strHtml_Serve += '   <ul class="list-unstyled" style="padding-left: 10px;padding-right: 10px;padding-top: 5px;font-size: 12px;">';
+            strHtml_Serve += '      <li>统一版摩英回忆视频300元(单阶7天)</li>';
+            strHtml_Serve += '      <li>VIP摩英大电影1980元(单阶7天)</li>';
+            strHtml_Serve += '      <li>VIP蜕变水晶相册1280元(单阶7天)</li>';
+            strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)</li>';
+            strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)</li>';
+            if (full) {
+                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')">立即候补</button></li>';
+            } else {
+                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')">立即预约</button></li>';
+            }
+            strHtml_Serve += '   </ul>';
         } else {
-            strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')">立即预约</button></li>';
+            strHtml_Serve += '  <ul class="list-unstyled" style="padding-left: 10px;padding-right: 10px;padding-top: 5px;font-size: 12px;">';
+            if (full) {
+                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')">立即候补</button></li>';
+            } else {
+                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')">立即预约</button></li>';
+            }
+            strHtml_Serve += '   </ul>';
         }
-        strHtml_Serve += '   </ul>';
 
         $("#Detials").html(strHtml_Detials);
         $("#Teachers").html(strHtml_Teachers);
