@@ -20,14 +20,14 @@ $ (function($){
 		$("#grade").text = UserInfo.Grade;
 		$("#class").text = UserInfo.ClassName;
 		$("#birth").text = UserInfo.School;
-
+		
 		$("#f_name").text = UserInfo.FatherName;
 		$("#f_tel").text = UserInfo.FatherPhone;
 		$("#m_name").text = UserInfo.MotherName;
 		$("#m_tel").text = UserInfo.MotherPhone;
 		$("#telephone").text = UserInfo.Tel;
 		$("#address").text = UserInfo.Address;
-
+		
 	}
 
 })
@@ -82,27 +82,13 @@ function updateInfo(obj){
 	// 更改个人信息
 	// var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
 	if (!dateVerify(obj.birth)) {
-		layer.open({
-			title:"提示",
-			content:"出生日期格式不正确,请按照正确格式输入",
-			btn:["确定"],
-			ok:function(index){
-			   layer.close(index);
-			}
-		});
+		layer.open({content:"出生日期格式不正确,请按照正确格式输入"});
 	}
 
 	if (obj.name == "" || obj.sex == "" || obj.school == "" || obj.grade == "" || obj.class == "" || obj.birth == ""
 		|| obj.email == "" || obj.tel == "" || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" ||
 		 obj.telephone == "" || obj.address == "") {
-		layer.open({
-			title:"提示",
-			content:"信息输入未完整，请填写完整再预约",
-			btn:["确定"],
-			ok:function(index){
-			   layer.close(index);
-			}
-		});
+		layer.open({content:"信息输入未完整，请填写完整再预约"});
 	}
 
 	var param = {"UserID":"1","NickName":obj.name,"Account":"","Sex":obj.sex,"School":obj.school,
@@ -113,7 +99,7 @@ function updateInfo(obj){
 	var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Edit");
 	if (result.Msg == "OK" && result.Data == true) {
 		//更新个人信息成功
-		
+
 	}
 
 }
@@ -124,7 +110,18 @@ function course_reg(obj){
 	var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
 	if (result.Msg == "OK" && result.Data != false) {
 		//预约成功
-        window.location.href = "booksuccess.html";
+		layer.open({
+			"title":"提示",
+			"content":"是否进行预约？",
+			btn:["取消","确定"],
+			ok:function(index){
+			layer.close(index);
+	        window.location.href = "booksuccess.html";
+			},no:function(index){
+			layer.close(index);
+			}
+
+		})
 	}
 }
 
@@ -141,8 +138,8 @@ function get_request(courseid) {
         var pos_end=str.indexOf("&",pos_start);
         var pid = str.substring(pos_start);
         //获取课程详情 目前使用假数据
-        course_id = "23";
-        get_data("23");
+        course_id = pid;
+        get_data(pid);
     }
 }  
 

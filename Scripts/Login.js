@@ -17,7 +17,7 @@ function Login() {
     // }
     var UserName = $("#UserName").val();
     var Pwd = $("#Pwd").val();
-
+    
     if (!UserName) {
         layer.open({
             content: '请输入用户名或手机号',

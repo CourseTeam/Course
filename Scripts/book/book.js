@@ -20,36 +20,14 @@ var parent;
 var service;
 
  $(function($){
+  var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+  userID = UserInfo.UserID;
+  
    get_bookingdata();
    get_willbookdata();
    get_bookeddata();
 
 }); 
-
-function login() {
-  
-  var param = {Tel: "15901857927", Pwd: $Course.MD5("1")};
-    var result = $Course.GetAjaxJson(param, ApiUrl + "Account/Login");
-    console.log(result);
-    if (result.IsSuccess) {
-        // layer.open({
-        //     content: '登录成功!',
-        //     style: 'background-color:#F24C4C; color:#fff; border:none;',
-        //     time: 2
-        // });
-        //将用户信息存入Cookie
-        var json = $Course.stringify(result.Data);
-        $.cookie("UserInfo", json , {expires: 30, path: '/'});   
-        get_bookingdata();
-        
-    } else {
-        layer.open({
-            content: '用户名或密码错误！请重新输入！',
-            style: 'background-color:#F24C4C; color:#fff; border:none;',
-            time: 2
-        });
-    }
-}
 
 
 // 预约 或者 
@@ -171,8 +149,7 @@ function book(obj,pid,cid,ctid,crid,e,t,pt,over,name,tspan,cpname){
 }
 
 function get_bookingdata () {
-    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    var uid = 1;
+    var uid = userID;
     var param = {"UserID":uid,"Type":1};
     booking_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
@@ -184,7 +161,7 @@ function get_bookingdata () {
 }
 
 function get_willbookdata(){
-  var uid = 1;
+  var uid = userID;
   var param = {"UserID":uid,"Type":2};
   willbook_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
@@ -196,7 +173,7 @@ function get_willbookdata(){
 }
 
 function get_bookeddata(){
-  var uid = 1;
+  var uid = userID;
   var param = {"UserID":uid,"Type":3};
   booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
