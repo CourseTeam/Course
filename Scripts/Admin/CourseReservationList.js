@@ -44,18 +44,23 @@ function CourseRegistration_List(PageIndex, PageSize) {
                 strHtml += '<li class="list-group-item">';
                 strHtml += '    <div class="row ">';
                 strHtml += '        <div class="col-xs-2">';
+                strHtml += '        <a href="../User/UserEdit.html?type=1&UserID='+ row.UserID+'" target="_blank">' + row.NickName + '</a>';
                 if (row.IsExperience == 1) {
-                    strHtml += '        <img src="../../../Images/experience.png">';
+                    strHtml += '        <img title="体验名额" style="width: 20px; height: 20px;" src="../../../Images/experience.png">';
                 }
-                strHtml += '        <a href="../User/UserEdit.html?type=1&UserID='+ row.UserID+'" target="_blank">' + row.NickName + '</a></div>';
+                strHtml += '        </div>';
                 strHtml += '        <div class="col-xs-1">' + row.Phone + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.Sex + '</div>';
                 strHtml += '        <div class="col-xs-1">' + Birthday + '</div>';
-                strHtml += '        <div class="col-xs-1">' + row.TuitionFeesPaid + '</div>';
+                strHtml += '        <div class="col-xs-1"><a href="#" onclick="TuitionFeesPaid_Eidt(' + row.TuitionFeesPaid + ',' + row.CourseRegistrationID + ')">' + row.TuitionFeesPaid + '</a></div>';
                 strHtml += '        <div class="col-xs-1"><a href="#" onclick="ValueAddedServicesShow(this)" va="' + row.ValueAddedServices + '">查看</a></div>';
                 strHtml += '        <div class="col-xs-2">' + CreateTime + '</div>';
                 strHtml += '        <div class="col-xs-2">';
-                strHtml += '            <button onclick="CourseRegistration_Refund(' + row.CourseRegistrationID + ')">退费</button>';
+                if (row.CourseStatus == 1) {
+                    strHtml += '            <button style="background-color: #9B9B9B;" disabled>已退费</button>';
+                } else {
+                    strHtml += '            <button onclick="CourseRegistration_Refund(' + row.CourseRegistrationID + ')">退费</button>';
+                }
                 strHtml += '            <button onclick="NoteEdit(' + row.CourseRegistrationID + ')">备注</button>';
                 strHtml += '        </div>';
                 strHtml += '    </div>';
@@ -126,20 +131,61 @@ function NoteEdit(CourseRegistrationID) {
     });
 }
 
-function CourseRegistration_Refund(CourseRegistrationID) {
+function TuitionFeesPaid_Eidt(TuitionFeesPaid,CourseRegistrationID) {
     layer.open({
         type: 1,
-        title: "确定退费?",
-        btn:["确定","取消"],
-        yes:function (index) {
-            var param = {CourseRegistrationID:CourseRegistrationID};
-            var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_Status_Upd");
+        title: "已交学费",
+        skin: "layui-layer-molv",
+        area: ["340px", "220px"],
+        content: $("#Tuition"),
+        btn: ["确 定", '取 消'],
+        yes: function (index) {
+            var param = {CourseRegistrationID: CourseRegistrationID, TuitionFeesPaid: $("#TuitionFeesPaid").val()};
+            var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_TuitionFeesPaid_Upd");
             if (result.Msg == "OK") {
-                layer.msg("退费成功",{icon:1, time:2000},function () {
+                layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                     window.location.href = window.location.href;
+                    layer.closeAll();
                 });
-                layer.close(index);
             }
+        },
+        success: function () {
+            $("#TuitionFeesPaid").val(TuitionFeesPaid);
         }
     });
+}
+function TuitionFeesPaid_Eidt(TuitionFeesPaid,CourseRegistrationID) {
+    layer.open({
+        type: 1,
+        title: "已交学费",
+        skin: "layui-layer-molv",
+        area: ["340px", "220px"],
+        content: $("#Tuition"),
+        btn: ["确 定", '取 消'],
+        yes: function (index) {
+            var param = {CourseRegistrationID: CourseRegistrationID, TuitionFeesPaid: $("#TuitionFeesPaid").val()};
+            var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_TuitionFeesPaid_Upd");
+            if (result.Msg == "OK") {
+                layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
+                    layer.closeAll();
+                });
+            }
+        },
+        success: function () {
+            $("#TuitionFeesPaid").val(TuitionFeesPaid);
+        }
+    });
+}
+
+function CourseRegistration_Refund(CourseRegistrationID) {
+    layer.confirm("确定要退费吗？",function () {
+        var param = {CourseRegistrationID:CourseRegistrationID};
+        var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_Status_Upd");
+        if (result.Msg == "OK") {
+            layer.msg("退费成功",{icon:1, time:2000},function () {
+                window.location.href = window.location.href;
+            });
+        }
+    });
+
 }
