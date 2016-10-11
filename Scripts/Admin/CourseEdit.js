@@ -76,7 +76,7 @@ function CourseInfo_Edit() {
         CourseImgUrl: CourseImgUrl,
         CourseType: CourseType
     };
-    var result = $Course.PostAjaxJson(param, "http://localhost:60182/" + "Course/CourseInfo_Edit");
+    var result = $Course.PostAjaxJson(param, ApiUrl + "Course/CourseInfo_Edit");
     if (result.Msg == "OK") {
         layer.msg("保存成功！", {icon: 1, time: 2000}, function () {
             window.location.href = "CourseList.html";
