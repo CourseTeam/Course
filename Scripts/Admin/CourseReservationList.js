@@ -43,16 +43,20 @@ function CourseRegistration_List(PageIndex, PageSize) {
                 var Birthday = row.BirthDay?row.BirthDay.split(' ')[0]:"未设置";
                 strHtml += '<li class="list-group-item">';
                 strHtml += '    <div class="row ">';
-                strHtml += '        <div class="col-xs-2"> <a href="../User/UserEdit.html?type=1&UserID='+ row.UserID+'" target="_blank">' + row.NickName + '</a></div>';
+                strHtml += '        <div class="col-xs-2">';
+                if (row.IsExperience == 1) {
+                    strHtml += '        <img src="../../../Images/experience.png">';
+                }
+                strHtml += '        <a href="../User/UserEdit.html?type=1&UserID='+ row.UserID+'" target="_blank">' + row.NickName + '</a></div>';
                 strHtml += '        <div class="col-xs-1">' + row.Phone + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.Sex + '</div>';
                 strHtml += '        <div class="col-xs-1">' + Birthday + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.TuitionFeesPaid + '</div>';
-                strHtml += '        <div class="col-xs-1"><a href="">查看</a></div>';
+                strHtml += '        <div class="col-xs-1"><a href="#" onclick="ValueAddedServicesShow(this)" va="' + row.ValueAddedServices + '">查看</a></div>';
                 strHtml += '        <div class="col-xs-2">' + CreateTime + '</div>';
                 strHtml += '        <div class="col-xs-2">';
-                strHtml += '            <button onclick="CourseRegistration_Refund(' + row.UserID + ')">退费</button>';
-                strHtml += '            <button onclick="CourseRegistration_NoteAndMoney_Upd(' + row.CourseRegistrationID + ')">备注</button>';
+                strHtml += '            <button onclick="CourseRegistration_Refund(' + row.CourseRegistrationID + ')">退费</button>';
+                strHtml += '            <button onclick="NoteEdit(' + row.CourseRegistrationID + ')">备注</button>';
                 strHtml += '        </div>';
                 strHtml += '    </div>';
                 strHtml += '</li>';
@@ -62,10 +66,80 @@ function CourseRegistration_List(PageIndex, PageSize) {
     }
 }
 
-function CourseRegistration_Refund(UserID) {
+//查看增值服务
+function ValueAddedServicesShow(obj) {
+    var str = "";
+    // 0.不需要此服务
+    // 1.统一版摩英回忆视频300元(单阶7天)
+    // 2.VIP摩英大电影1980元(单阶7天)
+    // 3.VIP蜕变水晶相册1280元(单阶7天)
+    // 4.VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)
+    // 5.VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)
 
+    var arr = $(obj).attr("va").split(",");
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == "") {
+            break;
+        }
+        // debugger
+        str += "用户选择第" + arr[i].split("wbxw")[0] + "阶段的增值服务是:";
+        console.log(arr[i].split("wbxw")[1]);
+        switch(parseInt(arr[i].split("wbxw")[1])) {
+            case 0:
+                str += "无\n";
+                break;
+            case 1:
+                str += "统一版摩英回忆视频300元(单阶7天)\n";
+                break;
+            case 2:
+                str += "VIP摩英大电影1980元(单阶7天)\n";
+                break;
+            case 3:
+                str += "VIP摩英大电影1980元(单阶7天)\n";
+                break;
+            case 4:
+                str += "VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)\n";
+                break;
+            case 5:
+                str += "VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)\n";
+                break;
+            default:
+                break;
+        }
+    }
+
+    layer.open({
+        title: "已选增值服务",
+        skin: "layui-layer-molv",
+        area: ["300px", "200px"],
+        content: str
+    });
 }
 
-function CourseRegistration_NoteAndMoney_Upd(CourseRegistrationID) {
+function NoteEdit(CourseRegistrationID) {
+    layer.open({
+        type: 2,
+        skin: "layui-layer-molv",
+        title: '修改备注',
+        area: ["500px", "380px"],
+        content: "../Commen/Note.html?CourseRegistrationID=" + CourseRegistrationID
+    });
+}
 
+function CourseRegistration_Refund(CourseRegistrationID) {
+    layer.open({
+        type: 1,
+        title: "确定退费?",
+        btn:["确定","取消"],
+        yes:function (index) {
+            var param = {CourseRegistrationID:CourseRegistrationID};
+            var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_Status_Upd");
+            if (result.Msg == "OK") {
+                layer.msg("退费成功",{icon:1, time:2000},function () {
+                    window.location.href = window.location.href;
+                });
+                layer.close(index);
+            }
+        }
+    });
 }

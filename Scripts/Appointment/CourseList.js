@@ -38,7 +38,7 @@ function CourseList(UserID, CourseTypeID) {
             strHtml += '       <div class="col-xs-12" style="padding-right: 8px">';
             strHtml += '           <div class="courseLine_leftImg" style="background: url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;">';
             if (full) {
-                strHtml += '               <img style="width: 100%; height: 100%;" src="../../Images/full.png">';
+                strHtml += '               <img style="width: 75px; height: 75px;" src="../../Images/full.png">';
             }
             strHtml += '           </div>';
             strHtml += '       <div style="float: right;width: 74%;height: 80px;">';
