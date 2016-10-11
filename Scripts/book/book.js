@@ -29,6 +29,26 @@ var service;
 
 }); 
 
+//转期 
+function transfer (obj){
+    
+    window.location.href = "../transfer/transfer.html?phaseID=" + obj.pid + "&coursename=" + obj.cpname;
+}
+
+//调用预约接口
+//qinziType 家长人数
+function post_book(param){
+  var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+  var obj = {"PhaseID":param.pid,"UserID":UserInfo.UserID,"CourseID":param.cid,"ParentCount":param.qinziType,
+  "ValueAddedServices":param.serviceType,"PhaseType":param.pt};
+  var result = $Course.GetAjaxJson(obj, ApiUrl + "PhaseRegistration/PhaseRegistration_Add");
+  if (result.Msg == "OK" && result.Data != false) {
+    //预约成功
+    window.location.href = "booksuccess.html";
+    
+  }
+
+}
 
 // 预约 或者 
 //pid PhaseID  阶段ID
@@ -39,7 +59,7 @@ var service;
 
 // e CourseID, t--PhaseStatus
 // pt PhaseType 阶段
-// over OverCount 是否过期
+// over OverCount 报名人数是否已满
 // name CourseTypeName 课程类型名 0=亲子课程
 
 function book(obj,pid,cid,ctid,crid,e,t,pt,over,name,tspan,cpname){
@@ -50,7 +70,23 @@ function book(obj,pid,cid,ctid,crid,e,t,pt,over,name,tspan,cpname){
   courseType_id = ctid;
   coursere_id = crid;
   var coursename = $(obj).attr("cname");
-  
+
+  var param = new Object();
+  param.pid = phase_id;
+  param.cid = course_id;
+  param.ctid = ctid;
+  param.crid = coursere_id;
+  param.id = e;
+  param.status = t;
+  param.pt = pt;
+  param.over = over;
+  param.name = name;
+  param.tspan = tspan;
+  param.cpname = cpname;
+  param.qinziType = 0;
+  param.serviceType = 0;
+
+
   if (tspan < 14) {
       layer.open({
         title:"",
@@ -62,12 +98,8 @@ function book(obj,pid,cid,ctid,crid,e,t,pt,over,name,tspan,cpname){
       return;
   }
   
-  if (over) {
-    //跳转到转期界面
-    window.location.href = "../transfer/transfer.html?phaseID=" + phase_id + "&coursename=" + coursename;
-    return;
-  }
-  
+  //如果是候补，仍旧执行预约
+
   if (name == "0") {
      layer.open({
         title:"参加亲子课程的是",
@@ -88,6 +120,8 @@ function book(obj,pid,cid,ctid,crid,e,t,pt,over,name,tspan,cpname){
           }else if (document.getElementById("radio2").checked == true) {
               qinziType = 1;
           }
+          param.qinziType = qinziType;
+          post_book(param);
         }
       });
   }
@@ -119,45 +153,47 @@ function book(obj,pid,cid,ctid,crid,e,t,pt,over,name,tspan,cpname){
                   '<label>'+
                     '<input type="radio" name="optionsRadios" id="radio5">VIP摩英大电影+VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）'+
                   '</label>'+
+                '</div>' +
+                '<div class="radio">'+
+                  '<label>'+
+                    '<input type="radio" name="optionsRadios" id="radio6">不需要此服务'+
+                  '</label>'+
                 '</div>',
-        btn:['确定','我不需要此项服务'],
+        btn:['确定'],
         yes:function (index) {
-        if (document.getElementById("radio1").checked == true) {
-            serviceType = 1;
-        }else if (document.getElementById("radio2").checked == true) {
-            serviceType = 2;
-        }else if (document.getElementById("radio3").checked == true) {
-            serviceType = 3;
-        }else if (document.getElementById("radio4").checked == true) {
-            serviceType = 4;
-        }else if (document.getElementById("radio5").checked == true) {
-            serviceType = 5;
-        }
+          if (document.getElementById("radio1").checked == true) {
+              serviceType = 1;
+          }else if (document.getElementById("radio2").checked == true) {
+              serviceType = 2;
+          }else if (document.getElementById("radio3").checked == true) {
+              serviceType = 3;
+          }else if (document.getElementById("radio4").checked == true) {
+              serviceType = 4;
+          }else if (document.getElementById("radio5").checked == true) {
+              serviceType = 5;
+          }else if (document.getElementById("radio6").checked == true) {
+              serviceType = 0;
+          }
 
-          //预约 添加增值服务
-
-
+          param.serviceType = serviceType;
           layer.close(index);
-
-        },no:function (index) {
-          serviceType = 0;
-          layer.close(index);
+          post_book(param);
         }
     });
   }
-
 }
+
 
 function get_bookingdata () {
     var uid = userID;
     var param = {"UserID":uid,"Type":1};
     booking_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
-
+    
     if (booking_result.Msg == "OK") {
         if (booking_result.Data.length > 0) {
             create_bookinglist();
         }
-      }
+    }
 }
 
 function get_willbookdata(){
@@ -184,6 +220,7 @@ function get_bookeddata(){
      }
 }
 
+//已预约课程
 function create_bookinglist() {
     var strHtml = "";
     strHtml += '  <ul class="title">已预约课程，开课两周前可预约</ul>'
@@ -232,7 +269,7 @@ function create_willbooklist(){
       var name = row.CourseTypeName == "亲子课程"?"0":"1";
       var btnColor = row.TimeSpan < 14?"#E6E6E6":"#9B9B9B";
       var stateImg = get_stateImg(row.PhaseStatus);
-      if (isOverCount) {type = "预约"};
+      if (isOverCount) {type = "候补"}else{type="预约"};
 
       var img = isCost? "../../Images/book/cost_selected.png":"../../Images/book/cost_normal.png";
        strHtml += '  <ul style="float: left;">' 
@@ -259,7 +296,7 @@ function create_willbooklist(){
 
 }
 
-
+//已参加课程
 function create_bookedlist() {
      var strHtml = "";
         strHtml += '  <ul class="title">已参加课程</ul>'

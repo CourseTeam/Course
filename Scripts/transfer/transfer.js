@@ -16,19 +16,21 @@ var selCourseName;
 function go_transfer(){
 	var param = {"PhaseID":phaseID,"NewPhaseID":selCourseID};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Course/Phase_Change");
-    if (result.Msg == "OK") {
+    if (result.Msg == "OK" && result.Data != false) {
     	//转期成功
-        
+        layer.open("转期成功");
+
     }
 }
 
  function get_data(pid) {
  	phaseID = pid;
  	var param = {"PhaseID":pid};
-    // var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_ChangePhase");
-    // if (result.MSG = "OK") {
-    // 	phase_result = result.Data;
-    // }
+    var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_ChangePhase");
+    if (result.MSG = "OK") {
+    	phase_result = result.Data;
+
+    }
  }
  
  function getvalue(name,coursename){
@@ -48,7 +50,7 @@ function go_transfer(){
             $("#my-course").html(cname);
             btn.innerHTML = cname;
             btn.onclick = function(){
-	        	showlist();
+	            showlist();
             }
         }
     }
@@ -58,11 +60,11 @@ function go_transfer(){
 
 function showlist() {
 		var strHtml = "";
-		for (var i = 0; i < 5; i++) {
-			// var row = phase_result[i];
+		for (var i = 0; i < phase_result.length; i++) {
+			var row = phase_result[i];
 			strHtml += '<div class="radio">' +
 					'<label>'+ 
-						'<input type="radio" value="' + "name"+"," + i + '"' + 'name="course">课程1' +
+						'<input type="radio" value="' + row.CoursePhaseName + "," + row.PhaseID + '"' + 'name="course">' + row.CoursePhaseName +
 					'</label>'+
 			'</div>';
 		}
