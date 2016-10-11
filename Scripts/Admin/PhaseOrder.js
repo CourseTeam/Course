@@ -45,7 +45,7 @@ function PhaseRegistration_List() {
                     PhaseStatus = "预约中";
                     break;
                 case 2:
-                    PhaseStatus = "预约中";
+                    PhaseStatus = "候补中";
                     break;
                 case 3:
                     PhaseStatus = "预约成功";

@@ -1,13 +1,12 @@
 /**
  * Created by waylen on 2016/10/6.
  */
+var type = $Course.RequestUrlParams("type");
+var UserID = $Course.RequestUrlParams("UserID") || 0;
 $(function ($) {
     $("#header").load("../Commen/header.html");
-
-    var UserID = $Course.RequestUrlParams("UserID");
-    var type = $Course.RequestUrlParams("type");
     if (type == 1) {
-        // $("#btnSave").hide();
+        $("#btnSave").hide();
     }
     $("#btnSave").on("click", function () {
         UserInfo_Edit(UserID);
@@ -27,7 +26,7 @@ $(function ($) {
     laydate(start);
 })
 
-var UserID = $Course.RequestUrlParams("UserID") || 0;
+
 function UserInfoEdit_Get(UserID) {
     var param = {UserID: UserID};
     console.log(UserID);
@@ -63,7 +62,7 @@ function UserInfo_Edit(UserID) {
     var Phone = $("#Phone").val();
     var FatherName = $("#FatherName").val();//
     var MotherName = $("#MotherName").val();//
-    if (type == 1) {
+    if (UserID == 0) {
         var FatherPhone = $("#FatherPhone2").val()
         var MotherPhone = $("#MotherPhone2").val();
     } else {
