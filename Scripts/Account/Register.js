@@ -1,11 +1,13 @@
 /**
  * Created by xuwei on 2016/9/29 0029.
  */
-
+var s = 60;
 $(function ($) {
     //发送验证码
     $("#btnSendSMS").on("click", function () {
-        GetSMSCode();
+        if (s == 60) {
+            GetSMSCode();
+        }
     });
 
     //注册
@@ -35,20 +37,20 @@ function GetSMSCode() {
         });
         return;
     }
-    var s = 60;
+
 
     var param = {Phone: PhoneNum, Type: 1};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Account/GetSMSCode");
     if (result.Msg == "OK") {
         VerificationCode = result.Data;
         var time = setInterval(function () {
-
-            $("#btnSendSMS").html(s+'秒');
+            s--;
+            $("#btnSendSMS").html(s + '秒');
             if (s == 0) {
                 clearInterval(time);
                 $("#btnSendSMS").html('发送验证码');
+                s = 60;
             }
-            s--;
         }, 1000);
     }
 }
