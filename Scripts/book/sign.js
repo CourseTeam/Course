@@ -2,6 +2,8 @@
 var request;
 var course_id;
 
+
+
 $ (function($){
 
     get_request("CourseID");
@@ -13,6 +15,7 @@ $ (function($){
  	};
 
 	var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+	alert(UserInfo);
 	if (UserInfo) {
 		//noinspection JSAnnotator
 		document.getElementById("tel").value = UserInfo.Phone;
@@ -57,6 +60,9 @@ function sure() {
 	var inputer = $("input[name=inputerRadio]:checked").val();
 	var channel = $("input[name=channelRadio]:checked").val();
 
+	var sel_pid = $("input[name=radio_phase]:checked").val();
+
+
 	var param = {};
 	param.server_id = server_id;
 	param.tel = tel;
@@ -75,6 +81,8 @@ function sure() {
 	param.address = address;
 	param.inputer = inputer;
 	param.channel = channel;
+	param.sel_pid = sel_pid;
+
 	updateInfo(param);
 	course_reg(param);
 
@@ -106,31 +114,45 @@ function updateInfo(obj){
 	var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Edit");
 	if (result.Msg == "OK" && result.Data == true) {
 		//更新个人信息成功
-		course_reg();
+
 	}
 
 }
 
+//课程报名
 function course_reg(obj){
 	var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-	var param = {"UserID":UserInfo.UserID,"CourseID":course_id,"ValueAddedServices":obj.radio_server,"Channel":obj.channel,"Preparer":obj.inputer};
-	var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
+	var param = {"UserID":UserInfo.UserID,"CourseID":course_id,"Channel":obj.channel,"Preparer":obj.inputer};
+	var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseRegistration_Add");
 	if (result.Msg == "OK" && result.Data != false) {
-		//预约成功
+		//课程报名成功
 		layer.open({
 			"title":"提示",
 			"content":"是否进行预约？",
 			btn:["取消","确定"],
 			ok:function(index){
+				phase_book(obj);
 			layer.close(index);
-	        window.location.href = "booksuccess.html";
-			},no:function(index){
-			layer.close(index);
-			}
 
+			},no:function(index){
+				layer.close(index);
+			}
 		})
 	}
 }
+
+//阶段预约
+function phase_book(obj){
+	var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+	var param = {"UserID":UserInfo.UserID,"CourseID":course_id,"PhaseID":obj.sel_pid,"ParentCount":0,"ValueAddedServices":obj.channel
+				"PhaseType":1};
+	var result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add");
+	if (result.Msg == "OK") {
+		alert("预约成功");
+	}
+
+}
+
 
 function dateVerify(date){ 
 	var a = /^(\d{4})-(\d{2})-(\d{2})$/;
@@ -140,8 +162,8 @@ function dateVerify(date){
 
 function get_request(courseid) {  
 	var str=window.location.search;   //location.search是从当前URL的?号开始的字符串
-	if (str.indexOf(name)!=-1){        
-        var pos_start=str.indexOf(name) + name.length + 1;
+	if (str.indexOf(courseid)!=-1){        
+        var pos_start=str.indexOf(courseid) + courseid.length + 1;
         var pos_end=str.indexOf("&",pos_start);
         var pid = str.substring(pos_start);
         //获取课程详情 目前使用假数据
@@ -151,15 +173,45 @@ function get_request(courseid) {
 }  
 
 
-//课程一阶列表
+//课程一阶列表数据获取
 function get_phaselist(cid) {
-	var param = {"CourseID":cid};
-	var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_OnePhase");
-	if (result.Msg == "OK") {
-		
-	}
+	var str=window.location.search;   //location.search是从当前URL的?号开始的字符串
+	if (str.indexOf(cid)!=-1){        
+        var pos_start=str.indexOf(cid) + cid.length + 1;
+        var pos_end=str.indexOf("&",pos_start);
+        var pid = str.substring(pos_start);
+        //获取课程详情 目前使用假数据
+        course_id = pid;
+        var param = {"CourseID":course_id};
+		var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_OnePhase");
+		if (result.Msg == "OK") {
+			var data = result.Data;
+			create_phaselist(data);
+		}
+    }
 }
 
+//创建课程一阶列表
+function create_phaselist(data){
+	if (data.length) {
+		var strHtml = "";
+		for (var i = 0; i < data.length; i++) {
+			var row = data[i];
+			var color = row.ReservationCount == row.PeopleCount?"red":"black"
+			strHtml += '	<div class="radio">'
+		    strHtml += '       <label>'
+		    strHtml += '          <input type="radio" name="radio_phase" value="' + row.PhaseID + '">'
+		    strHtml += '            <p>' + row.CoursePhaseName +'</p>'
+		    strHtml += '            <p>开始时间：' + row.StartTime.substring(0,10) + '</p>'
+		    strHtml += '            <p>结束时间：' + row.EndTime.substring(0,10) + '</p>'
+		    strHtml += '            <p style="color:'+color+';">报名人数：' + row.ReservationCount +'/'+row.PeopleCount + '</p>'
+		    strHtml += '        </label>'
+		    strHtml += '    </div>'
+		}
+		
+		$(".phase_container").append(strHtml);
+	}
+}
 
 function get_data(cid) {
 
@@ -168,33 +220,9 @@ function get_data(cid) {
 	var param = {"CourseID":couseid};
 	var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
 	if (result.Msg == "OK" && result.Data.length > 0) {
-		request = result.Data.phaselist[0];
+		request = result.Data.courseInfo;
+
 	}
-
-	var strHtml = "";
-
-	strHtml += '<div class="row">';
-	strHtml += '  <div class="col-xs-6">';
-	strHtml += '	<p class="top-text">一阶开营时间：'+ request.StartTime.substr(0,10) + '</p>';
-	strHtml += '  </div>';
-	strHtml += '  <div class="col-xs-6">';
-	strHtml += '	<p class="top-text">地点：' + request.Place + '</p>';
-	strHtml += '  </div>';
-	strHtml += '</div>';
-
-	strHtml += '<div class="row">';
-	strHtml += '  <div class="col-xs-6">';
-	strHtml += '	<p class="top-text">剩余名额：'+ (request.PeopleCount - request.ReservationCount) + '</p>';
-	strHtml += '  </div>';
-	strHtml += '  <div class="col-xs-6">';
-	strHtml += '	<p class="top-text">预约截止时间：'+ request.EndTime.substr(0,10) + '</p>';
-	strHtml += '  </div>';
-	strHtml += '</div>';
-
-	$(".container").append(strHtml);
-
-
-	if (request.phaseType == 4 || request.phaseType == 3) {
 
 		var zengzhiHtml = "";
 		zengzhiHtml += '<p class="zengzhi_title">请选择您的增值服务</p>'
@@ -236,6 +264,5 @@ function get_data(cid) {
 	    zengzhiHtml += '    </div>'
 		$(".zengzhi").append(zengzhiHtml);
 
-	}
 
 }
