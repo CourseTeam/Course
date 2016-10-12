@@ -5,21 +5,29 @@ $(function ($) {
     $("#header").load("../Commen/header.html");
 
     var UserID = $Course.RequestUrlParams("UserID");
-    var  type = $Course.RequestUrlParams("type");
-    if (type == 1){
+    var type = $Course.RequestUrlParams("type");
+    if (type == 1) {
         $("#btnSave").hide();
     }
     $("#btnSave").on("click", function () {
         UserInfo_Edit(UserID);
     });
     if (UserID != null) {
-        debugger
+        $("#phonediv").hide();
+        $("#FatherPhonediv").hide();
+        $("#MotherPhonediv").hide();
+
         UserInfoEdit_Get(UserID);
+
+    } else {
+        $("#phonebox").hide();
+        $("#FatherPhonebox").hide();
+        $("#MotherPhonebox").hide();
     }
     laydate(start);
 })
 
-var UserID = $Course.RequestUrlParams("UserID") || 0;
+var UserID = $Course.RequestUrlParams("UserID") ;
 function UserInfoEdit_Get(UserID) {
     var param = {UserID: UserID};
     console.log(UserID);
@@ -39,6 +47,7 @@ function UserInfoEdit_Get(UserID) {
     $("#MotherPhone").val(result.Data.MotherPhone);
     $("#Tel").val(result.Data.Tel);
     $("#Address").val(result.Data.Address);
+    $("#Account").val(result.Data.Account);
 }
 
 
@@ -53,9 +62,16 @@ function UserInfo_Edit(UserID) {
     var Email = $("#Email").val();
     var Phone = $("#Phone").val();
     var FatherName = $("#FatherName").val();//
-    var FatherPhone = $("#FatherPhone").val()
     var MotherName = $("#MotherName").val();//
-    var MotherPhone = $("#MotherPhone").val();
+    var FatherPhone = "";
+    var MotherPhone = "";
+    if (UserID == null) {
+         FatherPhone = $("#FatherPhone2").val()
+         MotherPhone = $("#MotherPhone2").val();
+    } else {
+         FatherPhone = $("#FatherPhone").val()
+         MotherPhone = $("#MotherPhone").val();
+    }
     var Tel = $("#Tel").val();//
     var Address = $("#Address").val();//
 
@@ -80,22 +96,40 @@ function UserInfo_Edit(UserID) {
         layer.msg("请输入母亲名字", {icon: 2, time: 2000})
         return;
     }
-    if (!Tel) {
-        layer.msg("请输入固定电话", {icon: 2, time: 2000})
-        return;
-    }
     if (!Address) {
         layer.msg("请输入家庭住址", {icon: 2, time: 2000})
         return;
     }
 
-    if (!FatherPhone && !MotherPhone) {
-        // if (FatherPhone.length == 11 || MotherPhone.length == 11)
-        layer.msg("请输入父亲或母亲的手机号", {icon: 2, time: 2000})
-        return;
-    }
+    // if (FatherPhone == null && MotherPhone == null) {
+    // debugger
+        if (!FatherPhone && !MotherPhone) {
+            // if (FatherPhone.length == 11 || MotherPhone.length == 11)
+            layer.msg("请输入父亲或母亲的手机号", {icon: 2, time: 2000})
+            return;
+        }
+
+        var dan = $("input[name=dan]:checked").val();
+        if (dan == 1) {
+            Account = $("#Phone2").val();
+        }
+        if (dan == 2) {
+            Account = $("#FatherPhone2").val();
+        }
+        if (dan == 3) {
+            Account = $("#MotherPhone2").val();
+        }
+        if (!Account && UserID == null) {
+            layer.msg("选中的手机号不能为空", {icon: 2, time: 2000})
+            return;
+        }
+
+
+
+
+
     var param = {
-        UserID : UserID,
+        UserID: UserID,
         NickName: NickName,
         Sex: Sex,
         BirthDay: BirthDay,
@@ -109,7 +143,9 @@ function UserInfo_Edit(UserID) {
         MotherName: MotherName,
         MotherPhone: MotherPhone,
         Tel: Tel,
-        Address: Address
+        Address: Address,
+        Account: Account
+
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Edit");
     if (result.Msg == "OK") {

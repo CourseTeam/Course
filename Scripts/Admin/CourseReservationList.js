@@ -165,5 +165,4 @@ function CourseRegistration_Refund(CourseRegistrationID) {
             });
         }
     });
-
 }
