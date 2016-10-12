@@ -8,4 +8,3 @@ var UserInfo = $.cookie("UserInfo") || "";
 if (UserInfo == "" || UserInfo == "null") {
     window.location.href = "/Course/Views/Account/Login.html"
 }
-console.log(UserInfo);

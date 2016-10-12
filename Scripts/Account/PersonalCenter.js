@@ -24,6 +24,9 @@ $(function ($) {
             PopupView(name,values,id);
         }
     });
+    $("#exit").on("click", function () {
+       Exit();
+    });
 });
 
 function PopupView(name, values, id) {
@@ -158,4 +161,15 @@ function Edit() {
     if(result.Msg=="OK"){
         GetData();
     }
+}
+
+function Exit() {
+    layer.open({
+        content : "确定退出?",
+        btn:['确定','取消'],
+        yes:function (index) {
+            $.cookie("UserInfo", null, {expires: 30, path: '/'});
+            window.location.href = "Login.html";
+        }
+    });
 }

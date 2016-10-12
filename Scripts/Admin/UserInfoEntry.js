@@ -13,12 +13,14 @@ $(document).ready(function () {
     //加载公用导航
     $("#header").load("../Commen/header.html");
     PhaseID = $Course.RequestUrlParams("PhaseID");
+    $("#CourseName_PhaseName").val($Course.RequestUrlParams("CoursePhaseName"));
     $("#btnSave").on("click", function () {
         Course_Entry();
     });
     $("#choose").on("click", function () {
         StudentList_Show();
     });
+
     $("#isExperience").on("change", function () {
         if ($(this).is(':checked')) {
             $("#service").hide();
@@ -38,7 +40,11 @@ function Course_Entry() {
     var Note = $("#Note").val();
     var Money = $("#Money").val();
     var ValueAddedServices = $("input[name=optionsRadios]:checked").val();
-    var param = {UserID:UserID, CourseID: CourseID, TuitionFeesPaid:TuitionFeesPaid, Note:Note, Money:Money, ValueAddedServices:ValueAddedServices};
+    var IsExperience = 0;
+    if ($("#isExperience").is(":checked")) {
+        IsExperience = 1;
+    }
+    var param = {UserID:UserID, CourseID: CourseID, TuitionFeesPaid:TuitionFeesPaid,IsExperience:IsExperience, Note:Note, Money:Money, ValueAddedServices:ValueAddedServices};
     var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_Add");
     if (result.Msg == "OK"){
         Phase_Entry();

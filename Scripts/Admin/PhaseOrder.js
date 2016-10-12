@@ -4,13 +4,25 @@
 $(document).ready(function () {
     //加载公用导航
     $("#header").load("../Commen/header.html");
+    $("#btnAdd").on("click",function () {
+        UserInfoEntry();
+    });
     layer.skin = "layui-layer-molv";
     PhaseRegistration_List(1);
     var CoursePhaseName = decodeURIComponent($Course.RequestUrlParams("CoursePhaseName"));
     $("#paseName").html("阶段预约列表 — " + CoursePhaseName);
 });
 
+<<<<<<< HEAD
 var PageIndex = 1;
+=======
+function UserInfoEntry() {
+    var PhaseID = $Course.RequestUrlParams("PhaseID");
+    var CoursePhaseName = decodeURIComponent($Course.RequestUrlParams("CoursePhaseName"));
+    window.location.href = "../User/UserInfoEntry.html?PhaseID=" + PhaseID + '&CoursePhaseName=' + CoursePhaseName;
+}
+
+>>>>>>> 56c6f18abcd857df3391ce8ab83d16df9bcf1936
 var PhaseRegistration_Items = [];
 //阶段预约列表
 function PhaseRegistration_List() {
