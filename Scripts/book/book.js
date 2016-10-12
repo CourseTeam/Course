@@ -38,7 +38,7 @@ var isPhaseThree;
   else if(screen_width <= 640)phasename_width = "60%";
   else if(screen_width <= 800)phasename_width = "70%";
 
-  getPhaseStatus();
+   getPhaseStatus();
    get_bookingdata();
    get_willbookdata();
    get_bookeddata();
@@ -46,9 +46,9 @@ var isPhaseThree;
 }); 
 
 //转期 
-function transfer (obj){
+function transfer (pid,cpname){
     
-    window.location.href = "../transfer/transfer.html?phaseID=" + obj.pid + "&coursename=" + obj.cpname;
+    window.location.href = "../transfer/transfer.html?phaseID=" + pid + "&coursename=" + cpname;
 }
 
 //调用预约接口
@@ -244,8 +244,9 @@ function create_bookinglist() {
       var img = isCost? "../../Images/book/cost_selected.png":"../../Images/book/cost_normal.png";
       var type = get_type(row.PhaseStatus);
       var stateImg = get_stateImg(row.PhaseStatus);
-   
-
+      var disabled = row.PhaseStatus == 3?"":"disabled";
+      //转期参数
+      var param = {"pid":row.PhaseID,"cpname":row.CoursePhaseName};
       var color = isCost?"#F24D4D":"#9B9B9B";
        strHtml += '  <ul style="float: left;">'
        strHtml += '    <li>'
@@ -263,7 +264,7 @@ function create_bookinglist() {
        strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costTitle + '</font></li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float:right;">'
-       strHtml += '    <button class="button" type="button" disabled="disabled"  style="margin-top:10px;margin-right:10px;">'+ type +'</button>'
+       strHtml += '    <button class="button" type="button"  style="margin-top:10px;margin-right:10px;" onclick="transfer(this,'+ row.PhaseID +')">'+ type +'</button>'
        strHtml += '  </ul>'
        strHtml += '<div style="clear: both;"></div>'
    }
@@ -294,7 +295,7 @@ function create_willbooklist(){
       var btnColor = disabled == ""? "#F24D4D":"#9B9B9B";
 
       if (isOverCount) {type = "候补"}else{type="预约"};
-      
+
       var img = isCost? "../../Images/book/cost_selected.png":"../../Images/book/cost_normal.png";
        strHtml += '  <ul style="float: left;">' 
        strHtml += '    <li>'
