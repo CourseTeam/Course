@@ -5,32 +5,35 @@ var course_id;
 $ (function($){
 
     get_request("CourseID");
+    get_phaselist("CourseID");
+
     var sureButton = document.getElementById("sureButton");
  	sureButton.onclick = function(){
  		sure();
- 	}
+ 	};
 
 	var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
 	if (UserInfo) {
-		$("#tel").val() = UserInfo.Phone;
-		$("#emial").text = UserInfo.Email;
-		$("#name").text = UserInfo.NickName;
-		$("#sex").text = UserInfo.Sex;
-		$("#school").text = UserInfo.School;
-		$("#grade").text = UserInfo.Grade;
-		$("#class").text = UserInfo.ClassName;
-		$("#birth").text = UserInfo.School;
-
-		$("#f_name").text = UserInfo.FatherName;
-		$("#f_tel").text = UserInfo.FatherPhone;
-		$("#m_name").text = UserInfo.MotherName;
-		$("#m_tel").text = UserInfo.MotherPhone;
-		$("#telephone").text = UserInfo.Tel;
-		$("#address").text = UserInfo.Address;
-
+		//noinspection JSAnnotator
+		document.getElementById("tel").value = UserInfo.Phone;
+		document.getElementById("email").value = UserInfo.Email;
+		document.getElementById("name").value = UserInfo.NickName;
+		document.getElementById("sex").value = UserInfo.Sex;
+		document.getElementById("school").value = UserInfo.School;
+		document.getElementById("grade").value = UserInfo.Grade;
+		document.getElementById("class").value = UserInfo.ClassName;
+		document.getElementById("birth").value = UserInfo.School;
+		
+		document.getElementById("f_name").value = UserInfo.FatherName;
+		document.getElementById("f_tel").value = UserInfo.FatherPhone;
+		document.getElementById("m_name").value = UserInfo.MotherName;
+		document.getElementById("m_tel").value = UserInfo.MotherPhone;
+		document.getElementById("telephone").value = UserInfo.Tel;
+		document.getElementById("address").value = UserInfo.Address;
+		
 	}
-
-})
+	
+});
 
 function sure() {
 
@@ -54,7 +57,7 @@ function sure() {
 	var inputer = $("input[name=inputerRadio]:checked").val();
 	var channel = $("input[name=channelRadio]:checked").val();
 
-	var param = new Object();
+	var param = {};
 	param.server_id = server_id;
 	param.tel = tel;
 	param.email = email;
@@ -78,31 +81,21 @@ function sure() {
 }	
 
 
+
+
 function updateInfo(obj){
 	// 更改个人信息
 	// var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
 	if (!dateVerify(obj.birth)) {
-		layer.open({
-			title:"提示",
-			content:"出生日期格式不正确,请按照正确格式输入",
-			btn:["确定"],
-			ok:function(index){
-			   layer.close(index);
-			}
-		});
+		layer.open({content:"出生日期格式不正确,请按照正确格式输入"});
+		return;
 	}
 
 	if (obj.name == "" || obj.sex == "" || obj.school == "" || obj.grade == "" || obj.class == "" || obj.birth == ""
 		|| obj.email == "" || obj.tel == "" || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" ||
 		 obj.telephone == "" || obj.address == "") {
-		layer.open({
-			title:"提示",
-			content:"信息输入未完整，请填写完整再预约",
-			btn:["确定"],
-			ok:function(index){
-			   layer.close(index);
-			}
-		});
+		layer.open({content:"信息输入未完整，请填写完整再预约"});
+		return;
 	}
 
 	var param = {"UserID":"1","NickName":obj.name,"Account":"","Sex":obj.sex,"School":obj.school,
@@ -113,7 +106,7 @@ function updateInfo(obj){
 	var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Edit");
 	if (result.Msg == "OK" && result.Data == true) {
 		//更新个人信息成功
-		
+		course_reg();
 	}
 
 }
@@ -124,12 +117,23 @@ function course_reg(obj){
 	var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
 	if (result.Msg == "OK" && result.Data != false) {
 		//预约成功
-        window.location.href = "booksuccess.html";
+		layer.open({
+			"title":"提示",
+			"content":"是否进行预约？",
+			btn:["取消","确定"],
+			ok:function(index){
+			layer.close(index);
+	        window.location.href = "booksuccess.html";
+			},no:function(index){
+			layer.close(index);
+			}
+
+		})
 	}
 }
 
 function dateVerify(date){ 
-	var a = /^(\d{4})-(\d{2})-(\d{2})$/
+	var a = /^(\d{4})-(\d{2})-(\d{2})$/;
 	if(!a.test(date)) return false;
 	return true;
 }
@@ -141,10 +145,20 @@ function get_request(courseid) {
         var pos_end=str.indexOf("&",pos_start);
         var pid = str.substring(pos_start);
         //获取课程详情 目前使用假数据
-        course_id = "23";
-        get_data("23");
+        course_id = pid;
+        get_data(pid);
     }
 }  
+
+
+//课程一阶列表
+function get_phaselist(cid) {
+	var param = {"CourseID":cid};
+	var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_OnePhase");
+	if (result.Msg == "OK") {
+		
+	}
+}
 
 
 function get_data(cid) {
@@ -153,31 +167,75 @@ function get_data(cid) {
 	var couseid = cid;
 	var param = {"CourseID":couseid};
 	var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
-	if (result.Msg == "OK") {
+	if (result.Msg == "OK" && result.Data.length > 0) {
 		request = result.Data.phaselist[0];
 	}
 
 	var strHtml = "";
 
-	strHtml += '<div class="row">'
-	strHtml += '  <div class="col-xs-6">'
-	strHtml += '	<p class="top-text">一阶开营时间：'+ request.StartTime.substr(0,10) + '</p>'			
-	strHtml += '  </div>'
-	strHtml += '  <div class="col-xs-6">'
-	strHtml += '	<p class="top-text">地点：' + request.Place + '</p>'		 	
-	strHtml += '  </div>'
-	strHtml += '</div>'
+	strHtml += '<div class="row">';
+	strHtml += '  <div class="col-xs-6">';
+	strHtml += '	<p class="top-text">一阶开营时间：'+ request.StartTime.substr(0,10) + '</p>';
+	strHtml += '  </div>';
+	strHtml += '  <div class="col-xs-6">';
+	strHtml += '	<p class="top-text">地点：' + request.Place + '</p>';
+	strHtml += '  </div>';
+	strHtml += '</div>';
 
-	strHtml += '<div class="row">'
-	strHtml += '  <div class="col-xs-6">'
-	strHtml += '	<p class="top-text">剩余名额：'+ (request.PeopleCount - request.ReservationCount) + '</p>'			
-	strHtml += '  </div>'
-	strHtml += '  <div class="col-xs-6">'
-	strHtml += '	<p class="top-text">预约截止时间：'+ request.EndTime.substr(0,10) + '</p>'		
-	strHtml += '  </div>'
-	strHtml += '</div>'
-
+	strHtml += '<div class="row">';
+	strHtml += '  <div class="col-xs-6">';
+	strHtml += '	<p class="top-text">剩余名额：'+ (request.PeopleCount - request.ReservationCount) + '</p>';
+	strHtml += '  </div>';
+	strHtml += '  <div class="col-xs-6">';
+	strHtml += '	<p class="top-text">预约截止时间：'+ request.EndTime.substr(0,10) + '</p>';
+	strHtml += '  </div>';
+	strHtml += '</div>';
 
 	$(".container").append(strHtml);
+
+
+	if (request.phaseType == 4 || request.phaseType == 3) {
+
+		var zengzhiHtml = "";
+		zengzhiHtml += '<p class="zengzhi_title">请选择您的增值服务</p>'
+		zengzhiHtml += '	<div class="radio">'
+	    zengzhiHtml += '       <label>'
+	    zengzhiHtml += '          <input type="radio" name="radio_server" value="1">'
+	    zengzhiHtml += '            <p>统一版摩英回忆视频300元（单阶7天）</p>'
+	    zengzhiHtml += '        </label>'
+	    zengzhiHtml += '    </div>'
+	    zengzhiHtml += '    <div class="radio">'
+	    zengzhiHtml += '      <label>'
+	    zengzhiHtml += '        <input type="radio" name="radio_server" value="2">'
+	    zengzhiHtml += '        <p>VIP摩英大电影1980元（单阶7天）</p>'
+	    zengzhiHtml += '      </label>'
+	    zengzhiHtml += '   </div>'
+	    zengzhiHtml += '    <div class="radio">'
+	    zengzhiHtml += '      <label>'
+	    zengzhiHtml += '        <input type="radio" name="radio_server" value="3">'
+	    zengzhiHtml += '        <p>VIP蜕变水晶相册1280元（单阶7天）</p>'
+	    zengzhiHtml += '      </label>'
+	    zengzhiHtml += '    </div>'
+	    zengzhiHtml += '    <div class="radio">'
+	    zengzhiHtml += '      <label>'
+	    zengzhiHtml += '        <input type="radio" name="radio_server" value="4">'
+	    zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册2680元 强烈推荐 性价比极高（单阶7天）</p>'
+	    zengzhiHtml += '      </label>'
+	    zengzhiHtml += '    </div>'
+	    zengzhiHtml += '    <div class="radio">'
+	    zengzhiHtml += '      <label>'
+	    zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
+	    zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
+	    zengzhiHtml += '      </label>'
+	    zengzhiHtml += '    </div>'
+	    zengzhiHtml += '      <div class="radio">'
+	    zengzhiHtml += '      <label>'
+	    zengzhiHtml += '        <input type="radio" name="radio_server" value="0" checked="checked">'
+	    zengzhiHtml += '        <p>不需要此项服务</p>'
+	    zengzhiHtml += '      </label>'
+	    zengzhiHtml += '    </div>'
+		$(".zengzhi").append(zengzhiHtml);
+
+	}
 
 }
