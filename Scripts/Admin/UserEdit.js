@@ -59,18 +59,19 @@ function UserInfo_Edit(UserID) {
     var Grade = $("#Grade").val();
     var ClassName = $("#ClassName").val();
     var Email = $("#Email").val();
-    var Phone = $("#Phone").val();
     var FatherName = $("#FatherName").val();//
     var MotherName = $("#MotherName").val();//
 
-
+    var Phone = "";
     var FatherPhone = "";
     var MotherPhone = "";
     if (UserID == null) {
+        Phone = $("#Phone2").val();
         FatherPhone = $("#FatherPhone2").val()
         MotherPhone = $("#MotherPhone2").val();
 
     } else {
+        Phone = $("#Phone").val();
         FatherPhone = $("#FatherPhone").val()
         MotherPhone = $("#MotherPhone").val();
     }
@@ -141,8 +142,8 @@ function UserInfo_Edit(UserID) {
         MotherPhone: MotherPhone,
         Tel: Tel,
         Address: Address,
-        Account: Account
-
+        Account: Account,
+        Pwd: $Course.MD5("123456")
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Edit");
     if (result.Msg == "OK") {
