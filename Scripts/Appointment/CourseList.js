@@ -72,9 +72,17 @@ function CourseList(UserID, CourseTypeID) {
             strHtml += '                   <button class="text-left courseTitle">' + row.CourseName + '</button>';
             if ((CourseTypeID == 2 && PhaseType3 == 0) || (CourseTypeID == 1 && PhaseType1OR2 == 0)) {
                 if(full) {
-                    strHtml += '                   <button class="registrationButton" style="background-color: #999999;">立即候补</button>';
+                    if (row.MaxPhaseType > 1) {
+                        strHtml += '                   <button class="registrationButton">立即候补</button>';
+                    } else {
+                        strHtml += '                   <button class="registrationButton" style="background-color: #999999;">立即候补</button>';
+                    }
                 } else {
-                    strHtml += '                   <button class="registrationButton" style="background-color: #999999;">立即预约</button>';
+                    if (row.MaxPhaseType > 1) {
+                        strHtml += '                   <button class="registrationButton">立即预约</button>';
+                    } else {
+                        strHtml += '                   <button class="registrationButton" style="background-color: #999999;">立即预约</button>';
+                    }
                 }
             } else {
                 if (row.CourseStatus == 1) {
