@@ -19,10 +19,19 @@ var coursere_id;
 var parent;
 var service;
 
+//课程名宽度百分比
+var phasename_width;
+
  $(function($){
-  var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-  userID = UserInfo.UserID;
-  
+  // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+  // userID = UserInfo.UserID;
+    
+  var screen_width = window.screen.width;
+  if (screen_width <= 320)phasename_width = "45%";
+  else if(screen_width <= 500)phasename_width = "50%";
+  else if(screen_width <= 640)phasename_width = "60%";
+  else if(screen_width <= 800)phasename_width = "70%";
+
    get_bookingdata();
    get_willbookdata();
    get_bookeddata();
@@ -186,7 +195,7 @@ function book(obj,pid,cid,ctid,crid,e,t,pt,over,name,tspan,cpname){
 
 function get_bookingdata () {
     var uid = userID;
-    var param = {"UserID":uid,"Type":1};
+    var param = {"UserID":144,"Type":1};
     booking_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
     
     if (booking_result.Msg == "OK") {
@@ -196,9 +205,10 @@ function get_bookingdata () {
     }
 }
 
+
 function get_willbookdata(){
   var uid = userID;
-  var param = {"UserID":uid,"Type":2};
+  var param = {"UserID":144,"Type":2};
   willbook_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
   if (willbook_result.Msg == "OK") {
@@ -210,7 +220,7 @@ function get_willbookdata(){
 
 function get_bookeddata(){
   var uid = userID;
-  var param = {"UserID":uid,"Type":3};
+  var param = {"UserID":144,"Type":3};
   booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
   if (booked_result.Msg == "OK") {
@@ -240,13 +250,13 @@ function create_bookinglist() {
        }
        strHtml += '    </li>'
        strHtml += '  </ul>'
-       strHtml += '  <ul style="float: left;">'
-       strHtml += '    <li><font class="name">'+ row.CoursePhaseName + '</font></li>'
+       strHtml += '  <ul style="float: left; width:' + phasename_width +';" >'
+       strHtml += '    <li "><font class="name">'+ row.CoursePhaseName + '</font></li>'
        strHtml += '    <li><font class="time">'+ "开营时间：" + row.StartTime.substr(0,10) + '</font></li>'
        strHtml += '    <li><font class="location">'+ row.Place + '</font></li>'
        strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + "未缴纳食宿费" + '</font></li>'
        strHtml += '  </ul>'
-       strHtml += '  <ul style="float:left;">'
+       strHtml += '  <ul style="float:right;">'
        strHtml += '    <button class="button" type="button" disabled="disabled"  style="margin-top:10px;margin-right:10px;">'+ type +'</button>'
        strHtml += '  </ul>'
        strHtml += '<div style="clear: both;"></div>'
@@ -267,7 +277,7 @@ function create_willbooklist(){
       var costText = isCost?"已缴纳食宿费":"未缴纳食宿费";
       var isOverCount = row.ReservationCount >= row.PeopleCount;
       var name = row.CourseTypeName == "亲子课程"?"0":"1";
-      var btnColor = row.TimeSpan < 14?"#E6E6E6":"#9B9B9B";
+      var btnColor = "#F24D4D";
       var stateImg = get_stateImg(row.PhaseStatus);
       if (isOverCount) {type = "候补"}else{type="预约"};
 
@@ -277,17 +287,17 @@ function create_willbooklist(){
        if (stateImg != "") {
           strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -'+ i +'width="75" height="75"  src="' + stateImg +'"></div>'
        }else {
-          strHtml += '        <div><img id= img -'+ i +'width="75" height="75"  src="' + row.CourseImgUrl +'"></div>'
+          strHtml += '        <div><img  width="75" height="75"  src="' + row.CourseImgUrl +'"></div>'
        }       
        strHtml += '    </li>'
        strHtml += '  </ul>'
-       strHtml += '  <ul style="float: left;">'
+       strHtml += '  <ul style="float: left; width:' + phasename_width +';" >'
        strHtml += '    <li><font class="name">'+ row.CoursePhaseName + '</font></li>'
        strHtml += '    <li><font class="time">'+ "开营时间：" + row.StartTime.substr(0,10) + '</font></li>'
        strHtml += '    <li><font class="location">'+ row.Place + '</font></li>'
        strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'
        strHtml += '  </ul>'
-       strHtml += '  <ul style="float:left;">'
+       strHtml += '  <ul style="float:right;">'
        strHtml += '    <button class="button" type="button"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'
        strHtml += '  </ul>'
        strHtml += '<div style="clear: both;"></div>'
@@ -316,13 +326,13 @@ function create_bookedlist() {
        }
        strHtml += '    </li>'
        strHtml += '  </ul>'
-       strHtml += '  <ul style="float: left;">'
+       strHtml += '  <ul style="float: left; width:' + phasename_width +';" >'
        strHtml += '    <li><font class="name">'+ row.CoursePhaseName + '</font></li>'
        strHtml += '    <li><font class="time">'+ "开营时间：" + row.StartTime.substr(0,10) + '</font></li>'
        strHtml += '    <li><font class="location">'+ row.Place + '</font></li>'
        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg +'" width="19" height="15" >' + "已缴纳食宿费" + '</font></li>'
        strHtml += '  </ul>'
-       strHtml += '  <ul style="float:left;">'
+       strHtml += '  <ul style="float:right;">'
        strHtml += '    <button class="button" type="button" disabled="disabled" style="margin-top:10px;margin-right:10px;">'+type+'</button>'
        strHtml += '  </ul>'
        strHtml += '<div style="clear: both;"></div>'
