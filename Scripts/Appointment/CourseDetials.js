@@ -116,20 +116,18 @@ function CourseInfo_Details() {
             strHtml_Serve += '      <li>VIP蜕变水晶相册1280元(单阶7天)</li>';
             strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)</li>';
             strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)</li>';
-            if (Status == 1 || Status == 0) {
-
-            } else if (full) {
-                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')">立即候补</button></li>';
+            if (full) {
+                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')" id="registrationButton">立即候补</button></li>';
             } else {
-                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')">立即预约</button></li>';
+                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')" id="registrationButton">立即预约</button></li>';
             }
             strHtml_Serve += '   </ul>';
         } else {
             strHtml_Serve += '  <ul class="list-unstyled" style="padding-left: 10px;padding-right: 10px;padding-top: 5px;font-size: 12px;">';
             if (full) {
-                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')">立即候补</button></li>';
+                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')" id="registrationButton">立即候补</button></li>';
             } else {
-                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')">立即预约</button></li>';
+                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')" id="registrationButton">立即预约</button></li>';
             }
             strHtml_Serve += '   </ul>';
         }
@@ -137,6 +135,11 @@ function CourseInfo_Details() {
         $("#Detials").html(strHtml_Detials);
         $("#Teachers").html(strHtml_Teachers);
         $("#Serve").html(strHtml_Serve);
+        if (Status >= 0) {
+            // $("#registrationButton").css("background: #eee");
+            $("#registrationButton").hide();
+
+        }
     }
 }
 
