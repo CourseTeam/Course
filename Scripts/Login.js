@@ -17,7 +17,7 @@ function Login() {
     // }
     var UserName = $("#UserName").val();
     var Pwd = $("#Pwd").val();
-    
+
     if (!UserName) {
         layer.open({
             content: '请输入用户名或手机号',
@@ -86,12 +86,6 @@ function Login() {
 //         $("input[name=course]:checked").val();
 //     }
 // });
-function CourseType_Edit() {
-    var result = $Course.PostAjaxJson({
-        CourseTypeID: 0,
-        CourseTypeName: 11111,
-        Type: 1
-    }, ApiUrl + "CourseType/CourseType_Edit");
-    console.log(result);
-}
-// CourseType_Edit();
+
+
+//window.location.href = 'http://localhost:60182/File/PhaseReg_Excel';

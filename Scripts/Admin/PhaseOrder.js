@@ -4,7 +4,7 @@
 $(document).ready(function () {
     //加载公用导航
     $("#header").load("../Commen/header.html");
-    $("#btnAdd").on("click",function () {
+    $("#btnAdd").on("click", function () {
         UserInfoEntry();
     });
     layer.skin = "layui-layer-molv";
@@ -13,16 +13,13 @@ $(document).ready(function () {
     $("#paseName").html("阶段预约列表 — " + CoursePhaseName);
 });
 
-<<<<<<< HEAD
 var PageIndex = 1;
-=======
+
 function UserInfoEntry() {
     var PhaseID = $Course.RequestUrlParams("PhaseID");
     var CoursePhaseName = decodeURIComponent($Course.RequestUrlParams("CoursePhaseName"));
     window.location.href = "../User/UserInfoEntry.html?PhaseID=" + PhaseID + '&CoursePhaseName=' + CoursePhaseName;
 }
-
->>>>>>> 56c6f18abcd857df3391ce8ab83d16df9bcf1936
 var PhaseRegistration_Items = [];
 //阶段预约列表
 function PhaseRegistration_List() {
@@ -85,10 +82,10 @@ function PhaseRegistration_List() {
             strHtml += '      <div class="col-xs-1">' + AddTime + '</div>';
             strHtml += '      <div class="col-xs-1"><a href="#" onclick="ValueAddedServicesShow(' + row.UserID + ')">查看</a></div>';
             strHtml += '      <div class="col-xs-3">';
-            strHtml += '        <button onclick="PhaseStatus_Edit(' + row.PhaseReservationID + ',' + row.PhaseStatus + ')" >修改状态</button>';
+            strHtml += '        <button onclick="PhaseStatus_Edit(' + row.PhaseReservationID + ',' + row.PhaseStatus + ',' + row.UserID + ')" >修改状态</button>';
             strHtml += '        <button onclick="NoteEdit(' + row.CourseRegistrationID + ')">备注</button>';
             if (row.PhaseStatus == 3) {
-                strHtml += '        <button onclick="PhaseStatus_Edit(' + row.PhaseReservationID + ',' + row.PhaseStatus + ')">签到</button>';
+                strHtml += '        <button onclick="Past(' + row.PhaseReservationID + ',' + row.UserID + ')">签到</button>';
             }
             strHtml += '      </div>';
             strHtml += '    </div>';
@@ -208,7 +205,7 @@ function Phase_ClassName_Add(PhaseReservationID, obj) {
 }
 
 //修改状态
-function PhaseStatus_Edit(PhaseReservationID, PhaseStatus) {
+function PhaseStatus_Edit(PhaseReservationID, PhaseStatus, UserID) {
     layer.open({
         type: 1,
         title: "修改状态",
@@ -217,7 +214,11 @@ function PhaseStatus_Edit(PhaseReservationID, PhaseStatus) {
         content: $("#phaseStatusBox"),
         btn: ["确 定", '取 消'],
         yes: function (index) {
-            var param = {PhaseReservationID: PhaseReservationID, PhaseStatus: $("#phaseStatusBox select").val()};
+            var param = {
+                PhaseReservationID: PhaseReservationID,
+                UserID: UserID,
+                PhaseStatus: $("#phaseStatusBox select").val()
+            };
             var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseStatus_Edit");
             if (result.Msg == "OK") {
                 PhaseRegistration_List();
@@ -243,9 +244,13 @@ function NoteEdit(CourseRegistrationID) {
 }
 
 //签到
-function Past(PhaseReservationID, PhaseStatus) {
+function Past(PhaseReservationID, UserID) {
     layer.confirm("确定学员已到场？", function () {
-        var param = {PhaseReservationID: PhaseReservationID, PhaseStatus: $("#phaseStatusBox select").val()};
+        var param = {
+            PhaseReservationID: PhaseReservationID,
+            PhaseStatus: 4,
+            UserID: UserID
+        };
         var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseStatus_Edit");
         if (result.Msg == "OK") {
             PhaseRegistration_List();
