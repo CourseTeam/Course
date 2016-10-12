@@ -7,10 +7,14 @@ $(document).ready(function () {
     $("#btnAdd").on("click", function () {
         UserInfoEntry();
     });
+    $("#btnImport").on("click", function () {
+        window.location.href = ApiUrl + "File/PhaseReg_Excel?PhaseID=" + $Course.RequestUrlParams("PhaseID");
+    });
     layer.skin = "layui-layer-molv";
-    PhaseRegistration_List(1);
+    PhaseRegistration_List();
     var CoursePhaseName = decodeURIComponent($Course.RequestUrlParams("CoursePhaseName"));
     $("#paseName").html("阶段预约列表 — " + CoursePhaseName);
+
 });
 
 var PageIndex = 1;
@@ -92,21 +96,21 @@ function PhaseRegistration_List() {
             strHtml += '</li>';
         }
         $("#orderList").html(strHtml);
-    }
-    laypage({
-        cont: $("#Page"), //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
-        pages: Math.ceil(result.Data[0].RowsCount / 10), //通过后台拿到的总页数
-        //curr: 1 || 1, //当前页,
-        skip: true, //是否开启跳页
-        skin: '#AF0000',
-        groups: 3, //连续显示分页数
-        jump: function (obj, first) { //触发分页后的回调
-            if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
-                PageIndex = obj.curr;
-                PhaseRegistration_List();
+        laypage({
+            cont: $("#Page"), //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+            pages: Math.ceil(result.Data[0].RowsCount / 10), //通过后台拿到的总页数
+            curr: PageIndex || 1, //当前页,
+            skip: true, //是否开启跳页
+            skin: '#AF0000',
+            groups: 3, //连续显示分页数
+            jump: function (obj, first) { //触发分页后的回调
+                if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+                    PageIndex = obj.curr;
+                    PhaseRegistration_List();
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 //查看增值服务
