@@ -26,7 +26,7 @@ $(function ($) {
     laydate(start);
 })
 
-
+var UserID = $Course.RequestUrlParams("UserID");
 function UserInfoEdit_Get(UserID) {
     var param = {UserID: UserID};
     console.log(UserID);
@@ -62,12 +62,17 @@ function UserInfo_Edit(UserID) {
     var Phone = $("#Phone").val();
     var FatherName = $("#FatherName").val();//
     var MotherName = $("#MotherName").val();//
-    if (UserID == 0) {
-        var FatherPhone = $("#FatherPhone2").val()
-        var MotherPhone = $("#MotherPhone2").val();
+
+
+    var FatherPhone = "";
+    var MotherPhone = "";
+    if (UserID == null) {
+        FatherPhone = $("#FatherPhone2").val()
+        MotherPhone = $("#MotherPhone2").val();
+
     } else {
-        var FatherPhone = $("#FatherPhone").val()
-        var MotherPhone = $("#MotherPhone").val();
+        FatherPhone = $("#FatherPhone").val()
+        MotherPhone = $("#MotherPhone").val();
     }
     var Tel = $("#Tel").val();//
     var Address = $("#Address").val();//
@@ -98,13 +103,12 @@ function UserInfo_Edit(UserID) {
         return;
     }
 
+
     if (!FatherPhone && !MotherPhone) {
-        // if (FatherPhone.length == 11 || MotherPhone.length == 11)
         layer.msg("请输入父亲或母亲的手机号", {icon: 2, time: 2000})
         return;
     }
 
-    var Account = "";
     var dan = $("input[name=dan]:checked").val();
     if (dan == 1) {
         Account = $("#Phone2").val();
@@ -115,7 +119,7 @@ function UserInfo_Edit(UserID) {
     if (dan == 3) {
         Account = $("#MotherPhone2").val();
     }
-    if (!Account) {
+    if (!Account && UserID == null) {
         layer.msg("选中的手机号不能为空", {icon: 2, time: 2000})
         return;
     }
