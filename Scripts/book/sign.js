@@ -38,6 +38,8 @@ $ (function($){
 	
 });
 
+
+
 function sure() {
 
 	var server_id = $('input[name="radio_server"]:checked').val();
@@ -87,8 +89,6 @@ function sure() {
 	course_reg(param);
 
 }	
-
-
 
 
 function updateInfo(obj){

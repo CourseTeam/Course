@@ -22,6 +22,12 @@ var service;
 //课程名宽度百分比
 var phasename_width;
 
+//是否上过一阶或者二阶课程
+var isPhaseOne;
+//是否上过三阶课程
+var isPhaseThree;
+
+
  $(function($){
   // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
   // userID = UserInfo.UserID;
@@ -32,6 +38,7 @@ var phasename_width;
   else if(screen_width <= 640)phasename_width = "60%";
   else if(screen_width <= 800)phasename_width = "70%";
 
+  getPhaseStatus();
    get_bookingdata();
    get_willbookdata();
    get_bookeddata();
@@ -93,19 +100,6 @@ function book(obj,pid,cid,ctid,crid,t,pt,over,name,tspan,cpname){
   param.qinziType = 0;
   param.serviceType = 0;
 
-
-  // if (tspan < 14) {
-  //     layer.open({
-  //       title:"",
-  //       content:'<div>'+
-  //         '您已超出可转期时间 详情请联系客服'+
-  //       '</div>',
-  //       btn:["确定"],
-  //     });
-  //     return;
-  // }
-  
-  //如果是候补，仍旧执行预约
 
   if (name == "0") {
      layer.open({
@@ -191,6 +185,17 @@ function book(obj,pid,cid,ctid,crid,t,pt,over,name,tspan,cpname){
 }
 
 
+function getPhaseStatus(){
+  // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+  // var param = {"UserID":UserInfo.UserID};
+    var param = {"UserID":156};
+  var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
+  if (result.Msg == "OK") {
+    isPhaseOne = result.Data.PhaseType1OR2;
+    isPhaseThree = result.Data.PhaseType3;
+  }
+}
+
 function get_bookingdata () {
     var uid = userID;
     var param = {"UserID":156,"Type":1};
@@ -239,6 +244,8 @@ function create_bookinglist() {
       var img = isCost? "../../Images/book/cost_selected.png":"../../Images/book/cost_normal.png";
       var type = get_type(row.PhaseStatus);
       var stateImg = get_stateImg(row.PhaseStatus);
+   
+
       var color = isCost?"#F24D4D":"#9B9B9B";
        strHtml += '  <ul style="float: left;">'
        strHtml += '    <li>'
@@ -276,10 +283,18 @@ function create_willbooklist(){
       var costText = isCost?"已缴纳食宿费":"未缴纳食宿费";
       var isOverCount = row.ReservationCount >= row.PeopleCount;
       var name = row.CourseTypeName == "亲子课程"?"0":"1";
-      var btnColor = "#F24D4D";
       var stateImg = get_stateImg(row.PhaseStatus);
-      if (isOverCount) {type = "候补"}else{type="预约"};
 
+       //阶数
+      var phasenumber = row.PhaseType;
+      var disabled = "";
+      if (phasenumber == 3 || phasenumber == 4){if (!isPhaseOne) {disabled="disabled"}};
+      if (name == "0") {if (!isPhaseThree) {disabled="disabled"}}
+
+      var btnColor = disabled == ""? "#F24D4D":"#9B9B9B";
+
+      if (isOverCount) {type = "候补"}else{type="预约"};
+      
       var img = isCost? "../../Images/book/cost_selected.png":"../../Images/book/cost_normal.png";
        strHtml += '  <ul style="float: left;">' 
        strHtml += '    <li>'
@@ -287,7 +302,7 @@ function create_willbooklist(){
           strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -'+ i +'width="75" height="75"  src="' + stateImg +'"></div>'
        }else {
           strHtml += '        <div><img  width="75" height="75"  src="' + row.CourseImgUrl +'"></div>'
-       }       
+       }
        strHtml += '    </li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float: left; width:' + phasename_width +';" >'
@@ -297,7 +312,7 @@ function create_willbooklist(){
        strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float:right;">'
-       strHtml += '    <button class="button" type="button"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'
+       strHtml += '    <button class="button" type="button" disabled="' + disabled +'"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'
        strHtml += '  </ul>'
        strHtml += '<div style="clear: both;"></div>'
    }
