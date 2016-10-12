@@ -2,7 +2,7 @@
 
 .row {
 	background-color: #FFFFFF;
-	height: 44px;
+	height: 50px;
 	border-bottom:1px solid #E6E6E6;
 	margin-left: 0!important;
 }
@@ -17,7 +17,7 @@
 #sureButton {
 	margin-left: 20px;
 	margin-right: 20px;
-	width: 95%;
+	width: 90%;
 	height: 44px;
 	margin-top: 100px;
 	border-radius: 4px;
@@ -28,6 +28,7 @@
 
 #my-course {
 	margin-top: 10px;
+	font-size: 13px;
 }
 
 #course-list {
@@ -40,4 +41,5 @@
 	background-color: #F24D4D;
 	color: #FFFFFF;
     border: 0;
+    font-size: 13px;
 }
