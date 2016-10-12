@@ -144,8 +144,8 @@ function course_reg(obj){
 //阶段预约
 function phase_book(obj){
 	var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-	var param = {"UserID":UserInfo.UserID,"CourseID":course_id,"PhaseID":obj.sel_pid,"ParentCount":0,"ValueAddedServices":obj.channel
-				"PhaseType":1};
+	var param = {"UserID":UserInfo.UserID,"CourseID":course_id,"PhaseID":obj.sel_pid,"ParentCount":0,"ValueAddedServices":obj.channel,
+		"PhaseType":1};
 	var result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add");
 	if (result.Msg == "OK") {
 		alert("预约成功");
