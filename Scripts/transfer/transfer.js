@@ -15,10 +15,10 @@ var selCourseName;
 //访问转期接口
 function go_transfer(){
 	var param = {"PhaseID":phaseID,"NewPhaseID":selCourseID};
-    var result = $Course.GetAjaxJson(param, ApiUrl + "Course/Phase_Change");
+    var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_Change");
     if (result.Msg == "OK" && result.Data != false) {
     	//转期成功
-        layer.open("转期成功");
+        window.location.href = "../book/booksuccess.html?type=0";
 
     }
 }
@@ -27,7 +27,7 @@ function go_transfer(){
  	phaseID = pid;
  	var param = {"PhaseID":pid};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_ChangePhase");
-    if (result.MSG = "OK") {
+    if (result.Msg = "OK") {
     	phase_result = result.Data;
 
     }
@@ -38,7 +38,7 @@ function go_transfer(){
 	if (str.indexOf(name)!=-1){        
         var pos_start=str.indexOf(name) + name.length + 1;
         var pos_end=str.indexOf("&",pos_start);
-        var pid = str.substring(pos_start);
+        var pid = str.substring(pos_start,pos_end);
         get_data(pid);
     }
     if (str.indexOf(coursename)!=-1){        

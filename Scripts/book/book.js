@@ -46,9 +46,9 @@ var isPhaseThree;
 }); 
 
 //转期 
-function transfer (pid,cpname){
-    
-    window.location.href = "../transfer/transfer.html?phaseID=" + pid + "&coursename=" + cpname;
+function transfer (obj,pid){
+    var coursename = $(obj).attr("cname");
+    window.location.href = "../transfer/transfer.html?phaseID=" + pid + "&coursename=" + coursename;
 }
 
 //调用预约接口
@@ -62,6 +62,8 @@ function post_book(param){
     //预约成功
     window.location.href = "booksuccess.html";
     
+  }else {
+    layer.open({content:"一阶课程当前正在预约中，请完成该预约后再预约后续课程"});
   }
 
 }
@@ -264,7 +266,7 @@ function create_bookinglist() {
        strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costTitle + '</font></li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float:right;">'
-       strHtml += '    <button class="button" type="button"  style="margin-top:10px;margin-right:10px;" onclick="transfer(this,'+ row.PhaseID +')">'+ type +'</button>'
+       strHtml += '    <button class="button" type="button" cname="'+ row.CoursePhaseName + '" onclick="transfer(this,'+ row.PhaseID  + ')"  style="margin-top:10px;margin-right:10px;" >'+ type +'</button>'
        strHtml += '  </ul>'
        strHtml += '<div style="clear: both;"></div>'
    }
@@ -313,7 +315,10 @@ function create_willbooklist(){
        strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float:right;">'
-       strHtml += '    <button class="button" type="button" disabled="' + disabled +'"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'
+       if (disabled == "") {strHtml += '<button class="button" type="button"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'}
+                      else {strHtml += '<button class="button" type="button" disabled="' + disabled +'"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'};
+
+
        strHtml += '  </ul>'
        strHtml += '<div style="clear: both;"></div>'
    }
