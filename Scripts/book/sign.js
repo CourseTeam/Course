@@ -2,6 +2,7 @@
 var request;
 var course_id;
 
+var phaseinfo;
 
 $(function ($) {
 
@@ -141,6 +142,7 @@ function course_reg(obj) {
 }
 
 //阶段预约
+
 function phase_book(obj) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {
@@ -148,8 +150,8 @@ function phase_book(obj) {
         "CourseID": course_id,
         "PhaseID": obj.sel_pid,
         "ParentCount": 0,
-        "ValueAddedServices": obj.channel,
-        "PhaseType": 1
+        "ValueAddedServices": obj.server_id,
+        "PhaseType": phaseinfo.phaseID
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add");
     if (result.Msg == "OK") {
@@ -232,48 +234,50 @@ function get_data(cid) {
     var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
     if (result.Msg == "OK" && result.Data.length > 0) {
         request = result.Data.courseInfo;
+        phaseinfo = result.Data.phaselist[0];
         $("#course_title").html(result.Data.courseInfo.CourseName);
     }
 
-    var zengzhiHtml = "";
-    zengzhiHtml += '<p class="zengzhi_title">请选择您的增值服务</p>'
-    zengzhiHtml += '	<div class="radio">'
-    zengzhiHtml += '       <label>'
-    zengzhiHtml += '          <input type="radio" name="radio_server" value="1">'
-    zengzhiHtml += '            <p>统一版摩英回忆视频300元（单阶7天）</p>'
-    zengzhiHtml += '        </label>'
-    zengzhiHtml += '    </div>'
-    zengzhiHtml += '    <div class="radio">'
-    zengzhiHtml += '      <label>'
-    zengzhiHtml += '        <input type="radio" name="radio_server" value="2">'
-    zengzhiHtml += '        <p>VIP摩英大电影1980元（单阶7天）</p>'
-    zengzhiHtml += '      </label>'
-    zengzhiHtml += '   </div>'
-    zengzhiHtml += '    <div class="radio">'
-    zengzhiHtml += '      <label>'
-    zengzhiHtml += '        <input type="radio" name="radio_server" value="3">'
-    zengzhiHtml += '        <p>VIP蜕变水晶相册1280元（单阶7天）</p>'
-    zengzhiHtml += '      </label>'
-    zengzhiHtml += '    </div>'
-    zengzhiHtml += '    <div class="radio">'
-    zengzhiHtml += '      <label>'
-    zengzhiHtml += '        <input type="radio" name="radio_server" value="4">'
-    zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册2680元 强烈推荐 性价比极高（单阶7天）</p>'
-    zengzhiHtml += '      </label>'
-    zengzhiHtml += '    </div>'
-    zengzhiHtml += '    <div class="radio">'
-    zengzhiHtml += '      <label>'
-    zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
-    zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
-    zengzhiHtml += '      </label>'
-    zengzhiHtml += '    </div>'
-    zengzhiHtml += '      <div class="radio">'
-    zengzhiHtml += '      <label>'
-    zengzhiHtml += '        <input type="radio" name="radio_server" value="0" checked="checked">'
-    zengzhiHtml += '        <p>不需要此项服务</p>'
-    zengzhiHtml += '      </label>'
-    zengzhiHtml += '    </div>'
-    $(".zengzhi").append(zengzhiHtml);
+    if (phaseinfo.PhaseID == 0) {
+	    var zengzhiHtml = "";
+	    zengzhiHtml += '<p class="zengzhi_title">请选择您的增值服务</p>'
+	    zengzhiHtml += '	<div class="radio">'
+	    zengzhiHtml += '       <label>'
+	    zengzhiHtml += '          <input type="radio" name="radio_server" value="1">'
+	    zengzhiHtml += '            <p>统一版摩英回忆视频300元（单阶7天）</p>'
+	    zengzhiHtml += '        </label>'
+	    zengzhiHtml += '    </div>'
+	    zengzhiHtml += '    <div class="radio">'
+	    zengzhiHtml += '      <label>'
+	    zengzhiHtml += '        <input type="radio" name="radio_server" value="2">'
+	    zengzhiHtml += '        <p>VIP摩英大电影1980元（单阶7天）</p>'
+	    zengzhiHtml += '      </label>'
+	    zengzhiHtml += '   </div>'
+	    zengzhiHtml += '    <div class="radio">'
+	    zengzhiHtml += '      <label>'
+	    zengzhiHtml += '        <input type="radio" name="radio_server" value="3">'
+	    zengzhiHtml += '        <p>VIP蜕变水晶相册1280元（单阶7天）</p>'
+	    zengzhiHtml += '      </label>'
+	    zengzhiHtml += '    </div>'
+	    zengzhiHtml += '    <div class="radio">'
+	    zengzhiHtml += '      <label>'
+	    zengzhiHtml += '        <input type="radio" name="radio_server" value="4">'
+	    zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册2680元 强烈推荐 性价比极高（单阶7天）</p>'
+	    zengzhiHtml += '      </label>'
+	    zengzhiHtml += '    </div>'
+	    zengzhiHtml += '    <div class="radio">'
+	    zengzhiHtml += '      <label>'
+	    zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
+	    zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
+	    zengzhiHtml += '      </label>'
+	    zengzhiHtml += '    </div>'
+	    zengzhiHtml += '      <div class="radio">'
+	    zengzhiHtml += '      <label>'
+	    zengzhiHtml += '        <input type="radio" name="radio_server" value="0" checked="checked">'
+	    zengzhiHtml += '        <p>不需要此项服务</p>'
+	    zengzhiHtml += '      </label>'
+	    zengzhiHtml += '    </div>'
+	    $(".zengzhi").append(zengzhiHtml);
 
-
+	}
 }

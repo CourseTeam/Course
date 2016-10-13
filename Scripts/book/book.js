@@ -19,6 +19,9 @@ var coursere_id;
 var parent;
 var service;
 
+//是否有数据  用来判断是否显示无数据图片
+var isHaveData;
+
 //课程名宽度百分比
 var phasename_width;
 
@@ -31,7 +34,7 @@ var isPhaseThree;
 $(function ($) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     userID = UserInfo.UserID;
-
+    isHaveData = false;
     var screen_width = window.screen.width;
     if (screen_width <= 320)phasename_width = "45%";
     else if (screen_width <= 500)phasename_width = "50%";
@@ -42,6 +45,11 @@ $(function ($) {
     get_bookingdata();
     get_willbookdata();
     get_bookeddata();
+    get_refunddata();
+
+    if (!isHaveData) {
+        document.getElementById("contentImg").src= "../../Images/book/book_null.png";
+    }
 
 });
 
@@ -100,7 +108,7 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
     param.over = over;
     param.name = name;
     param.tspan = tspan;
-    param.cpname = cpname;
+    param.cpname = coursename;
     param.qinziType = 0;
     param.serviceType = 0;
 
@@ -129,6 +137,20 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
                 post_book(param);
             }
         });
+    }
+
+    if (pt == 0) {
+      layer.open({
+        title:"提示",
+        content:"是否预约" + coursename + "?",
+        btn:['确定','取消'],
+        yes:function(index){
+          post_book(param);
+          layer.open(index);
+        },no:function(index){
+          layer.open(index);
+        }
+      });
     }
 
     if (pt == 1 || pt == 2) {
@@ -192,7 +214,7 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
 function getPhaseStatus() {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {"UserID": UserInfo.UserID};
-    //var param = {"UserID":156};
+    // var param = {"UserID":156};
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
         isPhaseOne = result.Data.PhaseType1OR2;
@@ -203,14 +225,17 @@ function getPhaseStatus() {
 function get_bookingdata() {
     var uid = userID;
     var param = {"UserID": uid, "Type": 1};
+
     booking_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
     if (booking_result.Msg == "OK") {
         if (booking_result.Data.length > 0) {
+            isHaveData = true;
             create_bookinglist();
         }
     }
 }
+
 
 
 function get_willbookdata() {
@@ -218,12 +243,15 @@ function get_willbookdata() {
     var param = {"UserID": uid, "Type": 2};
     willbook_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
+
     if (willbook_result.Msg == "OK") {
         if (willbook_result.Data.length > 0) {
+            isHaveData = true;
             create_willbooklist();
         }
     }
 }
+
 
 function get_bookeddata() {
     var uid = userID;
@@ -232,10 +260,25 @@ function get_bookeddata() {
 
     if (booked_result.Msg == "OK") {
         if (booked_result.Data.length > 0) {
+            isHaveData = true;
             create_bookedlist();
         }
     }
 }
+
+function get_refunddata(){
+    var uid = userID;
+    var param = {"UserID": uid, "Type": 4};
+    booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
+
+    if (booked_result.Msg == "OK") {
+        if (booked_result.Data.length > 0) {
+            isHaveData = true;
+            create_refundlist();
+        }
+    }
+}
+
 
 //已预约课程
 function create_bookinglist() {
@@ -248,7 +291,7 @@ function create_bookinglist() {
         var img = isCost ? "../../Images/book/cost_selected.png" : "../../Images/book/cost_normal.png";
         var type = get_type(row.PhaseStatus);
         var stateImg = get_stateImg(row.PhaseStatus);
-        var disabled = row.PhaseStatus == 3 ? "" : "disabled";
+        var disabled = row.PhaseStatus == 3 || row.PhaseStatus == 2 ? "" : "disabled";
         //转期参数
         var param = {"pid": row.PhaseID, "cpname": row.CoursePhaseName};
         var color = isCost ? "#F24D4D" : "#9B9B9B";
@@ -257,7 +300,7 @@ function create_bookinglist() {
         if (stateImg != "") {
             strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
         } else {
-            strHtml += '        <div><img id= img -' + i + ' width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
+            strHtml += '        <div><img id= img -' + i + ' width="75" height="75" src="' + row.CourseImgUrl + '"></div>'
         }
         strHtml += '    </li>'
         strHtml += '  </ul>'
@@ -268,7 +311,11 @@ function create_bookinglist() {
         strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costTitle + '</font></li>'
         strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
-        strHtml += '    <button class="button" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
+        if (disabled == "") {
+            strHtml += '    <button class="button" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
+        }else {
+              strHtml += '    <button class="button" disabled="disabled" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
+        }
         strHtml += '  </ul>'
         strHtml += '<div style="clear: both;"></div>'
     }
@@ -281,65 +328,50 @@ function create_willbooklist() {
     var strHtml = "";
     strHtml += '  <ul class="title">未预约课程</ul>'
     for (var i = 0; i < willbook_result.Data.length; i++) {
-        var row = willbook_result.Data[i];
-        var isCost = row.AccommodationFeesPaid >= row.AccommodationCost && row.AccommodationCost != 0;
-        var type = get_type(row.PhaseStatus);
-        var color = isCost ? "#F24D4D" : "#9B9B9B";
-        var costText = isCost ? "已缴纳食宿费" : "未缴纳食宿费";
-        var isOverCount = row.ReservationCount >= row.PeopleCount;
-        var name = row.CourseTypeName == "亲子课程" ? "0" : "1";
-        var stateImg = get_stateImg(row.PhaseStatus);
 
-        //阶数
-        var phasenumber = row.PhaseType;
-        var disabled = "";
-        if (phasenumber == 3 || phasenumber == 4) {
-            if (!isPhaseOne) {
-                disabled = "disabled"
-            }
-        }
-        ;
-        //if (name == "0") {if (!isPhaseThree) {disabled="disabled"}}
+      var row = willbook_result.Data[i];
+      var isCost = row.AccommodationFeesPaid >= row.AccommodationCost && row.AccommodationCost != 0;
+      var type = get_type(row.PhaseStatus);
+      var color = isCost?"#F24D4D":"#9B9B9B";
+      var costText = isCost?"已缴纳食宿费":"未缴纳食宿费";
+      var isOverCount = row.ReservationCount >= row.PeopleCount;
+      var name = row.CourseTypeName == "亲子课程"?"0":"1";
+      var stateImg = get_stateImg(row.PhaseStatus);
 
-        var btnColor = disabled == "" ? "#F24D4D" : "#9B9B9B";
+       //阶数
+      var phasenumber = row.PhaseType;
+      var disabled = "";
+      if (phasenumber == 3 || phasenumber == 4){if (isPhaseOne==0) {disabled="disabled"}};
 
-        if (isOverCount) {
-            type = "候补"
-        } else {
-            type = "预约"
-        }
-        ;
+      var btnColor = disabled == ""? "#F24D4D":"#9B9B9B";
 
-        var img = isCost ? "../../Images/book/cost_selected.png" : "../../Images/book/cost_normal.png";
-        strHtml += '  <ul style="float: left;">'
-        strHtml += '    <li>'
-        if (stateImg != "") {
-            strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
-        } else {
-            strHtml += '        <div><img  width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
-        }
-        strHtml += '    </li>'
-        strHtml += '  </ul>'
-        strHtml += '  <ul style="float: left; width:' + phasename_width + ';" >'
-        strHtml += '    <li><font class="name">' + row.CoursePhaseName + '</font></li>'
-        strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
-        strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
-        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
-        strHtml += '  </ul>'
-        strHtml += '  <ul style="float:right;">'
-        if (disabled == "") {
-            strHtml += '<button class="button" type="button"  cname="' + row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID + ',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' + name + ',' + row.TimeSpan + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">' + type + '</button>'
-        }
-        else {
-            strHtml += '<button class="button" type="button" disabled="' + disabled + '"  cname="' + row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID + ',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' + name + ',' + row.TimeSpan + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">' + type + '</button>'
-        }
-        ;
+      if (isOverCount) {type = "候补"}else{type="预约"};
+      
+      var img = isCost? "../../Images/book/cost_selected.png":"../../Images/book/cost_normal.png";
+       strHtml += '  <ul style="float: left;">' 
+       strHtml += '    <li>'
+       if (stateImg != "") {
+          strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -'+ i +'width="75" height="75"  src="' + stateImg +'"></div>'
+       }else {
+          strHtml += '        <div><img  width="75" height="75"  src="' + row.CourseImgUrl +'"></div>'
+       }
+       strHtml += '    </li>'
+       strHtml += '  </ul>'
+       strHtml += '  <ul style="float: left; width:' + phasename_width +';" >'
+       strHtml += '    <li><font class="name">'+ row.CoursePhaseName + '</font></li>'
+       strHtml += '    <li><font class="time">'+ "开营时间：" + row.StartTime.substr(0,10) + '</font></li>'
+       strHtml += '    <li><font class="location">'+ row.Place + '</font></li>'
+       strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'
+       strHtml += '  </ul>'
+       strHtml += '  <ul style="float:right;">'
+       if (disabled == "") {strHtml += '<button class="button" type="button"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'}
+                      else {strHtml += '<button class="button" type="button" disabled="' + disabled +'"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'};
 
 
-        strHtml += '  </ul>'
-        strHtml += '<div style="clear: both;"></div>'
-    }
-    $(".list-li").append(strHtml);
+       strHtml += '  </ul>'
+       strHtml += '<div style="clear: both;"></div>'
+   }
+  $(".list-li").append(strHtml);
 
 }
 
@@ -378,6 +410,40 @@ function create_bookedlist() {
 
 }
 
+//已退费课程
+function create_refundlist(){
+   var strHtml = "";
+    strHtml += '  <ul class="title">已退费课程</ul>'
+    for (var i = 0; i < booked_result.Data.length; i++) {
+        var row = booked_result.Data[i];
+        var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
+        var color = isCost ? "#F24D4D" : "#9B9B9B";
+        var type = get_type(row.PhaseStatus);
+        var stateImg = get_stateImg(row.PhaseStatus);
+        var costImg = row.AccommodationFeedPaid > row.AccommodationCost ? "../../Images/book/cost_normal.png" : "../../Images/book/cost_selected.png";
+        strHtml += '  <ul style="float: left;">'
+        strHtml += '    <li>'
+        if (stateImg != "") {
+            strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
+        } else {
+            strHtml += '        <div><img id= img -' + i + 'width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
+        }
+        strHtml += '    </li>'
+        strHtml += '  </ul>'
+        strHtml += '  <ul style="float: left; width:' + phasename_width + ';" >'
+        strHtml += '    <li><font class="name">' + row.CoursePhaseName + '</font></li>'
+        strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
+        strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
+        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已缴纳食宿费" + '</font></li>'
+        strHtml += '  </ul>'
+        strHtml += '  <ul style="float:right;">'
+        strHtml += '    <button class="button" type="button" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
+        strHtml += '  </ul>'
+        strHtml += '<div style="clear: both;"></div>'
+    }
+    $(".list-li").append(strHtml);
+}
+
 function get_type(t) {
 
     switch (t) {
@@ -388,7 +454,7 @@ function get_type(t) {
             return "预约中";
             break;
         case 2:
-            return "候补中";
+            return "转期";
             break;
         case 3:
             return "转期";
