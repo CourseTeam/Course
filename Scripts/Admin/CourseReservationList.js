@@ -174,7 +174,7 @@ function TuitionFeesPaid_Eidt(UserID,TuitionFeesPaid, CourseRegistrationID) {
 
 function CourseRegistration_Refund(CourseRegistrationID) {
     layer.confirm("确定要退费吗？", function () {
-        var param = {ourseRegistrationID: CourseRegistrationID};
+        var param = {CourseRegistrationID: CourseRegistrationID};
         var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_Status_Upd");
         if (result.Msg == "OK") {
             CourseRegistration_List();

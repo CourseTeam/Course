@@ -49,6 +49,8 @@ $(function ($) {
 
     if (!isHaveData) {
         document.getElementById("contentImg").src= "../../Images/book/book_null.png";
+    }else {
+        $("#contentImg").hide();
     }
 
 });
@@ -426,7 +428,7 @@ function create_refundlist(){
         if (stateImg != "") {
             strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
         } else {
-            strHtml += '        <div><img id= img -' + i + 'width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
+            strHtml += '        <div><img id="img -' + i + '" width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
         }
         strHtml += '    </li>'
         strHtml += '  </ul>'
@@ -434,7 +436,7 @@ function create_refundlist(){
         strHtml += '    <li><font class="name">' + row.CoursePhaseName + '</font></li>'
         strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
         strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
-        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已缴纳食宿费" + '</font></li>'
+        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已退费" + '</font></li>'
         strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
         strHtml += '    <button class="button" type="button" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
@@ -486,7 +488,7 @@ function get_stateImg(state) {
             return "../../Images/book/joined.png";
             break;
         case 5:
-            return "";
+            return "../../Images/book/yituifei.png";
             break;
     }
 }
