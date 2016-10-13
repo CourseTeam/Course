@@ -54,7 +54,7 @@ function CourseRegistration_List() {
                 strHtml += '        <div class="col-xs-1">' + row.Phone + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.Sex + '</div>';
                 strHtml += '        <div class="col-xs-1">' + Birthday + '</div>';
-                strHtml += '        <div class="col-xs-1" style="text-align: right;"><a href="#" onclick="TuitionFeesPaid_Eidt(' + row.TuitionFeesPaid + ',' + row.CourseRegistrationID + ')">' + row.TuitionFeesPaid + '</a>元</div>';
+                strHtml += '        <div class="col-xs-1" style="text-align: right;"><a href="#" onclick="TuitionFeesPaid_Eidt(' + row.UserID + ',' + row.TuitionFeesPaid + ',' + row.CourseRegistrationID + ')">' + row.TuitionFeesPaid + '</a>元</div>';
                 strHtml += '        <div class="col-xs-1"><a href="#" onclick="ValueAddedServicesShow(this)" va="' + row.ValueAddedServices + '">查看</a></div>';
                 strHtml += '        <div class="col-xs-2">' + CreateTime + '</div>';
                 strHtml += '        <div class="col-xs-2">';
@@ -147,7 +147,7 @@ function NoteEdit(CourseRegistrationID) {
     });
 }
 
-function TuitionFeesPaid_Eidt(TuitionFeesPaid, CourseRegistrationID) {
+function TuitionFeesPaid_Eidt(UserID,TuitionFeesPaid, CourseRegistrationID) {
     layer.open({
         type: 1,
         title: "已交学费",
@@ -156,7 +156,7 @@ function TuitionFeesPaid_Eidt(TuitionFeesPaid, CourseRegistrationID) {
         content: $("#Tuition"),
         btn: ["确 定", '取 消'],
         yes: function (index) {
-            var param = {CourseRegistrationID: CourseRegistrationID, TuitionFeesPaid: $("#TuitionFeesPaid").val()};
+            var param = {UserID: UserID, CourseRegistrationID: CourseRegistrationID, TuitionFeesPaid: $("#TuitionFeesPaid").val()};
             var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_TuitionFeesPaid_Upd");
             if (result.Msg == "OK") {
                 CourseRegistration_List();
@@ -173,7 +173,7 @@ function TuitionFeesPaid_Eidt(TuitionFeesPaid, CourseRegistrationID) {
 
 function CourseRegistration_Refund(CourseRegistrationID) {
     layer.confirm("确定要退费吗？", function () {
-        var param = {CourseRegistrationID: CourseRegistrationID};
+        var param = {ourseRegistrationID: CourseRegistrationID};
         var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_Status_Upd");
         if (result.Msg == "OK") {
             CourseRegistration_List();

@@ -65,7 +65,7 @@ function Phase_Entry() {
             });
         } else {
             layer.msg("录入成功",{icon:1,time:2000},function () {
-                // window.location.href = window.location.href;
+                window.location.href = window.location.href;
             });
         }
     }
