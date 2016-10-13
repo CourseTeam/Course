@@ -4,15 +4,29 @@
 $(document).ready(function () {
     //加载公用导航
     $("#header").load("../Commen/header.html");
+    $("#btnAdd").on("click", function () {
+        UserInfoEntry();
+    });
+    $("#btnImport").on("click", function () {
+        window.location.href = ApiUrl + "File/PhaseReg_Excel?PhaseID=" + $Course.RequestUrlParams("PhaseID");
+    });
     layer.skin = "layui-layer-molv";
-    PhaseRegistration_List(1);
+    PhaseRegistration_List();
     var CoursePhaseName = decodeURIComponent($Course.RequestUrlParams("CoursePhaseName"));
     $("#paseName").html("阶段预约列表 — " + CoursePhaseName);
+
 });
 
+var PageIndex = 1;
+
+function UserInfoEntry() {
+    var PhaseID = $Course.RequestUrlParams("PhaseID");
+    var CoursePhaseName = decodeURIComponent($Course.RequestUrlParams("CoursePhaseName"));
+    window.location.href = "../User/UserInfoEntry.html?PhaseID=" + PhaseID + '&CoursePhaseName=' + CoursePhaseName;
+}
 var PhaseRegistration_Items = [];
 //阶段预约列表
-function PhaseRegistration_List(PageIndex) {
+function PhaseRegistration_List() {
     var PhaseID = $Course.RequestUrlParams("PhaseID");
     var SearchKey = $("#SearchKey").val();
     var param = {SearchKey: SearchKey, PhaseID: PhaseID, PageIndex: PageIndex, PageSize: 10};
@@ -38,13 +52,13 @@ function PhaseRegistration_List(PageIndex) {
             var row = result.Data[i];
             var birthday = row.Birthday ? row.Birthday.split(" ")[0].replace(/-/g, "/") : "";
             var PhaseStatus = "";
-            //1预约中, 2.候补中, 3.预约成功, 4.已签到, 5.已退费
+            //1预约中, 2.候补中, 3.预约成功, 4.已参加, 5.已退费
             switch (row.PhaseStatus) {
                 case 1:
                     PhaseStatus = "预约中";
                     break;
                 case 2:
-                    PhaseStatus = "预约中";
+                    PhaseStatus = "候补中";
                     break;
                 case 3:
                     PhaseStatus = "预约成功";
@@ -72,31 +86,31 @@ function PhaseRegistration_List(PageIndex) {
             strHtml += '      <div class="col-xs-1">' + AddTime + '</div>';
             strHtml += '      <div class="col-xs-1"><a href="#" onclick="ValueAddedServicesShow(' + row.UserID + ')">查看</a></div>';
             strHtml += '      <div class="col-xs-3">';
-            strHtml += '        <button onclick="PhaseStatus_Edit(' + row.PhaseReservationID + ',' + row.PhaseStatus + ')" >修改状态</button>';
+            strHtml += '        <button onclick="PhaseStatus_Edit(' + row.PhaseReservationID + ',' + row.PhaseStatus + ',' + row.UserID + ')" >修改状态</button>';
             strHtml += '        <button onclick="NoteEdit(' + row.CourseRegistrationID + ')">备注</button>';
             if (row.PhaseStatus == 3) {
-                strHtml += '        <button onclick="PhaseStatus_Edit(' + row.PhaseReservationID + ',' + row.PhaseStatus + ')">签到</button>';
+                strHtml += '        <button onclick="Past(' + row.PhaseReservationID + ',' + row.UserID + ')">签到</button>';
             }
             strHtml += '      </div>';
             strHtml += '    </div>';
             strHtml += '</li>';
         }
         $("#orderList").html(strHtml);
-    }
-    laypage({
-        cont: $("#Page"), //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
-        pages: Math.ceil(result.Data[0].RowsCount / 10), //通过后台拿到的总页数
-        //curr: 1 || 1, //当前页,
-        skip: true, //是否开启跳页
-        skin: '#AF0000',
-        groups: 3, //连续显示分页数
-        jump: function (obj, first) { //触发分页后的回调
-            //alert(obj.curr)
-            if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
-                PhaseRegistration_List(obj.curr);
+        laypage({
+            cont: $("#Page"), //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+            pages: Math.ceil(result.Data[0].RowsCount / 10), //通过后台拿到的总页数
+            curr: PageIndex || 1, //当前页,
+            skip: true, //是否开启跳页
+            skin: '#AF0000',
+            groups: 3, //连续显示分页数
+            jump: function (obj, first) { //触发分页后的回调
+                if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+                    PageIndex = obj.curr;
+                    PhaseRegistration_List();
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 //查看增值服务
@@ -109,7 +123,7 @@ function ValueAddedServicesShow(id) {
     // 4.VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)
     // 5.VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)
     for (var i = 0; i < PhaseRegistration_Items.length; i++) {
-        if (id = PhaseRegistration_Items[i].UserID) {
+        if (id == PhaseRegistration_Items[i].UserID) {
             switch (PhaseRegistration_Items[i].ValueAddedServices) {
                 case 0:
                     str = "该学员本期课程没有选择任何增值服务";
@@ -156,6 +170,7 @@ function AccommodationFeesPaid_Add(PhaseReservationID, money) {
             var param = {PhaseReservationID: PhaseReservationID, AccommodationFeesPaid: $("#money").val()};
             var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/AccommodationFeesPaid_Add");
             if (result.Msg == "OK") {
+                PhaseRegistration_List();
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                     layer.closeAll();
                 });
@@ -181,6 +196,7 @@ function Phase_ClassName_Add(PhaseReservationID, obj) {
             var param = {PhaseReservationID: PhaseReservationID, ClassName: $("#className").val()};
             var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/Phase_ClassName_Add");
             if (result.Msg == "OK") {
+                PhaseRegistration_List();
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                     layer.closeAll();
                 });
@@ -193,7 +209,7 @@ function Phase_ClassName_Add(PhaseReservationID, obj) {
 }
 
 //修改状态
-function PhaseStatus_Edit(PhaseReservationID, PhaseStatus) {
+function PhaseStatus_Edit(PhaseReservationID, PhaseStatus, UserID) {
     layer.open({
         type: 1,
         title: "修改状态",
@@ -202,10 +218,14 @@ function PhaseStatus_Edit(PhaseReservationID, PhaseStatus) {
         content: $("#phaseStatusBox"),
         btn: ["确 定", '取 消'],
         yes: function (index) {
-            var param = {PhaseReservationID: PhaseReservationID, PhaseStatus: $("#phaseStatusBox select").val()};
-            var result = $Course.PostAjaxJson(param, 'http://localhost:60182/' + "PhaseRegistration/PhaseStatus_Edit");
+            var param = {
+                PhaseReservationID: PhaseReservationID,
+                UserID: UserID,
+                PhaseStatus: $("#phaseStatusBox select").val()
+            };
+            var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseStatus_Edit");
             if (result.Msg == "OK") {
-                PhaseRegistration_List(1);
+                PhaseRegistration_List();
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                     layer.closeAll();
                 });
@@ -228,12 +248,16 @@ function NoteEdit(CourseRegistrationID) {
 }
 
 //签到
-function Past(PhaseReservationID, PhaseStatus) {
+function Past(PhaseReservationID, UserID) {
     layer.confirm("确定学员已到场？", function () {
-        var param = {PhaseReservationID: PhaseReservationID, PhaseStatus: $("#phaseStatusBox select").val()};
+        var param = {
+            PhaseReservationID: PhaseReservationID,
+            PhaseStatus: 4,
+            UserID: UserID
+        };
         var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseStatus_Edit");
         if (result.Msg == "OK") {
-            PhaseRegistration_List(1);
+            PhaseRegistration_List();
             layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                 layer.closeAll();
             });

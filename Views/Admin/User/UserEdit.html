@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../../Css/Admin/Comm.css">
     <link href="../../../Framework/bootstrap-fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
     <style>
-        button {
+        button  {
             width: 70px;
             height: 30px
         }
@@ -38,10 +38,9 @@
             border: none;
         }
 
-
         .laydate-icon {
-            height: 40px!important;
-            line-height: 40px!important;
+            height: 40px !important;
+            line-height: 40px !important;
         }
     </style>
 
@@ -59,8 +58,8 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-2"> 性别：</div>
-        <div class="col-lg-6">
+        <div class="col-xs-2"> 性别：</div>
+        <div class="col-xs-6">
             <select type="text" id="Sex">
                 <option value="男">男</option>
                 <option value="女">女</option>
@@ -90,9 +89,23 @@
         <div class="col-xs-2">邮箱：</div>
         <div class="col-xs-6"><input type="text" id="Email"/></div>
     </div>
-    <div class="row">
+
+    <div class="row" id="phonebox">
         <div class="col-xs-2">学生手机号码：</div>
         <div class="col-xs-6"><input type="text" id="Phone"/></div>
+    </div>
+
+
+    <div class="row" id="phonediv">
+        <div class="col-xs-2"> 学生手机号码：</div>
+        <div class="col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input name="dan" value="1" type="radio" style="width: 16px ; height: 16px" checked="checked">
+                </span>
+                <input type="text" class="form-control" id="Phone2" placeholder="选中的手机号为账号">
+            </div>
+        </div>
     </div>
 
     <div class="row">
@@ -100,18 +113,43 @@
         <div class="col-xs-6"><input type="text" id="FatherName"/></div>
     </div>
 
-    <div class="row">
-        <div class="col-xs-2">父亲手机号码：</div>
-        <div class="col-xs-6"><input type="text" id="FatherPhone"/></div>
+    <div class="row" id="FatherPhonebox">
+            <div class="col-xs-2">父亲手机号码：</div>
+            <div class="col-xs-6"><input type="text" id="FatherPhone"/></div>
     </div>
+
+    <div class="row" id="FatherPhonediv">
+        <div class="col-xs-2"> 父亲手机号码：</div>
+        <div class="col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input name="dan" value="2" type="radio" style="width: 16px ; height: 16px">
+                </span>
+                <input type="text" class="form-control" id="FatherPhone2" placeholder="选中的手机号为账号">
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-xs-2">母亲名字：</div>
         <div class="col-xs-6"><input type="text" id="MotherName"/></div>
     </div>
 
-    <div class="row">
-        <div class="col-xs-2">母亲手机号码：</div>
-        <div class="col-xs-6"><input type="text" id="MotherPhone"/></div>
+    <div class="row" id="MotherPhonebox">
+            <div class="col-xs-2">母亲手机号码：</div>
+            <div class="col-xs-6"><input type="text" id="MotherPhone"/></div>
+    </div>
+
+    <div class="row" id="MotherPhonediv">
+        <div class="col-xs-2"> 母亲手机号码：</div>
+        <div class="col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input name="dan" type="radio" value="3" style="width: 16px ; height: 16px">
+                </span>
+                <input type="text" class="form-control" id="MotherPhone2" placeholder="选中的手机号为账号">
+            </div>
+        </div>
     </div>
 
     <div class="row">

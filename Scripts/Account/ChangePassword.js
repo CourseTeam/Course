@@ -7,11 +7,11 @@ var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
 var UserID = UserInfo.UserID;
 var Pwd = UserInfo.Pwd
 
-$ (function ($) {
-    $("#changePwd").on("click",function(){
+$(function ($) {
+    $("#changePwd").on("click", function () {
         var oldPwd = $("#oldPwd").val();
         var newPwd = $("#newPwd").val();
-        if (oldPwd && newPwd){
+        if (oldPwd && newPwd) {
             oldPwd = $Course.MD5(oldPwd);
             newPwd = $Course.MD5(newPwd);
             ChangePwd(oldPwd, newPwd);
@@ -26,10 +26,11 @@ $ (function ($) {
     })
 });
 
+//修改密码
 function ChangePwd(oldPwd, newPwd) {
     var param = {UserID: UserID, OldPwd: oldPwd, Pwd: newPwd}
     var result = $Course.PostAjaxJson(param, ApiUrl + "Account/UserInfo_ChangePwd");
-    if(result.Msg=="OK"){
+    if (result.Msg == "OK") {
         $.cookie("UserInfo", null, {expires: 30, path: '/'});
         layer.open({
             content: '修改成功',
@@ -38,6 +39,11 @@ function ChangePwd(oldPwd, newPwd) {
             end: function () {
                 window.location.href = 'Login.html';
             }
+        });
+    } else {
+        layer.open({
+            content: result.Msg,
+            time: 2
         });
     }
 }

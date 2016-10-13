@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理系统登录页面</title>
+    <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../../../Css/Admin/Comm.css">
+    <style>
+        .header{
+            position: relative;
+            height: 323px;
+            width: 100%;
+            background-color: #00b38a;
+        }
+        .logo {
+            background: url("../../../Images/logo.ico") left top no-repeat;
+            position: absolute;
+            z-index: 99;
+            top: 70px;
+            left: 136px;
+            display: inline-block;
+            width: 128px;
+            height: 54px;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            display: table;
+            width: 556px;
+            margin: -168px auto 0 auto;
+            padding: 50px 47px 60px 57px;
+            border-radius: 3px;
+            background-color: #fff;
+            box-shadow: 1px 1px 10px 1px #888888
+            /*border:#F5F5F5 solid thin;*/
+        }
+        .cleafix {
+            clear: both;
+            zoom: 1;
+        }
+        .input_area {
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+        .button_area {
+            margin-left: 30px;
+            margin-right: 30px;
+            padding-top: 30px;
+        }
+        .footer_bottomtext {
+            padding-top: 30px;
+            text-align: center;
+            color: #dddddd;
+            font-size: 18px;
+        }
+        .button_login {
+            border-radius: 4px;
+            height: 50px;
+            font-size: 18px;
+        }
+        .input_login {
+            border: 0px;
+            background-color: #f8f8f8;
+            border-radius: 0px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <a href="#" class="logo"></a>
+</div>
+<div class="content cleafix">
+    <div class="input_area">
+        <div class="form-group">
+            <label for="ManagerAccout" style="font-size: 20px;color: #888888">账号</label>
+            <input type="text" class="form-control input_login" id="ManagerAccout" placeholder="请输入管理员账号">
+        </div>
+    </div>
+    <div class="input_area">
+        <div class="form-group">
+            <label for="ManagerPwd" style="font-size: 20px;color: #888888">密码</label>
+            <input type="password" class="form-control input_login" id="ManagerPwd" placeholder="请输入密码">
+        </div>
+    </div>
+    <div class="button_area">
+        <button class="button_login" id="Login">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+    </div>
+</div>
+<footer>
+    <h4 class="footer_bottomtext">— 摩英教育课程管理系统 —</h4>
+</footer>
+<script src="../../../Framework/Jqueryv2.4/jquery.min.js"></script>
+<script src="../../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+<script src="../../../Scripts/Commen/CourseCommen.js"></script>
+<script src="../../../Framework/layer-v2.4/layer/layer.js"></script>
+<script src="../../../Framework/laypage-v1.3/laypage/laypage.js"></script>
+<script src="../../../Scripts/Admin/Login.js"></script>
+</body>
+</html>

@@ -37,8 +37,6 @@ function GetSMSCode() {
         });
         return;
     }
-
-
     var param = {Phone: PhoneNum, Type: 1};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Account/GetSMSCode");
     if (result.Msg == "OK") {
@@ -52,6 +50,12 @@ function GetSMSCode() {
                 s = 60;
             }
         }, 1000);
+    } else {
+        layer.open({
+            content: '手机号已被注册！',
+            style: 'background-color:#fff; color:#000; border:none;width:60%',
+            time: 2
+        });
     }
 }
 //注册
@@ -95,6 +99,14 @@ function Register() {
     var param = {Phone: PhoneNum, Pwd: Pwd};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Account/Register");
     if (result.Msg == "OK") {
-        window.location.href = "Login.html";
+        layer.open({
+            content: '注册成功！',
+            style: 'background-color:#fff; color:#000; border:none;width:60%',
+            time: 2,
+            end: function () {
+                //15021615315
+                window.location.href = "Login.html";
+            }
+        });
     }
 }
