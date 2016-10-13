@@ -266,12 +266,6 @@ function get_data(cid) {
             zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册2680元 强烈推荐 性价比极高（单阶7天）</p>'
             zengzhiHtml += '      </label>'
             zengzhiHtml += '    </div>'
-            zengzhiHtml += '    <div class="radio">'
-            zengzhiHtml += '      <label>'
-            zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
-            zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
-            zengzhiHtml += '      </label>'
-            zengzhiHtml += '    </div>'
             zengzhiHtml += '      <div class="radio">'
             zengzhiHtml += '      <label>'
             zengzhiHtml += '        <input type="radio" name="radio_server" value="0" checked="checked">'
@@ -281,5 +275,12 @@ function get_data(cid) {
             $(".zengzhi").append(zengzhiHtml);
         }
     }
+
+            // zengzhiHtml += '    <div class="radio">'
+            // zengzhiHtml += '      <label>'
+            // zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
+            // zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
+            // zengzhiHtml += '      </label>'
+            // zengzhiHtml += '    </div>'
 
 }
