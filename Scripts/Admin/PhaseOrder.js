@@ -223,7 +223,7 @@ function PhaseStatus_Edit(PhaseReservationID, PhaseStatus, UserID) {
                 UserID: UserID,
                 PhaseStatus: $("#phaseStatusBox select").val()
             };
-            var result = $Course.PostAjaxJson(param, 'http://localhost:60182/' + "PhaseRegistration/PhaseStatus_Edit");
+            var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseStatus_Edit");
             if (result.Msg == "OK") {
                 PhaseRegistration_List();
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
