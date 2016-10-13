@@ -32,8 +32,8 @@ var isPhaseThree;
 
 
 $(function ($) {
-    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    // userID = UserInfo.UserID;
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    userID = UserInfo.UserID;
     isHaveData = false;
     var screen_width = window.screen.width;
     if (screen_width <= 320)phasename_width = "45%";
@@ -197,7 +197,7 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
             content:strHtml,
             btn: ['确定'],
             yes: function (index) {
-                serviceType = $("radio[name=optionsRadios]:checked").val();
+                serviceType = $("input[name=optionsRadios]:checked").val();
                 param.serviceType = serviceType;
                 layer.close(index);
                 post_book(param);
@@ -208,9 +208,9 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
 
 
 function getPhaseStatus() {
-    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    // var param = {"UserID": UserInfo.UserID};
-        var param = {"UserID": 156};
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    var param = {"UserID": UserInfo.UserID};
+        //var param = {"UserID": 156};
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
         isPhaseOne = result.Data.PhaseType1OR2;
@@ -220,7 +220,7 @@ function getPhaseStatus() {
 
 function get_bookingdata() {
     var uid = userID;
-    var param = {"UserID": 156, "Type": 1};
+    var param = {"UserID": uid, "Type": 1};
 
     booking_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
@@ -236,7 +236,7 @@ function get_bookingdata() {
 
 function get_willbookdata() {
     var uid = userID;
-    var param = {"UserID": 156, "Type": 2};
+    var param = {"UserID": uid, "Type": 2};
     willbook_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
 
@@ -251,7 +251,7 @@ function get_willbookdata() {
 
 function get_bookeddata() {
     var uid = userID;
-    var param = {"UserID": 156, "Type": 3};
+    var param = {"UserID": uid, "Type": 3};
     booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
     if (booked_result.Msg == "OK") {
@@ -264,7 +264,7 @@ function get_bookeddata() {
 
 function get_refunddata(){
     var uid = userID;
-    var param = {"UserID": 156, "Type": 4};
+    var param = {"UserID": uid, "Type": 4};
     booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
     if (booked_result.Msg == "OK") {
@@ -450,7 +450,7 @@ function get_type(t) {
             return "预约中";
             break;
         case 2:
-            return "转期";
+            return "候补转期";
             break;
         case 3:
             return "转期";
