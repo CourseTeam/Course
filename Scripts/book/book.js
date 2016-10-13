@@ -210,7 +210,6 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
 function getPhaseStatus() {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {"UserID": UserInfo.UserID};
-        //var param = {"UserID": 156};
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
         isPhaseOne = result.Data.PhaseType1OR2;
@@ -283,7 +282,8 @@ function create_bookinglist() {
     for (var i = 0; i < booking_result.Data.length; i++) {
         var row = booking_result.Data[i];
         var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
-        var costTitle = isCost ? "已缴纳食宿费" : "未缴纳食宿费";
+        var costName = get_costname(row.PhaseType);
+        var costTitle = isCost ? "已缴纳"+costName : "未缴纳"+costName;
         var img = isCost ? "../../Images/book/cost_selected.png" : "../../Images/book/cost_normal.png";
         var type = get_type(row.PhaseStatus);
         var stateImg = get_stateImg(row.PhaseStatus);
@@ -328,8 +328,9 @@ function create_willbooklist() {
       var row = willbook_result.Data[i];
       var isCost = row.AccommodationFeesPaid >= row.AccommodationCost && row.AccommodationCost != 0;
       var type = get_type(row.PhaseStatus);
+      var costName = get_costname(row.PhaseType);
       var color = isCost?"#F24D4D":"#9B9B9B";
-      var costText = isCost?"已缴纳食宿费":"未缴纳食宿费";
+      var costText = isCost?"已缴纳"+costName:"未缴纳"+costName;
       var isOverCount = row.ReservationCount >= row.PeopleCount;
       var name = row.CourseTypeName == "亲子课程"?"0":"1";
       var stateImg = get_stateImg(row.PhaseStatus);
@@ -380,6 +381,7 @@ function create_bookedlist() {
         var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
         var color = isCost ? "#F24D4D" : "#9B9B9B";
         var type = get_type(row.PhaseStatus);
+        var costName = get_costname(row.PhaseType);
         var stateImg = get_stateImg(row.PhaseStatus);
         var costImg = row.AccommodationFeedPaid > row.AccommodationCost ? "../../Images/book/cost_normal.png" : "../../Images/book/cost_selected.png";
         strHtml += '  <ul style="float: left;">'
@@ -395,7 +397,7 @@ function create_bookedlist() {
         strHtml += '    <li><font class="name">' + row.CoursePhaseName + '</font></li>'
         strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
         strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
-        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已缴纳食宿费" + '</font></li>'
+        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已缴纳"+ costName + '</font></li>'
         strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
         strHtml += '    <button class="button" type="button" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
@@ -462,6 +464,26 @@ function get_type(t) {
             return "已退费";
             break;
     }
+}
+
+function get_costname(phaseType){
+  switch(phaseType){
+    case 0:
+    return "食宿会务费";
+    break;
+    case 1:
+    return "食宿费";
+    break;
+    case 2:
+    return "食宿费";
+    break;
+    case 3:
+    return "食宿会场费";
+    break;
+    case 4:
+    return "食宿会场费";
+    break;
+  }
 }
 
 
