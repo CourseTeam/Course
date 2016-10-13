@@ -23,9 +23,9 @@ function Course_list(PageIndex, PageSize) {
         strHtml += '<li class="list-group-item header">';
         strHtml += '    <div class="row ">';
         strHtml += '        <div class="col-xs-3">课程名称</div>';
-        strHtml += '        <div class="col-xs-1">课程类型</div>';
-        strHtml += '        <div class="col-xs-3">课程简介</div>';
-        strHtml += '        <div class="col-xs-1">价格</div>';
+        strHtml += '        <div class="col-xs-3">课程类型</div>';
+        // strHtml += '        <div class="col-xs-3">课程简介</div>';
+        strHtml += '        <div class="col-xs-2">价格</div>';
         strHtml += '        <div class="col-xs-4">操作</div>';
         strHtml += '    </div>';
         strHtml += '</li>';
@@ -35,9 +35,10 @@ function Course_list(PageIndex, PageSize) {
                 strHtml += '<li class="list-group-item">';
                 strHtml += '    <div class="row ">';
                 strHtml += '        <div class="col-xs-3">' + row.CourseName + '</div>';
-                strHtml += '        <div class="col-xs-1">' + row.CourseType + '</div>';
-                strHtml += '        <div class="col-xs-3" style="height: 20px;overflow: hidden;" title="' + $Course.DelHtmlTag(row.Intro) + '">' + row.Intro + '</div>';
-                strHtml += '        <div class="col-xs-1">' + row.Tuition + '</div>';
+                strHtml += '        <div class="col-xs-3">' + row.CourseType + '</div>';
+                // strHtml += '        <div class="col-xs-3" style="height: 20px;overflow: hidden;" title="' + $Course.DelHtmlTag(row.Intro) + '">点击编辑查看简介</div>';
+                // strHtml += '        <div class="col-xs-3" style="height: 20px;overflow: hidden;" title="' + $Course.DelHtmlTag(row.Intro) + '">' + row.Intro + '</div>';
+                strHtml += '        <div class="col-xs-2">' + row.Tuition + '</div>';
                 strHtml += '        <div class="col-xs-4">';
                 strHtml += '            <button onclick="Edit(' + row.CourseID + ')">编 辑</button>';
                 strHtml += '            <button onclick="CourseInfo_Del(' + row.CourseID + ')">删 除</button>';

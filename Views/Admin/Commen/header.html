@@ -31,14 +31,26 @@
                 <!--</li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">注销登录</a></li>
+                <li id="Manage_Quit"><a>注销登录</a></li>
             </ul>
         </div>
     </div>
 </nav>
+<script src="../../../Framework/jquery-cookies/jquery.cookie.js"></script>
+<script src="../../../Framework/layer-v2.4/layer/layer.js"></script>
 <script>
-
-    $(".nav li").on("ckick", function () {
+    $("#Manage_Quit").on("click", function () {
+        layer.open({
+            content: '退出登录',
+            style: 'background-color:#F24C4C; color:#fff; border:none;',
+            btn:["确定","取消"],
+            yes:function () {
+                $.cookie("UserInfo", null, {expires: 30, path: '/'});
+                window.location.href = "/Course/Views/Admin/Manage/Login.html";
+            }
+        });
+    });
+    $(".nav li").on("click", function () {
         $(".nav li").removeClass("active");
         $(this).addClass("active");
     });
