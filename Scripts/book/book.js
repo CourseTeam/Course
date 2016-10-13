@@ -298,7 +298,7 @@ function create_willbooklist() {
                 disabled = "disabled"
             }
         }
-        ;
+        
         //if (name == "0") {if (!isPhaseThree) {disabled="disabled"}}
 
         var btnColor = disabled == "" ? "#F24D4D" : "#9B9B9B";
