@@ -103,9 +103,9 @@ function updateInfo(obj) {
         layer.open({content: "信息输入未完整，请填写完整再预约"});
         return;
     }
-
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {
-        "UserID": "1", "NickName": obj.name, "Account": "", "Sex": obj.sex, "School": obj.school,
+        "UserID": UserInfo.UserID, "NickName": obj.name, "Account": "", "Sex": obj.sex, "School": obj.school,
         "Grade": obj.grade, "ClassName": obj.class, "BirthDay": obj.birth, "Email": obj.email, "Phone": obj.tel,
         "FatherName": obj.f_name, "FatherPhone": obj.f_tel, "MotherName": obj.m_name, "MotherPhone": obj.m_tel,
         "Tel": obj.telephone, "Address": obj.address
@@ -132,7 +132,6 @@ function course_reg(obj) {
             yes: function (index) {
                 phase_book(obj);
                 layer.close(index);
-
             },
             no: function (index) {
                 layer.close(index);
@@ -156,9 +155,9 @@ function phase_book(obj) {
     if (result.Msg == "OK") {
         layer.open({
             "content": "预约成功",
-            time:2,
+            time: 2,
             end: function () {
-                window.location.href="../Appointment/CourseList.html";
+                window.location.href = "../Appointment/CourseList.html";
             }
         });
     }
@@ -233,7 +232,7 @@ function get_data(cid) {
     var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
     if (result.Msg == "OK" && result.Data.length > 0) {
         request = result.Data.courseInfo;
-
+        $("#course_title").html(result.Data.courseInfo.CourseName);
     }
 
     var zengzhiHtml = "";

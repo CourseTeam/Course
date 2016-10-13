@@ -1,57 +1,61 @@
-
 var phase_result;
 var phaseID;
 var selCourseID;
 var selCourseName;
 
- $(function($){
- 	getvalue("phaseID","coursename");
- 	var sureButton = document.getElementById("sureButton");
- 	sureButton.onclick = function(){
- 		go_transfer();
- 	}
- });
+$(function ($) {
+    //getvalue("phaseID", "coursename");
+    var sureButton = document.getElementById("sureButton");
+    sureButton.onclick = function () {
+        go_transfer();
+    }
+    $("#my-course").html($Course.RequestUrlParams("coursename"));
+    $("#course-list").html("请选择转期课程");
+    $("#course-list").on("click", function () {
+        showlist();
+    });
+    get_data($Course.RequestUrlParams("phaseID"));
+});
 
 //访问转期接口
-function go_transfer(){
-	var param = {"PhaseID":phaseID,"NewPhaseID":selCourseID};
+function go_transfer() {
+    if (!selCourseID) {
+        layer.open({content: "请选择转期课程", time: 2});
+        return;
+    }
+    var PhaseReservationID = $Course.RequestUrlParams("PhaseReservationID");
+    var param = {"PhaseID": phaseID, "NewPhaseID": selCourseID, PhaseReservationID: PhaseReservationID};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_Change");
     if (result.Msg == "OK" && result.Data != false) {
-    	//转期成功
+        //转期成功
         window.location.href = "../book/booksuccess.html?type=0";
+    }
+}
+
+function get_data(pid) {
+    phaseID = pid;
+    var param = {"PhaseID": pid};
+    var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_ChangePhase");
+    if (result.Msg = "OK") {
+        phase_result = result.Data;
 
     }
 }
 
- function get_data(pid) {
- 	phaseID = pid;
- 	var param = {"PhaseID":pid};
-    var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_ChangePhase");
-    if (result.Msg = "OK") {
-    	phase_result = result.Data;
+function getvalue(name, coursename) {
+    var str = window.location.search;   //location.search是从当前URL的?号开始的字符串
+    if (str.indexOf(name) != -1) {
+        var pos_start = str.indexOf(name) + name.length + 1;
+        var pos_end = str.indexOf("&", pos_start);
+        var pid = str.substring(pos_start, pos_end);
 
     }
- }
- 
- function getvalue(name,coursename){
-    var str=window.location.search;   //location.search是从当前URL的?号开始的字符串
-	if (str.indexOf(name)!=-1){        
-        var pos_start=str.indexOf(name) + name.length + 1;
-        var pos_end=str.indexOf("&",pos_start);
-        var pid = str.substring(pos_start,pos_end);
-        get_data(pid);
-    }
-    if (str.indexOf(coursename)!=-1){        
-        var pos_start=str.indexOf(coursename)+coursename.length+1;
-        var pos_end=str.indexOf("&",pos_start);
+    if (str.indexOf(coursename) != -1) {
+        var pos_start = str.indexOf(coursename) + coursename.length + 1;
+        var pos_end = str.indexOf("&", pos_start);
         var btn = document.getElementById("course-list");
-        if (pos_end==-1){
-            var cname = decodeURIComponent(str.substring(pos_start));
-            $("#my-course").html(cname);
-            btn.innerHTML = cname;
-            btn.onclick = function(){
-	            showlist();
-            }
+        if (pos_end == -1) {
+
         }
     }
 }
@@ -59,32 +63,31 @@ function go_transfer(){
 // var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_ChangePhase");
 
 function showlist() {
-		var strHtml = "";
-		for (var i = 0; i < phase_result.length; i++) {
-			var row = phase_result[i];
-			strHtml += '<div class="radio">' +
-					'<label>'+ 
-						'<input type="radio" value="' + row.CoursePhaseName + "," + row.PhaseID + '"' + 'name="course">' + row.CoursePhaseName +
-					'</label>'+
-			'</div>';
-		}
+    var strHtml = "";
+    for (var i = 0; i < phase_result.length; i++) {
+        var row = phase_result[i];
+        strHtml += '<div class="radio">' +
+            '<label>' +
+            '<input type="radio" value="' + row.CoursePhaseName + "," + row.PhaseID + '"' + 'name="course">' + row.CoursePhaseName +
+            '</label>' +
+            '</div>';
+    }
 
-		layer.open({
-			title:"",
-			content:strHtml,
-			btn:["确定","取消"],
-			yes:function(index){
-		      var id = $("input[name=course]:checked").val();
+    layer.open({
+        content: strHtml,
+        btn: ["确定", "取消"],
+        yes: function (index) {
+            var id = $("input[name=course]:checked").val();
 
-		      selCourseID = id.split(",")[1];
-		      selCourseName = id.split(",")[0];
-		      var btn = document.getElementById("course-list");
-              btn.innerHTML = selCourseName;
-		      layer.close(index);
+            selCourseID = id.split(",")[1];
+            selCourseName = id.split(",")[0];
+            var btn = document.getElementById("course-list");
+            btn.innerHTML = selCourseName;
+            layer.close(index);
 
 
-			},no:function(index){
+        }, no: function (index) {
 
-			}
-		});
+        }
+    });
 }
