@@ -1,5 +1,6 @@
  $(function($){
  	get_value("type");
+    start_timer();
 });
 
 function get_value(name){
@@ -13,4 +14,18 @@ function get_value(name){
         	$(".result").html("你已经成功转期");
         }
     }
+}
+
+
+var t=3;
+var a=setInterval(daojishi,1000);//1000毫秒
+function daojishi(){
+    t--;
+   //刷新时间显示
+    if(t==0){
+        clearInterval(a);
+        window.location.href = "../book/booking.html";
+        //倒计时结束
+    }
+
 }

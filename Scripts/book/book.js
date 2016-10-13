@@ -42,6 +42,7 @@ $(function ($) {
     get_bookingdata();
     get_willbookdata();
     get_bookeddata();
+    get_refunddata();
 
 });
 
@@ -202,11 +203,8 @@ function getPhaseStatus() {
 
 function get_bookingdata() {
     var uid = userID;
-<<<<<<< HEAD
-    var param = {"UserID":1,"Type":1};
-=======
     var param = {"UserID": uid, "Type": 1};
->>>>>>> dev
+
     booking_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
     if (booking_result.Msg == "OK") {
@@ -217,17 +215,12 @@ function get_bookingdata() {
 }
 
 
-<<<<<<< HEAD
-function get_willbookdata(){
-  var uid = userID;
-  var param = {"UserID":1,"Type":2};
-  willbook_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
-=======
+
 function get_willbookdata() {
     var uid = userID;
     var param = {"UserID": uid, "Type": 2};
     willbook_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
->>>>>>> dev
+
 
     if (willbook_result.Msg == "OK") {
         if (willbook_result.Data.length > 0) {
@@ -236,17 +229,11 @@ function get_willbookdata() {
     }
 }
 
-<<<<<<< HEAD
-function get_bookeddata(){
-  var uid = userID;
-  var param = {"UserID":1,"Type":3};
-  booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
-=======
+
 function get_bookeddata() {
     var uid = userID;
     var param = {"UserID": uid, "Type": 3};
     booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
->>>>>>> dev
 
     if (booked_result.Msg == "OK") {
         if (booked_result.Data.length > 0) {
@@ -254,6 +241,19 @@ function get_bookeddata() {
         }
     }
 }
+
+function get_refunddata(){
+    var uid = userID;
+    var param = {"UserID": uid, "Type": 4};
+    booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
+
+    if (booked_result.Msg == "OK") {
+        if (booked_result.Data.length > 0) {
+            create_refundlist();
+        }
+    }
+}
+
 
 //已预约课程
 function create_bookinglist() {
@@ -299,7 +299,7 @@ function create_willbooklist() {
     var strHtml = "";
     strHtml += '  <ul class="title">未预约课程</ul>'
     for (var i = 0; i < willbook_result.Data.length; i++) {
-<<<<<<< HEAD
+
       var row = willbook_result.Data[i];
       var isCost = row.AccommodationFeesPaid >= row.AccommodationCost && row.AccommodationCost != 0;
       var type = get_type(row.PhaseStatus);
@@ -308,12 +308,12 @@ function create_willbooklist() {
       var isOverCount = row.ReservationCount >= row.PeopleCount;
       var name = row.CourseTypeName == "亲子课程"?"0":"1";
       var stateImg = get_stateImg(row.PhaseStatus);
-
+      
        //阶数
       var phasenumber = row.PhaseType;
       var disabled = "";
       if (phasenumber == 3 || phasenumber == 4){if (isPhaseOne==0) {disabled="disabled"}};
-
+      
       var btnColor = disabled == ""? "#F24D4D":"#9B9B9B";
 
       if (isOverCount) {type = "候补"}else{type="预约"};
@@ -343,67 +343,6 @@ function create_willbooklist() {
        strHtml += '<div style="clear: both;"></div>'
    }
   $(".list-li").append(strHtml);
-=======
-        var row = willbook_result.Data[i];
-        var isCost = row.AccommodationFeesPaid >= row.AccommodationCost && row.AccommodationCost != 0;
-        var type = get_type(row.PhaseStatus);
-        var color = isCost ? "#F24D4D" : "#9B9B9B";
-        var costText = isCost ? "已缴纳食宿费" : "未缴纳食宿费";
-        var isOverCount = row.ReservationCount >= row.PeopleCount;
-        var name = row.CourseTypeName == "亲子课程" ? "0" : "1";
-        var stateImg = get_stateImg(row.PhaseStatus);
-
-        //阶数
-        var phasenumber = row.PhaseType;
-        var disabled = "";
-        if (phasenumber == 3 || phasenumber == 4) {
-            if (!isPhaseOne) {
-                disabled = "disabled"
-            }
-        }
-        
-        //if (name == "0") {if (!isPhaseThree) {disabled="disabled"}}
-
-        var btnColor = disabled == "" ? "#F24D4D" : "#9B9B9B";
-
-        if (isOverCount) {
-            type = "候补"
-        } else {
-            type = "预约"
-        }
-        ;
-
-        var img = isCost ? "../../Images/book/cost_selected.png" : "../../Images/book/cost_normal.png";
-        strHtml += '  <ul style="float: left;">'
-        strHtml += '    <li>'
-        if (stateImg != "") {
-            strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
-        } else {
-            strHtml += '        <div><img  width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
-        }
-        strHtml += '    </li>'
-        strHtml += '  </ul>'
-        strHtml += '  <ul style="float: left; width:' + phasename_width + ';" >'
-        strHtml += '    <li><font class="name">' + row.CoursePhaseName + '</font></li>'
-        strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
-        strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
-        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
-        strHtml += '  </ul>'
-        strHtml += '  <ul style="float:right;">'
-        if (disabled == "") {
-            strHtml += '<button class="button" type="button"  cname="' + row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID + ',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' + name + ',' + row.TimeSpan + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">' + type + '</button>'
-        }
-        else {
-            strHtml += '<button class="button" type="button" disabled="' + disabled + '"  cname="' + row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID + ',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' + name + ',' + row.TimeSpan + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">' + type + '</button>'
-        }
-        ;
-
-
-        strHtml += '  </ul>'
-        strHtml += '<div style="clear: both;"></div>'
-    }
-    $(".list-li").append(strHtml);
->>>>>>> dev
 
 }
 
@@ -440,6 +379,40 @@ function create_bookedlist() {
     }
     $(".list-li").append(strHtml);
 
+}
+
+//已退费课程
+function create_refundlist(){
+   var strHtml = "";
+    strHtml += '  <ul class="title">已退费课程</ul>'
+    for (var i = 0; i < booked_result.Data.length; i++) {
+        var row = booked_result.Data[i];
+        var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
+        var color = isCost ? "#F24D4D" : "#9B9B9B";
+        var type = get_type(row.PhaseStatus);
+        var stateImg = get_stateImg(row.PhaseStatus);
+        var costImg = row.AccommodationFeedPaid > row.AccommodationCost ? "../../Images/book/cost_normal.png" : "../../Images/book/cost_selected.png";
+        strHtml += '  <ul style="float: left;">'
+        strHtml += '    <li>'
+        if (stateImg != "") {
+            strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
+        } else {
+            strHtml += '        <div><img id= img -' + i + 'width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
+        }
+        strHtml += '    </li>'
+        strHtml += '  </ul>'
+        strHtml += '  <ul style="float: left; width:' + phasename_width + ';" >'
+        strHtml += '    <li><font class="name">' + row.CoursePhaseName + '</font></li>'
+        strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
+        strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
+        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已缴纳食宿费" + '</font></li>'
+        strHtml += '  </ul>'
+        strHtml += '  <ul style="float:right;">'
+        strHtml += '    <button class="button" type="button" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
+        strHtml += '  </ul>'
+        strHtml += '<div style="clear: both;"></div>'
+    }
+    $(".list-li").append(strHtml);
 }
 
 function get_type(t) {
