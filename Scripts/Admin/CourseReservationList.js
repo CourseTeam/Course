@@ -110,19 +110,19 @@ function ValueAddedServicesShow(obj) {
                 str += "无\n";
                 break;
             case 1:
-                str += "统一版摩英回忆视频300元(单阶7天)\n";
+                str += "统一版摩英回忆视频300元(单阶7天)<br>";
                 break;
             case 2:
-                str += "VIP摩英大电影1980元(单阶7天)\n";
+                str += "VIP摩英大电影1980元(单阶7天)<br>";
                 break;
             case 3:
-                str += "VIP摩英大电影1980元(单阶7天)\n";
+                str += "VIP摩英大电影1980元(单阶7天)<br>";
                 break;
             case 4:
-                str += "VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)\n";
+                str += "VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)<br>";
                 break;
             case 5:
-                str += "VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)\n";
+                str += "VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)<br>";
                 break;
             default:
                 break;
@@ -132,7 +132,7 @@ function ValueAddedServicesShow(obj) {
     layer.open({
         title: "已选增值服务",
         skin: "layui-layer-molv",
-        area: ["300px", "200px"],
+        area: ["400px", "250px"],
         content: str
     });
 }
