@@ -49,6 +49,8 @@ $(function ($) {
 
     if (!isHaveData) {
         document.getElementById("contentImg").src= "../../Images/book/book_null.png";
+    }else {
+        $("#contentImg").hide();
     }
 
 });
@@ -420,7 +422,7 @@ function create_refundlist(){
         if (stateImg != "") {
             strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
         } else {
-            strHtml += '        <div><img id= img -' + i + 'width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
+            strHtml += '        <div><img id="img -' + i + '" width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
         }
         strHtml += '    </li>'
         strHtml += '  </ul>'
