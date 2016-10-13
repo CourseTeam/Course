@@ -16,7 +16,6 @@ function get_value(name){
     }
 }
 
-
 var t=3;
 var a=setInterval(daojishi,1000);//1000毫秒
 function daojishi(){

@@ -92,7 +92,6 @@ function sure() {
 
 function updateInfo(obj) {
     // 更改个人信息
-    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     if (!dateVerify(obj.birth)) {
         layer.open({content: "出生日期格式不正确,请按照正确格式输入"});
         return;
@@ -151,7 +150,7 @@ function phase_book(obj) {
         "PhaseID": obj.sel_pid,
         "ParentCount": 0,
         "ValueAddedServices": obj.server_id,
-        "PhaseType": phaseinfo.phaseID
+        "PhaseType": phaseinfo.phaseType
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add");
     if (result.Msg == "OK") {
@@ -231,6 +230,7 @@ function get_data(cid) {
     // CourseRegistration/PhaseRegistration_PhaseStatus_Upd
     var couseid = cid;
     var param = {"CourseID": couseid};
+    var phase_type = cid
     var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
     if (result.Msg == "OK" && result.Data.length > 0) {
         request = result.Data.courseInfo;
@@ -238,7 +238,7 @@ function get_data(cid) {
         $("#course_title").html(result.Data.courseInfo.CourseName);
     }
 
-    if (phaseinfo.PhaseID == 0) {
+    if (phaseinfo.PhaseType == 0) {
 	    var zengzhiHtml = "";
 	    zengzhiHtml += '<p class="zengzhi_title">请选择您的增值服务</p>'
 	    zengzhiHtml += '	<div class="radio">'

@@ -32,8 +32,8 @@ var isPhaseThree;
 
 
 $(function ($) {
-    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    userID = UserInfo.UserID;
+    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    // userID = UserInfo.UserID;
     isHaveData = false;
     var screen_width = window.screen.width;
     if (screen_width <= 320)phasename_width = "45%";
@@ -75,7 +75,6 @@ function post_book(param) {
     } else {
         layer.open({content: "一阶课程当前正在预约中，请完成该预约后再预约后续课程"});
     }
-
 }
 
 // 预约 或者 
@@ -154,54 +153,49 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
     }
 
     if (pt == 1 || pt == 2) {
+      var add_str = '<label>' +
+              '<input type="radio" value="5" name="optionsRadios" id="radio5">VIP摩英大电影+VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）' +
+              '</label>' +
+              '</div>';
+
+      var strHtml = '<div class="radio">' +
+            '<label>' +
+            '<input type="radio" value="1" name="optionsRadios" id="radio1">统一版摩英回忆视频300元（单阶7天）' +
+            '</label>' +
+            '</div>' +
+            '<div class="radio">' +
+            '<label>' +
+            '<input type="radio" value="2" name="optionsRadios" id="radio2">VIP摩英大电影1980元（单阶7天）' +
+            '</label>' +
+            '</div>' +
+            '<div class="radio">' +
+            '<label>' +
+            '<input type="radio" value="3" name="optionsRadios" id="radio3">VIP蜕变水晶相册1280元（单阶7天）' +
+            '</label>' +
+            '</div>' +
+            '<div class="radio">' +
+            '<label>' +
+            '<input type="radio" value="4" name="optionsRadios" id="radio4">VIP摩英大电影+VIP蜕变水晶相册2680元 强烈推荐 性价比极高（单阶7天）' +
+            '</label>' +
+            '</div>' +
+            '<div class="radio">'
+
+            if (param.PhaseType >= 3) {
+               strHtml += add_str;
+            }
+
+            strHtml += '<div class="radio">' +
+            '<label>' +
+            '<input type="radio" value="6" name="optionsRadios" id="radio6">不需要此服务' +
+            '</label>' +
+            '</div>';
+
         layer.open({
             title: "请选择您的增值服务",
-            content: '<div class="radio">' +
-            '<label>' +
-            '<input type="radio" name="optionsRadios" id="radio1">统一版摩英回忆视频300元（单阶7天）' +
-            '</label>' +
-            '</div>' +
-            '<div class="radio">' +
-            '<label>' +
-            '<input type="radio" name="optionsRadios" id="radio2">VIP摩英大电影1980元（单阶7天）' +
-            '</label>' +
-            '</div>' +
-            '<div class="radio">' +
-            '<label>' +
-            '<input type="radio" name="optionsRadios" id="radio3">VIP蜕变水晶相册1280元（单阶7天）' +
-            '</label>' +
-            '</div>' +
-            '<div class="radio">' +
-            '<label>' +
-            '<input type="radio" name="optionsRadios" id="radio4">VIP摩英大电影+VIP蜕变水晶相册2680元 强烈推荐 性价比极高（单阶7天）' +
-            '</label>' +
-            '</div>' +
-            '<div class="radio">' +
-            '<label>' +
-            '<input type="radio" name="optionsRadios" id="radio5">VIP摩英大电影+VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）' +
-            '</label>' +
-            '</div>' +
-            '<div class="radio">' +
-            '<label>' +
-            '<input type="radio" name="optionsRadios" id="radio6">不需要此服务' +
-            '</label>' +
-            '</div>',
+            content:strHtml,
             btn: ['确定'],
             yes: function (index) {
-                if (document.getElementById("radio1").checked == true) {
-                    serviceType = 1;
-                } else if (document.getElementById("radio2").checked == true) {
-                    serviceType = 2;
-                } else if (document.getElementById("radio3").checked == true) {
-                    serviceType = 3;
-                } else if (document.getElementById("radio4").checked == true) {
-                    serviceType = 4;
-                } else if (document.getElementById("radio5").checked == true) {
-                    serviceType = 5;
-                } else if (document.getElementById("radio6").checked == true) {
-                    serviceType = 0;
-                }
-
+                serviceType = $("radio[name=optionsRadios]:checked").val();
                 param.serviceType = serviceType;
                 layer.close(index);
                 post_book(param);
@@ -212,9 +206,9 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
 
 
 function getPhaseStatus() {
-    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    var param = {"UserID": UserInfo.UserID};
-    // var param = {"UserID":156};
+    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    // var param = {"UserID": UserInfo.UserID};
+        var param = {"UserID": 156};
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
         isPhaseOne = result.Data.PhaseType1OR2;
@@ -224,7 +218,7 @@ function getPhaseStatus() {
 
 function get_bookingdata() {
     var uid = userID;
-    var param = {"UserID": uid, "Type": 1};
+    var param = {"UserID": 156, "Type": 1};
 
     booking_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
@@ -240,7 +234,7 @@ function get_bookingdata() {
 
 function get_willbookdata() {
     var uid = userID;
-    var param = {"UserID": uid, "Type": 2};
+    var param = {"UserID": 156, "Type": 2};
     willbook_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
 
@@ -255,7 +249,7 @@ function get_willbookdata() {
 
 function get_bookeddata() {
     var uid = userID;
-    var param = {"UserID": uid, "Type": 3};
+    var param = {"UserID": 156, "Type": 3};
     booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
     if (booked_result.Msg == "OK") {
@@ -268,7 +262,7 @@ function get_bookeddata() {
 
 function get_refunddata(){
     var uid = userID;
-    var param = {"UserID": uid, "Type": 4};
+    var param = {"UserID": 156, "Type": 4};
     booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
     if (booked_result.Msg == "OK") {
@@ -434,7 +428,7 @@ function create_refundlist(){
         strHtml += '    <li><font class="name">' + row.CoursePhaseName + '</font></li>'
         strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
         strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
-        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已缴纳食宿费" + '</font></li>'
+        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已退费" + '</font></li>'
         strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
         strHtml += '    <button class="button" type="button" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
@@ -468,6 +462,7 @@ function get_type(t) {
     }
 }
 
+
 function get_stateImg(state) {
     switch (state) {
         case 0:
@@ -486,7 +481,7 @@ function get_stateImg(state) {
             return "../../Images/book/joined.png";
             break;
         case 5:
-            return "";
+            return "../../Images/book/yituifei.png";
             break;
     }
 }
