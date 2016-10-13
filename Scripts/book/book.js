@@ -29,8 +29,8 @@ var isPhaseThree;
 
 
 $(function ($) {
-    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    userID = UserInfo.UserID;
+    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    // userID = UserInfo.UserID;
 
     var screen_width = window.screen.width;
     if (screen_width <= 320)phasename_width = "45%";
@@ -205,9 +205,9 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
 
 
 function getPhaseStatus() {
-    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    var param = {"UserID": UserInfo.UserID};
-    // var param = {"UserID":156};
+    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    // var param = {"UserID": UserInfo.UserID};
+    var param = {"UserID":156};
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
         isPhaseOne = result.Data.PhaseType1OR2;
@@ -217,7 +217,7 @@ function getPhaseStatus() {
 
 function get_bookingdata() {
     var uid = userID;
-    var param = {"UserID": uid, "Type": 1};
+    var param = {"UserID": 156, "Type": 1};
 
     booking_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
@@ -232,7 +232,7 @@ function get_bookingdata() {
 
 function get_willbookdata() {
     var uid = userID;
-    var param = {"UserID": uid, "Type": 2};
+    var param = {"UserID": 156, "Type": 2};
     willbook_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
 
@@ -246,7 +246,7 @@ function get_willbookdata() {
 
 function get_bookeddata() {
     var uid = userID;
-    var param = {"UserID": uid, "Type": 3};
+    var param = {"UserID": 156, "Type": 3};
     booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
     if (booked_result.Msg == "OK") {
@@ -280,7 +280,7 @@ function create_bookinglist() {
         var img = isCost ? "../../Images/book/cost_selected.png" : "../../Images/book/cost_normal.png";
         var type = get_type(row.PhaseStatus);
         var stateImg = get_stateImg(row.PhaseStatus);
-        var disabled = row.PhaseStatus == 3 ? "" : "disabled";
+        var disabled = row.PhaseStatus == 3 || row.PhaseStatus == 2 ? "" : "disabled";
         //转期参数
         var param = {"pid": row.PhaseID, "cpname": row.CoursePhaseName};
         var color = isCost ? "#F24D4D" : "#9B9B9B";
@@ -289,7 +289,7 @@ function create_bookinglist() {
         if (stateImg != "") {
             strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
         } else {
-            strHtml += '        <div><img id= img -' + i + ' width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
+            strHtml += '        <div><img id= img -' + i + ' width="75" height="75" src="' + row.CourseImgUrl + '"></div>'
         }
         strHtml += '    </li>'
         strHtml += '  </ul>'
@@ -300,7 +300,11 @@ function create_bookinglist() {
         strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costTitle + '</font></li>'
         strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
-        strHtml += '    <button class="button" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
+        if (disabled == "") {
+            strHtml += '    <button class="button" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
+        }else {
+              strHtml += '    <button class="button" disabled="disabled" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
+        }
         strHtml += '  </ul>'
         strHtml += '<div style="clear: both;"></div>'
     }
@@ -439,7 +443,7 @@ function get_type(t) {
             return "预约中";
             break;
         case 2:
-            return "候补中";
+            return "转期";
             break;
         case 3:
             return "转期";

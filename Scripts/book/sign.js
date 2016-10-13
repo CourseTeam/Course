@@ -2,6 +2,7 @@
 var request;
 var course_id;
 
+var phaseinfo;
 
 $(function ($) {
 
@@ -149,8 +150,8 @@ function phase_book(obj) {
         "CourseID": course_id,
         "PhaseID": obj.sel_pid,
         "ParentCount": 0,
-        "ValueAddedServices": obj.channel,
-        "PhaseType": 1
+        "ValueAddedServices": obj.server_id,
+        "PhaseType": phaseinfo.phaseID
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add");
     if (result.Msg == "OK") {
@@ -231,7 +232,6 @@ function get_data(cid) {
     var couseid = cid;
     var param = {"CourseID": couseid};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
-    var phaseinfo;
     if (result.Msg == "OK" && result.Data.length > 0) {
         request = result.Data.courseInfo;
         phaseinfo = result.Data.phaselist[0];
