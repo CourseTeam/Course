@@ -123,7 +123,7 @@ function ValueAddedServicesShow(id) {
     // 4.VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)
     // 5.VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)
     for (var i = 0; i < PhaseRegistration_Items.length; i++) {
-        if (id = PhaseRegistration_Items[i].UserID) {
+        if (id == PhaseRegistration_Items[i].UserID) {
             switch (PhaseRegistration_Items[i].ValueAddedServices) {
                 case 0:
                     str = "该学员本期课程没有选择任何增值服务";

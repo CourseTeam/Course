@@ -29,8 +29,8 @@ var isPhaseThree;
 
 
  $(function($){
-  // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-  // userID = UserInfo.UserID;
+   var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+  userID = UserInfo.UserID;
     
   var screen_width = window.screen.width;
   if (screen_width <= 320)phasename_width = "45%";
@@ -54,8 +54,8 @@ function transfer (obj,pid){
 //调用预约接口
 //qinziType 家长人数
 function post_book(param){
-  // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-  var obj = {"PhaseID":param.pid,"UserID":144,"CourseID":param.cid,"ParentCount":param.qinziType,
+  var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+  var obj = {"PhaseID":param.pid,"UserID":UserInfo.UserID,"CourseID":param.cid,"ParentCount":param.qinziType,
   "ValueAddedServices":param.serviceType,"PhaseType":param.pt};
   var result = $Course.PostAjaxJson(obj, ApiUrl + "PhaseRegistration/PhaseRegistration_Add");
   if (result.Msg == "OK" && result.Data != false) {
@@ -188,9 +188,9 @@ function book(obj,pid,cid,ctid,crid,t,pt,over,name,tspan,cpname){
 
 
 function getPhaseStatus(){
-  // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-  // var param = {"UserID":UserInfo.UserID};
-    var param = {"UserID":156};
+  var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+  var param = {"UserID":UserInfo.UserID};
+    //var param = {"UserID":156};
   var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
   if (result.Msg == "OK") {
     isPhaseOne = result.Data.PhaseType1OR2;
@@ -200,7 +200,7 @@ function getPhaseStatus(){
 
 function get_bookingdata () {
     var uid = userID;
-    var param = {"UserID":156,"Type":1};
+    var param = {"UserID":uid,"Type":1};
     booking_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
     
     if (booking_result.Msg == "OK") {
@@ -213,7 +213,7 @@ function get_bookingdata () {
 
 function get_willbookdata(){
   var uid = userID;
-  var param = {"UserID":156,"Type":2};
+  var param = {"UserID":uid,"Type":2};
   willbook_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
   if (willbook_result.Msg == "OK") {
@@ -225,7 +225,7 @@ function get_willbookdata(){
 
 function get_bookeddata(){
   var uid = userID;
-  var param = {"UserID":156,"Type":3};
+  var param = {"UserID":uid,"Type":3};
   booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
   if (booked_result.Msg == "OK") {
@@ -292,7 +292,7 @@ function create_willbooklist(){
       var phasenumber = row.PhaseType;
       var disabled = "";
       if (phasenumber == 3 || phasenumber == 4){if (!isPhaseOne) {disabled="disabled"}};
-      if (name == "0") {if (!isPhaseThree) {disabled="disabled"}}
+      //if (name == "0") {if (!isPhaseThree) {disabled="disabled"}}
 
       var btnColor = disabled == ""? "#F24D4D":"#9B9B9B";
 
