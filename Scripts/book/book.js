@@ -200,7 +200,7 @@ function getPhaseStatus(){
 
 function get_bookingdata () {
     var uid = userID;
-    var param = {"UserID":156,"Type":1};
+    var param = {"UserID":1,"Type":1};
     booking_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
     
     if (booking_result.Msg == "OK") {
@@ -213,7 +213,7 @@ function get_bookingdata () {
 
 function get_willbookdata(){
   var uid = userID;
-  var param = {"UserID":156,"Type":2};
+  var param = {"UserID":1,"Type":2};
   willbook_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
   if (willbook_result.Msg == "OK") {
@@ -225,7 +225,7 @@ function get_willbookdata(){
 
 function get_bookeddata(){
   var uid = userID;
-  var param = {"UserID":156,"Type":3};
+  var param = {"UserID":1,"Type":3};
   booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
   if (booked_result.Msg == "OK") {
@@ -291,13 +291,12 @@ function create_willbooklist(){
        //阶数
       var phasenumber = row.PhaseType;
       var disabled = "";
-      if (phasenumber == 3 || phasenumber == 4){if (!isPhaseOne) {disabled="disabled"}};
-      if (name == "0") {if (!isPhaseThree) {disabled="disabled"}}
+      if (phasenumber == 3 || phasenumber == 4){if (isPhaseOne==0) {disabled="disabled"}};
 
       var btnColor = disabled == ""? "#F24D4D":"#9B9B9B";
 
       if (isOverCount) {type = "候补"}else{type="预约"};
-
+      
       var img = isCost? "../../Images/book/cost_selected.png":"../../Images/book/cost_normal.png";
        strHtml += '  <ul style="float: left;">' 
        strHtml += '    <li>'
