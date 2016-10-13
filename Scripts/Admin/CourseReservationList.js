@@ -156,7 +156,8 @@ function TuitionFeesPaid_Eidt(UserID,TuitionFeesPaid, CourseRegistrationID) {
         content: $("#Tuition"),
         btn: ["确 定", '取 消'],
         yes: function (index) {
-            var param = {UserID: UserID, CourseRegistrationID: CourseRegistrationID, TuitionFeesPaid: $("#TuitionFeesPaid").val()};
+            var CourseName = decodeURIComponent($Course.RequestUrlParams("CourseName"));
+            var param = {UserID: UserID, CourseRegistrationID: CourseRegistrationID, TuitionFeesPaid: $("#TuitionFeesPaid").val(), CourseName: CourseName};
             var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_TuitionFeesPaid_Upd");
             if (result.Msg == "OK") {
                 CourseRegistration_List();
