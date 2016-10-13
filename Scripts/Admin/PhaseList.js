@@ -47,7 +47,7 @@ function Phase_List() {
             strHtml += '      <div class="col-lg-1">' + endDate + '</div>';
             strHtml += '      <div class="col-lg-2">' + Place + '</div>';
             strHtml += '      <div class="col-lg-1">' + row.AccommodationCost + '</div>';
-            strHtml += '      <div class="col-lg-1">' + row.PeopleCount + '</div>';
+            strHtml += '      <div class="col-lg-1">' + row.ReservationCount + "/" + row.PeopleCount + '</div>';
             strHtml += '      <div class="col-lg-3">';
             strHtml += '        <button onclick="Phase_Edit('+ CourseID +"," + row.PhaseID+')">编辑</button>';
             strHtml += '        <button onclick="CourseType_Del('+row.PhaseID+')">删除</button>';

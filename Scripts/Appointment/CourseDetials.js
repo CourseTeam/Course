@@ -56,7 +56,7 @@ function CourseInfo_Details() {
         strHtml_Detials += '</ul>';
 
         var width = window.screen.width;
-        var imgWidth = (width - 50) / 4;
+        var imgWidth = ((width - 50) / 4) > 200 ? 200 : ((width - 50) / 4);
         var strHtml_Teachers = "";
         strHtml_Teachers += '<div class="pure divide"></div>';
         strHtml_Teachers += '   <div class="pure" style="width: 100%;height: 30px;overflow: auto">';

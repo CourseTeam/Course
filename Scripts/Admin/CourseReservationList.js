@@ -10,15 +10,17 @@ $(document).ready(function () {
     $("#CourseName").html('课程预约列表 — ' + CourseName);
 
     $("#btnSearch").on("click", function () {
-        CourseRegistration_List(1, 100);
+        CourseRegistration_List();
     });
-    CourseRegistration_List(1, 100);
+    CourseRegistration_List();
 });
 
-function CourseRegistration_List(PageIndex, PageSize) {
+var PageIndex = 1;
+
+function CourseRegistration_List() {
     var SearchKey = $("#SearchKey").val();
     var CourseID = $Course.RequestUrlParams("CourseID");
-    var param = {CourseID: CourseID, SearchKey: SearchKey, PageIndex: PageIndex, PageSize: PageSize};
+    var param = {CourseID: CourseID, SearchKey: SearchKey, PageIndex: PageIndex, PageSize: 10};
     console.log(param);
     var result = $Course.GetAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_List");
     console.log(result);
@@ -68,6 +70,20 @@ function CourseRegistration_List(PageIndex, PageSize) {
             }
         }
         $("#CourseReservation_List").html(strHtml);
+        laypage({
+            cont: $("#Page"), //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+            pages: Math.ceil(result.Data[0].RowsCount / 10), //通过后台拿到的总页数
+            curr: PageIndex || 1, //当前页,
+            skip: true, //是否开启跳页
+            skin: '#AF0000',
+            groups: 3, //连续显示分页数
+            jump: function (obj, first) { //触发分页后的回调
+                if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+                    PageIndex = obj.curr;
+                    CourseRegistration_List();
+                }
+            }
+        });
     }
 }
 
@@ -143,10 +159,10 @@ function TuitionFeesPaid_Eidt(TuitionFeesPaid, CourseRegistrationID) {
             var param = {CourseRegistrationID: CourseRegistrationID, TuitionFeesPaid: $("#TuitionFeesPaid").val()};
             var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_TuitionFeesPaid_Upd");
             if (result.Msg == "OK") {
+                CourseRegistration_List();
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
-                    window.location.href = window.location.href;
+                    layer.close(index);
                 });
-                layer.close(index);
             }
         },
         success: function () {
@@ -160,8 +176,9 @@ function CourseRegistration_Refund(CourseRegistrationID) {
         var param = {CourseRegistrationID: CourseRegistrationID};
         var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_Status_Upd");
         if (result.Msg == "OK") {
+            CourseRegistration_List();
             layer.msg("退费成功", {icon: 1, time: 2000}, function () {
-                window.location.href = window.location.href;
+                layer.close(index);
             });
         }
     });
