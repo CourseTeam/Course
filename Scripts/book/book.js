@@ -101,7 +101,7 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
     param.over = over;
     param.name = name;
     param.tspan = tspan;
-    param.cpname = cpname;
+    param.cpname = coursename;
     param.qinziType = 0;
     param.serviceType = 0;
 
@@ -130,6 +130,20 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
                 post_book(param);
             }
         });
+    }
+
+    if (pt == 0) {
+      layer.open({
+        title:"提示",
+        content:"是否预约" + coursename + "?",
+        btn:['确定','取消'],
+        yes:function(index){
+          post_book(param);
+          layer.open(index);
+        },no:function(index){
+          layer.open(index);
+        }
+      });
     }
 
     if (pt == 1 || pt == 2) {
@@ -193,7 +207,7 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
 function getPhaseStatus() {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {"UserID": UserInfo.UserID};
-    //var param = {"UserID":156};
+    // var param = {"UserID":156};
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
         isPhaseOne = result.Data.PhaseType1OR2;
@@ -308,12 +322,12 @@ function create_willbooklist() {
       var isOverCount = row.ReservationCount >= row.PeopleCount;
       var name = row.CourseTypeName == "亲子课程"?"0":"1";
       var stateImg = get_stateImg(row.PhaseStatus);
-      
+
        //阶数
       var phasenumber = row.PhaseType;
       var disabled = "";
       if (phasenumber == 3 || phasenumber == 4){if (isPhaseOne==0) {disabled="disabled"}};
-      
+
       var btnColor = disabled == ""? "#F24D4D":"#9B9B9B";
 
       if (isOverCount) {type = "候补"}else{type="预约"};
