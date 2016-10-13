@@ -14,9 +14,15 @@ $(document).ready(function () {
     PhaseRegistration_List();
     var CoursePhaseName = decodeURIComponent($Course.RequestUrlParams("CoursePhaseName"));
     $("#paseName").html("阶段预约列表 — " + CoursePhaseName);
-
+    $("#Select").on("change",function () {
+        PStatus = $("#Select").val();
+        console.log(PStatus);
+        PageIndex = 1;
+        PhaseRegistration_List();
+    });
 });
 
+var PStatus = 0;
 var PageIndex = 1;
 
 function UserInfoEntry() {
@@ -29,7 +35,7 @@ var PhaseRegistration_Items = [];
 function PhaseRegistration_List() {
     var PhaseID = $Course.RequestUrlParams("PhaseID");
     var SearchKey = $("#SearchKey").val();
-    var param = {SearchKey: SearchKey, PhaseID: PhaseID, PageIndex: PageIndex, PageSize: 10};
+    var param = {SearchKey: SearchKey, PhaseID: PhaseID, PhaseStatus:PStatus,PageIndex: PageIndex, PageSize: 10};
     var result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_List");
     if (result.Msg == "OK") {
         PhaseRegistration_Items = result.Data;
