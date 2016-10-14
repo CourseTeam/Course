@@ -30,7 +30,6 @@ var isPhaseOne;
 //是否上过三阶课程
 var isPhaseThree;
 
-
 $(function ($) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     userID = UserInfo.UserID;
@@ -289,6 +288,7 @@ function create_bookinglist() {
         var stateImg = get_stateImg(row.PhaseStatus);
 
         // var disabled = row.PhaseStatus == 3 || row.PhaseStatus == 2 ? "" : "disabled";
+        var disabled = "";
         var btnColor = get_btncolor(row.PhaseStatus);
 
         //转期参数
