@@ -145,13 +145,14 @@ function course_reg(obj) {
 function phase_book(obj) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {
-        "UserID": UserInfo.UserID,
-        "CourseID": course_id,
-        "PhaseID": obj.sel_pid,
-        "ParentCount": 0,
-        "ValueAddedServices": obj.server_id,
-        "PhaseType": phaseinfo.PhaseType
-    };
+            "UserID": UserInfo.UserID,
+            "CourseID": course_id,
+            "PhaseID": obj.sel_pid,
+            "ParentCount": 0,
+            "ValueAddedServices": obj.server_id,
+            "PhaseType": $("input[name=radio_phase]:checked").attr("ptype")
+        }
+        ;
     var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add");
     if (result.Msg == "OK") {
         layer.open({
@@ -212,14 +213,16 @@ function create_phaselist(data) {
             var color = row.ReservationCount == row.PeopleCount ? "red" : "black"
             strHtml += '	<div class="radio">'
             strHtml += '       <label>'
-            strHtml += '          <input type="radio" name="radio_phase" value="' + row.PhaseID + '">'
+            strHtml += '          <input type="radio" name="radio_phase" ptype="' + row.PhaseType + '" value="' + row.PhaseID + '">'
             strHtml += '            <p>' + row.CoursePhaseName + '</p>'
-              if (row.PhaseType != 1 && row.PhaseType != 0) {
-	            strHtml += '            <p style="color:red;">' + "(仅限参加过一阶课程的老学员)" + '</p>'
+            if (row.PhaseType != 1 && row.PhaseType != 0) {
+                strHtml += '            <p style="color:red;">' + "(仅限参加过一阶课程的老学员)" + '</p>'
             }
             strHtml += '            <p>开始时间：' + row.StartTime.substring(0, 10) + '</p>'
             strHtml += '            <p>结束时间：' + row.EndTime.substring(0, 10) + '</p>'
-            if (row.PhaseType != 1) {strHtml += '            <p style="color:' + color + ';">报名人数：' + row.ReservationCount + '/' + row.PeopleCount + '</p>'}
+            if (row.PhaseType != 1) {
+                strHtml += '            <p style="color:' + color + ';">报名人数：' + row.ReservationCount + '/' + row.PeopleCount + '</p>'
+            }
             strHtml += '        </label>'
             strHtml += '    </div>'
         }
@@ -278,12 +281,12 @@ function get_data(cid) {
             $(".zengzhi").append(zengzhiHtml);
         }
     }
-    
-            // zengzhiHtml += '    <div class="radio">'
-            // zengzhiHtml += '      <label>'
-            // zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
-            // zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
-            // zengzhiHtml += '      </label>'
-            // zengzhiHtml += '    </div>'
+
+    // zengzhiHtml += '    <div class="radio">'
+    // zengzhiHtml += '      <label>'
+    // zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
+    // zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
+    // zengzhiHtml += '      </label>'
+    // zengzhiHtml += '    </div>'
 
 }

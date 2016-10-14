@@ -21,6 +21,14 @@ $(function ($) {
 var VerificationCode = 0;
 //获取验证码
 function GetSMSCode() {
+    if (!validate()){
+        layer.open({
+            content: '图片验证码错误！',
+            style: 'background-color:#fff; color:#000; border:none;width:60%',
+            time: 2
+        });
+        return;
+    }
     var PhoneNum = $("#Phone").val();
     if (!PhoneNum) {
         layer.open({
