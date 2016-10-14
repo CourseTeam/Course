@@ -114,7 +114,9 @@ function updateInfo(obj) {
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Edit");
     if (result.Msg == "OK" && result.Data == true) {
         //更新个人信息成功 更改cookie
-        $.cookie("UserInfo", $Course.stringify(result.Data), {expires: 30, path: '/'});
+        var param_cookie = {"UserID":UserInfo.UserID};
+        var result_cookie = $Course.GetAjaxJson(param_cookie, ApiUrl + "User/GetUserInfoByUserID");
+        $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {expires: 30, path: '/'});
     }
 
 }
