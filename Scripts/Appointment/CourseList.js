@@ -61,7 +61,7 @@ function CourseList(UserID, CourseTypeID) {
             strHtml += '   <div class="row" style="padding-bottom: 15px;border-bottom: 1px solid #eee; padding-top: 10px" onclick="CourseDetials(' + row.CourseID + ', ' + row.CourseStatus + ')">';
             // }
             strHtml += '       <div class="col-xs-12" style="padding-right: 8px">';
-            strHtml += '           <div class="courseLine_leftImg" style="background: url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;">';
+            strHtml += '           <div class="courseLine_leftImg" style="background: url(' + row.CourseImgUrl + ') center no-repeat;background-size: cover;">';
             if (full) {
                 strHtml += '               <img style="width: 75px; height: 75px;" src="../../Images/full.png">';
             }
@@ -99,14 +99,18 @@ function CourseList(UserID, CourseTypeID) {
             // }
             strHtml += '               </li>';
             strHtml += '               </br>';
-            strHtml += '               <li class="list-unstyled">';
-            strHtml += '                   <span style="font-size: 12px;">已报名额</span>';
-            strHtml += '                   <span style="font-size: 12px;float: right">' + row.ReservationCount + '/' + row.PeopleCount + '</span>';
-            strHtml += '                   <div class="progress" style="height: 3px;">';
-            strHtml += '                       <div class="progress-bar-info" role="progressbar" aria-valuenow="'+ row.ReservationCount +'" aria-valuemin="0" aria-valuemax="' + row.PeopleCount + '" style="width: '+ progress +'%;height: 3px;">';
-            strHtml += '                       </div>';
-            strHtml += '                   </div>';
-            strHtml += '               </li>';
+            if (row.MaxPhaseType < 1) {
+                strHtml += '               <li class="list-unstyled">';
+                strHtml += '                   <span style="font-size: 12px;">已报名额</span>';
+                strHtml += '                   <span style="font-size: 12px;float: right">' + row.ReservationCount + '/' + row.PeopleCount + '</span>';
+                strHtml += '                   <div class="progress" style="height: 3px;">';
+                strHtml += '                       <div class="progress-bar-info" role="progressbar" aria-valuenow="'+ row.ReservationCount +'" aria-valuemin="0" aria-valuemax="' + row.PeopleCount + '" style="width: '+ progress +'%;height: 3px;">';
+                strHtml += '                       </div>';
+                strHtml += '                   </div>';
+                strHtml += '               </li>';
+            } else {
+                strHtml += '                <li class="list-unstyled" style="color: red;"><strong>火爆抢订中</strong></li>';
+            }
             strHtml += '           </ul>';
             strHtml += '       </div>';
             strHtml += '       </div>';
