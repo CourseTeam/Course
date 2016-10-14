@@ -197,7 +197,7 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
             content:strHtml,
             btn: ['确定'],
             yes: function (index) {
-                serviceType = $("radio[name=optionsRadios]:checked").val();
+                serviceType = $("input[name=optionsRadios]:checked").val();
                 param.serviceType = serviceType;
                 layer.close(index);
                 post_book(param);
@@ -210,7 +210,6 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
 function getPhaseStatus() {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {"UserID": UserInfo.UserID};
-    // var param = {"UserID": 156};
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
         isPhaseOne = result.Data.PhaseType1OR2;
