@@ -51,15 +51,15 @@ function CourseList(UserID, CourseTypeID) {
             if (full) {
                 progress = progress >= 100 ? 100 : progress;
             }
-            if ((CourseTypeID == 2 && PhaseType3 == 0) || (CourseTypeID == 1 && PhaseType1OR2 == 0)) {
-                if (row.MaxPhaseType <= 1 || row.CourseStatus == 0) {
-                    strHtml += '   <div class="row" style="padding-bottom: 15px;border-bottom: 1px solid #eee; padding-top: 10px" onclick="CourseDetials(' + row.CourseID + ', 1)">';
-                } else {
-                    strHtml += '   <div class="row" style="padding-bottom: 15px;border-bottom: 1px solid #eee; padding-top: 10px" onclick="CourseDetials(' + row.CourseID + ', -1)">';
-                }
-            } else {
-                strHtml += '   <div class="row" style="padding-bottom: 15px;border-bottom: 1px solid #eee; padding-top: 10px" onclick="CourseDetials(' + row.CourseID + ', ' + row.CourseStatus + ')">';
-            }
+            // if ((CourseTypeID == 2 && PhaseType3 == 0) || (CourseTypeID == 1 && PhaseType1OR2 == 0)) {
+            //     if (row.MaxPhaseType <= 1 || row.CourseStatus == 0) {
+            //         strHtml += '   <div class="row" style="padding-bottom: 15px;border-bottom: 1px solid #eee; padding-top: 10px" onclick="CourseDetials(' + row.CourseID + ', 1)">';
+            //     } else {
+            //         strHtml += '   <div class="row" style="padding-bottom: 15px;border-bottom: 1px solid #eee; padding-top: 10px" onclick="CourseDetials(' + row.CourseID + ', -1)">';
+            //     }
+            // } else {
+            strHtml += '   <div class="row" style="padding-bottom: 15px;border-bottom: 1px solid #eee; padding-top: 10px" onclick="CourseDetials(' + row.CourseID + ', ' + row.CourseStatus + ')">';
+            // }
             strHtml += '       <div class="col-xs-12" style="padding-right: 8px">';
             strHtml += '           <div class="courseLine_leftImg" style="background: url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;">';
             if (full) {
@@ -70,33 +70,33 @@ function CourseList(UserID, CourseTypeID) {
             strHtml += '           <ul style="margin: 0px;padding: 0px;">';
             strHtml += '               <li class="list-unstyled" style="height: 35px;">';
             strHtml += '                   <button class="text-left courseTitle">' + row.CourseName + '</button>';
-            if ((CourseTypeID == 2 && PhaseType3 == 0) || (CourseTypeID == 1 && PhaseType1OR2 == 0)) {
-                if (row.CourseStatus == 0) {
-                    strHtml += '                   <button class="registrationButton">已预约</button>';
-                } else if(full) {
-                    if (row.MaxPhaseType > 1) {
-                        strHtml += '                   <button class="registrationButton">立即候补</button>';
-                    } else {
-                        strHtml += '                   <button class="registrationButton" style="background-color: #999999;">立即候补</button>';
-                    }
-                } else {
-                    if (row.MaxPhaseType > 1) {
-                        strHtml += '                   <button class="registrationButton">立即预约</button>';
-                    } else {
-                        strHtml += '                   <button class="registrationButton" style="background-color: #999999;">立即预约</button>';
-                    }
-                }
+            // if ((CourseTypeID == 2 && PhaseType3 == 0) || (CourseTypeID == 1 && PhaseType1OR2 == 0)) {
+            //     if (row.CourseStatus == 0) {
+            //         strHtml += '                   <button class="registrationButton">已预约</button>';
+            //     } else if(full) {
+            //         if (row.MaxPhaseType > 1) {
+            //             strHtml += '                   <button class="registrationButton">立即候补</button>';
+            //         } else {
+            //             strHtml += '                   <button class="registrationButton" style="background-color: #999999;">立即候补</button>';
+            //         }
+            //     } else {
+            //         if (row.MaxPhaseType > 1) {
+            //             strHtml += '                   <button class="registrationButton">立即预约</button>';
+            //         } else {
+            //             strHtml += '                   <button class="registrationButton" style="background-color: #999999;">立即预约</button>';
+            //         }
+            //     }
+            // } else {
+            if (row.CourseStatus == 1) {
+                strHtml += '                   <button class="registrationButton" style="background-color: #999999;">已退费</button>';
+            } else if(row.CourseStatus == 0) {
+                strHtml += '                   <button class="registrationButton">已预约</button>';
+            } else if(full) {
+                strHtml += '                   <button class="registrationButton">立即候补</button>';
             } else {
-                if (row.CourseStatus == 1) {
-                    strHtml += '                   <button class="registrationButton" style="background-color: #999999;">已退费</button>';
-                } else if(row.CourseStatus == 0) {
-                    strHtml += '                   <button class="registrationButton">已预约</button>';
-                } else if(full) {
-                    strHtml += '                   <button class="registrationButton">立即候补</button>';
-                } else {
-                    strHtml += '                   <button class="registrationButton">立即预约</button>';
-                }
+                strHtml += '                   <button class="registrationButton">立即预约</button>';
             }
+            // }
             strHtml += '               </li>';
             strHtml += '               </br>';
             strHtml += '               <li class="list-unstyled">';
