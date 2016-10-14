@@ -3,6 +3,7 @@
  */
 var s = 60;
 $(function ($) {
+    createCode();
     //发送验证码
     $("#btnSendSMS").on("click", function () {
         if (s == 60) {
@@ -61,6 +62,7 @@ function GetSMSCode() {
 //注册
 function Register() {
     var PhoneNum = $("#Phone").val();
+
     if (!PhoneNum) {
         layer.open({
             content: '请输入手机号',
@@ -81,6 +83,14 @@ function Register() {
     if (VerificationCode != _VerificationCode) {
         layer.open({
             content: '验证码错误!',
+            style: 'background-color:#fff; color:#000; border:none;width:60%',
+            time: 2
+        });
+        return;
+    }
+    if (!validate()){
+        layer.open({
+            content: '验证码错误！',
             style: 'background-color:#fff; color:#000; border:none;width:60%',
             time: 2
         });
