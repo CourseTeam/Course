@@ -213,6 +213,9 @@ function create_phaselist(data) {
             strHtml += '	<div class="radio">'
             strHtml += '       <label>'
             strHtml += '          <input type="radio" name="radio_phase" value="' + row.PhaseID + '">'
+            if (row.PhaseType != 1 && row.PhaseType != 0) {
+	            strHtml += '            <p style="color:red;">' + (仅限参加过一阶课程的老学员) + '</p>'
+            }
             strHtml += '            <p>' + row.CoursePhaseName + '</p>'
             strHtml += '            <p>开始时间：' + row.StartTime.substring(0, 10) + '</p>'
             strHtml += '            <p>结束时间：' + row.EndTime.substring(0, 10) + '</p>'
