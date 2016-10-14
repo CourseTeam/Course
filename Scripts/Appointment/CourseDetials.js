@@ -28,14 +28,16 @@ function CourseInfo_Details() {
         strHtml_Detials += '        <h5 class="text-center" style="color: red;">(预约按钮在最下方)</h5>';
         strHtml_Detials += '        ' + CourseDetials.Intro + '';
         strHtml_Detials += '    </li>';
-        // strHtml_Detials += '    <li class="col-xs-12 pure" style="padding-top: 12px;">';
-        // strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">最近开营时间：' + PhaseDetials.StartTime.split(" ")[0] + '</div>';
-        // strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">地点：' + PhaseDetials.Place + '</div>';
-        // strHtml_Detials += '    </li>';
-        // strHtml_Detials += '    <li class="col-xs-12 pure" style="padding-top: 8px;">';
-        // strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">剩余名额：' + residueCount + '</div>';
-        // strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">预约截止时间：' + PhaseDetials.StartTime.split(" ")[0] + '</div>';
-        // strHtml_Detials += '    </li>';
+        if (CourseDetials.MaxPhaseType < 1) {
+            strHtml_Detials += '    <li class="col-xs-12 pure" style="padding-top: 12px;">';
+            strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">最近开营时间：' + PhaseDetials.StartTime.split(" ")[0] + '</div>';
+            strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">地点：' + PhaseDetials.Place + '</div>';
+            strHtml_Detials += '    </li>';
+            strHtml_Detials += '    <li class="col-xs-12 pure" style="padding-top: 8px;">';
+            strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">剩余名额：' + residueCount + '</div>';
+            strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">预约截止时间：' + PhaseDetials.StartTime.split(" ")[0] + '</div>';
+            strHtml_Detials += '    </li>';
+        }
         // for (var i = 0; i < 3; i++) {
         //     var type = "二";
         //     strHtml_Detials += '    <li class="col-xs-12 pure" style="padding-top: 12px;">';
