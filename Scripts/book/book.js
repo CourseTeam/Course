@@ -288,7 +288,10 @@ function create_bookinglist() {
         var img = isCost ? "../../Images/book/cost_selected.png" : "../../Images/book/cost_normal.png";
         var type = get_type(row.PhaseStatus);
         var stateImg = get_stateImg(row.PhaseStatus);
-        var disabled = row.PhaseStatus == 3 || row.PhaseStatus == 2 ? "" : "disabled";
+
+        // var disabled = row.PhaseStatus == 3 || row.PhaseStatus == 2 ? "" : "disabled";
+        var btnColor = get_btncolor(row.PhaseStatus);
+
         //转期参数
         var param = {"pid": row.PhaseID, "cpname": row.CoursePhaseName};
         var color = isCost ? "#F24D4D" : "#9B9B9B";
@@ -309,7 +312,7 @@ function create_bookinglist() {
         strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
         if (disabled == "") {
-            strHtml += '    <button class="button" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
+            strHtml += '    <button class="button" color="' + btnColor + '" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
         }else {
               strHtml += '    <button class="button" disabled="disabled" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
         }
@@ -335,13 +338,14 @@ function create_willbooklist() {
       var isOverCount = row.ReservationCount >= row.PeopleCount;
       var name = row.CourseTypeName == "亲子课程"?"0":"1";
       var stateImg = get_stateImg(row.PhaseStatus);
+      var btnColor = get_btncolor(row.PhaseStatus);
 
        //阶数
       var phasenumber = row.PhaseType;
       var disabled = "";
-      if (phasenumber == 3 || phasenumber == 4){if (isPhaseOne==0) {disabled="disabled"}};
+      // if (phasenumber == 3 || phasenumber == 4){if (isPhaseOne==0) {disabled="disabled"}};
 
-      var btnColor = disabled == ""? "#F24D4D":"#9B9B9B";
+      // var btnColor = disabled == ""? "#F24D4D":"#9B9B9B";
 
       if (isOverCount) {type = "候补"}else{type="预约"};
       
@@ -362,7 +366,7 @@ function create_willbooklist() {
        strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float:right;">'
-       if (disabled == "") {strHtml += '<button class="button" type="button"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'}
+       if (disabled == "") {strHtml += '<button class="button" color="' + btnColor + '" type="button"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'}
                       else {strHtml += '<button class="button" type="button" disabled="' + disabled +'"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'};
 
 
@@ -384,6 +388,7 @@ function create_bookedlist() {
         var type = get_type(row.PhaseStatus);
         var costName = get_costname(row.PhaseType);
         var stateImg = get_stateImg(row.PhaseStatus);
+        var btnColor = get_btncolor(row.PhaseStatus);
         var costImg = row.AccommodationFeedPaid > row.AccommodationCost ? "../../Images/book/cost_normal.png" : "../../Images/book/cost_selected.png";
         strHtml += '  <ul style="float: left;">'
         strHtml += '    <li>'
@@ -401,7 +406,7 @@ function create_bookedlist() {
         strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已缴纳"+ costName + '</font></li>'
         strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
-        strHtml += '    <button class="button" type="button" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
+        strHtml += '    <button class="button" type="button" color="'+btnColor +'" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
         strHtml += '  </ul>'
         strHtml += '<div style="clear: both;"></div>'
     }
@@ -419,6 +424,7 @@ function create_refundlist(){
         var color = isCost ? "#F24D4D" : "#9B9B9B";
         var type = get_type(row.PhaseStatus);
         var stateImg = get_stateImg(row.PhaseStatus);
+        var btnColor = get_btncolor(row.PhaseStatus);
         var costImg = row.AccommodationFeedPaid > row.AccommodationCost ? "../../Images/book/cost_normal.png" : "../../Images/book/cost_selected.png";
         strHtml += '  <ul style="float: left;">'
         strHtml += '    <li>'
@@ -436,7 +442,7 @@ function create_refundlist(){
         strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已退费" + '</font></li>'
         strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
-        strHtml += '    <button class="button" type="button" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
+        strHtml += '    <button class="button" color="'+ btnColor +'" type="button" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
         strHtml += '  </ul>'
         strHtml += '<div style="clear: both;"></div>'
     }
@@ -453,7 +459,7 @@ function get_type(t) {
             return "预约中";
             break;
         case 2:
-            return "转期";
+            return "候补转期";
             break;
         case 3:
             return "转期";
@@ -485,6 +491,30 @@ function get_costname(phaseType){
     return "食宿会场费";
     break;
   }
+}
+
+function get_btncolor(state){
+
+    switch(state){
+      case 0:
+      return "#F24D4D";
+      break;
+      case 1:
+      return "#4CD964";
+      break;
+      case 2:
+      return "#FD9526";
+      break;
+      case 3:
+      return "#F24D4D";
+      break;
+      case 4:
+      return "#9B9B9B";
+      break;
+      case 5:
+      return "#FECC2F";
+      break;
+    }
 }
 
 

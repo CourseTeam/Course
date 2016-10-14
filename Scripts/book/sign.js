@@ -275,7 +275,7 @@ function get_data(cid) {
             $(".zengzhi").append(zengzhiHtml);
         }
     }
-
+    
             // zengzhiHtml += '    <div class="radio">'
             // zengzhiHtml += '      <label>'
             // zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'

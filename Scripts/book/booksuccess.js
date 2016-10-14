@@ -17,7 +17,7 @@ function get_value(name){
 }
 
 var t=3;
-var a=setInterval(daojishi,1000);//1000毫秒
+var a=setInterval(daojishi,500);//500毫秒
 function daojishi(){
     t--;
    //刷新时间显示
@@ -26,5 +26,5 @@ function daojishi(){
         window.location.href = "../book/booking.html";
         //倒计时结束
     }
-
+    
 }
