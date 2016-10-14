@@ -122,7 +122,7 @@ function ValueAddedServicesShow(obj) {
                 str += "VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)<br>";
                 break;
             case 5:
-                str += "VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)<br>";
+                str += "VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(两阶14天)<br>";
                 break;
             default:
                 break;

@@ -126,7 +126,7 @@ function CourseInfo_Details() {
             strHtml_Serve += '      <li>VIP摩英大电影1980元(单阶7天)</li>';
             strHtml_Serve += '      <li>VIP蜕变水晶相册1280元(单阶7天)</li>';
             strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)</li>';
-            strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)</li>';
+            strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(两阶14天)</li>';
             if (full) {
                 strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')" id="registrationButton">立即候补</button></li>';
             } else {
