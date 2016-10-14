@@ -64,7 +64,8 @@ function CourseList(UserID, CourseTypeID) {
             strHtml += '           <div class="courseLine_leftImg" style="background: url(' + row.CourseImgUrl + ') center no-repeat;background-size: cover;">';
             if (row.MaxPhaseType < 1) {
                 if (full) {
-                strHtml += '               <img style="width: 75px; height: 75px;" src="../../Images/full.png">';
+                    strHtml += '               <img style="width: 75px; height: 75px;" src="../../Images/full.png">';
+                }
             }
             strHtml += '           </div>';
             strHtml += '       <div style="float: right;width: 74%;height: 80px;">';
