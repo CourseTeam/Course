@@ -150,7 +150,7 @@ function phase_book(obj) {
         "PhaseID": obj.sel_pid,
         "ParentCount": 0,
         "ValueAddedServices": obj.server_id,
-        "PhaseType": phaseinfo.phaseType
+        "PhaseType": phaseinfo.PhaseType
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add");
     if (result.Msg == "OK") {

@@ -311,7 +311,7 @@ function create_bookinglist() {
         strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
         if (disabled == "") {
-            strHtml += '    <button class="button" color="' + btnColor + '" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
+            strHtml += '    <button class="button"  type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '"; >' + type + '</button>'
         }else {
               strHtml += '    <button class="button" disabled="disabled" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
         }
@@ -441,7 +441,7 @@ function create_refundlist(){
         strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已退费" + '</font></li>'
         strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
-        strHtml += '    <button class="button" color="'+ btnColor +'" type="button" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
+        strHtml += '    <button class="button"  type="button" disabled="disabled" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">' + type + '</button>'
         strHtml += '  </ul>'
         strHtml += '<div style="clear: both;"></div>'
     }
