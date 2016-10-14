@@ -24,17 +24,18 @@ function CourseInfo_Details() {
         strHtml_Detials += '<ul class="list-unstyled" style="margin: 0px;padding: 10px;overflow: auto">';
         strHtml_Detials += '    <li style="font-size: 10px;">';
         strHtml_Detials += '        <img class="CourseDetials_leftImg" style="padding-bottom: 5px;" src="' + CourseDetials.CourseImgUrl + '" alt="...">';
-        strHtml_Detials += '        <h4 class="media-heading">' + CourseDetials.CourseName + '</h4>';
+        strHtml_Detials += '        <h4 class="media-heading text-center">' + CourseDetials.CourseName + '</h4>';
+        strHtml_Detials += '        <h5 class="text-center" style="color: red;">(预约按钮在最下方)</h5>';
         strHtml_Detials += '        ' + CourseDetials.Intro + '';
         strHtml_Detials += '    </li>';
-        strHtml_Detials += '    <li class="col-xs-12 pure" style="padding-top: 12px;">';
-        strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">最近开营时间：' + PhaseDetials.StartTime.split(" ")[0] + '</div>';
-        strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">地点：' + PhaseDetials.Place + '</div>';
-        strHtml_Detials += '    </li>';
-        strHtml_Detials += '    <li class="col-xs-12 pure" style="padding-top: 8px;">';
-        strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">剩余名额：' + residueCount + '</div>';
-        strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">预约截止时间：' + PhaseDetials.StartTime.split(" ")[0] + '</div>';
-        strHtml_Detials += '    </li>';
+        // strHtml_Detials += '    <li class="col-xs-12 pure" style="padding-top: 12px;">';
+        // strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">最近开营时间：' + PhaseDetials.StartTime.split(" ")[0] + '</div>';
+        // strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">地点：' + PhaseDetials.Place + '</div>';
+        // strHtml_Detials += '    </li>';
+        // strHtml_Detials += '    <li class="col-xs-12 pure" style="padding-top: 8px;">';
+        // strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">剩余名额：' + residueCount + '</div>';
+        // strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">预约截止时间：' + PhaseDetials.StartTime.split(" ")[0] + '</div>';
+        // strHtml_Detials += '    </li>';
         // for (var i = 0; i < 3; i++) {
         //     var type = "二";
         //     strHtml_Detials += '    <li class="col-xs-12 pure" style="padding-top: 12px;">';
@@ -126,7 +127,7 @@ function CourseInfo_Details() {
             strHtml_Serve += '      <li>VIP摩英大电影1980元(单阶7天)</li>';
             strHtml_Serve += '      <li>VIP蜕变水晶相册1280元(单阶7天)</li>';
             strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)</li>';
-            strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)</li>';
+            strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(两阶14天)</li>';
             if (full) {
                 strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ')" id="registrationButton">立即候补</button></li>';
             } else {
