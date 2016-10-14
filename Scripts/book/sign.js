@@ -216,7 +216,7 @@ function create_phaselist(data) {
             strHtml += '            <p>' + row.CoursePhaseName + '</p>'
             strHtml += '            <p>开始时间：' + row.StartTime.substring(0, 10) + '</p>'
             strHtml += '            <p>结束时间：' + row.EndTime.substring(0, 10) + '</p>'
-            strHtml += '            <p style="color:' + color + ';">报名人数：' + row.ReservationCount + '/' + row.PeopleCount + '</p>'
+            if (row.PhaseType != 1) {strHtml += '            <p style="color:' + color + ';">报名人数：' + row.ReservationCount + '/' + row.PeopleCount + '</p>'}
             strHtml += '        </label>'
             strHtml += '    </div>'
         }
