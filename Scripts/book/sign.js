@@ -113,8 +113,10 @@ function updateInfo(obj) {
 
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Edit");
     if (result.Msg == "OK" && result.Data == true) {
-        //更新个人信息成功
-
+        //更新个人信息成功 更改cookie
+        var param_cookie = {"UserID": UserInfo.UserID};
+        var result_cookie = $Course.GetAjaxJson(param_cookie, ApiUrl + "User/GetUserInfoByUserID");
+        $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {expires: 30, path: '/'});
     }
 
 }
@@ -216,7 +218,9 @@ function create_phaselist(data) {
             strHtml += '          <input type="radio" name="radio_phase" ptype="' + row.PhaseType + '" value="' + row.PhaseID + '">'
             strHtml += '            <p>' + row.CoursePhaseName + '</p>'
             if (row.PhaseType != 1 && row.PhaseType != 0) {
+
                 strHtml += '            <p style="color:red;">' + "(仅限参加过一阶课程的老学员)" + '</p>'
+
             }
             strHtml += '            <p>开始时间：' + row.StartTime.substring(0, 10) + '</p>'
             strHtml += '            <p>结束时间：' + row.EndTime.substring(0, 10) + '</p>'
