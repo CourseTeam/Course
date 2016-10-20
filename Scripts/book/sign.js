@@ -2,6 +2,7 @@
 var request;
 var course_id;
 
+var phaseinfo;
 
 $(function ($) {
 
@@ -91,7 +92,6 @@ function sure() {
 
 function updateInfo(obj) {
     // 更改个人信息
-    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     if (!dateVerify(obj.birth)) {
         layer.open({content: "出生日期格式不正确,请按照正确格式输入"});
         return;
@@ -113,8 +113,10 @@ function updateInfo(obj) {
 
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Edit");
     if (result.Msg == "OK" && result.Data == true) {
-        //更新个人信息成功
-
+        //更新个人信息成功 更改cookie
+        var param_cookie = {"UserID": UserInfo.UserID};
+        var result_cookie = $Course.GetAjaxJson(param_cookie, ApiUrl + "User/GetUserInfoByUserID");
+        $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {expires: 30, path: '/'});
     }
 
 }
@@ -141,16 +143,18 @@ function course_reg(obj) {
 }
 
 //阶段预约
+
 function phase_book(obj) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {
-        "UserID": UserInfo.UserID,
-        "CourseID": course_id,
-        "PhaseID": obj.sel_pid,
-        "ParentCount": 0,
-        "ValueAddedServices": obj.channel,
-        "PhaseType": 1
-    };
+            "UserID": UserInfo.UserID,
+            "CourseID": course_id,
+            "PhaseID": obj.sel_pid,
+            "ParentCount": 0,
+            "ValueAddedServices": obj.server_id,
+            "PhaseType": $("input[name=radio_phase]:checked").attr("ptype")
+        }
+        ;
     var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add");
     if (result.Msg == "OK") {
         layer.open({
@@ -211,11 +215,18 @@ function create_phaselist(data) {
             var color = row.ReservationCount == row.PeopleCount ? "red" : "black"
             strHtml += '	<div class="radio">'
             strHtml += '       <label>'
-            strHtml += '          <input type="radio" name="radio_phase" value="' + row.PhaseID + '">'
+            strHtml += '          <input type="radio" name="radio_phase" ptype="' + row.PhaseType + '" value="' + row.PhaseID + '">'
             strHtml += '            <p>' + row.CoursePhaseName + '</p>'
+            if (row.PhaseType != 1 && row.PhaseType != 0) {
+
+                strHtml += '            <p style="color:red;">' + "(仅限参加过一阶课程的老学员)" + '</p>'
+
+            }
             strHtml += '            <p>开始时间：' + row.StartTime.substring(0, 10) + '</p>'
             strHtml += '            <p>结束时间：' + row.EndTime.substring(0, 10) + '</p>'
-            strHtml += '            <p style="color:' + color + ';">报名人数：' + row.ReservationCount + '/' + row.PeopleCount + '</p>'
+            if (row.PhaseType != 1) {
+                strHtml += '            <p style="color:' + color + ';">报名人数：' + row.ReservationCount + '/' + row.PeopleCount + '</p>'
+            }
             strHtml += '        </label>'
             strHtml += '    </div>'
         }
@@ -229,51 +240,57 @@ function get_data(cid) {
     // CourseRegistration/PhaseRegistration_PhaseStatus_Upd
     var couseid = cid;
     var param = {"CourseID": couseid};
+    var phase_type = cid
     var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
-    if (result.Msg == "OK" && result.Data.length > 0) {
+    console.log(result)
+    if (result.Msg == "OK") {
         request = result.Data.courseInfo;
+        phaseinfo = result.Data.phaselist[0];
         $("#course_title").html(result.Data.courseInfo.CourseName);
+        // alert(result.Data.courseInfo.CourseName);
+
+        if (phaseinfo.PhaseType == 1 || phaseinfo.PhaseType == 2) {
+            var zengzhiHtml = "";
+            zengzhiHtml += '<p class="zengzhi_title">请选择您的增值服务</p>'
+            zengzhiHtml += '	<div class="radio">'
+            zengzhiHtml += '       <label>'
+            zengzhiHtml += '          <input type="radio" name="radio_server" value="1">'
+            zengzhiHtml += '            <p>统一版摩英回忆视频300元（单阶7天）</p>'
+            zengzhiHtml += '        </label>'
+            zengzhiHtml += '    </div>'
+            zengzhiHtml += '    <div class="radio">'
+            zengzhiHtml += '      <label>'
+            zengzhiHtml += '        <input type="radio" name="radio_server" value="2">'
+            zengzhiHtml += '        <p>VIP摩英大电影1980元（单阶7天）</p>'
+            zengzhiHtml += '      </label>'
+            zengzhiHtml += '   </div>'
+            zengzhiHtml += '    <div class="radio">'
+            zengzhiHtml += '      <label>'
+            zengzhiHtml += '        <input type="radio" name="radio_server" value="3">'
+            zengzhiHtml += '        <p>VIP蜕变水晶相册1280元（单阶7天）</p>'
+            zengzhiHtml += '      </label>'
+            zengzhiHtml += '    </div>'
+            zengzhiHtml += '    <div class="radio">'
+            zengzhiHtml += '      <label>'
+            zengzhiHtml += '        <input type="radio" name="radio_server" value="4">'
+            zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册2680元 强烈推荐 性价比极高（单阶7天）</p>'
+            zengzhiHtml += '      </label>'
+            zengzhiHtml += '    </div>'
+            zengzhiHtml += '      <div class="radio">'
+            zengzhiHtml += '      <label>'
+            zengzhiHtml += '        <input type="radio" name="radio_server" value="0" checked="checked">'
+            zengzhiHtml += '        <p>不需要此项服务</p>'
+            zengzhiHtml += '      </label>'
+            zengzhiHtml += '    </div>'
+            $(".zengzhi").append(zengzhiHtml);
+        }
     }
 
-    var zengzhiHtml = "";
-    zengzhiHtml += '<p class="zengzhi_title">请选择您的增值服务</p>'
-    zengzhiHtml += '	<div class="radio">'
-    zengzhiHtml += '       <label>'
-    zengzhiHtml += '          <input type="radio" name="radio_server" value="1">'
-    zengzhiHtml += '            <p>统一版摩英回忆视频300元（单阶7天）</p>'
-    zengzhiHtml += '        </label>'
-    zengzhiHtml += '    </div>'
-    zengzhiHtml += '    <div class="radio">'
-    zengzhiHtml += '      <label>'
-    zengzhiHtml += '        <input type="radio" name="radio_server" value="2">'
-    zengzhiHtml += '        <p>VIP摩英大电影1980元（单阶7天）</p>'
-    zengzhiHtml += '      </label>'
-    zengzhiHtml += '   </div>'
-    zengzhiHtml += '    <div class="radio">'
-    zengzhiHtml += '      <label>'
-    zengzhiHtml += '        <input type="radio" name="radio_server" value="3">'
-    zengzhiHtml += '        <p>VIP蜕变水晶相册1280元（单阶7天）</p>'
-    zengzhiHtml += '      </label>'
-    zengzhiHtml += '    </div>'
-    zengzhiHtml += '    <div class="radio">'
-    zengzhiHtml += '      <label>'
-    zengzhiHtml += '        <input type="radio" name="radio_server" value="4">'
-    zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册2680元 强烈推荐 性价比极高（单阶7天）</p>'
-    zengzhiHtml += '      </label>'
-    zengzhiHtml += '    </div>'
-    zengzhiHtml += '    <div class="radio">'
-    zengzhiHtml += '      <label>'
-    zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
-    zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
-    zengzhiHtml += '      </label>'
-    zengzhiHtml += '    </div>'
-    zengzhiHtml += '      <div class="radio">'
-    zengzhiHtml += '      <label>'
-    zengzhiHtml += '        <input type="radio" name="radio_server" value="0" checked="checked">'
-    zengzhiHtml += '        <p>不需要此项服务</p>'
-    zengzhiHtml += '      </label>'
-    zengzhiHtml += '    </div>'
-    $(".zengzhi").append(zengzhiHtml);
-
+    // zengzhiHtml += '    <div class="radio">'
+    // zengzhiHtml += '      <label>'
+    // zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
+    // zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
+    // zengzhiHtml += '      </label>'
+    // zengzhiHtml += '    </div>'
 
 }

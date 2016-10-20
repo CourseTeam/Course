@@ -147,7 +147,7 @@ function ValueAddedServicesShow(id) {
                     str = "VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)";
                     break;
                 case 5:
-                    str = "VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)";
+                    str = "VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(两阶14天)";
                     break;
                 default:
                     break;
@@ -229,7 +229,7 @@ function PhaseStatus_Edit(PhaseReservationID, PhaseStatus, UserID) {
                 UserID: UserID,
                 PhaseStatus: $("#phaseStatusBox select").val()
             };
-            var result = $Course.PostAjaxJson(param, 'http://localhost:60182/' + "PhaseRegistration/PhaseStatus_Edit");
+            var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseStatus_Edit");
             if (result.Msg == "OK") {
                 PhaseRegistration_List();
                 layer.msg("修改成功！", {icon: 1, time: 2000}, function () {

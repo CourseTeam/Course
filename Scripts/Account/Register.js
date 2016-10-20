@@ -3,6 +3,7 @@
  */
 var s = 60;
 $(function ($) {
+    //createCode();
     //发送验证码
     $("#btnSendSMS").on("click", function () {
         if (s == 60) {
@@ -17,9 +18,16 @@ $(function ($) {
 });
 
 
-var VerificationCode = 0;
 //获取验证码
 function GetSMSCode() {
+    // if (!validate()){
+    //     layer.open({
+    //         content: '图片验证码错误！',
+    //         style: 'background-color:#fff; color:#000; border:none;width:60%',
+    //         time: 2
+    //     });
+    //     return;
+    // }
     var PhoneNum = $("#Phone").val();
     if (!PhoneNum) {
         layer.open({
@@ -40,7 +48,6 @@ function GetSMSCode() {
     var param = {Phone: PhoneNum, Type: 1};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Account/GetSMSCode");
     if (result.Msg == "OK") {
-        VerificationCode = result.Data;
         var time = setInterval(function () {
             s--;
             $("#btnSendSMS").html(s + '秒');
@@ -61,6 +68,7 @@ function GetSMSCode() {
 //注册
 function Register() {
     var PhoneNum = $("#Phone").val();
+
     if (!PhoneNum) {
         layer.open({
             content: '请输入手机号',
@@ -78,9 +86,25 @@ function Register() {
         return;
     }
     var _VerificationCode = $("#VerificationCode").val();
-    if (VerificationCode != _VerificationCode) {
+    // if (VerificationCode != _VerificationCode) {
+    //     layer.open({
+    //         content: '验证码错误!',
+    //         style: 'background-color:#fff; color:#000; border:none;width:60%',
+    //         time: 2
+    //     });
+    //     return;
+    // }
+    // if (!validate()){
+    //     layer.open({
+    //         content: '验证码错误！',
+    //         style: 'background-color:#fff; color:#000; border:none;width:60%',
+    //         time: 2
+    //     });
+    //     return;
+    // }
+    if (!_VerificationCode) {
         layer.open({
-            content: '验证码错误!',
+            content: '请输入验证码!',
             style: 'background-color:#fff; color:#000; border:none;width:60%',
             time: 2
         });
@@ -96,7 +120,7 @@ function Register() {
         return;
     }
     Pwd = $Course.MD5(Pwd);
-    var param = {Phone: PhoneNum, Pwd: Pwd};
+    var param = {Phone: PhoneNum, Pwd: Pwd, Code: _VerificationCode};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Account/Register");
     if (result.Msg == "OK") {
         layer.open({
@@ -107,6 +131,12 @@ function Register() {
                 //15021615315
                 window.location.href = "Login.html";
             }
+        });
+    } else {
+        layer.open({
+            content: result.Msg,
+            style: 'background-color:#fff; color:#000; border:none;width:60%',
+            time: 2
         });
     }
 }
