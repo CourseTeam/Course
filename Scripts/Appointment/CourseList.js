@@ -92,9 +92,7 @@ function CourseList(UserID, CourseTypeID) {
             //         }
             //     }
             // } else {
-            if (row.CourseStatus == 1 || row.CourseStatus == 0) {
-            //     strHtml += '                   <button class="registrationButton" style="background-color: #999999;">已退费</button>';
-            // } else if(row.CourseStatus == 0) {
+            if (row.CourseStatus == 0) {
                 strHtml += '                   <button class="registrationButton">已预约</button>';
             } else if(!full || row.MaxPhaseType < 1) {
                 strHtml += '                   <button class="registrationButton">立即预约</button>';
