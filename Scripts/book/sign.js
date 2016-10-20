@@ -124,7 +124,7 @@ function updateInfo(obj) {
     }
 
     if (obj.name == "" || obj.sex == "" || obj.school == "" || obj.birth == ""
-        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" || obj.address == "" || obj.server_id == "") {
+        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" || obj.address == "" || obj.server_id == undefined || obj.sel_pid == undefined) {
         layer.open({content: "信息输入未完整，请填写完整再预约"});
         return;
     }
@@ -147,10 +147,18 @@ function updateInfo(obj) {
 
 //课程报名
 function course_reg(obj) {
+
+    if (obj.name == "" || obj.sex == "" || obj.school == "" || obj.birth == ""
+        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" || obj.address == "" || obj.server_id == undefined || obj.sel_pid == undefined) {
+        layer.open({content: "信息输入未完整，请填写完整再预约"});
+        return;
+    }
+
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {"UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel, 
     			 "Preparer": obj.inputer,"Sponsor":obj.sponsor,"TellMe":obj.tellme};
     var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_Add");
+
     if (result.Msg == "OK" && result.Data != false) {
         //课程报名成功
         layer.open({
@@ -322,7 +330,7 @@ function get_data(cid) {
             zengzhiHtml += '        </label>'
             zengzhiHtml += '    </div>'
             zengzhiHtml += '    <div class="radio">'
-            zengzhiHtml += '      <label>'
+            zengzhiHtml += '     <label>'
             zengzhiHtml += '        <input type="radio" name="radio_server" value="2">'
             zengzhiHtml += '        <p>VIP摩英大电影：' + '<span style="color:red">1980元</span>' + '（单阶7天）</p>'
             zengzhiHtml += '      </label>'
