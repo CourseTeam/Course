@@ -10,6 +10,9 @@ var bookType;
 var serviceType;
 var qinziType;
 
+var isNiujin;
+
+
 //预约数据请求
 var phase_id;
 var course_id;
@@ -31,21 +34,22 @@ var isPhaseOne;
 var isPhaseThree;
 
 $(function ($) {
-    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    userID = UserInfo.UserID;
+    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    // userID = UserInfo.UserID;
+    
     isHaveData = false;
     var screen_width = window.screen.width;
     if (screen_width <= 320)phasename_width = "45%";
     else if (screen_width <= 500)phasename_width = "50%";
     else if (screen_width <= 640)phasename_width = "60%";
     else if (screen_width <= 800)phasename_width = "70%";
-
+    
     getPhaseStatus();
     get_bookingdata();
     get_willbookdata();
     get_bookeddata();
     get_refunddata();
-
+    
     if (!isHaveData) {
         document.getElementById("contentImg").src= "../../Images/book/book_null.png";
     }else {
@@ -207,8 +211,10 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
 
 
 function getPhaseStatus() {
-    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    var param = {"UserID": UserInfo.UserID};
+    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    // var param = {"UserID": UserInfo.UserID};
+    var param = {"UserID": 156};
+
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
         isPhaseOne = result.Data.PhaseType1OR2;
@@ -218,7 +224,7 @@ function getPhaseStatus() {
 
 function get_bookingdata() {
     var uid = userID;
-    var param = {"UserID": uid, "Type": 1};
+    var param = {"UserID": 156, "Type": 1};
 
     booking_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
@@ -234,7 +240,7 @@ function get_bookingdata() {
 
 function get_willbookdata() {
     var uid = userID;
-    var param = {"UserID": uid, "Type": 2};
+    var param = {"UserID": 156, "Type": 2};
     willbook_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
 
@@ -249,7 +255,7 @@ function get_willbookdata() {
 
 function get_bookeddata() {
     var uid = userID;
-    var param = {"UserID": uid, "Type": 3};
+    var param = {"UserID": 156, "Type": 3};
     booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
     if (booked_result.Msg == "OK") {
@@ -262,7 +268,7 @@ function get_bookeddata() {
 
 function get_refunddata(){
     var uid = userID;
-    var param = {"UserID": uid, "Type": 4};
+    var param = {"UserID": 156, "Type": 4};
     booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
     if (booked_result.Msg == "OK") {
@@ -280,24 +286,31 @@ function create_bookinglist() {
     strHtml += '  <ul class="title">已预约课程，开课两周前可转期</ul>'
     for (var i = 0; i < booking_result.Data.length; i++) {
         var row = booking_result.Data[i];
+        if (row.CoursePhaseName == "牛津剑桥游学营") {isNiujin = true};
         var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
         var costName = get_costname(row.PhaseType);
-        var costTitle = isCost ? "已缴纳"+costName : "未缴纳"+costName;
+        var costTitle = isCost ? "已缴纳"+costName : "未缴纳" + costName;
         var img = isCost ? "../../Images/book/cost_selected.png" : "../../Images/book/cost_normal.png";
         var type = get_type(row.PhaseStatus);
         var stateImg = get_stateImg(row.PhaseStatus);
-
+        var courseImg = get_courseImg(row.PhaseType);
+        var addstext = get_addservname(row.ValueAddedServices);
         // var disabled = row.PhaseStatus == 3 || row.PhaseStatus == 2 ? "" : "disabled";
         var disabled = "";
         var btnColor = get_btncolor(row.PhaseStatus);
+        if (isNiujin && row.PhaseStatus == 3) {disabled="disabled",btnColor=get_btncolor(4)}
 
         //转期参数
         var param = {"pid": row.PhaseID, "cpname": row.CoursePhaseName};
         var color = isCost ? "#F24D4D" : "#9B9B9B";
+        var serv_color = row.ValueAddedServices == 0? "#9B9B9B" : "#F24D4D";
+        var serv_img = row.ValueAddedServices == 0?"../../Images/book/serv_icon_normal.png":"../../Images/book/serv_icon_selected.png";
+
+
         strHtml += '  <ul style="float: left;">'
         strHtml += '    <li>'
         if (stateImg != "") {
-            strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
+            strHtml += '        <div style="background:url(' + courseImg + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
         } else {
             strHtml += '        <div><img id= img -' + i + ' width="75" height="75" src="' + row.CourseImgUrl + '"></div>'
         }
@@ -307,13 +320,17 @@ function create_bookinglist() {
         strHtml += '    <li "><font class="name">' + row.CoursePhaseName + '</font></li>'
         strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
         strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
-        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costTitle + '</font></li>'
+        if (!isNiujin) {
+           strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costTitle + '</font></li>'
+           strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
+        }
         strHtml += '  </ul>'
+      
         strHtml += '  <ul style="float:right;">'
         if (disabled == "") {
             strHtml += '    <button class="button"  type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '"; >' + type + '</button>'
         }else {
-              strHtml += '    <button class="button" disabled="disabled" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
+            strHtml += '    <button class="button" disabled="disabled" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px;" >' + type + '</button>'
         }
         strHtml += '  </ul>'
         strHtml += '<div style="clear: both;"></div>'
@@ -329,6 +346,7 @@ function create_willbooklist() {
     for (var i = 0; i < willbook_result.Data.length; i++) {
 
       var row = willbook_result.Data[i];
+
       var isCost = row.AccommodationFeesPaid >= row.AccommodationCost && row.AccommodationCost != 0;
       var type = get_type(row.PhaseStatus);
       var costName = get_costname(row.PhaseType);
@@ -338,12 +356,15 @@ function create_willbooklist() {
       var name = row.CourseTypeName == "亲子课程"?"0":"1";
       var stateImg = get_stateImg(row.PhaseStatus);
       var btnColor = get_btncolor(row.PhaseStatus);
-
-       //阶数
+      var courseImg = get_courseImg(row.PhaseType);
+      var addstext = get_addservname(row.ValueAddedServices);
+      var serv_color = row.ValueAddedServices == 0? "#9B9B9B" : "#F24D4D";
+      var serv_img = row.ValueAddedServices == 0?"../../Images/book/serv_icon_normal.png":"../../Images/book/serv_icon_selected.png";
+      
+      //阶数
       var phasenumber = row.PhaseType;
       var disabled = "";
       // if (phasenumber == 3 || phasenumber == 4){if (isPhaseOne==0) {disabled="disabled"}};
-
       // var btnColor = disabled == ""? "#F24D4D":"#9B9B9B";
 
       if (isOverCount) {type = "候补"}else{type="预约"};
@@ -352,7 +373,7 @@ function create_willbooklist() {
        strHtml += '  <ul style="float: left;">' 
        strHtml += '    <li>'
        if (stateImg != "") {
-          strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -'+ i +'width="75" height="75"  src="' + stateImg +'"></div>'
+          strHtml += '        <div style="background:url(' + courseImg + ') no-repeat;background-size: cover;"><img id= img -'+ i +'width="75" height="75"  src="' + stateImg +'"></div>'
        }else {
           strHtml += '        <div><img  width="75" height="75"  src="' + row.CourseImgUrl +'"></div>'
        }
@@ -362,12 +383,12 @@ function create_willbooklist() {
        strHtml += '    <li><font class="name">'+ row.CoursePhaseName + '</font></li>'
        strHtml += '    <li><font class="time">'+ "开营时间：" + row.StartTime.substr(0,10) + '</font></li>'
        strHtml += '    <li><font class="location">'+ row.Place + '</font></li>'
-       strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'
+       strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
+      strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
        strHtml += '  </ul>'
        strHtml += '  <ul style="float:right;">'
        if (disabled == "") {strHtml += '<button class="button" color="' + btnColor + '" type="button"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'}
                       else {strHtml += '<button class="button" type="button" disabled="' + disabled +'"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'};
-
 
        strHtml += '  </ul>'
        strHtml += '<div style="clear: both;"></div>'
@@ -388,11 +409,15 @@ function create_bookedlist() {
         var costName = get_costname(row.PhaseType);
         var stateImg = get_stateImg(row.PhaseStatus);
         var btnColor = get_btncolor(row.PhaseStatus);
+        var courseImg = get_courseImg(row.PhaseType);
         var costImg = row.AccommodationFeedPaid > row.AccommodationCost ? "../../Images/book/cost_normal.png" : "../../Images/book/cost_selected.png";
+        var serv_color = row.ValueAddedServices == 0? "#9B9B9B" : "#F24D4D";
+        var serv_img = row.ValueAddedServices == 0?"../../Images/book/serv_icon_normal.png":"../../Images/book/serv_icon_selected.png";
+
         strHtml += '  <ul style="float: left;">'
         strHtml += '    <li>'
         if (stateImg != "") {
-            strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
+            strHtml += '        <div style="background:url(' + courseImg + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
         } else {
             strHtml += '        <div><img id= img -' + i + 'width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
         }
@@ -402,10 +427,11 @@ function create_bookedlist() {
         strHtml += '    <li><font class="name">' + row.CoursePhaseName + '</font></li>'
         strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
         strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
-        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已缴纳"+ costName + '</font></li>'
+        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已缴纳" + costName + '</font></li>'
+        strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
         strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
-        strHtml += '    <button class="button" type="button" color="'+btnColor +'" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
+        strHtml += '    <button class="button" type="button" color="'+ btnColor +'" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
         strHtml += '  </ul>'
         strHtml += '<div style="clear: both;"></div>'
     }
@@ -538,6 +564,47 @@ function get_stateImg(state) {
             return "../../Images/book/yituifei.png";
             break;
     }
+}
+
+function get_courseImg(state){
+  switch(state){
+    case 1:
+      return "../../Images/book/phase_one_bg.png";
+    break;
+    case 2:
+      return "../../Images/book/phase_two_bg.png";
+    break;
+    case 3:
+      return "../../Images/book/phase_three_bg.png";
+    break;
+    case 4:
+      return "../../Images/book/phase_four_bg.png";
+    break;
+  }
+}
+
+function get_addservname(state){
+  switch(state){
+    case 0:
+    return "未选择增值服务";
+    break;
+    case 1:
+    return "已选择增值服务300套餐";
+    break;
+    case 2:
+    return "已选择增值服务1980套餐";
+    break;
+    case 3:
+    return "已选择增值服务1280套餐";
+    break;
+    case 4:
+    return "已选择增值服务2680套餐";
+    break;
+    case 5:
+    return "已选择增值服务3980套餐";
+    break;
+
+  }
 }
 
 function start_book() {

@@ -1,42 +1,63 @@
 //报名
 var request;
 var course_id;
+var courseTID;
 
 var phaseinfo;
 
+var isOpenOther;
+
 $(function ($) {
 
-    get_request("CourseID");
-    get_phaselist("CourseID");
+    // get_request("CourseID","CourseTypeID");
+    // get_phaselist("CourseID");
 
     var sureButton = document.getElementById("sureButton");
     sureButton.onclick = function () {
         sure();
     };
 
-    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    //alert(UserInfo);
-    if (UserInfo) {
-        //noinspection JSAnnotator
-        document.getElementById("tel").value = UserInfo.Phone;
-        document.getElementById("email").value = UserInfo.Email;
-        document.getElementById("name").value = UserInfo.NickName;
-        $("input[name=sexRadio]").val(UserInfo.Sex);
-        document.getElementById("school").value = UserInfo.School;
-        document.getElementById("grade").value = UserInfo.Grade;
-        document.getElementById("class").value = UserInfo.ClassName;
-        document.getElementById("birth").value = UserInfo.BirthDay.split(" ")[0];
-
-        document.getElementById("f_name").value = UserInfo.FatherName;
-        document.getElementById("f_tel").value = UserInfo.FatherPhone;
-        document.getElementById("m_name").value = UserInfo.MotherName;
-        document.getElementById("m_tel").value = UserInfo.MotherPhone;
-        document.getElementById("telephone").value = UserInfo.Tel;
-        document.getElementById("address").value = UserInfo.Address;
-
+    var otherStud = document.getElementById("other_radio");
+    otherStud.onclick = function(){
+    	other();
+    	isOpenOther = true;
     }
 
+
+    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    // if (UserInfo) {
+    //     //noinspection JSAnnotator
+    //     document.getElementById("tel").value = UserInfo.Phone;
+    //     document.getElementById("email").value = UserInfo.Email;
+    //     document.getElementById("name").value = UserInfo.NickName;
+    //     $("input[name=sexRadio]").val(UserInfo.Sex);
+    //     document.getElementById("school").value = UserInfo.School;
+    //     document.getElementById("grade").value = UserInfo.Grade;
+    //     document.getElementById("class").value = UserInfo.ClassName;
+    //     document.getElementById("birth").value = UserInfo.BirthDay.split(" ")[0];
+
+    //     document.getElementById("f_name").value = UserInfo.FatherName;
+    //     document.getElementById("f_tel").value = UserInfo.FatherPhone;
+    //     document.getElementById("m_name").value = UserInfo.MotherName;
+    //     document.getElementById("m_tel").value = UserInfo.MotherPhone;
+    //     document.getElementById("telephone").value = UserInfo.Tel;
+    //     document.getElementById("address").value = UserInfo.Address;
+    // }
+
 });
+
+
+function other() {
+	if (!isOpenOther) {
+		var otherHtml = "";
+	    otherHtml += '	<div class="radio">'
+	  	otherHtml += '   <label>请输入介绍人（学生）姓名：'
+	    otherHtml += '     <input type="text" name="channelRadio">'
+	    otherHtml += '   </label>'
+	    otherHtml += ' </div>'
+		$(".channel-row").append(otherHtml);
+	}
+}
 
 
 function sure() {
@@ -56,11 +77,12 @@ function sure() {
     var m_tel = $("#m_tel").val();
     var telephone = $("#telephone").val();
     var address = $("#address").val();
+    var factory = $("#factory").val();
+    var remark = $("#remark").val();
 
     var sex = $("input[name=sexRadio]:checked").val();
     var inputer = $("input[name=inputerRadio]:checked").val();
     var channel = $("input[name=channelRadio]:checked").val();
-
     var sel_pid = $("input[name=radio_phase]:checked").val();
 
 
@@ -83,8 +105,12 @@ function sure() {
     param.inputer = inputer;
     param.channel = channel;
     param.sel_pid = sel_pid;
+    param.sponsor = factory;
+    param.tellme = remark;
 
-    updateInfo(param);
+    if (courseTID != 2) {
+	    updateInfo(param);
+    }
     course_reg(param);
 
 }
@@ -97,9 +123,8 @@ function updateInfo(obj) {
         return;
     }
 
-    if (obj.name == "" || obj.sex == "" || obj.school == "" || obj.grade == "" || obj.class == "" || obj.birth == ""
-        || obj.email == "" || obj.tel == "" || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" ||
-        obj.telephone == "" || obj.address == "") {
+    if (obj.name == "" || obj.sex == "" || obj.school == "" || obj.birth == ""
+        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" || obj.address == "") {
         layer.open({content: "信息输入未完整，请填写完整再预约"});
         return;
     }
@@ -118,13 +143,13 @@ function updateInfo(obj) {
         var result_cookie = $Course.GetAjaxJson(param_cookie, ApiUrl + "User/GetUserInfoByUserID");
         $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {expires: 30, path: '/'});
     }
-
 }
 
 //课程报名
 function course_reg(obj) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    var param = {"UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel, "Preparer": obj.inputer};
+    var param = {"UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel, 
+    			 "Preparer": obj.inputer,"Sponsor":obj.sponsor,"TellMe":obj.tellme};
     var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_Add");
     if (result.Msg == "OK" && result.Data != false) {
         //课程报名成功
@@ -142,8 +167,14 @@ function course_reg(obj) {
     }
 }
 
-//阶段预约
+//智慧家长报名
+function parent_reg(obj) {
+   var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+   var param = {"UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel, "Preparer": obj.inputer};
 
+}
+
+//阶段预约
 function phase_book(obj) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {
@@ -164,7 +195,6 @@ function phase_book(obj) {
             }
         });
     }
-
 }
 
 
@@ -174,18 +204,59 @@ function dateVerify(date) {
     return true;
 }
 
-function get_request(courseid) {
+
+function get_request(courseid,CourseTypeID) {
     var str = window.location.search;   //location.search是从当前URL的?号开始的字符串
     if (str.indexOf(courseid) != -1) {
         var pos_start = str.indexOf(courseid) + courseid.length + 1;
         var pos_end = str.indexOf("&", pos_start);
-        var pid = str.substring(pos_start);
+        var pid = str.substring(pos_start,pos_end);
         //获取课程详情 目前使用假数据
         course_id = pid;
         get_data(pid);
     }
+
+    if (str.indexOf(CourseTypeID) != -1) {
+    	 var pos_start = str.indexOf(CourseTypeID) + CourseTypeID.length + 1;
+        var pos_end = str.indexOf("&", pos_start);
+        var ctid = str.substring(pos_start);
+        //获取课程详情 目前使用假数据
+        courseTID = ctid;
+        if (courseTID == 2) {
+        	//智慧家长课程
+        	create_parentlist();
+        }
+    }
+
 }
 
+
+function create_parentlist(){
+// 	报名表,把学校、年级、班级、父母联系方式以及姓
+// 名、填表人去除,改成工作单位、备注
+
+	document.getElementById("m_name_text").style.display = "none";
+	document.getElementById("m_tel_text").style.display = "none";
+	document.getElementById("f_name_text").style.display = "none";
+	document.getElementById("f_tel_text").style.display = "none";
+	document.getElementById("inputter").style.display = "none";
+	document.getElementById("school_text").style.display = "none";
+	document.getElementById("grade_text").style.display = "none";
+	document.getElementById("class_text").style.display = "none";
+	document.getElementById("name_text").style.display = "none";
+
+	var parentHtml = "";
+	parentHtml += '<div  class="row" id="f_name_text">'
+	parentHtml += '		<div class="col-xs-4"><p class="text">工作单位</p></div>'
+	parentHtml += '		<div class="col-xs-8"><input class="input" id="factory" type="text"></div>'
+	parentHtml += '	</div>'
+	parentHtml += '	<div  class="row" id="f_tel_text">'
+	parentHtml += '		<div class="col-xs-4"><p class="text">备注</p></div>'
+	parentHtml += '		<div class="col-xs-8"><input class="input" id="remark" type="text"></div>'
+	parentHtml += '	</div>'
+	$(".other").append(parentHtml);
+
+}
 
 //课程一阶列表数据获取
 function get_phaselist(cid) {
@@ -225,24 +296,21 @@ function create_phaselist(data) {
             strHtml += '        </label>'
             strHtml += '    </div>'
         }
-
         $(".phase_container").append(strHtml);
     }
 }
 
 function get_data(cid) {
 
-    // CourseRegistration/PhaseRegistration_PhaseStatus_Upd
     var couseid = cid;
     var param = {"CourseID": couseid};
     var phase_type = cid
     var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Details");
-    console.log(result)
+
     if (result.Msg == "OK") {
         request = result.Data.courseInfo;
         phaseinfo = result.Data.phaselist[0];
         $("#course_title").html(result.Data.courseInfo.CourseName);
-        // alert(result.Data.courseInfo.CourseName);
 
         if (phaseinfo.PhaseType == 1 || phaseinfo.PhaseType == 2) {
             var zengzhiHtml = "";
@@ -250,28 +318,28 @@ function get_data(cid) {
             zengzhiHtml += '	<div class="radio">'
             zengzhiHtml += '       <label>'
             zengzhiHtml += '          <input type="radio" name="radio_server" value="1">'
-            zengzhiHtml += '            <p>统一版摩英回忆视频300元（单阶7天）</p>'
+            zengzhiHtml += '            <p>统一版摩英回忆视频：' + '<span style="color:red">300元</span>' + '（单阶7天）</p>'
             zengzhiHtml += '        </label>'
             zengzhiHtml += '    </div>'
             zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '      <label>'
             zengzhiHtml += '        <input type="radio" name="radio_server" value="2">'
-            zengzhiHtml += '        <p>VIP摩英大电影1980元（单阶7天）</p>'
+            zengzhiHtml += '        <p>VIP摩英大电影：' + '<span style="color:red">1980元</span>' + '（单阶7天）</p>'
             zengzhiHtml += '      </label>'
             zengzhiHtml += '   </div>'
             zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '      <label>'
             zengzhiHtml += '        <input type="radio" name="radio_server" value="3">'
-            zengzhiHtml += '        <p>VIP蜕变水晶相册1280元（单阶7天）</p>'
+            zengzhiHtml += '        <p>VIP蜕变水晶相册：' + '<span style="color:red">1280元</span>' + '（单阶7天）</p>'
             zengzhiHtml += '      </label>'
             zengzhiHtml += '    </div>'
             zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '      <label>'
             zengzhiHtml += '        <input type="radio" name="radio_server" value="4">'
-            zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册2680元 强烈推荐 性价比极高（单阶7天）</p>'
+            zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册：' + '<span style="color:red">2680元</span>'+ '(单阶7天)' + '<span style="color:red">强烈推荐，性价比极高</span>' + '</p>'
             zengzhiHtml += '      </label>'
             zengzhiHtml += '    </div>'
-            zengzhiHtml += '      <div class="radio">'
+            zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '      <label>'
             zengzhiHtml += '        <input type="radio" name="radio_server" value="0" checked="checked">'
             zengzhiHtml += '        <p>不需要此项服务</p>'
