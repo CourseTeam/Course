@@ -36,20 +36,20 @@ var isPhaseThree;
 $(function ($) {
     // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     // userID = UserInfo.UserID;
-    
+
     isHaveData = false;
     var screen_width = window.screen.width;
     if (screen_width <= 320)phasename_width = "45%";
     else if (screen_width <= 500)phasename_width = "50%";
     else if (screen_width <= 640)phasename_width = "60%";
     else if (screen_width <= 800)phasename_width = "70%";
-    
+
     getPhaseStatus();
     get_bookingdata();
     get_willbookdata();
     get_bookeddata();
     get_refunddata();
-    
+
     if (!isHaveData) {
         document.getElementById("contentImg").src= "../../Images/book/book_null.png";
     }else {
@@ -375,7 +375,7 @@ function create_willbooklist() {
        if (stateImg != "") {
           strHtml += '        <div style="background:url(' + courseImg + ') no-repeat;background-size: cover;"><img id= img -'+ i +'width="75" height="75"  src="' + stateImg +'"></div>'
        }else {
-          strHtml += '        <div><img  width="75" height="75"  src="' + row.CourseImgUrl +'"></div>'
+          strHtml += '        <div><img  width="75" height="75"  src="' + courseImg +'"></div>'
        }
        strHtml += '    </li>'
        strHtml += '  </ul>'
@@ -419,7 +419,7 @@ function create_bookedlist() {
         if (stateImg != "") {
             strHtml += '        <div style="background:url(' + courseImg + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
         } else {
-            strHtml += '        <div><img id= img -' + i + 'width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
+            strHtml += '        <div><img id= img -' + i + 'width="75" height="75"  src="' + courseImg + '"></div>'
         }
         strHtml += '    </li>'
         strHtml += '  </ul>'
@@ -456,7 +456,7 @@ function create_refundlist(){
         if (stateImg != "") {
             strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
         } else {
-            strHtml += '        <div><img id="img -' + i + '" width="75" height="75"  src="' + row.CourseImgUrl + '"></div>'
+            strHtml += '        <div><img id="img -' + i + '" width="75" height="75"  src="' + courseImg + '"></div>'
         }
         strHtml += '    </li>'
         strHtml += '  </ul>'
