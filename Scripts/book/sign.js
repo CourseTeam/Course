@@ -124,7 +124,7 @@ function updateInfo(obj) {
     }
 
     if (obj.name == "" || obj.sex == "" || obj.school == "" || obj.birth == ""
-        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" || obj.address == "") {
+        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" || obj.address == "" || obj.server_id == "") {
         layer.open({content: "信息输入未完整，请填写完整再预约"});
         return;
     }
@@ -341,7 +341,7 @@ function get_data(cid) {
             zengzhiHtml += '    </div>'
             zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '      <label>'
-            zengzhiHtml += '        <input type="radio" name="radio_server" value="0" checked="checked">'
+            zengzhiHtml += '        <input type="radio" name="radio_server" value="0">'
             zengzhiHtml += '        <p>不需要此项服务</p>'
             zengzhiHtml += '      </label>'
             zengzhiHtml += '    </div>'
