@@ -131,17 +131,17 @@ function CourseInfo_Details() {
             strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册<strong style="color: red;">2680元</strong>(单阶7天) <strong style="color: red;">强烈推荐 性价比极高</strong></li>';
             strHtml_Serve += '      <li>VIP摩英大电影+VIP蜕变水晶相册<strong style="color: red;">3980元</strong>(两阶14天) <strong style="color: red;">狂烈推荐 性价比极高</strong></li>';
             if (full) {
-                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ', ' + CourseDetials.CourseTypeID + ')" id="registrationButton">立即候补</button></li>';
+                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ', ' + CourseDetials.CourseType + ')" id="registrationButton">立即候补</button></li>';
             } else {
-                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ', ' + CourseDetials.CourseTypeID + ')" id="registrationButton">立即预约</button></li>';
+                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ', ' + CourseDetials.CourseType + ')" id="registrationButton">立即预约</button></li>';
             }
             strHtml_Serve += '   </ul>';
         } else {
             strHtml_Serve += '  <ul class="list-unstyled" style="padding-left: 10px;padding-right: 10px;padding-top: 5px;font-size: 12px;">';
             if (full) {
-                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ', ' + CourseDetials.CourseTypeID + ')" id="registrationButton">立即候补</button></li>';
+                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ', ' + CourseDetials.CourseType + ')" id="registrationButton">立即候补</button></li>';
             } else {
-                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ', ' + CourseDetials.CourseTypeID + ')" id="registrationButton">立即预约</button></li>';
+                strHtml_Serve += '      <li><button class="registrationButton" onclick="CourseRegistration_Add(' + CourseDetials.CourseID + ', ' + CourseDetials.CourseType + ')" id="registrationButton">立即预约</button></li>';
             }
             strHtml_Serve += '   </ul>';
         }
@@ -152,6 +152,6 @@ function CourseInfo_Details() {
     }
 }
 
-function CourseRegistration_Add(CourseID, CourseTypeID) {
-    window.location.href = "../book/sign.html?CourseID=" + CourseID + '&CourseType=' + CourseTypeID;
+function CourseRegistration_Add(CourseID, CourseType) {
+    window.location.href = "../book/sign.html?CourseID=" + CourseID + '&CourseType=' + CourseType;
 }
