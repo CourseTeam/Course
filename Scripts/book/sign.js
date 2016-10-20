@@ -9,8 +9,8 @@ var isOpenOther;
 
 $(function ($) {
 
-    // get_request("CourseID","CourseTypeID");
-    // get_phaselist("CourseID");
+    get_request("CourseID","CourseTypeID");
+    get_phaselist("CourseID");
 
     var sureButton = document.getElementById("sureButton");
     sureButton.onclick = function () {
@@ -24,25 +24,25 @@ $(function ($) {
     }
 
 
-    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    // if (UserInfo) {
-    //     //noinspection JSAnnotator
-    //     document.getElementById("tel").value = UserInfo.Phone;
-    //     document.getElementById("email").value = UserInfo.Email;
-    //     document.getElementById("name").value = UserInfo.NickName;
-    //     $("input[name=sexRadio]").val(UserInfo.Sex);
-    //     document.getElementById("school").value = UserInfo.School;
-    //     document.getElementById("grade").value = UserInfo.Grade;
-    //     document.getElementById("class").value = UserInfo.ClassName;
-    //     document.getElementById("birth").value = UserInfo.BirthDay.split(" ")[0];
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    if (UserInfo) {
+        //noinspection JSAnnotator
+        document.getElementById("tel").value = UserInfo.Phone;
+        document.getElementById("email").value = UserInfo.Email;
+        document.getElementById("name").value = UserInfo.NickName;
+        $("input[name=sexRadio]").val(UserInfo.Sex);
+        document.getElementById("school").value = UserInfo.School;
+        document.getElementById("grade").value = UserInfo.Grade;
+        document.getElementById("class").value = UserInfo.ClassName;
+        document.getElementById("birth").value = UserInfo.BirthDay.split(" ")[0];
 
-    //     document.getElementById("f_name").value = UserInfo.FatherName;
-    //     document.getElementById("f_tel").value = UserInfo.FatherPhone;
-    //     document.getElementById("m_name").value = UserInfo.MotherName;
-    //     document.getElementById("m_tel").value = UserInfo.MotherPhone;
-    //     document.getElementById("telephone").value = UserInfo.Tel;
-    //     document.getElementById("address").value = UserInfo.Address;
-    // }
+        document.getElementById("f_name").value = UserInfo.FatherName;
+        document.getElementById("f_tel").value = UserInfo.FatherPhone;
+        document.getElementById("m_name").value = UserInfo.MotherName;
+        document.getElementById("m_tel").value = UserInfo.MotherPhone;
+        document.getElementById("telephone").value = UserInfo.Tel;
+        document.getElementById("address").value = UserInfo.Address;
+    }
 
 });
 

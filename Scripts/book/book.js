@@ -34,8 +34,8 @@ var isPhaseOne;
 var isPhaseThree;
 
 $(function ($) {
-    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    // userID = UserInfo.UserID;
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    userID = UserInfo.UserID;
 
     isHaveData = false;
     var screen_width = window.screen.width;
@@ -211,9 +211,9 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
 
 
 function getPhaseStatus() {
-    // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    // var param = {"UserID": UserInfo.UserID};
-    var param = {"UserID": 156};
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    var param = {"UserID": UserInfo.UserID};
+    // var param = {"UserID": 156};
 
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
@@ -224,7 +224,7 @@ function getPhaseStatus() {
 
 function get_bookingdata() {
     var uid = userID;
-    var param = {"UserID": 156, "Type": 1};
+    var param = {"UserID": uid, "Type": 1};
 
     booking_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
@@ -240,7 +240,7 @@ function get_bookingdata() {
 
 function get_willbookdata() {
     var uid = userID;
-    var param = {"UserID": 156, "Type": 2};
+    var param = {"UserID": uid, "Type": 2};
     willbook_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
 
@@ -255,7 +255,7 @@ function get_willbookdata() {
 
 function get_bookeddata() {
     var uid = userID;
-    var param = {"UserID": 156, "Type": 3};
+    var param = {"UserID": uid, "Type": 3};
     booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
     if (booked_result.Msg == "OK") {
@@ -268,7 +268,7 @@ function get_bookeddata() {
 
 function get_refunddata(){
     var uid = userID;
-    var param = {"UserID": 156, "Type": 4};
+    var param = {"UserID": uid, "Type": 4};
     booked_result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/MyRegistration_List");
 
     if (booked_result.Msg == "OK") {
