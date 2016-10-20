@@ -264,7 +264,7 @@ function get_phaselist(cid) {
     if (str.indexOf(cid) != -1) {
         var pos_start = str.indexOf(cid) + cid.length + 1;
         var pos_end = str.indexOf("&", pos_start);
-        var pid = str.substring(pos_start);
+        var pid = str.substring(pos_start,pos_end);
         //获取课程详情 目前使用假数据
         course_id = pid;
         var param = {"CourseID": course_id};
@@ -348,7 +348,7 @@ function get_data(cid) {
             $(".zengzhi").append(zengzhiHtml);
         }
     }
-    
+    		
             // zengzhiHtml += '    <div class="radio">'
             // zengzhiHtml += '      <label>'
             // zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
