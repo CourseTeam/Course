@@ -9,7 +9,7 @@ var isOpenOther;
 
 $(function ($) {
 
-    get_request("CourseID","CourseTypeID");
+    get_request("CourseID","CourseType");
     get_phaselist("CourseID");
 
     var sureButton = document.getElementById("sureButton");
@@ -217,7 +217,7 @@ function dateVerify(date) {
 }
 
 
-function get_request(courseid,CourseTypeID) {
+function get_request(courseid,CourseType) {
     var str = window.location.search;   //location.search是从当前URL的?号开始的字符串
     if (str.indexOf(courseid) != -1) {
         var pos_start = str.indexOf(courseid) + courseid.length + 1;
@@ -228,8 +228,8 @@ function get_request(courseid,CourseTypeID) {
         get_data(pid);
     }
 
-    if (str.indexOf(CourseTypeID) != -1) {
-    	 var pos_start = str.indexOf(CourseTypeID) + CourseTypeID.length + 1;
+    if (str.indexOf(CourseType) != -1) {
+    	 var pos_start = str.indexOf(CourseType) + CourseTypeID.length + 1;
         var pos_end = str.indexOf("&", pos_start);
         var ctid = str.substring(pos_start);
         //获取课程详情 目前使用假数据
