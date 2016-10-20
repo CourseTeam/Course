@@ -228,7 +228,7 @@ function get_request(courseid,CourseType) {
     }
 
     if (str.indexOf(CourseType) != -1) {
-    	 var pos_start = str.indexOf(CourseType) + CourseTypeID.length + 1;
+    	 var pos_start = str.indexOf(CourseType) + CourseType.length + 1;
         var pos_end = str.indexOf("&", pos_start);
         var ctid = str.substring(pos_start);
         //获取课程详情 目前使用假数据
