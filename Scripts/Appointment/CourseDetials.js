@@ -149,11 +149,6 @@ function CourseInfo_Details() {
         $("#Detials").html(strHtml_Detials);
         $("#Teachers").html(strHtml_Teachers);
         $("#Serve").html(strHtml_Serve);
-        if (Status >= 0) {
-            // $("#registrationButton").css("background: #eee");
-            $("#registrationButton").hide();
-
-        }
     }
 }
 
