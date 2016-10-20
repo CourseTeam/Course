@@ -83,7 +83,11 @@ function sure() {
     var sex = $("input[name=sexRadio]:checked").val();
     var inputer = $("input[name=inputerRadio]:checked").val();
     var channel = $("input[name=channelRadio]:checked").val();
-    var sel_pid = $("input[name=radio_phase]:checked").val();
+    var sel_pid = $("input[name=radio_phase]:checked").val();//一阶课程期数
+    if (channel == undefined) {channel = 0};
+    if (server_id == undefined) {server_id = 0};
+    if (sel_pid == undefined) {sel_pid = 0};
+    if (inputer == undefined) {inputer = "父亲"};
 
 
     var param = {};
@@ -115,7 +119,6 @@ function sure() {
 
 }
 
-
 function updateInfo(obj) {
     // 更改个人信息
     if (!dateVerify(obj.birth)) {
@@ -123,7 +126,7 @@ function updateInfo(obj) {
         return;
     }
 
-    if (obj.name == "" || obj.sex == "" || obj.school == "" || obj.birth == ""
+    if (obj.name == "" || obj.sex == undefined || obj.school == "" || obj.birth == ""
         || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" || obj.address == "" || obj.server_id == undefined || obj.sel_pid == undefined) {
         layer.open({content: "信息输入未完整，请填写完整再预约"});
         return;
