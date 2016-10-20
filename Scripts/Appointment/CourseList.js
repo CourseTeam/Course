@@ -41,6 +41,9 @@ function CourseList(UserID, CourseTypeID) {
     if (result.Msg == "OK" && result.Data.length > 0) {
         for (var i = 0 ; i < result.Data.length; i++) {
             var row = result.Data[i];
+            if (row.CourseName == "摩英牛津剑桥领袖特训营") {
+                row.ReservationCount = 33;
+            }
             row.ReservationCount = row.ReservationCount >= row.PeopleCount ? row.PeopleCount : row.ReservationCount;
             row.ReservationCount = row.ReservationCount <= 0 ? 0 : row.ReservationCount;
             var people = row.ReservationCount + '/' + row.PeopleCount;
