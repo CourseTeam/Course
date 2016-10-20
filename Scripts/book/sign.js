@@ -151,8 +151,8 @@ function updateInfo(obj) {
 //课程报名
 function course_reg(obj) {
 
-    if (obj.name == "" || obj.sex == "" || obj.school == "" || obj.birth == ""
-        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" || obj.address == "" || obj.server_id == undefined || obj.sel_pid == undefined) {
+    if (obj.name == "" || obj.sex == undefined || obj.school == "" || obj.birth == ""
+        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" || obj.address == "" || obj.sel_pid == undefined) {
         layer.open({content: "信息输入未完整，请填写完整再预约"});
         return;
     }
