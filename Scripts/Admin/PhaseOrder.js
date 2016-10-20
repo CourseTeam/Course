@@ -14,7 +14,7 @@ $(document).ready(function () {
     PhaseRegistration_List();
     var CoursePhaseName = decodeURIComponent($Course.RequestUrlParams("CoursePhaseName"));
     $("#paseName").html("阶段预约列表 — " + CoursePhaseName);
-    $("#Select").on("change",function () {
+    $("#Select").on("change", function () {
         PStatus = $("#Select").val();
         console.log(PStatus);
         PageIndex = 1;
@@ -35,7 +35,7 @@ var PhaseRegistration_Items = [];
 function PhaseRegistration_List() {
     var PhaseID = $Course.RequestUrlParams("PhaseID");
     var SearchKey = $("#SearchKey").val();
-    var param = {SearchKey: SearchKey, PhaseID: PhaseID, PhaseStatus:PStatus,PageIndex: PageIndex, PageSize: 10};
+    var param = {SearchKey: SearchKey, PhaseID: PhaseID, PhaseStatus: PStatus, PageIndex: PageIndex, PageSize: 10};
     var result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_List");
     if (result.Msg == "OK") {
         PhaseRegistration_Items = result.Data;
@@ -78,6 +78,29 @@ function PhaseRegistration_List() {
                 default:
                     break;
             }
+            var ValueAddedServices = "";
+            switch (row.ValueAddedServices) {
+                case 0:
+                    ValueAddedServices = "无";
+                    break;
+                case 1:
+                    ValueAddedServices = "300套餐";
+                    break;
+                case 2:
+                    ValueAddedServices = "1980套餐";
+                    break;
+                case 3:
+                    ValueAddedServices = "1980套餐";
+                    break;
+                case 4:
+                    ValueAddedServices = "2680套餐";
+                    break;
+                case 5:
+                    ValueAddedServices = "3980套餐";
+                    break;
+                default:
+                    break;
+            }
             var ClassName = row.ClassName ? row.ClassName : '指定班级';
             var AddTime = row.AddTime ? row.AddTime.split(" ")[0].replace(/-/g, "/") : "";
             strHtml += '<li class="list-group-item">';
@@ -90,7 +113,7 @@ function PhaseRegistration_List() {
             strHtml += '      <div class="col-xs-1"><a href="#" onclick="Phase_ClassName_Add(' + row.PhaseReservationID + ',this)" cname="' + ClassName + '">' + ClassName + '</a></div>';
             strHtml += '      <div class="col-xs-1">' + PhaseStatus + '</div>';
             strHtml += '      <div class="col-xs-1">' + AddTime + '</div>';
-            strHtml += '      <div class="col-xs-1"><a href="#" onclick="ValueAddedServicesShow(' + row.UserID + ')">查看</a></div>';
+            strHtml += '      <div class="col-xs-1">' + ValueAddedServices + '<!--<a href="#" onclick="ValueAddedServicesShow(' + row.UserID + ')">查看</a>--></div>';
             strHtml += '      <div class="col-xs-3">';
             strHtml += '        <button onclick="PhaseStatus_Edit(' + row.PhaseReservationID + ',' + row.PhaseStatus + ',' + row.UserID + ')" >修改状态</button>';
             strHtml += '        <button onclick="NoteEdit(' + row.CourseRegistrationID + ')">备注</button>';
@@ -127,7 +150,7 @@ function ValueAddedServicesShow(id) {
     // 2.VIP摩英大电影1980元(单阶7天)
     // 3.VIP蜕变水晶相册1280元(单阶7天)
     // 4.VIP摩英大电影+VIP蜕变水晶相册2680元 单阶7天性价比极高(单阶7天)
-    // 5.VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(单阶7天)
+    // 5.VIP摩英大电影+VIP蜕变水晶相册3980元 两阶14天性价比极高(两阶14天)
     for (var i = 0; i < PhaseRegistration_Items.length; i++) {
         if (id == PhaseRegistration_Items[i].UserID) {
             switch (PhaseRegistration_Items[i].ValueAddedServices) {
