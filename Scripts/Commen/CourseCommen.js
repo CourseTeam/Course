@@ -25,8 +25,15 @@ $Course.PostAjaxJson = function (params, url) {
     $.ajax({
         url: url, data: params, type: 'post', cache: false, async: false,
         beforeSend: function (XHR) {
-            XHR.setRequestHeader('Authorization', 'BasicAuth ' + "");
-
+            // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+            // var Ticket="";
+            // if (UserInfo==null||UserInfo=="null"||UserInfo==""){
+            //     Ticket="";
+            // }else{
+            //     Ticket=UserInfo.Ticket;
+            // }
+            // XHR.setRequestHeader('Authorization', 'BasicAuth ' + Ticket);
+            XHR.setRequestHeader('Authorization', 'BasicAuth ' + '');
         },
         success: function (data) {
             json = data;
@@ -41,8 +48,15 @@ $Course.GetAjaxJson = function (params, url) {
     $.ajax({
         url: url, data: params, type: 'get', cache: false, async: false,
         beforeSend: function (XHR) {
-            XHR.setRequestHeader('Authorization', 'BasicAuth ' + "");
-
+            // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+            // var Ticket="";
+            // if (UserInfo==null||UserInfo=="null"||UserInfo==""){
+            //     Ticket="";
+            // }else{
+            //     Ticket=UserInfo.Ticket;
+            // }
+            // XHR.setRequestHeader('Authorization', 'BasicAuth ' + Ticket);
+            XHR.setRequestHeader('Authorization', 'BasicAuth ' + '');
         },
         success: function (data) {
             json = data;
