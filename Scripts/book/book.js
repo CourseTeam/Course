@@ -282,8 +282,10 @@ function create_bookinglist() {
     strHtml += '  <ul class="title">已预约课程，开课两周前可转期</ul>'
     for (var i = 0; i < booking_result.Data.length; i++) {
         var row = booking_result.Data[i];
-        if (row.CoursePhaseName.indexOf("牛津剑桥") > -1) {var isNiujin = true};
-        if (row.CoursePhaseName.indexOf("网络英语") > -1) {var isNet = true}; //判断是否是网络课程
+        var isNiujin = false;
+        var isNet = false;
+        if (row.CoursePhaseName.indexOf("牛津剑桥") > -1) {isNiujin = true};
+        if (row.CoursePhaseName.indexOf("网络英语") > -1) {isNet = true}; //判断是否是网络课程
         var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
         var costName = get_costname(row.PhaseType);
         var costText = isCost?"已缴纳"+costName:"未缴纳"+costName;
@@ -348,8 +350,10 @@ function create_willbooklist() {
     for (var i = 0; i < willbook_result.Data.length; i++) {
 
       var row = willbook_result.Data[i];
-    if (row.CoursePhaseName.indexOf("牛津剑桥") > -1) {var isNiujin = true};
-      if (row.CoursePhaseName.indexOf("网络英语") > -1) {var isNet = true}; //判断是否是网络课程
+      var isNiujin = false;
+        var isNet = false;
+        if (row.CoursePhaseName.indexOf("牛津剑桥") > -1) {isNiujin = true};
+        if (row.CoursePhaseName.indexOf("网络英语") > -1) {isNet = true}; //判断是否是网络课程
       var isCost = row.AccommodationFeesPaid >= row.AccommodationCost && row.AccommodationCost != 0;
       var type = get_type(row.PhaseStatus);
       var costName = get_costname(row.PhaseType);
@@ -413,8 +417,10 @@ function create_bookedlist() {
     for (var i = 0; i < booked_result.Data.length; i++) {
         var row = booked_result.Data[i];
         var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
-        if (row.CoursePhaseName.indexOf("牛津剑桥") > -1) {var isNiujin = true};
-        if (row.CoursePhaseName.indexOf("网络英语") > -1) {var isNet = true}; //判断是否是网络课程
+       var isNiujin = false;
+        var isNet = false;
+        if (row.CoursePhaseName.indexOf("牛津剑桥") > -1) {isNiujin = true};
+        if (row.CoursePhaseName.indexOf("网络英语") > -1) {isNet = true}; //判断是否是网络课程
         var color = isCost ? "#F24D4D" : "#9B9B9B";
         var type = get_type(row.PhaseStatus);
         var costName = get_costname(row.PhaseType);
