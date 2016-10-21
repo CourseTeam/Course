@@ -291,7 +291,7 @@ function get_joinedState() {
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
         isJoinedCourse = result.Data.IsJoinedCourse;
-        if (isJoinedCourse == 0) {document.getElementById("question-div").style.display="block";}
+        if (isJoinedCourse == 0 && courseTID != 2) {document.getElementById("question-div").style.display="block";}
     }
 }
 
@@ -322,6 +322,7 @@ function get_request(courseid, CourseType) {
         courseTID = ctid;
         if (courseTID == 2) {
             //智慧家长课程
+            document.getElementById("question-div").style.display="none";
             create_parentlist();
         }
     }
@@ -400,12 +401,6 @@ function create_phaselist(data) {
             strHtml += '    </div>'
         }
         $(".phase_container").append(strHtml);
-        $("input[name=radio_phase]").on("click", function () {
-            ptype = $(this).attr("ptype");
-            if (ptype == 1) {
-                document.getElementById("question-div").style.display = "block";
-            }
-        });
     }
 }
 

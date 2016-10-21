@@ -288,12 +288,13 @@ function create_bookinglist() {
         if (row.CoursePhaseName == "摩英牛津剑桥领袖特训营") {isNiujin = true};
         var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
         var costName = get_costname(row.PhaseType);
-        var costTitle = isCost ? "已缴纳"+costName : "未缴纳" + costName;
+        var costText = isCost?"已缴纳"+costName:"未缴纳"+costName;
         var img = isCost ? "../../Images/book/cost_selected.png" : "../../Images/book/cost_normal.png";
         var type = get_type(row.PhaseStatus);
         var stateImg = get_stateImg(row.PhaseStatus);
         var courseImg = row.PhaseType == 0?row.CourseImgUrl:get_courseImg(row.PhaseType);
         var addstext = get_addservname(row.ValueAddedServices);
+
         // var disabled = row.PhaseStatus == 3 || row.PhaseStatus == 2 ? "" : "disabled";
         var disabled = "";
         var btnColor = get_btncolor(row.PhaseStatus);
@@ -320,7 +321,7 @@ function create_bookinglist() {
         strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
         strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
         if (!isNiujin && row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
-           strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costTitle + '</font></li>'
+           strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
            strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
         }else {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
@@ -385,7 +386,7 @@ function create_willbooklist() {
        strHtml += '    <li><font class="time">'+ "开营时间：" + row.StartTime.substr(0,10) + '</font></li>'
        strHtml += '    <li><font class="location">'+ row.Place + '</font></li>'
          if (!isNiujin && row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
-           strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costTitle + '</font></li>'
+           strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
            strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
         }else {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
@@ -413,6 +414,7 @@ function create_bookedlist() {
         var type = get_type(row.PhaseStatus);
         var costName = get_costname(row.PhaseType);
         var stateImg = get_stateImg(row.PhaseStatus);
+        var costText = isCost?"已缴纳"+costName:"未缴纳"+costName;
         var btnColor = get_btncolor(row.PhaseStatus);
         var courseImg = row.PhaseType == 0?row.CourseImgUrl:get_courseImg(row.PhaseType);
         var costImg = row.AccommodationFeedPaid > row.AccommodationCost ? "../../Images/book/cost_normal.png" : "../../Images/book/cost_selected.png";
@@ -433,7 +435,7 @@ function create_bookedlist() {
         strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
         strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
         if (!isNiujin && row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
-           strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costTitle + '</font></li>'
+           strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
            strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
         }else {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
