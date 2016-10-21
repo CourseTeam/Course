@@ -4,8 +4,10 @@ var course_id;
 var courseTID;
 
 var phaseinfo;
-
 var isOpenOther;
+
+//课程阶段 一阶  二阶等
+var ptype;
 
 $(function ($) {
 
@@ -23,7 +25,8 @@ $(function ($) {
     	isOpenOther = true;
     }
 
-    
+    document.getElementById("question-div").style.display="none";
+
     document.getElementById("channel_radio1").onclick = function(){
     	deleteOther();
     }
@@ -132,6 +135,10 @@ function sure() {
     param.sponsor = factory;
     param.tellme = remark;
 
+
+    //发送调查问卷
+    if (ptype == 1) {post_question(param);}
+
     if (courseTID != 2) {
 	    updateInfo(param);
     }
@@ -167,6 +174,26 @@ function updateInfo(obj) {
         $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {expires: 30, path: '/'});
     }
 }
+
+function post_question(obj){
+
+
+    var q1 = $(".q1").val();
+    var q2 = $(".q2").val();
+    var q3 = $(".q3").val();
+    var q4 = $(".q4").val();
+    var q5 = $(".q5").val();
+    var q6 = $(".q6").val();
+    var q7 = $(".q7").val();
+
+    var param_question = {"UserID":UserInfo.UserID,"CourseID":course_id,"Q1":q1,"Q2":q2,"Q3":q3,"Q4":q4,"Q5":q5,"Q6":q6,"Q7":q7};
+
+    var result_cookie = $Course.GetAjaxJson(param_question, ApiUrl + "Questionnaire/Questionnaire_Add");
+
+    
+
+}
+
 
 //课程报名
 function course_reg(obj) {
@@ -316,7 +343,7 @@ function create_phaselist(data) {
             var color = row.ReservationCount == row.PeopleCount ? "red" : "black"
             strHtml += '	<div class="radio">'
             strHtml += '       <label>'
-            strHtml += '          <input type="radio" name="radio_phase" value="' + row.PhaseID + '">'
+            strHtml += '          <input type="radio" ptype="' + row.PhaseType +'" name="radio_phase" value="' + row.PhaseID + '">'
             strHtml += '            <p>' + row.CoursePhaseName + '</p>'
             if (row.PhaseType != 1 && row.PhaseType != 0) {
 	            strHtml += '            <p style="color:red;">' + "(仅限参加过一阶课程的老学员)" + '</p>'
@@ -328,6 +355,13 @@ function create_phaselist(data) {
             strHtml += '    </div>'
         }
         $(".phase_container").append(strHtml);
+        $("input[name=radio_phase]").on("click", function () {
+                ptype = $(this).attr("ptype");
+            if (ptype == 1) {
+                document.getElementById("question-div").style.display="block";
+            }
+        });
+
     }
 }
 

@@ -14,8 +14,7 @@ $(function ($) {
     $("#course-list").on("click", function () {
         showlist();
     });
-    // get_data($Course.RequestUrlParams("phaseID"));
-        get_data("11");
+    get_data($Course.RequestUrlParams("phaseID"));
 
 });
 
