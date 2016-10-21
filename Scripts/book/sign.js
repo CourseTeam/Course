@@ -4,12 +4,14 @@ var course_id;
 var courseTID;
 
 var phaseinfo;
-
 var isOpenOther;
+
+//课程阶段 一阶  二阶等
+var ptype;
 
 $(function ($) {
 
-    get_request("CourseID","CourseType");
+    get_request("CourseID", "CourseType");
     get_phaselist("CourseID");
 
     var sureButton = document.getElementById("sureButton");
@@ -18,23 +20,24 @@ $(function ($) {
     };
 
     var otherStud = document.getElementById("other_radio");
-    otherStud.onclick = function(){
-    	other();
-    	isOpenOther = true;
+    otherStud.onclick = function () {
+        other();
+        isOpenOther = true;
     }
 
-    
-    document.getElementById("channel_radio1").onclick = function(){
-    	deleteOther();
+    document.getElementById("question-div").style.display = "none";
+
+    document.getElementById("channel_radio1").onclick = function () {
+        deleteOther();
     }
-    document.getElementById("channel_radio2").onclick = function(){
-    	deleteOther();
+    document.getElementById("channel_radio2").onclick = function () {
+        deleteOther();
     }
-    document.getElementById("channel_radio3").onclick = function(){
-    	deleteOther();
+    document.getElementById("channel_radio3").onclick = function () {
+        deleteOther();
     }
-    document.getElementById("channel_radio4").onclick = function(){
-    	deleteOther();
+    document.getElementById("channel_radio4").onclick = function () {
+        deleteOther();
     }
 
 
@@ -62,22 +65,22 @@ $(function ($) {
 
 
 function other() {
-	if (!isOpenOther) {
-		var otherHtml = "";
-	    otherHtml += '	<div id="other_text_radio" class="other_text_radio">'
-	  	otherHtml += '   <label>请输入介绍人（学生）姓名：'
-	    otherHtml += '     <input type="text" name="channelRadio">'
-	    otherHtml += '   </label>'
-	    otherHtml += ' </div>'
-		$(".channel-row").append(otherHtml);
-	}
+    if (!isOpenOther) {
+        var otherHtml = "";
+        otherHtml += '	<div id="other_text_radio" class="other_text_radio">'
+        otherHtml += '   <label>请输入介绍人（学生）姓名：'
+        otherHtml += '     <input type="text" name="channelRadio">'
+        otherHtml += '   </label>'
+        otherHtml += ' </div>'
+        $(".channel-row").append(otherHtml);
+    }
 }
 
-function deleteOther(){
-	if (isOpenOther) {
-		isOpenOther = false;
-		$(".other_text_radio").remove();
-	}
+function deleteOther() {
+    if (isOpenOther) {
+        isOpenOther = false;
+        $(".other_text_radio").remove();
+    }
 }
 
 
@@ -105,9 +108,18 @@ function sure() {
     var inputer = $("input[name=inputerRadio]:checked").val();
     var channel = $("input[name=channelRadio]:checked").val();
     var sel_pid = $("input[name=radio_phase]:checked").val();//一阶课程期数
-    if (channel == undefined) {channel = 0};
-    if (server_id == undefined) {server_id = 0};
-    if (inputer == undefined) {inputer = "父亲"};
+    if (channel == undefined) {
+        channel = 0
+    }
+    ;
+    if (server_id == undefined) {
+        server_id = 0
+    }
+    ;
+    if (inputer == undefined) {
+        inputer = "父亲"
+    }
+    ;
 
 
     var param = {};
@@ -132,8 +144,14 @@ function sure() {
     param.sponsor = factory;
     param.tellme = remark;
 
+
+    //发送调查问卷
+    if (ptype == 1) {
+        post_question(param);
+    }
+
     if (courseTID != 2) {
-	    updateInfo(param);
+        updateInfo(param);
     }
     course_reg(param);
 
@@ -168,6 +186,35 @@ function updateInfo(obj) {
     }
 }
 
+function post_question(obj) {
+
+
+    var q1 = $(".q1").val();
+    var q2 = $(".q2").val();
+    var q3 = $(".q3").val();
+    var q4 = $(".q4").val();
+    var q5 = $(".q5").val();
+    var q6 = $(".q6").val();
+    var q7 = $(".q7").val();
+
+    var param_question = {
+        "UserID": UserInfo.UserID,
+        "CourseID": course_id,
+        "Q1": q1,
+        "Q2": q2,
+        "Q3": q3,
+        "Q4": q4,
+        "Q5": q5,
+        "Q6": q6,
+        "Q7": q7
+    };
+
+    var result_cookie = $Course.GetAjaxJson(param_question, ApiUrl + "Questionnaire/Questionnaire_Add");
+
+
+}
+
+
 //课程报名
 function course_reg(obj) {
 
@@ -178,8 +225,10 @@ function course_reg(obj) {
     }
 
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    var param = {"UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel, 
-    			 "Preparer": obj.inputer,"Sponsor":obj.sponsor,"TellMe":obj.tellme};
+    var param = {
+        "UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel,
+        "Preparer": obj.inputer, "Sponsor": obj.sponsor, "TellMe": obj.tellme
+    };
     var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_Add");
 
     if (result.Msg == "OK" && result.Data != false) {
@@ -200,8 +249,8 @@ function course_reg(obj) {
 
 //智慧家长报名
 function parent_reg(obj) {
-   var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-   var param = {"UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel, "Preparer": obj.inputer};
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    var param = {"UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel, "Preparer": obj.inputer};
 
 }
 
@@ -237,56 +286,56 @@ function dateVerify(date) {
 }
 
 
-function get_request(courseid,CourseType) {
+function get_request(courseid, CourseType) {
     var str = window.location.search;   //location.search是从当前URL的?号开始的字符串
     if (str.indexOf(courseid) != -1) {
         var pos_start = str.indexOf(courseid) + courseid.length + 1;
         var pos_end = str.indexOf("&", pos_start);
-        var pid = str.substring(pos_start,pos_end);
+        var pid = str.substring(pos_start, pos_end);
         //获取课程详情 目前使用假数据
         course_id = pid;
         get_data(pid);
     }
 
     if (str.indexOf(CourseType) != -1) {
-    	 var pos_start = str.indexOf(CourseType) + CourseType.length + 1;
+        var pos_start = str.indexOf(CourseType) + CourseType.length + 1;
         var pos_end = str.indexOf("&", pos_start);
         var ctid = str.substring(pos_start);
         //获取课程详情 目前使用假数据
         courseTID = ctid;
         if (courseTID == 2) {
-        	//智慧家长课程
-        	create_parentlist();
+            //智慧家长课程
+            create_parentlist();
         }
     }
 
 }
 
 
-function create_parentlist(){
+function create_parentlist() {
 // 	报名表,把学校、年级、班级、父母联系方式以及姓
 // 名、填表人去除,改成工作单位、备注
 
-	document.getElementById("m_name_text").style.display = "none";
-	document.getElementById("m_tel_text").style.display = "none";
-	document.getElementById("f_name_text").style.display = "none";
-	document.getElementById("f_tel_text").style.display = "none";
-	document.getElementById("inputter").style.display = "none";
-	document.getElementById("school_text").style.display = "none";
-	document.getElementById("grade_text").style.display = "none";
-	document.getElementById("class_text").style.display = "none";
-	document.getElementById("name_text").style.display = "none";
+    document.getElementById("m_name_text").style.display = "none";
+    document.getElementById("m_tel_text").style.display = "none";
+    document.getElementById("f_name_text").style.display = "none";
+    document.getElementById("f_tel_text").style.display = "none";
+    document.getElementById("inputter").style.display = "none";
+    document.getElementById("school_text").style.display = "none";
+    document.getElementById("grade_text").style.display = "none";
+    document.getElementById("class_text").style.display = "none";
+    document.getElementById("name_text").style.display = "none";
 
-	var parentHtml = "";
-	parentHtml += '<div  class="row" id="f_name_text">'
-	parentHtml += '		<div class="col-xs-4"><p class="text">工作单位</p></div>'
-	parentHtml += '		<div class="col-xs-8"><input class="input" id="factory" type="text"></div>'
-	parentHtml += '	</div>'
-	parentHtml += '	<div  class="row" id="f_tel_text">'
-	parentHtml += '		<div class="col-xs-4"><p class="text">备注</p></div>'
-	parentHtml += '		<div class="col-xs-8"><input class="input" id="remark" type="text"></div>'
-	parentHtml += '	</div>'
-	$(".other").append(parentHtml);
+    var parentHtml = "";
+    parentHtml += '<div  class="row" id="f_name_text">'
+    parentHtml += '		<div class="col-xs-4"><p class="text">工作单位</p></div>'
+    parentHtml += '		<div class="col-xs-8"><input class="input" id="factory" type="text"></div>'
+    parentHtml += '	</div>'
+    parentHtml += '	<div  class="row" id="f_tel_text">'
+    parentHtml += '		<div class="col-xs-4"><p class="text">备注</p></div>'
+    parentHtml += '		<div class="col-xs-8"><input class="input" id="remark" type="text"></div>'
+    parentHtml += '	</div>'
+    $(".other").append(parentHtml);
 
 }
 
@@ -296,7 +345,7 @@ function get_phaselist(cid) {
     if (str.indexOf(cid) != -1) {
         var pos_start = str.indexOf(cid) + cid.length + 1;
         var pos_end = str.indexOf("&", pos_start);
-        var pid = str.substring(pos_start,pos_end);
+        var pid = str.substring(pos_start, pos_end);
         //获取课程详情 目前使用假数据
         course_id = pid;
         var param = {"CourseID": course_id};
@@ -317,7 +366,7 @@ function create_phaselist(data) {
             var color = row.ReservationCount == row.PeopleCount ? "red" : "black"
             strHtml += '	<div class="radio">'
             strHtml += '       <label>'
-            strHtml += '          <input type="radio" name="radio_phase" ptype="' + row.PhaseType + '" value="' + row.PhaseID + '">'
+            strHtml += '          <input type="radio" ptype="' + row.PhaseType + '" name="radio_phase" value="' + row.PhaseID + '">'
             strHtml += '            <p>' + row.CoursePhaseName + '</p>'
             if (row.PhaseType != 1 && row.PhaseType != 0) {
 
@@ -333,6 +382,13 @@ function create_phaselist(data) {
             strHtml += '    </div>'
         }
         $(".phase_container").append(strHtml);
+        $("input[name=radio_phase]").on("click", function () {
+            ptype = $(this).attr("ptype");
+            if (ptype == 1) {
+                document.getElementById("question-div").style.display = "block";
+            }
+        });
+
     }
 }
 
@@ -372,13 +428,19 @@ function get_data(cid) {
             zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '      <label>'
             zengzhiHtml += '        <input type="radio" name="radio_server" value="4">'
-            zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册：' + '<span style="color:red">2680元</span>'+ '(单阶7天)' + '<span style="color:red">强烈推荐，性价比极高</span>' + '</p>'
+            zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册：' + '<span style="color:red">2680元</span>' + '(单阶7天)' + '<span style="color:red">强烈推荐，性价比极高</span>' + '</p>'
             zengzhiHtml += '      </label>'
             zengzhiHtml += '    </div>'
             zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '      <label>'
             zengzhiHtml += '        <input type="radio" name="radio_server" value="0">'
             zengzhiHtml += '        <p>不需要此项服务</p>'
+            zengzhiHtml += '      </label>'
+            zengzhiHtml += '    </div>'
+            zengzhiHtml += '    <div class="radio">'
+            zengzhiHtml += '      <label>'
+            zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
+            zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
             zengzhiHtml += '      </label>'
             zengzhiHtml += '    </div>'
             $(".zengzhi").append(zengzhiHtml);

@@ -16,8 +16,6 @@ $(function ($) {
         showlist();
     });
     get_data($Course.RequestUrlParams("phaseID"));
-    //get_data("11");
-
 });
 
 //访问转期接口

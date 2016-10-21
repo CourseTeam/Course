@@ -6,7 +6,6 @@ var datas = [];
 var booking_result;
 var willbook_result;
 var booked_result;
-var bookType;
 var serviceType;
 var qinziType;
 
@@ -222,6 +221,7 @@ function getPhaseStatus() {
     }
 }
 
+
 function get_bookingdata() {
     var uid = userID;
     var param = {"UserID": uid, "Type": 1};
@@ -235,7 +235,6 @@ function get_bookingdata() {
         }
     }
 }
-
 
 
 function get_willbookdata() {
