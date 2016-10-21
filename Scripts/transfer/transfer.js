@@ -38,7 +38,10 @@ function get_data(pid) {
     var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_ChangePhase");
     if (result.Msg = "OK") {
         phase_result = result.Data;
-
+        if (result.Data.length == 0) {
+            $("#course-list").html("暂无可转期课程");
+            $("#course-list").off("click");
+        }
     }
 }
 
