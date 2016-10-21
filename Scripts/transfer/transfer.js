@@ -4,7 +4,7 @@ var selCourseID;
 var selCourseName;
 
 $(function ($) {
-    //getvalue("phaseID", "coursename");
+
     var sureButton = document.getElementById("sureButton");
     sureButton.onclick = function () {
         go_transfer();
@@ -14,7 +14,9 @@ $(function ($) {
     $("#course-list").on("click", function () {
         showlist();
     });
-    get_data($Course.RequestUrlParams("phaseID"));
+    // get_data($Course.RequestUrlParams("phaseID"));
+        get_data("11");
+
 });
 
 //访问转期接口
@@ -72,6 +74,7 @@ function showlist() {
         strHtml += '<div class="radio">' +
             '<label>' +
             '<input type="radio" value="' + row.CoursePhaseName + "," + row.PhaseID + '"' + 'name="course">' + row.CoursePhaseName +
+            '<span>开始时间：'+row.StartTime.split(0,10) + "     " + "结束时间："+ row.EndTime.split(0,10) + '</span>'
             '</label>' +
             '</div>';
     }
