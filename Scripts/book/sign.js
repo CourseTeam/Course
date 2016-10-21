@@ -291,9 +291,7 @@ function get_joinedState() {
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
         isJoinedCourse = result.Data.IsJoinedCourse;
-        if (isJoinedCourse) {
-            document.getElementById("question-div").style.display = "block";
-        }
+        if (isJoinedCourse == 0) {document.getElementById("question-div").style.display="block";}
     }
 }
 
@@ -334,27 +332,26 @@ function get_request(courseid, CourseType) {
 function create_parentlist() {
 // 	报名表,把学校、年级、班级、父母联系方式以及姓
 // 名、填表人去除,改成工作单位、备注
+	document.getElementById("m_name_text").style.display = "none";
+	document.getElementById("m_tel_text").style.display = "none";
+	document.getElementById("f_name_text").style.display = "none";
+	document.getElementById("f_tel_text").style.display = "none";
+	document.getElementById("inputter").style.display = "none";
+	document.getElementById("school_text").style.display = "none";
+	document.getElementById("grade_text").style.display = "none";
+	document.getElementById("class_text").style.display = "none";
+	document.getElementById("name_text").style.display = "none";
 
-    document.getElementById("m_name_text").style.display = "none";
-    document.getElementById("m_tel_text").style.display = "none";
-    document.getElementById("f_name_text").style.display = "none";
-    document.getElementById("f_tel_text").style.display = "none";
-    document.getElementById("inputter").style.display = "none";
-    document.getElementById("school_text").style.display = "none";
-    document.getElementById("grade_text").style.display = "none";
-    document.getElementById("class_text").style.display = "none";
-    document.getElementById("name_text").style.display = "none";
-
-    var parentHtml = "";
-    parentHtml += '<div  class="row" id="f_name_text">'
-    parentHtml += '		<div class="col-xs-4"><p class="text">工作单位</p></div>'
-    parentHtml += '		<div class="col-xs-8"><input class="input" id="factory" type="text"></div>'
-    parentHtml += '	</div>'
-    parentHtml += '	<div  class="row" id="f_tel_text">'
-    parentHtml += '		<div class="col-xs-4"><p class="text">备注</p></div>'
-    parentHtml += '		<div class="col-xs-8"><input class="input" id="remark" type="text"></div>'
-    parentHtml += '	</div>'
-    $(".other").append(parentHtml);
+	var parentHtml = "";
+	parentHtml += ' <div  class="row" id="f_name_text">'
+	parentHtml += '		<div class="col-xs-4"><p class="text">工作单位</p></div>'
+	parentHtml += '		<div class="col-xs-8"><input class="input" id="factory" type="text"></div>'
+	parentHtml += '	</div>'
+	parentHtml += '	<div  class="row" id="f_tel_text">'
+	parentHtml += '		<div class="col-xs-4"><p class="text">备注(说说您相对摩英说的话)</p></div>'
+	parentHtml += '		<div class="col-xs-8"><input class="input" id="remark" type="text"></div>'
+	parentHtml += '	</div>'
+	$(".other").append(parentHtml);
 
 }
 
@@ -409,7 +406,6 @@ function create_phaselist(data) {
                 document.getElementById("question-div").style.display = "block";
             }
         });
-
     }
 }
 
@@ -454,16 +450,17 @@ function get_data(cid) {
             zengzhiHtml += '    </div>'
             zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '      <label>'
-            zengzhiHtml += '        <input type="radio" name="radio_server" value="0">'
-            zengzhiHtml += '        <p>不需要此项服务</p>'
-            zengzhiHtml += '      </label>'
-            zengzhiHtml += '    </div>'
-            zengzhiHtml += '    <div class="radio">'
-            zengzhiHtml += '      <label>'
             zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
             zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
             zengzhiHtml += '      </label>'
             zengzhiHtml += '    </div>'
+            zengzhiHtml += '    <div class="radio">'
+            zengzhiHtml += '      <label>'
+            zengzhiHtml += '        <input type="radio" name="radio_server" value="0">'
+            zengzhiHtml += '        <p>不需要此项服务</p>'
+            zengzhiHtml += '      </label>'
+            zengzhiHtml += '    </div>'
+           
             $(".zengzhi").append(zengzhiHtml);
         }
     }
