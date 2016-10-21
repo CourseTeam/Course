@@ -331,7 +331,7 @@ function create_bookinglist() {
         if (disabled == "") {
             strHtml += '    <button class="button"  type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '"; >' + type + '</button>'
         }else {
-            strHtml += '    <button class="button" disabled="disabled" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px; background-color:' + btnColor + "; >' + type + '</button>'
+            strHtml += '    <button class="button" disabled="disabled" type="button" cname="' + row.CoursePhaseName + '" onclick="transfer(this,' + row.PhaseID + ',' + row.PhaseReservationID + ')"  style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '"; >' + type + '</button>'
         }
         strHtml += '  </ul>'
         strHtml += '<div style="clear: both;"></div>'
