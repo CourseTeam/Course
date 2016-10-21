@@ -38,7 +38,7 @@
 			<div class="col-xs-4"><p class="text">电子邮件</p></div>
 			<div class="col-xs-8"><input class="input" id="email" type="text"></div>
 		</div>
-		<div class="row">
+		<div class="row" id="name_text">
 			<div class="col-xs-4"><p class="text">学员姓名</p></div>
 			<div class="col-xs-8"><input class="input" id="name" type="text"></div>
 		</div>
@@ -57,15 +57,15 @@
                 </div>
 			</div>
 		</div>
-		<div  class="row">
+		<div  class="row" id="school_text">
 			<div class="col-xs-4"><p class="text">就读学校</p></div>
 			<div class="col-xs-8"><input class="input" id="school" type="text"></div>
 		</div>
-		<div  class="row">
+		<div  class="row" id="grade_text">
 			<div class="col-xs-4"><p class="text">就读年级</p></div>
 			<div class="col-xs-8"><input class="input" id="grade" type="text"></div>
 		</div>
-		<div  class="row">
+		<div  class="row" id="class_text">
 			<div class="col-xs-4"><p class="text">就读班级</p></div>
 			<div class="col-xs-8"><input class="input" id="class" type="text"></div>
 		</div>
@@ -79,19 +79,19 @@
 	</div>
 
 	<div class="other">
-		<div  class="row">
+		<div  class="row" id="f_name_text">
 			<div class="col-xs-4"><p class="text">父亲姓名</p></div>
 			<div class="col-xs-8"><input class="input" id="f_name" type="text"></div>
 		</div>
-		<div  class="row">
+		<div  class="row" id="f_tel_text">
 			<div class="col-xs-4"><p class="text">父亲手机</p></div>
 			<div class="col-xs-8"><input class="input" id="f_tel" type="text"></div>
 		</div>
-		<div  class="row">
+		<div  class="row" id="m_name_text">
 			<div class="col-xs-4"><p class="text">母亲姓名</p></div>
 			<div class="col-xs-8"><input class="input" id="m_name" type="text"></div>
 		</div>
-		<div  class="row">
+		<div  class="row" id="m_tel_text">
 			<div class="col-xs-4"><p class="text">母亲手机</p></div>
 			<div class="col-xs-8"><input class="input" id="m_tel" type="text"></div>
 		</div>
@@ -103,12 +103,12 @@
 			<div class="col-xs-4"><p class="text">快递详细地址</p></div>
 			<div class="col-xs-8"><input class="input" id="address" type="text"></div>
 		</div>
-		<div  class="row">
+		<div  class="row" id="inputter">
 			<div class="col-xs-4"><p class="text">填表人</p></div>
 			<div class="col-xs-8">
 				<div class="radio">
                   <label>
-                    <input type="radio" name="inputerRadio" checked="checked"  value="父亲">父亲
+                    <input type="radio" name="inputerRadio"  value="父亲">父亲
                   </label>
                 </div>
                 <div class="radio">
@@ -118,12 +118,12 @@
                 </div>
 			</div>
 		</div>
-		<div  class="row">
+		<div class="row">
 			<div class="col-xs-4"><p class="text">你是通过什么渠道了解我们的</p></div>
-			<div class="col-xs-8">
+			<div class="col-xs-8 channel-row">
 				<div class="radio">
                   <label>
-                    <input type="radio" name="channelRadio" checked="checked"  value="1">演讲
+                    <input type="radio" name="channelRadio"  value="1">演讲
                   </label>
                 </div>
                 <div class="radio">
@@ -143,7 +143,7 @@
                 </div>
                  <div class="radio">
                   <label>
-                    <input type="radio" name="channelRadio"  value="5">其他学员介绍
+                    <input id="other_radio"  type="radio" name="channelRadio"  value="5">其他学员介绍
                   </label>
                 </div>
 			</div>
@@ -200,7 +200,7 @@
     <script src="../../Scripts/Commen/CourseCommen.js"></script>
     <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
     <script src="../../Framework/layer_mobile/layer.js"></script>
-	<script src="../../Scripts/Commen/CheckUserLogin.js"></script>
+	<!-- <script src="../../Scripts/Commen/CheckUserLogin.js"></script> -->
     <script src="../../Scripts/book/sign.js"></script>
 
 </body>
