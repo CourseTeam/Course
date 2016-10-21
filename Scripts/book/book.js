@@ -417,7 +417,7 @@ function create_bookedlist() {
     for (var i = 0; i < booked_result.Data.length; i++) {
         var row = booked_result.Data[i];
         var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
-       var isNiujin = false;
+        var isNiujin = false;
         var isNet = false;
         if (row.CoursePhaseName.indexOf("牛津剑桥") > -1) {isNiujin = true};
         if (row.CoursePhaseName.indexOf("网络英语") > -1) {isNet = true}; //判断是否是网络课程

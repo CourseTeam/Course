@@ -150,7 +150,7 @@ function sure() {
 
     //发送调查问卷
 
-    if (isJoinedCourse) {
+    if (!isJoinedCourse) {
         post_question(param);
     }
 
@@ -213,7 +213,7 @@ function post_question(obj) {
         "Q7": q7
     };
 
-    var result_cookie = $Course.GetAjaxJson(param_question, ApiUrl + "Questionnaire/Questionnaire_Add");
+    var result_cookie = $Course.PostAjaxJson(param_question, ApiUrl + "Questionnaire/Questionnaire_Add");
 
 
 }
