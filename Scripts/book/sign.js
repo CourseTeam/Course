@@ -9,6 +9,8 @@ var isOpenOther;
 //课程阶段 一阶  二阶等
 var ptype;
 
+var isJoinedCourse; //是否参加过课程
+
 $(function ($) {
 
     get_request("CourseID", "CourseType");
@@ -61,6 +63,7 @@ $(function ($) {
         document.getElementById("address").value = UserInfo.Address;
     }
 
+    get_joinedState();
 });
 
 
@@ -146,7 +149,8 @@ function sure() {
 
 
     //发送调查问卷
-    if (ptype == 1) {
+
+    if (isJoinedCourse) {
         post_question(param);
     }
 
@@ -275,6 +279,21 @@ function phase_book(obj) {
                 window.location.href = "../Appointment/CourseList.html";
             }
         });
+    }
+}
+
+//判断参加课程状态 是否参加过一阶课程
+function get_joinedState() {
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    var param = {"UserID": UserInfo.UserID};
+    // var param = {"UserID": 156};
+
+    var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
+    if (result.Msg == "OK") {
+        isJoinedCourse = result.Data.IsJoinedCourse;
+        if (isJoinedCourse) {
+            document.getElementById("question-div").style.display = "block";
+        }
     }
 }
 
