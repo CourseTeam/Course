@@ -298,7 +298,7 @@ function create_bookinglist() {
         // var disabled = row.PhaseStatus == 3 || row.PhaseStatus == 2 ? "" : "disabled";
         var disabled = "";
         var btnColor = get_btncolor(row.PhaseStatus);
-        if (isNiujin && row.PhaseStatus == 3) {disabled="disabled",btnColor=get_btncolor(4)}
+        if (isNiujin && row.PhaseStatus == 3 || type == 4) {disabled="disabled",btnColor=get_btncolor(4)}
 
         //转期参数
         var param = {"pid": row.PhaseID, "cpname": row.CoursePhaseName};
