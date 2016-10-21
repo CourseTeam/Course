@@ -320,7 +320,7 @@ function create_bookinglist() {
         strHtml += '    <li "><font class="name">' + row.CoursePhaseName + '</font></li>'
         strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
         strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
-        if (!isNiujin && row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
+        if (isNiujin && row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
            strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
         }else {
@@ -385,7 +385,7 @@ function create_willbooklist() {
        strHtml += '    <li><font class="name">'+ row.CoursePhaseName + '</font></li>'
        strHtml += '    <li><font class="time">'+ "开营时间：" + row.StartTime.substr(0,10) + '</font></li>'
        strHtml += '    <li><font class="location">'+ row.Place + '</font></li>'
-         if (!isNiujin && row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
+         if (isNiujin && row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
            strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
         }else {
@@ -434,7 +434,7 @@ function create_bookedlist() {
         strHtml += '    <li><font class="name">' + row.CoursePhaseName + '</font></li>'
         strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
         strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
-        if (!isNiujin && row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
+        if (isNiujin && row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
            strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
         }else {
