@@ -570,6 +570,9 @@ function get_btncolor(state){
 
 function get_stateImg(state) {
     switch (state) {
+        case 0:
+            return "";
+        break;
         case 1:
             return "../../Images/book/yuyuezhong.png";
             break;
