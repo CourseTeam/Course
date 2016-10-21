@@ -9,6 +9,8 @@ var isOpenOther;
 //课程阶段 一阶  二阶等
 var ptype;
 
+var isJoinedCourse; //是否参加过课程
+
 $(function ($) {
 
     get_request("CourseID","CourseType");
@@ -61,6 +63,7 @@ $(function ($) {
         document.getElementById("address").value = UserInfo.Address;
     }
 
+    get_joinedState();
 });
 
 
@@ -137,7 +140,7 @@ function sure() {
 
 
     //发送调查问卷
-    if (ptype == 1) {post_question(param);}
+    if (isJoinedCourse) {post_question(param);}
 
     if (courseTID != 2) {
 	    updateInfo(param);
@@ -255,6 +258,19 @@ function phase_book(obj) {
     }
 }
 
+//判断参加课程状态 是否参加过一阶课程
+function get_joinedState(){
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    var param = {"UserID": UserInfo.UserID};
+    // var param = {"UserID": 156};
+
+    var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
+    if (result.Msg == "OK") {
+        isJoinedCourse = result.Data.IsJoinedCourse;
+        if (isJoinedCourse) {document.getElementById("question-div").style.display="block";}
+    }
+}
+
 
 function dateVerify(date) {
     var a = /^(\d{4})-(\d{2})-(\d{2})$/;
@@ -358,7 +374,6 @@ function create_phaselist(data) {
         $("input[name=radio_phase]").on("click", function () {
                 ptype = $(this).attr("ptype");
             if (ptype == 1) {
-                document.getElementById("question-div").style.display="block";
             }
         });
 
