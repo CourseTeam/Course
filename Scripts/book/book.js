@@ -283,6 +283,7 @@ function create_bookinglist() {
     for (var i = 0; i < booking_result.Data.length; i++) {
         var row = booking_result.Data[i];
         if (row.CoursePhaseName.indexOf("牛津剑桥") > -1) {var isNiujin = true};
+        if (row.CoursePhaseName.indexOf("网络英语") > -1) {var isNet = true}; //判断是否是网络课程
         var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
         var costName = get_costname(row.PhaseType);
         var costText = isCost?"已缴纳"+costName:"未缴纳"+costName;
@@ -320,7 +321,7 @@ function create_bookinglist() {
         if (row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
            strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
-        }else if(isNiujin){
+        }else if(isNiujin || isNet){
           //not do something
         }else {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
@@ -348,6 +349,7 @@ function create_willbooklist() {
 
       var row = willbook_result.Data[i];
     if (row.CoursePhaseName.indexOf("牛津剑桥") > -1) {var isNiujin = true};
+      if (row.CoursePhaseName.indexOf("网络英语") > -1) {var isNet = true}; //判断是否是网络课程
       var isCost = row.AccommodationFeesPaid >= row.AccommodationCost && row.AccommodationCost != 0;
       var type = get_type(row.PhaseStatus);
       var costName = get_costname(row.PhaseType);
@@ -387,7 +389,7 @@ function create_willbooklist() {
          if (row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
            strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
-        }else if(isNiujin){
+        }else if(isNiujin || isNet){
           //not do something
         }else {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
@@ -412,6 +414,7 @@ function create_bookedlist() {
         var row = booked_result.Data[i];
         var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
         if (row.CoursePhaseName.indexOf("牛津剑桥") > -1) {var isNiujin = true};
+        if (row.CoursePhaseName.indexOf("网络英语") > -1) {var isNet = true}; //判断是否是网络课程
         var color = isCost ? "#F24D4D" : "#9B9B9B";
         var type = get_type(row.PhaseStatus);
         var costName = get_costname(row.PhaseType);
@@ -439,7 +442,7 @@ function create_bookedlist() {
         if (row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
            strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
-        }else if(isNiujin){
+        }else if(isNiujin || isNet){
           //not do something
         }else {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
