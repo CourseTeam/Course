@@ -373,11 +373,6 @@ function create_phaselist(data) {
             strHtml += '    </div>'
         }
         $(".phase_container").append(strHtml);
-        $("input[name=radio_phase]").on("click", function () {
-                ptype = $(this).attr("ptype");
-            if (ptype == 1) {
-            }
-        });
 
     }
 }
@@ -423,16 +418,17 @@ function get_data(cid) {
             zengzhiHtml += '    </div>'
             zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '      <label>'
-            zengzhiHtml += '        <input type="radio" name="radio_server" value="0">'
-            zengzhiHtml += '        <p>不需要此项服务</p>'
-            zengzhiHtml += '      </label>'
-            zengzhiHtml += '    </div>'
-            zengzhiHtml += '    <div class="radio">'
-            zengzhiHtml += '      <label>'
             zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
             zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
             zengzhiHtml += '      </label>'
             zengzhiHtml += '    </div>'
+            zengzhiHtml += '    <div class="radio">'
+            zengzhiHtml += '      <label>'
+            zengzhiHtml += '        <input type="radio" name="radio_server" value="0">'
+            zengzhiHtml += '        <p>不需要此项服务</p>'
+            zengzhiHtml += '      </label>'
+            zengzhiHtml += '    </div>'
+           
             $(".zengzhi").append(zengzhiHtml);
         }
     }
