@@ -383,6 +383,8 @@ function create_phaselist(data) {
         for (var i = 0; i < data.length; i++) {
             var row = data[i];
             var color = row.ReservationCount == row.PeopleCount ? "red" : "black"
+            var StartTime = row.StartTime ? row.StartTime.split(' ')[0] : "待定";
+            var EndTime = row.EndTime ? row.EndTime.split(' ')[0] : "待定";
             strHtml += '	<div class="radio">'
             strHtml += '       <label>'
             strHtml += '          <input type="radio" ptype="' + row.PhaseType + '" name="radio_phase" value="' + row.PhaseID + '">'
@@ -392,8 +394,8 @@ function create_phaselist(data) {
                 strHtml += '            <p style="color:red;">' + "(仅限参加过一阶课程的老学员)" + '</p>'
 
             }
-            strHtml += '            <p>开始时间：' + row.StartTime.substring(0, 10) + '</p>'
-            strHtml += '            <p>结束时间：' + row.EndTime.substring(0, 10) + '</p>'
+            strHtml += '            <p>开始时间：' + StartTime + '</p>'
+            strHtml += '            <p>结束时间：' + EndTime + '</p>'
             if (row.PhaseType != 1) {
                 strHtml += '            <p style="color:' + color + ';">报名人数：' + row.ReservationCount + '/' + row.PeopleCount + '</p>'
             }
