@@ -267,7 +267,7 @@ function get_joinedState(){
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
         isJoinedCourse = result.Data.IsJoinedCourse;
-        if (isJoinedCourse) {document.getElementById("question-div").style.display="block";}
+        if (isJoinedCourse == 0) {document.getElementById("question-div").style.display="block";}
     }
 }
 
@@ -308,7 +308,7 @@ function get_request(courseid,CourseType) {
 function create_parentlist(){
 // 	报名表,把学校、年级、班级、父母联系方式以及姓
 // 名、填表人去除,改成工作单位、备注
-
+    
 	document.getElementById("m_name_text").style.display = "none";
 	document.getElementById("m_tel_text").style.display = "none";
 	document.getElementById("f_name_text").style.display = "none";
@@ -320,7 +320,7 @@ function create_parentlist(){
 	document.getElementById("name_text").style.display = "none";
 
 	var parentHtml = "";
-	parentHtml += '<div  class="row" id="f_name_text">'
+	parentHtml += ' <div  class="row" id="f_name_text">'
 	parentHtml += '		<div class="col-xs-4"><p class="text">工作单位</p></div>'
 	parentHtml += '		<div class="col-xs-8"><input class="input" id="factory" type="text"></div>'
 	parentHtml += '	</div>'
