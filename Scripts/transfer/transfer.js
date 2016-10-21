@@ -1,3 +1,4 @@
+
 var phase_result;
 var phaseID;
 var selCourseID;
@@ -15,7 +16,6 @@ $(function ($) {
         showlist();
     });
     get_data($Course.RequestUrlParams("phaseID"));
-
 });
 
 //访问转期接口
@@ -39,7 +39,10 @@ function get_data(pid) {
     var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_ChangePhase");
     if (result.Msg = "OK") {
         phase_result = result.Data;
-
+        if (result.Data.length == 0) {
+            $("#course-list").html("暂无可转期课程");
+            $("#course-list").off("click");
+        }
     }
 }
 
@@ -67,10 +70,12 @@ function showlist() {
     var strHtml = "";
     for (var i = 0; i < phase_result.length; i++) {
         var row = phase_result[i];
+        var StartTime = row.StartTime ? row.StartTime.split(' ')[0] : "待定";
+        var EndTime = row.EndTime ? row.EndTime.split(' ')[0] : "待定";
         strHtml += '<div class="radio">' +
             '<label>' +
             '<input type="radio" value="' + row.CoursePhaseName + "," + row.PhaseID + '"' + 'name="course">' + row.CoursePhaseName +
-            '<span>开始时间：'+row.StartTime.split(0,10) + "     " + "结束时间："+ row.EndTime.split(0,10) + '</span>'
+            '<br /><span>开始时间：' + StartTime + "     " + "结束时间：" + EndTime + '</span>' +
             '</label>' +
             '</div>';
     }
@@ -80,14 +85,10 @@ function showlist() {
         btn: ["确定", "取消"],
         yes: function (index) {
             var id = $("input[name=course]:checked").val();
-
             selCourseID = id.split(",")[1];
             selCourseName = id.split(",")[0];
-            var btn = document.getElementById("course-list");
-            btn.innerHTML = selCourseName;
+            $("#course-list").html(selCourseName);
             layer.close(index);
-
-
         }, no: function (index) {
 
         }

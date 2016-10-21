@@ -9,7 +9,7 @@ jQuery.support.cors = true;
 var ApiUrl = "http://192.168.80.13:1217/";
 
 //正式服务器地址
-//var ApiUrl = "http://120.26.218.68:1217/";
+//ApiUrl = "http://120.26.218.68:1217/";
 
 //用户票据
 //。。。。
@@ -25,8 +25,15 @@ $Course.PostAjaxJson = function (params, url) {
     $.ajax({
         url: url, data: params, type: 'post', cache: false, async: false,
         beforeSend: function (XHR) {
-            XHR.setRequestHeader('Authorization', 'BasicAuth ' + "");
-
+            // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+            // var Ticket="";
+            // if (UserInfo==null||UserInfo=="null"||UserInfo==""){
+            //     Ticket="";
+            // }else{
+            //     Ticket=UserInfo.Ticket;
+            // }
+            // XHR.setRequestHeader('Authorization', 'BasicAuth ' + Ticket);
+            XHR.setRequestHeader('Authorization', 'BasicAuth ' + '');
         },
         success: function (data) {
             json = data;
@@ -41,8 +48,15 @@ $Course.GetAjaxJson = function (params, url) {
     $.ajax({
         url: url, data: params, type: 'get', cache: false, async: false,
         beforeSend: function (XHR) {
-            XHR.setRequestHeader('Authorization', 'BasicAuth ' + "");
-
+            // var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+            // var Ticket="";
+            // if (UserInfo==null||UserInfo=="null"||UserInfo==""){
+            //     Ticket="";
+            // }else{
+            //     Ticket=UserInfo.Ticket;
+            // }
+            // XHR.setRequestHeader('Authorization', 'BasicAuth ' + Ticket);
+            XHR.setRequestHeader('Authorization', 'BasicAuth ' + '');
         },
         success: function (data) {
             json = data;

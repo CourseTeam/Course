@@ -16,8 +16,6 @@ $(function ($) {
         ChangePwd();
     })
 });
-
-var VerificationCode = 0;
 //获取验证码
 function GetSMSCode() {
     var PhoneNum = $("#Phone").val();
@@ -45,7 +43,6 @@ function GetSMSCode() {
     var param = {Phone: PhoneNum, Type: 2};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Account/GetSMSCode");
     if (result.Msg == "OK") {
-        VerificationCode = result.Data;
         var time = setInterval(function () {
             s--;
             $("#btnSendSMS").html(s + '秒');
@@ -77,14 +74,22 @@ function ChangePwd() {
         return;
     }
     var _VerificationCode = $("#VerificationCode").val();
-    if (VerificationCode != _VerificationCode) {
+    if (!_VerificationCode) {
         layer.open({
-            content: '验证码错误!',
+            content: '请输入验证码!',
             style: 'background-color:#fff; color:#000; border:none;width:60%',
             time: 2
         });
         return;
     }
+    // if (VerificationCode != _VerificationCode) {
+    //     layer.open({
+    //         content: '验证码错误!',
+    //         style: 'background-color:#fff; color:#000; border:none;width:60%',
+    //         time: 2
+    //     });
+    //     return;
+    // }
     var Pwd = $("#Pwd").val();
     if (!Pwd) {
         layer.open({
@@ -95,9 +100,15 @@ function ChangePwd() {
         return;
     }
     Pwd = $Course.MD5(Pwd);
-    var param = {Account: PhoneNum, Pwd: Pwd};
+    var param = {Account: PhoneNum, Pwd: Pwd, Code: _VerificationCode};
     var result = $Course.PostAjaxJson(param, ApiUrl + "Account/UserInfo_ChangePwd_ByPhone");
     if (result.Msg == "OK") {
         window.location.href = "Login.html";
+    } else {
+        layer.open({
+            content: result.Msg,
+            style: 'background-color:#fff; color:#000; border:none;width:60%',
+            time: 2
+        });
     }
 }
