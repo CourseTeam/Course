@@ -86,7 +86,6 @@ function sure() {
     var sel_pid = $("input[name=radio_phase]:checked").val();//一阶课程期数
     if (channel == undefined) {channel = 0};
     if (server_id == undefined) {server_id = 0};
-    if (sel_pid == undefined) {sel_pid = 0};
     if (inputer == undefined) {inputer = "父亲"};
 
 
