@@ -192,7 +192,7 @@ function updateInfo(obj) {
 
 function post_question(obj) {
 
-
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var q1 = $(".q1").val();
     var q2 = $(".q2").val();
     var q3 = $(".q3").val();
