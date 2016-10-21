@@ -285,7 +285,7 @@ function create_bookinglist() {
     strHtml += '  <ul class="title">已预约课程，开课两周前可转期</ul>'
     for (var i = 0; i < booking_result.Data.length; i++) {
         var row = booking_result.Data[i];
-        if (row.CoursePhaseName indexOf("牛津剑桥") > -1) {isNiujin = true};
+        if (row.CoursePhaseName.indexOf("牛津剑桥") > -1) {isNiujin = true};
         var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
         var costName = get_costname(row.PhaseType);
         var costText = isCost?"已缴纳"+costName:"未缴纳"+costName;
