@@ -23,6 +23,20 @@ $(function ($) {
     	isOpenOther = true;
     }
 
+    
+    document.getElementById("channel_radio1").onclick = function(){
+    	deleteOther();
+    }
+    document.getElementById("channel_radio2").onclick = function(){
+    	deleteOther();
+    }
+    document.getElementById("channel_radio3").onclick = function(){
+    	deleteOther();
+    }
+    document.getElementById("channel_radio4").onclick = function(){
+    	deleteOther();
+    }
+
 
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     if (UserInfo) {
@@ -50,12 +64,19 @@ $(function ($) {
 function other() {
 	if (!isOpenOther) {
 		var otherHtml = "";
-	    otherHtml += '	<div class="radio">'
+	    otherHtml += '	<div id="other_text_radio" class="other_text_radio">'
 	  	otherHtml += '   <label>请输入介绍人（学生）姓名：'
 	    otherHtml += '     <input type="text" name="channelRadio">'
 	    otherHtml += '   </label>'
 	    otherHtml += ' </div>'
 		$(".channel-row").append(otherHtml);
+	}
+}
+
+function deleteOther(){
+	if (isOpenOther) {
+		isOpenOther = false;
+		$(".other_text_radio").remove();
 	}
 }
 
