@@ -285,14 +285,14 @@ function create_bookinglist() {
     strHtml += '  <ul class="title">已预约课程，开课两周前可转期</ul>'
     for (var i = 0; i < booking_result.Data.length; i++) {
         var row = booking_result.Data[i];
-        if (row.CoursePhaseName == "牛津剑桥游学营") {isNiujin = true};
+        if (row.CoursePhaseName == "摩英牛津剑桥领袖特训营") {isNiujin = true};
         var isCost = row.AccommodationFeesPaid >= row.AccommodationCost;
         var costName = get_costname(row.PhaseType);
         var costTitle = isCost ? "已缴纳"+costName : "未缴纳" + costName;
         var img = isCost ? "../../Images/book/cost_selected.png" : "../../Images/book/cost_normal.png";
         var type = get_type(row.PhaseStatus);
         var stateImg = get_stateImg(row.PhaseStatus);
-        var courseImg = get_courseImg(row.PhaseType);
+        var courseImg = row.PhaseType == 0?row.CourseImgUrl:get_courseImg(row.PhaseType);
         var addstext = get_addservname(row.ValueAddedServices);
         // var disabled = row.PhaseStatus == 3 || row.PhaseStatus == 2 ? "" : "disabled";
         var disabled = "";
@@ -319,9 +319,11 @@ function create_bookinglist() {
         strHtml += '    <li "><font class="name">' + row.CoursePhaseName + '</font></li>'
         strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
         strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
-        if (!isNiujin) {
+        if (!isNiujin && row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
            strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costTitle + '</font></li>'
            strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
+        }else {
+           strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
         }
         strHtml += '  </ul>'
       
@@ -355,7 +357,7 @@ function create_willbooklist() {
       var name = row.CourseTypeName == "亲子课程"?"0":"1";
       var stateImg = get_stateImg(row.PhaseStatus);
       var btnColor = get_btncolor(row.PhaseStatus);
-      var courseImg = get_courseImg(row.PhaseType);
+      var courseImg = row.PhaseType == 0?row.CourseImgUrl:get_courseImg(row.PhaseType);
       var addstext = get_addservname(row.ValueAddedServices);
       var serv_color = row.ValueAddedServices == 0? "#9B9B9B" : "#F24D4D";
       var serv_img = row.ValueAddedServices == 0?"../../Images/book/serv_icon_normal.png":"../../Images/book/serv_icon_selected.png";
@@ -382,8 +384,12 @@ function create_willbooklist() {
        strHtml += '    <li><font class="name">'+ row.CoursePhaseName + '</font></li>'
        strHtml += '    <li><font class="time">'+ "开营时间：" + row.StartTime.substr(0,10) + '</font></li>'
        strHtml += '    <li><font class="location">'+ row.Place + '</font></li>'
-       strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
-      strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
+         if (!isNiujin && row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
+           strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costTitle + '</font></li>'
+           strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
+        }else {
+           strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
+        }
        strHtml += '  </ul>'
        strHtml += '  <ul style="float:right;">'
        if (disabled == "") {strHtml += '<button class="button" color="' + btnColor + '" type="button"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'}
@@ -408,7 +414,7 @@ function create_bookedlist() {
         var costName = get_costname(row.PhaseType);
         var stateImg = get_stateImg(row.PhaseStatus);
         var btnColor = get_btncolor(row.PhaseStatus);
-        var courseImg = get_courseImg(row.PhaseType);
+        var courseImg = row.PhaseType == 0?row.CourseImgUrl:get_courseImg(row.PhaseType);
         var costImg = row.AccommodationFeedPaid > row.AccommodationCost ? "../../Images/book/cost_normal.png" : "../../Images/book/cost_selected.png";
         var serv_color = row.ValueAddedServices == 0? "#9B9B9B" : "#F24D4D";
         var serv_img = row.ValueAddedServices == 0?"../../Images/book/serv_icon_normal.png":"../../Images/book/serv_icon_selected.png";
@@ -426,8 +432,12 @@ function create_bookedlist() {
         strHtml += '    <li><font class="name">' + row.CoursePhaseName + '</font></li>'
         strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
         strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
-        strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + costImg + '" width="19" height="15" >' + "已缴纳" + costName + '</font></li>'
-        strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
+        if (!isNiujin && row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
+           strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costTitle + '</font></li>'
+           strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
+        }else {
+           strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
+        }
         strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
         strHtml += '    <button class="button" type="button" color="'+ btnColor +'" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
@@ -449,11 +459,12 @@ function create_refundlist(){
         var type = get_type(row.PhaseStatus);
         var stateImg = get_stateImg(row.PhaseStatus);
         var btnColor = get_btncolor(row.PhaseStatus);
+        var courseImg = row.PhaseType == 0?row.CourseImgUrl:get_courseImg(row.PhaseType);
         var costImg = row.AccommodationFeedPaid > row.AccommodationCost ? "../../Images/book/cost_normal.png" : "../../Images/book/cost_selected.png";
         strHtml += '  <ul style="float: left;">'
         strHtml += '    <li>'
         if (stateImg != "") {
-            strHtml += '        <div style="background:url(' + row.CourseImgUrl + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
+            strHtml += '        <div style="background:url(' + courseImg + ') no-repeat;background-size: cover;"><img id= img -' + i + 'width="75" height="75"  src="' + stateImg + '"></div>'
         } else {
             strHtml += '        <div><img id="img -' + i + '" width="75" height="75"  src="' + courseImg + '"></div>'
         }
@@ -544,9 +555,6 @@ function get_btncolor(state){
 
 function get_stateImg(state) {
     switch (state) {
-        case 0:
-            return "";
-            break;
         case 1:
             return "../../Images/book/yuyuezhong.png";
             break;
