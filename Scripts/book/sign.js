@@ -363,7 +363,7 @@ function create_parentlist() {
 	parentHtml += '	</div>'
 	parentHtml += '	<div  class="row" id="f_tel_text">'
 	parentHtml += '		<div class="col-xs-4"><p class="text">备注(说说您相对摩英说的话)</p></div>'
-	parentHtml += '		<div class="col-xs-8"><textarea class="input" id="remark" type="text"></textarea></div>'
+	parentHtml += '		<div class="col-xs-8"><textarea class="input" id="remark" type="text" resize="none"></textarea></div>'
 	parentHtml += '	</div>'
 	$(".other").append(parentHtml);
 
