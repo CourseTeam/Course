@@ -190,6 +190,7 @@ function updateInfo(obj) {
     };
 
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Edit");
+    result.Data.Ticket=UserInfo.Ticket;
     if (result.Msg == "OK" && result.Data == true) {
         //更新个人信息成功 更改cookie
         var param_cookie = {"UserID": UserInfo.UserID};
