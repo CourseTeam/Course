@@ -293,7 +293,7 @@ function create_bookinglist() {
         var type = get_type(row.PhaseStatus);
         var stateImg = get_stateImg(row.PhaseStatus);
         var courseImg = row.PhaseType == 0?row.CourseImgUrl:get_courseImg(row.PhaseType);
-        var addstext = get_addservname(row.ValueAddedServices);
+        var addstext = get_addservname(row.ValueAddedServices); 
 
         // var disabled = row.PhaseStatus == 3 || row.PhaseStatus == 2 ? "" : "disabled";
         var disabled = "";
