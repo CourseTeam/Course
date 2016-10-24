@@ -222,7 +222,7 @@ function post_question(obj) {
     };
 
     var result_cookie = $Course.PostAjaxJson(param_question, ApiUrl + "Questionnaire/Questionnaire_Add");
-
+    
 
 }
 
