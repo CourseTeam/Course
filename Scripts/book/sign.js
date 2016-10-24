@@ -15,7 +15,7 @@ $(function ($) {
 
     document.getElementById("radio_zhihui_div").style.display = "none";
         document.getElementById("question-div").style.display = "none";
-        
+
     get_request("CourseID", "CourseType");
     get_phaselist("CourseID");
 
@@ -363,7 +363,7 @@ function create_parentlist() {
 	parentHtml += '	</div>'
 	parentHtml += '	<div  class="row" id="f_tel_text">'
 	parentHtml += '		<div class="col-xs-4"><p class="text">备注(说说您相对摩英说的话)</p></div>'
-	parentHtml += '		<div class="col-xs-8"><input class="input" id="remark" type="text"></div>'
+	parentHtml += '		<div class="col-xs-8"><textarea class="input" id="remark" type="text"></div>'
 	parentHtml += '	</div>'
 	$(".other").append(parentHtml);
 
@@ -405,9 +405,9 @@ function create_phaselist(data) {
             }
             strHtml += '            <p>开始时间：' + StartTime + '</p>'
             strHtml += '            <p>结束时间：' + EndTime + '</p>'
-            if (row.PhaseType != 1) {
-                strHtml += '            <p style="color:' + color + ';">报名人数：' + row.ReservationCount + '/' + row.PeopleCount + '</p>'
-            }
+            // if (row.PhaseType != 1) {
+            //     strHtml += '            <p style="color:' + color + ';">报名人数：' + row.ReservationCount + '/' + row.PeopleCount + '</p>'
+            // }
             strHtml += '        </label>'
             strHtml += '    </div>'
         }
