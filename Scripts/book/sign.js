@@ -363,7 +363,7 @@ function create_parentlist() {
 	parentHtml += '	</div>'
 	parentHtml += '	<div  class="row" id="f_tel_text">'
 	parentHtml += '		<div class="col-xs-4"><p class="text">备注(说说您相对摩英说的话)</p></div>'
-	parentHtml += '		<div class="col-xs-8"><textarea class="input" id="remark" type="text"></div>'
+	parentHtml += '		<div class="col-xs-8"><textarea class="input" id="remark" type="text"></textarea></div>'
 	parentHtml += '	</div>'
 	$(".other").append(parentHtml);
 
@@ -462,7 +462,7 @@ function get_data(cid) {
             zengzhiHtml += '    </div>'
             zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '      <label>'
-            zengzhiHtml += '        <input type="radio" checked="checked" name="radio_server" value="0">'
+            zengzhiHtml += '        <input type="radio" name="radio_server" value="0">'
             zengzhiHtml += '        <p>不需要此项服务</p>'
             zengzhiHtml += '      </label>'
             zengzhiHtml += '    </div>'
