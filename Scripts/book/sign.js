@@ -21,7 +21,7 @@ $(function ($) {
         sure();
     };
 
-    var otherStud = document.getElementById("other_radio");
+    var otherStud = document.getElementById("other_radio5");
     otherStud.onclick = function () {
         other();
         isOpenOther = true;
@@ -425,7 +425,7 @@ function get_data(cid) {
 
         if (phaseinfo.PhaseType == 1 || phaseinfo.PhaseType == 2) {
             var zengzhiHtml = "";
-            zengzhiHtml += '<p class="zengzhi_title">请选择您的增值服务</p>'
+            zengzhiHtml += '<span style="color: red">*</span><span class="zengzhi_title">请选择您的增值服务</span>'
             zengzhiHtml += '	<div class="radio">'
             zengzhiHtml += '       <label>'
             zengzhiHtml += '          <input type="radio" name="radio_server" value="1">'
