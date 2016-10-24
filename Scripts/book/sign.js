@@ -27,7 +27,7 @@ $(function ($) {
         isOpenOther = true;
     }
 
-    document.getElementById("other_radio6").style.display = "none";
+    document.getElementById("radio_zhihui_div").style.display = "none";
 
     document.getElementById("question-div").style.display = "none";
 
@@ -116,18 +116,18 @@ function sure() {
 
     if (channel == undefined) {
         channel = 0
-        alert("请选择渠道");
+        layer.open({content:"请选择渠道"});
         return;
     }
     ;
     if (server_id == undefined) {
         server_id = 0;
-        alert("请选择您的增值服务");
+        layer.open({content:"请选择您的增值服务"});
         return;
     }
     ;
     if (inputer == undefined) {
-        alert("请选择调表人");
+        layer.open({content:"请选择调表人"});
         return;
     }
     ;
@@ -190,11 +190,11 @@ function updateInfo(obj) {
     };
 
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Edit");
-    result.Data.Ticket=UserInfo.Ticket;
     if (result.Msg == "OK" && result.Data == true) {
         //更新个人信息成功 更改cookie
         var param_cookie = {"UserID": UserInfo.UserID};
         var result_cookie = $Course.GetAjaxJson(param_cookie, ApiUrl + "User/GetUserInfoByUserID");
+        result_cookie.Data.Ticket=UserInfo.Ticket;
         $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {expires: 30, path: '/'});
     }
 }
@@ -332,7 +332,7 @@ function get_request(courseid, CourseType) {
         if (courseTID == 2) {
             //智慧家长课程
             document.getElementById("question-div").style.display="none";
-            document.getElementById("other_radio6").style.display="block";
+            document.getElementById("radio_zhihui_div").style.display="block";
             
             create_parentlist();
         }
