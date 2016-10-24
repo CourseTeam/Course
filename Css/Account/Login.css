@@ -16,9 +16,9 @@ input {
     outline: none;
 }
 
-input:focus {
-    border: 1px solid #F24C4C;;
-}
+/*input:focus {*/
+    /*border: 1px solid #F24C4C;;*/
+/*}*/
 
 #btnLogin,#btnSendSMS,#btnReg {
     width: 100%;

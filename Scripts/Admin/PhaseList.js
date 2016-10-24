@@ -68,7 +68,7 @@ function Phase_Del(id) {
         if (result.Msg == "OK") {
             if (result.Data) {
                 layer.msg("删除成功！", {icon: 1, time: 2000}, function () {
-                    CourseType_List();
+                    Phase_List();
                     layer.closeAll();
                 });
             } else {
