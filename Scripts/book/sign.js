@@ -27,6 +27,8 @@ $(function ($) {
         isOpenOther = true;
     }
 
+    document.getElementById("other_radio6").style.display = "none";
+
     document.getElementById("question-div").style.display = "none";
 
     document.getElementById("channel_radio1").onclick = function () {
@@ -111,16 +113,22 @@ function sure() {
     var inputer = $("input[name=inputerRadio]:checked").val();
     var channel = $("input[name=channelRadio]:checked").val();
     var sel_pid = $("input[name=radio_phase]:checked").val();//一阶课程期数
+
     if (channel == undefined) {
         channel = 0
+        alert("请选择渠道");
+        return;
     }
     ;
     if (server_id == undefined) {
-        server_id = 0
+        server_id = 0;
+        alert("请选择您的增值服务");
+        return;
     }
     ;
     if (inputer == undefined) {
-        inputer = "父亲"
+        alert("请选择调表人");
+        return;
     }
     ;
 
@@ -323,10 +331,11 @@ function get_request(courseid, CourseType) {
         if (courseTID == 2) {
             //智慧家长课程
             document.getElementById("question-div").style.display="none";
+            document.getElementById("other_radio6").style.display="block";
+            
             create_parentlist();
         }
     }
-
 }
 
 
@@ -388,9 +397,7 @@ function create_phaselist(data) {
             strHtml += '          <input type="radio" ptype="' + row.PhaseType + '" name="radio_phase" value="' + row.PhaseID + '">'
             strHtml += '            <p>' + row.CoursePhaseName + '</p>'
             if (row.PhaseType != 1 && row.PhaseType != 0) {
-
                 strHtml += '            <p style="color:red;">' + "(仅限参加过一阶课程的老学员)" + '</p>'
-
             }
             strHtml += '            <p>开始时间：' + StartTime + '</p>'
             strHtml += '            <p>结束时间：' + EndTime + '</p>'
@@ -451,7 +458,7 @@ function get_data(cid) {
             zengzhiHtml += '    </div>'
             zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '      <label>'
-            zengzhiHtml += '        <input type="radio" name="radio_server" value="0">'
+            zengzhiHtml += '        <input type="radio" checked="checked" name="radio_server" value="0">'
             zengzhiHtml += '        <p>不需要此项服务</p>'
             zengzhiHtml += '      </label>'
             zengzhiHtml += '    </div>'
