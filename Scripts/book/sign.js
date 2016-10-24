@@ -11,10 +11,14 @@ var ptype;
 
 var isJoinedCourse; //是否参加过课程
 
+var isHaveService; //是否有增值服务
+
+var isParentList; //是否是智慧家长课程
+
 $(function ($) {
 
     document.getElementById("radio_zhihui_div").style.display = "none";
-        document.getElementById("question-div").style.display = "none";
+    document.getElementById("question-div").style.display = "none";
 
     get_request("CourseID", "CourseType");
     get_phaselist("CourseID");
@@ -121,13 +125,13 @@ function sure() {
         return;
     }
     ;
-    if (server_id == undefined) {
+    if (server_id == undefined && isHaveService) {
         server_id = 0;
         layer.open({content:"请选择您的增值服务"});
         return;
     }
     ;
-    if (inputer == undefined) {
+    if (inputer == undefined && !isParentList) {
         layer.open({content:"请选择调表人"});
         return;
     }
@@ -334,6 +338,7 @@ function get_request(courseid, CourseType) {
         courseTID = ctid;
         if (courseTID == 2) {
             //智慧家长课程
+            isParentList = true;
             document.getElementById("question-div").style.display="none";
             document.getElementById("radio_zhihui_div").style.display="block";
             
@@ -346,6 +351,7 @@ function get_request(courseid, CourseType) {
 function create_parentlist() {
 // 	报名表,把学校、年级、班级、父母联系方式以及姓
 // 名、填表人去除,改成工作单位、备注
+
 	document.getElementById("m_name_text").style.display = "none";
 	document.getElementById("m_tel_text").style.display = "none";
 	document.getElementById("f_name_text").style.display = "none";
@@ -363,7 +369,7 @@ function create_parentlist() {
 	parentHtml += '	</div>'
 	parentHtml += '	<div  class="row" id="f_tel_text">'
 	parentHtml += '		<div class="col-xs-4"><p class="text">备注(说说您相对摩英说的话)</p></div>'
-	parentHtml += '		<div class="col-xs-8"><textarea class="input" id="remark" type="text" resize="none"></textarea></div>'
+	parentHtml += '		<div class="col-xs-8"><textarea class="input" id="remark" type="text" style="resize:none"></textarea></div>'
 	parentHtml += '	</div>'
 	$(".other").append(parentHtml);
 
@@ -428,6 +434,7 @@ function get_data(cid) {
         $("#course_title").html(result.Data.courseInfo.CourseName);
 
         if (phaseinfo.PhaseType == 1 || phaseinfo.PhaseType == 2) {
+            isHaveService = true;
             var zengzhiHtml = "";
             zengzhiHtml += '<span style="color: red">*</span><span class="zengzhi_title">请选择您的增值服务</span>'
             zengzhiHtml += '	<div class="radio">'
