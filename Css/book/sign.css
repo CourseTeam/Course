@@ -43,6 +43,10 @@
 
 .input {
 	margin-bottom: 10px;
+	height: 40px;
+	border-radius: 3px;
+	padding-left: 5px;
+	border: 1px solid #eee;
 }
 
 .radio {
