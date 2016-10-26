@@ -89,8 +89,9 @@ function post_book(param) {
 // pt PhaseType 阶段
 // over OverCount 报名人数是否已满
 // name CourseTypeName 课程类型名 0=亲子课程
+// serviceType 增值服务类型
 
-function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
+function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname,serviceType) {
     var status = t;
     phase_id = pid;
     course_id = cid;
@@ -110,7 +111,7 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
     param.tspan = tspan;
     param.cpname = coursename;
     param.qinziType = 0;
-    param.serviceType = 0;
+    param.serviceType = 5;
 
 
     if (name == "0") {
@@ -153,7 +154,7 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
       });
     }
 
-    if (pt == 1 || pt == 2) {
+    if (serviceType == 0) {
       var add_str = '<label>' +
               '<input type="radio" value="5" name="optionsRadios" id="radio5">VIP摩英大电影+VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）' +
               '</label>' +
@@ -187,7 +188,7 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname) {
 
             strHtml += '<div class="radio">' +
             '<label>' +
-            '<input type="radio" value="6" name="optionsRadios" id="radio6">不需要此服务' +
+            '<input type="radio" value="0" name="optionsRadios" id="radio6">不需要此服务' +
             '</label>' +
             '</div>';
 
@@ -364,9 +365,9 @@ function create_willbooklist() {
       var stateImg = get_stateImg(row.PhaseStatus);
       var btnColor = get_btncolor(row.PhaseStatus);
       var courseImg = row.PhaseType == 0?row.CourseImgUrl:get_courseImg(row.PhaseType);
-      var addstext = get_addservname(row.ValueAddedServices);
-      var serv_color = row.ValueAddedServices == 0? "#9B9B9B" : "#F24D4D";
-      var serv_img = row.ValueAddedServices == 0?"../../Images/book/serv_icon_normal.png":"../../Images/book/serv_icon_selected.png";
+      var addstext = get_addservname(0);
+      var serv_color "#9B9B9B";
+      var serv_img = "../../Images/book/serv_icon_normal.png";
       
       //阶数
       var phasenumber = row.PhaseType;
