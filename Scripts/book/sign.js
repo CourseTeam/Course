@@ -77,9 +77,9 @@ $(function ($) {
 function other() {
     if (!isOpenOther) {
         var otherHtml = "";
-        otherHtml += '	<div id="other_text_radio" class="other_text_radio">'
+        otherHtml += '  <div id="other_text_radio" class="other_text_radio">'
         otherHtml += '   <label>请输入介绍人（学生）姓名：'
-        otherHtml += '     <input type="text" name="channelRadio">'
+        otherHtml += '     <input id="introduce" type="text" name="channelRadio">'
         otherHtml += '   </label>'
         otherHtml += ' </div>'
         $(".channel-row").append(otherHtml);
@@ -113,6 +113,7 @@ function sure() {
     var address = $("#address").val();
     var factory = $("#factory").val();
     var remark = $("#remark").val();
+    var introduce = $("#introduce").val();
 
     var sex = $("input[name=sexRadio]:checked").val();
     var inputer = $("input[name=inputerRadio]:checked").val();
@@ -132,7 +133,7 @@ function sure() {
     }
     ;
     if (inputer == undefined && !isParentList) {
-        layer.open({content:"请选择调表人"});
+        layer.open({content:"请选择填表人"});
         return;
     }
     ;
@@ -157,8 +158,9 @@ function sure() {
     param.inputer = inputer;
     param.channel = channel;
     param.sel_pid = sel_pid;
-    param.sponsor = factory;
+    param.introduce = introduce;
     param.tellme = remark;
+    param.factory = factory;
 
 
     //发送调查问卷
@@ -182,10 +184,12 @@ function updateInfo(obj) {
     }
 
     if (obj.name == "" || obj.sex == undefined || obj.school == "" || obj.birth == ""
-        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" || obj.address == "" || obj.server_id == undefined || obj.sel_pid == undefined) {
+        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" 
+        || obj.address == "" || obj.server_id == undefined || obj.sel_pid == undefined) {
         layer.open({content: "信息输入未完整，请填写完整再预约"});
         return;
     }
+
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {
         "UserID": UserInfo.UserID, "NickName": obj.name, "Account": "", "Sex": obj.sex, "School": obj.school,
@@ -232,12 +236,12 @@ function post_question(obj) {
 
 }
 
-
 //课程报名
 function course_reg(obj) {
 
     if (obj.name == "" || obj.sex == undefined || obj.school == "" || obj.birth == ""
-        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" || obj.address == "" || obj.sel_pid == undefined) {
+        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" 
+        || obj.address == "" || obj.sel_pid == undefined) {
         layer.open({content: "信息输入未完整，请填写完整再预约"});
         return;
     }
@@ -245,8 +249,9 @@ function course_reg(obj) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {
         "UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel,
-        "Preparer": obj.inputer, "Sponsor": obj.sponsor, "TellMe": obj.tellme
+        "Preparer": obj.inputer, "Sponsor": obj.introduce, "TellMe": obj.tellme,"WorkUnits":obj.factory
     };
+
     var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_Add");
 
     if (result.Msg == "OK" && result.Data != false) {
@@ -268,7 +273,7 @@ function course_reg(obj) {
 //智慧家长报名
 function parent_reg(obj) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    var param = {"UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel, "Preparer": obj.inputer};
+    var param = {"UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel, "Preparer": obj.inputer,"WorkUnits":obj.factory};
 
 }
 
@@ -349,29 +354,29 @@ function get_request(courseid, CourseType) {
 
 
 function create_parentlist() {
-// 	报名表,把学校、年级、班级、父母联系方式以及姓
+//  报名表,把学校、年级、班级、父母联系方式以及姓
 // 名、填表人去除,改成工作单位、备注
 
-	document.getElementById("m_name_text").style.display = "none";
-	document.getElementById("m_tel_text").style.display = "none";
-	document.getElementById("f_name_text").style.display = "none";
-	document.getElementById("f_tel_text").style.display = "none";
-	document.getElementById("inputter").style.display = "none";
-	document.getElementById("school_text").style.display = "none";
-	document.getElementById("grade_text").style.display = "none";
-	document.getElementById("class_text").style.display = "none";
-	document.getElementById("name_text").style.display = "none";
+    document.getElementById("m_name_text").style.display = "none";
+    document.getElementById("m_tel_text").style.display = "none";
+    document.getElementById("f_name_text").style.display = "none";
+    document.getElementById("f_tel_text").style.display = "none";
+    document.getElementById("inputter").style.display = "none";
+    document.getElementById("school_text").style.display = "none";
+    document.getElementById("grade_text").style.display = "none";
+    document.getElementById("class_text").style.display = "none";
+    document.getElementById("name_text").style.display = "none";
 
-	var parentHtml = "";
-	parentHtml += ' <div  class="row" id="f_name_text">'
-	parentHtml += '		<div class="col-xs-4"><p class="text">工作单位</p></div>'
-	parentHtml += '		<div class="col-xs-8"><input class="input" id="factory" type="text"></div>'
-	parentHtml += '	</div>'
-	parentHtml += '	<div  class="row" id="f_tel_text">'
-	parentHtml += '		<div class="col-xs-12"><p class="text">备注(说说您相对摩英说的话)</p></div>'
-	parentHtml += '		<div class="col-xs-12"><textarea class="input" id="remark" type="text" style="resize:none; height:60px; width:100%;"></textarea></div>'
-	parentHtml += '	</div>'
-	$(".other").append(parentHtml);
+    var parentHtml = "";
+    parentHtml += ' <div  class="row" id="f_name_text">'
+    parentHtml += '     <div class="col-xs-4"><p class="text">工作单位</p></div>'
+    parentHtml += '     <div class="col-xs-8"><input class="input" id="factory" type="text"></div>'
+    parentHtml += ' </div>'
+    parentHtml += ' <div  class="row" id="f_tel_text">'
+    parentHtml += '     <div class="col-xs-12"><p class="text">备注(说说您相对摩英说的话)</p></div>'
+    parentHtml += '     <div class="col-xs-12"><textarea class="input" id="remark" type="text" style="resize:none; height:60px; width:100%;"></textarea></div>'
+    parentHtml += ' </div>'
+    $(".other").append(parentHtml);
 
 }
 
@@ -402,7 +407,7 @@ function create_phaselist(data) {
             var color = row.ReservationCount == row.PeopleCount ? "red" : "black"
             var StartTime = row.StartTime ? row.StartTime.split(' ')[0] : "待定";
             var EndTime = row.EndTime ? row.EndTime.split(' ')[0] : "待定";
-            strHtml += '	<div class="radio">'
+            strHtml += '    <div class="radio">'
             strHtml += '       <label>'
             strHtml += '          <input type="radio" ptype="' + row.PhaseType + '" name="radio_phase" value="' + row.PhaseID + '">'
             strHtml += '            <p>' + row.CoursePhaseName + '</p>'
@@ -437,7 +442,7 @@ function get_data(cid) {
             isHaveService = true;
             var zengzhiHtml = "";
             zengzhiHtml += '<span style="color: red">*</span><span class="zengzhi_title">请选择您的增值服务</span>'
-            zengzhiHtml += '	<div class="radio">'
+            zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '       <label>'
             zengzhiHtml += '          <input type="radio" name="radio_server" value="1">'
             zengzhiHtml += '            <p>统一版摩英回忆视频：' + '<span style="color:red">300元</span>' + '（单阶7天）</p>'
