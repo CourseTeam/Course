@@ -9,7 +9,7 @@ jQuery.support.cors = true;
 var ApiUrl = "http://192.168.80.13:1217/";
 
 //正式服务器地址
-ApiUrl = "http://localhost:60182/";
+ApiUrl = "http://120.26.218.68:1217/";
 
 //用户票据
 //。。。。
