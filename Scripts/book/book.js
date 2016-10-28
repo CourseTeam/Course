@@ -366,7 +366,7 @@ function create_willbooklist() {
       var btnColor = get_btncolor(row.PhaseStatus);
       var courseImg = row.PhaseType == 0?row.CourseImgUrl:get_courseImg(row.PhaseType);
       var addstext = get_addservname(0);
-      var serv_color "#9B9B9B";
+      var serv_color = "#9B9B9B";
       var serv_img = "../../Images/book/serv_icon_normal.png";
       
       //阶数
