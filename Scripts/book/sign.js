@@ -204,7 +204,7 @@ function updateInfo(obj) {
         var param_cookie = {"UserID": UserInfo.UserID};
         var result_cookie = $Course.GetAjaxJson(param_cookie, ApiUrl + "User/GetUserInfoByUserID");
         result_cookie.Data.Ticket=UserInfo.Ticket;
-        $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {expires: 30, path: '/'});
+        // $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {expires: 30, path: '/'});
     }
 }
 
@@ -398,6 +398,15 @@ function get_phaselist(cid) {
     }
 }
 
+function selectedPhase(phasetype) {
+    // body...
+    switch(phasetype){
+        case 4:
+            document.getElementById("zengzhi").style.display = "none";
+        break;
+    }
+}
+
 //创建课程一阶列表
 function create_phaselist(data) {
     if (data.length) {
@@ -409,7 +418,7 @@ function create_phaselist(data) {
             var EndTime = row.EndTime ? row.EndTime.split(' ')[0] : "待定";
             strHtml += '    <div class="radio">'
             strHtml += '       <label>'
-            strHtml += '          <input type="radio" ptype="' + row.PhaseType + '" name="radio_phase" value="' + row.PhaseID + '">'
+            strHtml += '          <input type="radio" onclick="selectedPhase('+ row.PhaseType +')" ptype="' + row.PhaseType + '" name="radio_phase" value="' + row.PhaseID + '">'
             strHtml += '            <p>' + row.CoursePhaseName + '</p>'
             if (row.PhaseType != 1 && row.PhaseType != 0) {
                 strHtml += '            <p style="color:red;">' + "(仅限参加过一阶课程的老学员)" + '</p>'
