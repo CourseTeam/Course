@@ -204,7 +204,7 @@ function updateInfo(obj) {
         var param_cookie = {"UserID": UserInfo.UserID};
         var result_cookie = $Course.GetAjaxJson(param_cookie, ApiUrl + "User/GetUserInfoByUserID");
         result_cookie.Data.Ticket=UserInfo.Ticket;
-        $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {expires: 30, path: '/'});
+        // $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {expires: 30, path: '/'});
     }
 }
 
