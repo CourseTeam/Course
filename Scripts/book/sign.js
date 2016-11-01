@@ -241,7 +241,7 @@ function course_reg(obj) {
 
     if (obj.name == "" || obj.sex == undefined || obj.school == "" || obj.birth == ""
         || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" 
-        || obj.address == "" || obj.sel_pid == undefined) {
+        || obj.address == "" || obj.sel_pid == undefined || obj.name == "") {
         layer.open({content: "信息输入未完整，请填写完整再预约"});
         return;
     }
@@ -365,7 +365,6 @@ function create_parentlist() {
     document.getElementById("school_text").style.display = "none";
     document.getElementById("grade_text").style.display = "none";
     document.getElementById("class_text").style.display = "none";
-    document.getElementById("name_text").style.display = "none";
 
     var parentHtml = "";
     parentHtml += ' <div  class="row" id="f_name_text">'
@@ -377,6 +376,7 @@ function create_parentlist() {
     parentHtml += '     <div class="col-xs-12"><textarea class="input" id="remark" type="text" style="resize:none; height:60px; width:100%;"></textarea></div>'
     parentHtml += ' </div>'
     $(".other").append(parentHtml);
+
 
 }
 
