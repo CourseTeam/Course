@@ -372,7 +372,7 @@ function create_parentlist() {
     document.getElementById("name_text").style.display = "none";
     document.getElementById("stu_sex_row").style.display = "none";    
     document.getElementById("stu_birth").style.display = "none";
-    document.getElementById("stu_phone").style.display = "none";
+    // document.getElementById("stu_phone").style.display = "none";
     
     document.getElementById("m_name_text").style.display = "none";
     document.getElementById("m_tel_text").style.display = "none";
@@ -382,7 +382,7 @@ function create_parentlist() {
     document.getElementById("school_text").style.display = "none";
     document.getElementById("grade_text").style.display = "none";
     document.getElementById("class_text").style.display = "none";
-
+    
     var topHtml = "";
     topHtml += ' <div  class="row" id="f_name_text">'
     topHtml += '     <div class="col-xs-4"><p class="text">家长性别</p></div>'
