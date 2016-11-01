@@ -259,7 +259,7 @@ function course_reg(obj) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {
         "UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel,
-        "Preparer": obj.inputer, "Sponsor": obj.introduce, "TellMe": obj.tellme,"WorkUnits":obj.factory,"ParentSex":obj.p_sex
+        "Preparer": obj.inputer, "Sponsor": obj.introduce, "TellMe": obj.tellme,"WorkUnits":obj.factory,"ParentSex":obj.p_sex,
         "ParentBirthday":obj.p_birth,"ParentName":obj.p_pname,"ParentEmail":p_email
     };
 
@@ -506,16 +506,16 @@ function get_data(cid) {
             zengzhiHtml += '      </label>'
             zengzhiHtml += '    </div>'
             zengzhiHtml += '    <div class="radio">'
-            zengzhiHtml += '      <label>'
+            zengzhiHtml += '    <label>'
             zengzhiHtml += '        <input type="radio" name="radio_server" value="4">'
             zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册：' + '<span style="color:red">2680元</span>' + '(单阶7天)' + '<span style="color:red">强烈推荐，性价比极高</span>' + '</p>'
-            zengzhiHtml += '      </label>'
+            zengzhiHtml += '    </label>'
             zengzhiHtml += '    </div>'
-            zengzhiHtml += '    <div class="radio">'
-            zengzhiHtml += '      <label>'
-            zengzhiHtml += '        <input type="radio" name="radio_server" value="5">'
-            zengzhiHtml += '        <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
-            zengzhiHtml += '      </label>'
+            zengzhiHtml += '      <div class="radio">'
+            zengzhiHtml += '        <label>'
+            zengzhiHtml += '           <input type="radio" name="radio_server" value="5">'
+            zengzhiHtml += '           <p>VIP摩英大电影 + VIP蜕变水晶相册3980元 强烈推荐 性价比极高（两阶14天）</p>'
+            zengzhiHtml += '        </label>'
             zengzhiHtml += '    </div>'
             zengzhiHtml += '    <div class="radio">'
             zengzhiHtml += '      <label>'
