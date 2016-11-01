@@ -260,7 +260,7 @@ function course_reg(obj) {
     var param = {
         "UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel,
         "Preparer": obj.inputer, "Sponsor": obj.introduce, "TellMe": obj.tellme,"WorkUnits":obj.factory,"ParentSex":obj.p_sex,
-        "ParentBirthday":obj.p_birth,"ParentName":obj.p_pname,"ParentEmail":p_email
+        "ParentBirthday":obj.p_birth,"ParentName":obj.p_pname,"ParentEmail":obj.p_email
     };
 
     var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_Add");
@@ -367,7 +367,13 @@ function get_request(courseid, CourseType) {
 function create_parentlist() {
 //  报名表,把学校、年级、班级、父母联系方式以及姓
 // 名、填表人去除,改成工作单位、备注
-
+    document.getElementById("stu_tel_row").style.display = "none";
+    document.getElementById("email_row").style.display = "none";
+    document.getElementById("name_text").style.display = "none";
+    document.getElementById("stu_sex_row").style.display = "none";    
+    document.getElementById("stu_birth").style.display = "none";
+    document.getElementById("stu_phone").style.display = "none";
+    
     document.getElementById("m_name_text").style.display = "none";
     document.getElementById("m_tel_text").style.display = "none";
     document.getElementById("f_name_text").style.display = "none";
@@ -377,35 +383,39 @@ function create_parentlist() {
     document.getElementById("grade_text").style.display = "none";
     document.getElementById("class_text").style.display = "none";
 
+    var topHtml = "";
+    topHtml += ' <div  class="row" id="f_name_text">'
+    topHtml += '     <div class="col-xs-4"><p class="text">家长性别</p></div>'
+    topHtml += '<div class="radio">'
+    topHtml += '     <label>'
+    topHtml += '         <input type="radio" name="p_sexRadio" checked="checked"  value="男">男'
+    topHtml += '     </label>'
+    topHtml += '</div>'
+    topHtml += '<div class="radio">'
+    topHtml += '  <label>'
+    topHtml += '     <input type="radio" name="p_sexRadio"  value="女">女'
+    topHtml += '  </label>'
+    topHtml += '</div>'
+    topHtml += ' </div>'
+    topHtml += ' <div  class="row" id="f_tel_text">'
+    topHtml += '     <div class="col-xs-12"><p class="text">出生日期</p></div>'
+    topHtml += '     <div class="col-xs-12"><input class="input" id="p_birth" type="text" style="height:40px; width:100%;"></div>'
+    topHtml += ' </div>'
+    topHtml += ' <div  class="row" id="f_tel_text">'
+    topHtml += '     <div class="col-xs-12"><p class="text">姓名</p></div>'
+    topHtml += '     <div class="col-xs-12"><input class="input" id="p_name" type="text" style="height:40px; width:100%;"></div>'
+    topHtml += ' </div>'
+    topHtml += ' <div  class="row" id="f_tel_text">'
+    topHtml += '     <div class="col-xs-12"><p class="text">邮件</p></div>'
+    topHtml += '     <div class="col-xs-12"><input class="input" id="p_email" type="text" style="height:40px; width:100%;"></div>'
+    topHtml += ' </div>'
+    $(".sign").append(parentHtml);
+
+
     var parentHtml = "";
     parentHtml += ' <div  class="row" id="f_name_text">'
-    parentHtml += '     <div class="col-xs-4"><p class="text">家长性别</p></div>'
-    parentHtml += '<div class="radio">'
-    parentHtml += '     <label>'
-    parentHtml += '         <input type="radio" name="p_sexRadio" checked="checked"  value="男">男'
-    parentHtml += '     </label>'
-    parentHtml += '</div>'
-    parentHtml += '<div class="radio">'
-    parentHtml += '  <label>'
-    parentHtml += '     <input type="radio" name="p_sexRadio"  value="女">女'
-    parentHtml += '  </label>'
-    parentHtml += '</div>'
-    parentHtml += ' </div>'
-    parentHtml += ' <div  class="row" id="f_tel_text">'
-    parentHtml += '     <div class="col-xs-12"><p class="text">家长出生日期</p></div>'
-    parentHtml += '     <div class="col-xs-12"><input class="input" id="p_birth" type="text" style="height:40px; width:100%;"></div>'
-    parentHtml += ' </div>'
-    parentHtml += ' <div  class="row" id="f_tel_text">'
-    parentHtml += '     <div class="col-xs-12"><p class="text">姓名</p></div>'
-    parentHtml += '     <div class="col-xs-12"><input class="input" id="p_name" type="text"></div>'
-    parentHtml += ' </div>'
-    parentHtml += ' <div  class="row" id="f_tel_text">'
-    parentHtml += '     <div class="col-xs-12"><p class="text">家长邮件</p></div>'
-    parentHtml += '     <div class="col-xs-12"><input class="input" id="p_email" type="text"></div>'
-    parentHtml += ' </div>'
-    parentHtml += ' <div  class="row" id="f_name_text">'
     parentHtml += '     <div class="col-xs-4"><p class="text">工作单位</p></div>'
-    parentHtml += '     <div class="col-xs-8"><input class="input" id="factory" type="text"></div>'
+    parentHtml += '     <div class="col-xs-8"><input class="input" id="factory" type="text" style="height:40px; width:100%;"></div>'
     parentHtml += ' </div>'
     parentHtml += ' <div  class="row" id="f_tel_text">'
     parentHtml += '     <div class="col-xs-12"><p class="text">备注(说说您相对摩英说的话)</p></div>'
