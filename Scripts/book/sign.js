@@ -409,7 +409,7 @@ function create_parentlist() {
     topHtml += '     <div class="col-xs-12"><p class="text">邮件</p></div>'
     topHtml += '     <div class="col-xs-12"><input class="input" id="p_email" type="text" style="height:40px; width:100%;"></div>'
     topHtml += ' </div>'
-    $(".sign").append(parentHtml);
+    $(".sign").append(topHtml);
 
 
     var parentHtml = "";
@@ -422,8 +422,7 @@ function create_parentlist() {
     parentHtml += '     <div class="col-xs-12"><textarea class="input" id="remark" type="text" style="resize:none; height:60px; width:100%;"></textarea></div>'
     parentHtml += ' </div>'
     $(".other").append(parentHtml);
-
-
+    
 }
 
 //课程一阶列表数据获取
