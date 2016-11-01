@@ -116,9 +116,13 @@ function sure() {
     var introduce = $("#introduce").val();
 
     var sex = $("input[name=sexRadio]:checked").val();
+    var p_sex = $("input[name=p_sexRadio]:checked").val();
     var inputer = $("input[name=inputerRadio]:checked").val();
     var channel = $("input[name=channelRadio]:checked").val();
     var sel_pid = $("input[name=radio_phase]:checked").val();//一阶课程期数
+    var p_name = $("#p_name").val();
+    var p_birth = $("#p_birth").val();
+    var p_email = $("#p_email").val();
 
     if (channel == undefined) {
         channel = 0
@@ -137,6 +141,9 @@ function sure() {
         return;
     }
     ;
+    if (p_sex == undefined) {
+        p_sex = "";
+    }
 
 
     var param = {};
@@ -161,7 +168,10 @@ function sure() {
     param.introduce = introduce;
     param.tellme = remark;
     param.factory = factory;
-
+    param.p_pname = p_name;
+    param.p_sex = p_sex;
+    param.p_birth = p_birth;
+    param.p_email = p_email;
 
     //发送调查问卷
 
@@ -249,7 +259,8 @@ function course_reg(obj) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {
         "UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel,
-        "Preparer": obj.inputer, "Sponsor": obj.introduce, "TellMe": obj.tellme,"WorkUnits":obj.factory
+        "Preparer": obj.inputer, "Sponsor": obj.introduce, "TellMe": obj.tellme,"WorkUnits":obj.factory,"ParentSex":obj.p_sex
+        "ParentBirthday":obj.p_birth,"ParentName":obj.p_pname,"ParentEmail":p_email
     };
 
     var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_Add");
@@ -367,6 +378,31 @@ function create_parentlist() {
     document.getElementById("class_text").style.display = "none";
 
     var parentHtml = "";
+    parentHtml += ' <div  class="row" id="f_name_text">'
+    parentHtml += '     <div class="col-xs-4"><p class="text">性别</p></div>'
+    parentHtml += '<div class="radio">'
+    parentHtml += '     <label>'
+    parentHtml += '         <input type="radio" name="p_sexRadio" checked="checked"  value="男">男'
+    parentHtml += '     </label>'
+    parentHtml += '</div>'
+    parentHtml += '<div class="radio">'
+    parentHtml += '  <label>'
+    parentHtml += '     <input type="radio" name="p_sexRadio"  value="女">女'
+    parentHtml += '  </label>'
+    parentHtml += '</div>'
+    parentHtml += ' </div>'
+    parentHtml += ' <div  class="row" id="f_tel_text">'
+    parentHtml += '     <div class="col-xs-12"><p class="text">家长出生日期</p></div>'
+    parentHtml += '     <div class="col-xs-12"><textarea class="input" id="p_birth" type="text" style="resize:none; height:60px; width:100%;"></textarea></div>'
+    parentHtml += ' </div>'
+    parentHtml += ' <div  class="row" id="f_tel_text">'
+    parentHtml += '     <div class="col-xs-12"><p class="text">姓名</p></div>'
+    parentHtml += '     <div class="col-xs-12"><textarea class="input" id="p_name" type="text" style="resize:none; height:60px; width:100%;"></textarea></div>'
+    parentHtml += ' </div>'
+    parentHtml += ' <div  class="row" id="f_tel_text">'
+    parentHtml += '     <div class="col-xs-12"><p class="text">家长邮件</p></div>'
+    parentHtml += '     <div class="col-xs-12"><textarea class="input" id="p_email" type="text" style="resize:none; height:60px; width:100%;"></textarea></div>'
+    parentHtml += ' </div>'
     parentHtml += ' <div  class="row" id="f_name_text">'
     parentHtml += '     <div class="col-xs-4"><p class="text">工作单位</p></div>'
     parentHtml += '     <div class="col-xs-8"><input class="input" id="factory" type="text"></div>'
