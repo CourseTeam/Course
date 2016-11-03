@@ -473,10 +473,10 @@ function get_phaselist(cid) {
 
 function selectedPhase(phasetype) {
     // body...
-    switch(phasetype){
-        case 4:
-            document.getElementById("zengzhi").style.display = "none";
-        break;
+    if (phasetype == 4) {
+        document.getElementById("zengzhi").style.display = "none";
+    }else {
+        document.getElementById("zengzhi").style.display = "block";
     }
 }
 
