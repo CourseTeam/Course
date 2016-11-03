@@ -162,7 +162,7 @@ function sure() {
         layer.open({content:"请填写联系方式"});
         return;
     }
-    
+
     if (p_sex == undefined) {
         p_sex = "";
     }
@@ -283,7 +283,7 @@ function course_reg(obj) {
     var param = {
         "UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel,
         "Preparer": obj.inputer, "Sponsor": obj.introduce, "TellMe": obj.tellme,"WorkUnits":obj.factory,"ParentSex":obj.p_sex,
-        "ParentBirthday":obj.p_birth,"ParentName":obj.p_pname,"ParentEmail":obj.p_email
+        "ParentBirthday":obj.p_birth,"ParentName":obj.p_pname,"ParentEmail":obj.p_email,"ParentPhone":obj.p_tel
     };
 
     var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_Add");
@@ -308,7 +308,7 @@ function course_reg(obj) {
 function parent_reg(obj) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {"UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel, "Preparer": obj.inputer,"WorkUnits":obj.factory};
-    
+
 }
 
 //阶段预约
