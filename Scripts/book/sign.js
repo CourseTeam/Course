@@ -123,6 +123,8 @@ function sure() {
     var p_name = $("#p_name").val();
     var p_birth = $("#p_birth").val();
     var p_email = $("#p_email").val();
+    var p_tel = $("#p_tel").val();
+
 
     if (channel == undefined) {
         channel = 0
@@ -139,8 +141,28 @@ function sure() {
     if (inputer == undefined && !isParentList) {
         layer.open({content:"请选择填表人"});
         return;
+    };
+
+    if (p_name == "") {
+        layer.open({content:"请填写姓名"});
+        return;
     }
-    ;
+
+     if (p_birth == "") {
+        layer.open({content:"请填写生日"});
+        return;
+    }
+
+     if (p_email == "") {
+        layer.open({content:"请填写邮箱"});
+        return;
+    }
+
+     if (p_tel == "") {
+        layer.open({content:"请填写联系方式"});
+        return;
+    }
+    
     if (p_sex == undefined) {
         p_sex = "";
     }
@@ -172,6 +194,7 @@ function sure() {
     param.p_sex = p_sex;
     param.p_birth = p_birth;
     param.p_email = p_email;
+    param.p_tel = p_tel;
 
     //发送调查问卷
 
@@ -285,7 +308,7 @@ function course_reg(obj) {
 function parent_reg(obj) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {"UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel, "Preparer": obj.inputer,"WorkUnits":obj.factory};
-
+    
 }
 
 //阶段预约
@@ -398,16 +421,21 @@ function create_parentlist() {
     topHtml += '</div>'
     topHtml += ' </div>'
     topHtml += ' <div  class="row" id="f_tel_text">'
-    topHtml += '     <div class="col-xs-12"><p class="text">出生日期</p></div>'
-    topHtml += '     <div class="col-xs-12"><input class="input" id="p_birth" type="text" style="height:40px; width:100%;"></div>'
+    topHtml += '     <div class="col-xs-4"><p class="text">联系方式</p></div>'
+    topHtml += '     <div class="col-xs-8"><input class="input" id="p_tel" type="text" style="height:40px; width:100%;"></div>'
+    topHtml += ' </div>'
     topHtml += ' </div>'
     topHtml += ' <div  class="row" id="f_tel_text">'
-    topHtml += '     <div class="col-xs-12"><p class="text">姓名</p></div>'
-    topHtml += '     <div class="col-xs-12"><input class="input" id="p_name" type="text" style="height:40px; width:100%;"></div>'
+    topHtml += '     <div class="col-xs-4"><p class="text">出生日期</p></div>'
+    topHtml += '     <div class="col-xs-8"><input class="input" id="p_birth" type="text" style="height:40px; width:100%;"></div>'
     topHtml += ' </div>'
     topHtml += ' <div  class="row" id="f_tel_text">'
-    topHtml += '     <div class="col-xs-12"><p class="text">邮件</p></div>'
-    topHtml += '     <div class="col-xs-12"><input class="input" id="p_email" type="text" style="height:40px; width:100%;"></div>'
+    topHtml += '     <div class="col-xs-4"><p class="text">姓名</p></div>'
+    topHtml += '     <div class="col-xs-8"><input class="input" id="p_name" type="text" style="height:40px; width:100%;"></div>'
+    topHtml += ' </div>'
+    topHtml += ' <div  class="row" id="f_tel_text">'
+    topHtml += '     <div class="col-xs-4"><p class="text">邮件</p></div>'
+    topHtml += '     <div class="col-xs-8"><input class="input" id="p_email" type="text" style="height:40px; width:100%;"></div>'
     topHtml += ' </div>'
     $(".sign").append(topHtml);
 
