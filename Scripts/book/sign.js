@@ -217,7 +217,7 @@ function updateInfo(obj) {
     }
 
     if (obj.name == "" || obj.sex == undefined || obj.school == "" || obj.birth == ""
-        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" 
+        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == ""
         || obj.address == "" || obj.server_id == undefined || obj.sel_pid == undefined) {
         layer.open({content: "信息输入未完整，请填写完整再预约"});
         return;
@@ -273,7 +273,7 @@ function post_question(obj) {
 function course_reg(obj) {
 
     if (obj.name == "" || obj.sex == undefined || obj.school == "" || obj.birth == ""
-        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == "" 
+        || obj.f_name == "" || obj.f_tel == "" || obj.m_name == "" || obj.m_tel == ""
         || obj.address == "" || obj.sel_pid == undefined || obj.name == "") {
         layer.open({content: "信息输入未完整，请填写完整再预约"});
         return;
@@ -380,7 +380,7 @@ function get_request(courseid, CourseType) {
             isParentList = true;
             document.getElementById("question-div").style.display="none";
             document.getElementById("radio_zhihui_div").style.display="block";
-            
+
             create_parentlist();
         }
     }
@@ -393,10 +393,10 @@ function create_parentlist() {
     document.getElementById("stu_tel_row").style.display = "none";
     document.getElementById("email_row").style.display = "none";
     document.getElementById("name_text").style.display = "none";
-    document.getElementById("stu_sex_row").style.display = "none";    
+    document.getElementById("stu_sex_row").style.display = "none";
     document.getElementById("stu_birth").style.display = "none";
     // document.getElementById("stu_phone").style.display = "none";
-    
+
     document.getElementById("m_name_text").style.display = "none";
     document.getElementById("m_tel_text").style.display = "none";
     document.getElementById("f_name_text").style.display = "none";
@@ -405,7 +405,7 @@ function create_parentlist() {
     document.getElementById("school_text").style.display = "none";
     document.getElementById("grade_text").style.display = "none";
     document.getElementById("class_text").style.display = "none";
-    
+
     var topHtml = "";
     topHtml += ' <div  class="row" id="f_name_text">'
     topHtml += '     <div class="col-xs-4"><p class="text">家长性别</p></div>'
@@ -450,7 +450,7 @@ function create_parentlist() {
     parentHtml += '     <div class="col-xs-12"><textarea class="input" id="remark" type="text" style="resize:none; height:60px; width:100%;"></textarea></div>'
     parentHtml += ' </div>'
     $(".other").append(parentHtml);
-    
+
 }
 
 //课程一阶列表数据获取

@@ -1,6 +1,9 @@
 /**
  * Created by xuwei on 2016/10/5 0005.
  */
+
+var PStatus = 0;
+var PageIndex = 1;
 $(document).ready(function () {
     //加载公用导航
     $("#header").load("../Commen/header.html");
@@ -20,10 +23,11 @@ $(document).ready(function () {
         PageIndex = 1;
         PhaseRegistration_List();
     });
+    $("#btnSearch").on("click", function () {
+        PageIndex = 1;
+        PhaseRegistration_List();
+    });
 });
-
-var PStatus = 0;
-var PageIndex = 1;
 
 function UserInfoEntry() {
     var PhaseID = $Course.RequestUrlParams("PhaseID");
