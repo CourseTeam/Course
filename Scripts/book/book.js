@@ -443,19 +443,19 @@ function create_bookedlist() {
         }
         strHtml += '    </li>'
         strHtml += '  </ul>'
-        strHtml += '  <ul style="float: left; width:' + phasename_width + ';" >'
-        strHtml += '    <li><font class="name">' + row.CoursePhaseName + '</font></li>'
-        strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
-        strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
-        if (row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
-           strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
-           strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
-        }else if(isNiujin || isNet){
-          //not do something
-        }else {
-           strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
-        }
-        strHtml += '  </ul>'
+        // strHtml += '  <ul style="float: left; width:' + phasename_width + ';" >'
+        // strHtml += '    <li><font class="name">' + row.CoursePhaseName + '</font></li>'
+        // strHtml += '    <li><font class="time">' + "开营时间：" + row.StartTime.substr(0, 10) + '</font></li>'
+        // strHtml += '    <li><font class="location">' + row.Place + '</font></li>'
+        // if (row.PhaseType != 3 && row.PhaseType != 4 && row.PhaseType != 0) {
+        //    strHtml += '    <li><font class="cost" color="' + color + '"><img src="' + img + '"width="19" height="15" >' + costText + '</font></li>'
+        //    strHtml += '    <li><font class="cost" color="' + serv_color + '"><img src="' + serv_img + '"width="19" height="15" >' + addstext + '</font></li>'
+        // }else if(isNiujin || isNet){
+        //   //not do something
+        // }else {
+        //    strHtml += '    <li><font class="cost" color="' + color + '"><img src="'+ img + '"width="19" height="15" >' + costText + '</font></li>'       
+        // }
+        // strHtml += '  </ul>'
         strHtml += '  <ul style="float:right;">'
         strHtml += '    <button class="button" type="button" color="'+ btnColor +'" disabled="disabled" style="margin-top:10px;margin-right:10px;">' + type + '</button>'
         strHtml += '  </ul>'
