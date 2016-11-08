@@ -42,6 +42,8 @@ function PhaseRegistration_List() {
     var param = {SearchKey: SearchKey, PhaseID: PhaseID, PhaseStatus: PStatus, PageIndex: PageIndex, PageSize: 10};
     var result = $Course.GetAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_List");
     if (result.Msg == "OK") {
+        $("#orderList").html("");
+        $("#Page").html("");
         PhaseRegistration_Items = result.Data;
         var strHtml = "";
         strHtml += '<li class="list-group-item header">';

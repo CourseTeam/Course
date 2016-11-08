@@ -47,7 +47,7 @@ function Login() {
         // });
         //将用户信息存入Cookie
         $.cookie("UserInfo", $Course.stringify(result.Data), {expires: 30, path: '/'});
-        //window.location.href = "../Appointment/CourseList.html";
+        window.location.href = "../Appointment/CourseList.html";
     } else {
         layer.open({
             content: '用户名或密码错误！请重新输入！',
