@@ -432,6 +432,7 @@ function create_bookedlist() {
         var costImg = row.AccommodationFeedPaid > row.AccommodationCost ? "../../Images/book/cost_normal.png" : "../../Images/book/cost_selected.png";
         var serv_color = row.ValueAddedServices == 0? "#9B9B9B" : "#F24D4D";
         var serv_img = row.ValueAddedServices == 0?"../../Images/book/serv_icon_normal.png":"../../Images/book/serv_icon_selected.png";
+        var addstext = get_addservname(row.ValueAddedServices); 
 
         strHtml += '  <ul style="float: left;">'
         strHtml += '    <li>'
