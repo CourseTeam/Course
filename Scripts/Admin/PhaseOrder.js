@@ -122,10 +122,13 @@ function PhaseRegistration_List() {
                 strHtml += '      <div class="col-xs-1">' + AddTime + '</div>';
                 strHtml += '      <div class="col-xs-1">' + ValueAddedServices + '<!--<a href="#" onclick="ValueAddedServicesShow(' + row.UserID + ')">查看</a>--></div>';
                 strHtml += '      <div class="col-xs-3">';
-                strHtml += '        <button onclick="PhaseStatus_Edit(' + row.PhaseReservationID + ',' + row.PhaseStatus + ',' + row.UserID + ')" >修改状态</button>';
-                strHtml += '        <button onclick="NoteEdit(' + row.CourseRegistrationID + ')">备注</button>';
+                strHtml += '        <button class="autobutton" onclick="PhaseStatus_Edit(' + row.PhaseReservationID + ',' + row.PhaseStatus + ',' + row.UserID + ')" >修改状态</button>';
+                strHtml += '        <button class="autobutton" onclick="NoteEdit(' + row.CourseRegistrationID + ')">备注</button>';
                 if (row.PhaseStatus == 3) {
-                    strHtml += '        <button onclick="Past(' + row.PhaseReservationID + ',' + row.UserID + ')">签到</button>';
+                    strHtml += '        <button class="autobutton" onclick="Past(' + row.PhaseReservationID + ',' + row.UserID + ')">签到</button>';
+                }
+                if (row.PhaseStatus < 4) {
+                    strHtml += '        <button class="autobutton" onclick="Phase_ChangeBox(' + row.PhaseReservationID + ')">转期</button>';
                 }
                 strHtml += '      </div>';
                 strHtml += '    </div>';
@@ -298,6 +301,57 @@ function Past(PhaseReservationID, UserID) {
             layer.msg("修改成功！", {icon: 1, time: 2000}, function () {
                 layer.closeAll();
             });
+        }
+    });
+}
+
+//转期列表
+var Phase_Change_Items = [];
+function Phase_ChangeBox(PhaseReservationID) {
+    var PhaseID = $Course.RequestUrlParams("PhaseID");
+    if (Phase_Change_Items.length == 0) {
+        var param = {PhaseID: PhaseID};
+        var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_ChangePhase");
+        if (result.Msg == "OK") {
+            if (result.Data.length > 0) {
+                Phase_Change_Items = result.Data;
+                var strHtml = "";
+                for (var i = 0; i < Phase_Change_Items.length; i++) {
+                    var row = Phase_Change_Items[i];
+                    if (i == 0) {
+                        strHtml += '<div class="radio">';
+                        strHtml += '    <label><input type="radio" name="Phase" value="' + row.PhaseID + '" checked>' + row.CoursePhaseName + '</label> ';
+                        strHtml += '</div>';
+                    } else {
+                        strHtml += '<div class="radio">';
+                        strHtml += '    <label><input type="radio" name="Phase" value="' + row.PhaseID + '">' + row.CoursePhaseName + '</label> ';
+                        strHtml += '</div>';
+                    }
+                }
+                $("#Phase_ChangeBox div").html(strHtml);
+            } else {
+                layer.msg("没有可转期课程！", {icon: 2, time: 2000});
+                return;
+            }
+        }
+    }
+    layer.open({
+        type: 1,
+        title: "可转期课程",
+        skin: "layui-layer-molv",
+        area: ["380px", "250px"],
+        content: $("#Phase_ChangeBox"),
+        btn: ["确 定", '取 消'],
+        yes: function (index) {
+            var NewPhaseID = $("input[name=Phase]:checked").val();
+            var param = {PhaseReservationID: PhaseReservationID, PhaseID: PhaseID, NewPhaseID: NewPhaseID};
+            var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_Change");
+            if (result.Msg == "OK") {
+                layer.msg("转期成功！", {icon: 1, time: 2000});
+                PageIndex = 1;
+                PhaseRegistration_List();
+            }
+            layer.close(index);
         }
     });
 }

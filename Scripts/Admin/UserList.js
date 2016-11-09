@@ -26,7 +26,7 @@ function User_list() {
         strHtml += '    <div class="row ">';
         strHtml += '        <div class="col-xs-1">学生名字</div>';
         strHtml += '       <div  class="col-lg-1">性别</div>'
-        strHtml += '        <div class="col-xs-1">学校</div>';
+        strHtml += '        <div class="col-xs-2">学校</div>';
         strHtml += '        <div class="col-xs-1">年级</div>';
         strHtml += '        <div class="col-xs-1">班级</div>';
         strHtml += '        <div class="col-xs-2">手机号码</div>';
@@ -41,14 +41,14 @@ function User_list() {
                 strHtml += '    <div class="row ">';
                 strHtml += '        <div class="col-xs-1">' + row.NickName + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.Sex + '</div>';
-                strHtml += '        <div class="col-xs-1">' + row.School + '</div>';
+                strHtml += '        <div class="col-xs-2">' + row.School + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.Grade + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.ClassName + '</div>';
                 strHtml += '        <div class="col-xs-2">' + row.Phone + '</div>';
                 strHtml += '        <div class="col-xs-2">' + row.Address + '</div>';
-                strHtml += '        <div class="col-xs-3">';
-                strHtml += '            <button onclick="Edit(' + row.UserID + ')" >编 辑</button>';
-                strHtml += '            <button onclick="UserInfo_Del(' + row.UserID + ')">删 除</button>';
+                strHtml += '        <div class="col-xs-2">';
+                strHtml += '            <button class="autobutton" onclick="Edit(' + row.UserID + ')" >编 辑</button>';
+                strHtml += '            <button class="autobutton" onclick="UserInfo_Del(' + row.UserID + ')">删 除</button>';
                 strHtml += '        </div>';
                 strHtml += '    </div>';
                 strHtml += '</li>';

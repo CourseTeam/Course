@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 约课系统公用类
  * Created by xuwei on 2016/9/25 0025.
  */
@@ -7,13 +7,9 @@
 jQuery.support.cors = true;
 //测试服务器地址
 var ApiUrl = "http://192.168.80.13:1217/";
-//ApiUrl = 'http://localhost:60182/';
+ApiUrl = 'http://localhost:60182/';
 //正式服务器地址
-//ApiUrl = "http://120.26.218.68:1217/";
-
-//用户票据
-//。。。。
-//var Ticket = $.cookie("UserInfo");
+ApiUrl = "http://120.26.218.68:1217/";
 
 //==============================以下为公用脚本==============================
 
@@ -37,6 +33,14 @@ $Course.PostAjaxJson = function (params, url) {
         },
         success: function (data) {
             json = data;
+        }, error: function (res) {
+            if (res.status == 401) {
+                if ($Course.IsPC()) {
+                    window.location.href = "/Course/Views/Admin/manage/Login.html";
+                } else {
+                    window.location.href = "/Course/Views/Account/Login.html";
+                }
+            }
         }
     });
     return json;
@@ -60,6 +64,14 @@ $Course.GetAjaxJson = function (params, url) {
         },
         success: function (data) {
             json = data;
+        }, error: function (res) {
+            if (res.status == 401) {
+                if ($Course.IsPC()) {
+                    window.location.href = "/Course/Views/Admin/manage/Login.html";
+                } else {
+                    window.location.href = "/Course/Views/Account/Login.html";
+                }
+            }
         }
     });
     return json;
@@ -190,6 +202,22 @@ $Course.parseJSON = function (str) {
 //json对象转json字符串
 $Course.stringify = function (json) {
     return JSON.stringify(json);
+}
+
+//是否PC端
+$Course.IsPC = function () {
+    var userAgentInfo = navigator.userAgent;
+    var Agents = ["Android", "iPhone",
+        "SymbianOS", "Windows Phone",
+        "iPad", "iPod"];
+    var flag = true;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
 }
 
 //MD5加密
