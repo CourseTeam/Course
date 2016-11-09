@@ -311,7 +311,7 @@ function Phase_ChangeBox(PhaseReservationID) {
     var PhaseID = $Course.RequestUrlParams("PhaseID");
     if (Phase_Change_Items.length == 0) {
         var param = {PhaseID: PhaseID};
-        var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_ChangePhase");
+        var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_Change_List_Admin");
         if (result.Msg == "OK") {
             if (result.Data.length > 0) {
                 Phase_Change_Items = result.Data;
