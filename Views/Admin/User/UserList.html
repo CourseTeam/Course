@@ -7,21 +7,6 @@
     <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../../../Css/Admin/Comm.css">
     <style>
-        button {
-            width: 70px;
-            height: 30px
-        }
-
-        select {
-            height: 40px;
-            border: 1px solid #dddddd;
-            border-radius: 5px;
-            width: 100%;
-            padding-left: 5px;
-            padding-right: 5px;
-            outline: none;
-        }
-
         .header {
             background: #efefef;
             font-size: 15px;
@@ -39,9 +24,9 @@
             <h4><strong>学员管理</strong></h4>
         </div>
         <div class="col-xs-6 text-right">
-            <input type="text" style="width: 60%" id="SearchKey" placeholder="请输入搜索关键字"/>
-            <button id="btnSearch">搜 索</button>
-            <button id="btnAdd" onclick="window.location.href='UserEdit.html'">新 增</button>
+            <input type="text" class="input" style="width: 60%" id="SearchKey" placeholder="请输入搜索关键字"/>
+            <button class="button70X30" id="btnSearch">搜 索</button>
+            <button class="button70X30" id="btnAdd" onclick="window.location.href='UserEdit.html'">新 增</button>
         </div>
     </div>
     <div class="row" style="padding: 10px;background: #e5e5e5">
@@ -59,6 +44,7 @@
 </div>
 <script src="../../../Framework/Jqueryv2.4/jquery.min.js"></script>
 <script src="../../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+<script src="../../../Framework/jquery-cookies/jquery.cookie.js"></script>
 <script src="../../../Scripts/Commen/CourseCommen.js"></script>
 <script src="../../../Framework/layer-v2.4/layer/layer.js"></script>
 <script src="../../../Framework/laypage-v1.3/laypage/laypage.js"></script>

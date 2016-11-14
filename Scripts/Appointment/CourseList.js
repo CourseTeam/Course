@@ -41,9 +41,9 @@ function CourseList(UserID, CourseTypeID) {
     if (result.Msg == "OK" && result.Data.length > 0) {
         for (var i = 0 ; i < result.Data.length; i++) {
             var row = result.Data[i];
-            if (row.CourseName == "摩英牛津剑桥领袖特训营") {
-                row.ReservationCount = 33;
-            }
+            // if (row.CourseName == "摩英牛津剑桥领袖特训营") {
+            //     row.ReservationCount = 33;
+            // }
             row.ReservationCount = row.ReservationCount >= row.PeopleCount ? row.PeopleCount : row.ReservationCount;
             row.ReservationCount = row.ReservationCount <= 0 ? 0 : row.ReservationCount;
             var people = row.ReservationCount + '/' + row.PeopleCount;
@@ -93,9 +93,9 @@ function CourseList(UserID, CourseTypeID) {
             //     }
             // } else {
             if (row.CourseStatus == 0) {
-                strHtml += '                   <button class="registrationButton">已预约</button>';
+                strHtml += '                   <button class="registrationButton" style="background:#4CD964">已预约</button>';
             } else if(!full || row.MaxPhaseType < 1) {
-                strHtml += '                   <button class="registrationButton">立即预约</button>';
+                strHtml += '                   <button class="registrationButton" style="background:#F24D4D">立即预约</button>';
             } else {
                 strHtml += '                   <button class="registrationButton">立即候补</button>';
             }
@@ -103,14 +103,14 @@ function CourseList(UserID, CourseTypeID) {
             strHtml += '               </li>';
             strHtml += '               </br>';
             if (row.MaxPhaseType < 1) {
-                strHtml += '               <li class="list-unstyled">';
-                strHtml += '                   <span style="font-size: 12px;">已报名额</span>';
-                strHtml += '                   <span style="font-size: 12px;float: right">' + row.ReservationCount + '/' + row.PeopleCount + '</span>';
-                strHtml += '                   <div class="progress" style="height: 3px;">';
-                strHtml += '                       <div class="progress-bar-info" role="progressbar" aria-valuenow="'+ row.ReservationCount +'" aria-valuemin="0" aria-valuemax="' + row.PeopleCount + '" style="width: '+ progress +'%;height: 3px;">';
-                strHtml += '                       </div>';
-                strHtml += '                   </div>';
-                strHtml += '               </li>';
+                // strHtml += '               <li class="list-unstyled">';
+                // strHtml += '                   <span style="font-size: 12px;">已报名额</span>';
+                // strHtml += '                   <span style="font-size: 12px;float: right">' + row.ReservationCount + '/' + row.PeopleCount + '</span>';
+                // strHtml += '                   <div class="progress" style="height: 3px;">';
+                // strHtml += '                       <div class="progress-bar-info" role="progressbar" aria-valuenow="'+ row.ReservationCount +'" aria-valuemin="0" aria-valuemax="' + row.PeopleCount + '" style="width: '+ progress +'%;height: 3px;">';
+                // strHtml += '                       </div>';
+                // strHtml += '                   </div>';
+                // strHtml += '               </li>';
             } else {
                 strHtml += '                <li class="list-unstyled" style="color: red;"><strong>火爆抢订中</strong></li>';
             }

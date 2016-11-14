@@ -26,14 +26,9 @@
             padding-right: 15px;
         }
 
-        .pdtb10 {
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-
         .pdtb15 {
-            padding-top: 15px;
-            padding-bottom: 15px;
+            padding-top: 5px;
+            padding-bottom: 5px;
         }
 
         .display_block {
@@ -41,8 +36,17 @@
         }
 
         a {
-            color: #000;
+            color: #333;
             text-decoration: none;
+        }
+        .container {
+            width: 90%
+        }
+        input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            border-radius: 0px;
         }
     </style>
 </head>
@@ -77,50 +81,34 @@
         <!--<div class="col-xs-9 pr15 pl5">-->
             <!--<input type="password" id="Pwd" name="Pwd" placeholder="请输入登录密码"/></div>-->
     <!--</div>-->
-    <div style="text-align: center;padding-bottom: 50px;padding-top: 60px;">
-        <img src="../../Images/account/Account_Logo.png" style="height: 103px;width: 97px;"/>
-        <p style="font-size: 24px;color: red;">摩英教育</p>
+    <div style="text-align: center;padding-bottom: 20px;padding-top: 30px;">
+        <img src="../../Images/account/Account_Logo.png" style="height: 75px;width: 75px;"/>
+        <p style="font-size: 16px;color: #F24C4C; font-family: 华文新魏">摩英教育</p>
     </div>
-    <div class="input-group input-group-lg">
-        <div class="input-group-addon" style="opacity: 0.9;background-color: black;border: 0px;border-bottom-left-radius: 0px;">
-            <img src="../../Images/account/Account_UserName.png" style="height: 24px;width: 21px;"/></div>
-        <input type="text" class="form-control" id="Phone" name="Phone" placeholder="请输入手机号码" style="background-color: black;opacity: 0.6;border: 0px;font-size: 15px;color: white;border-bottom-right-radius: 0px;">
+    <div class="row pdtb15">
+        <div class="col-xs-12">
+            <input type="text" id="Phone" name="Phone" autocomplete="off" placeholder="请输入手机号码"/></div>
     </div>
-    <div style="height: 1px;width: 100%"></div>
-    <div class="input-group input-group-lg">
-        <div class="input-group-addon" style="opacity: 0.9;background-color: black;border: 0px;border-top-left-radius: 0px;border-bottom-left-radius: 0px;">
-            <img src="../../Images/account/Account_Password.png" style="height: 22px;width: 21px;"/></div>
-        <input type="password" class="form-control" id="Pwd" name="Pwd" placeholder="请输入登录密码" style="background-color: black;opacity: 0.6;border: 0px;font-size: 15px;color: white;border-bottom-right-radius: 0px;border-top-right-radius: 0px;">
-    </div>
-    <div style="height: 1px;width: 100%"></div>
-    <div class="input-group input-group-lg">
-        <div class="input-group-addon" style="opacity: 0.9;background-color: black;border: 0px;border-top-left-radius: 0px;border-bottom-left-radius: 0px;">
-            <img src="../../Images/account/Account_VerificationImg.png" style="height: 25px;width: 25px;"/></div>
-        <input type="text" class="form-control" id="QrCode" name="QrCode" placeholder="请输入右边图形验证码" style="width: 70%;background-color: black;opacity: 0.6;border: 0px;font-size: 15px;color: white;">
-        <div style="width: 30%;height:46px;float: right;">
-            <canvas class="J_codeimg" style="width: 100%;height: 46px;background-color: black;opacity: 0.6;" id="myCanvas" onclick="createCode()">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+    <div class="row pdtb15">
+        <div class="col-xs-8 pl15 pr5">
+            <input type="text" id="QrCode" name="QrCode" placeholder="请输入右边图形验证码"/></div>
+        <div class="col-xs-4 pr15 pl5">
+            <canvas class="J_codeimg" style="width: 100%;height: 40px;" id="myCanvas" onclick="createCode()">
+                对不起，您的浏览器不支持canvas，请下载最新版浏览器!
+            </canvas>
         </div>
     </div>
-    <div style="height: 1px;width: 100%"></div>
-    <div class="input-group input-group-lg">
-        <div class="input-group-addon" style="opacity: 0.9;background-color: black;border: 0px;border-top-left-radius: 0px;">
-            <img src="../../Images/account/Account_VerificationCode.png"style="height: 25px;width: 22px;"/></div>
-        <input type="text" class="form-control" id="VerificationCode" name="VerificationCode" placeholder="请输入验证码" style="width: 60%;background-color: black;opacity: 0.6;border: 0px;font-size: 15px;color: white;">
-        <div style="width: 40%;float: right;">
-            <button id="btnSendSMS" style="font-size: 15px;height: 46px;background-color: black;opacity: 0.6;color: red;border-radius: 0px;border-bottom-right-radius: 5px;">发送验证码</button>
+    <div class="row pdtb15">
+        <div class="col-xs-7 pr15">
+            <input type="text" id="VerificationCode" name="VerificationCode" autocomplete="off" placeholder="请输入验证码"/></div>
+        <div class="col-xs-5 pr15 pl5">
+            <button id="btnSendSMS" style="font-size: 12px;">发送验证码</button>
         </div>
     </div>
-    <!--<div class="row">-->
-        <!--<div class="input-group input-group-lg">-->
-            <!--<div class="input-group-addon" style="opacity: 0.9;background-color: black;border: 0px;">-->
-                <!--<img src="../../Images/account/Account_UserName.png" style="height: 24px;width: 21px;"/></div>-->
-            <!--<input type="text" class="form-control" id="UserName" name="UserName" placeholder="请输入手机号码" style="background-color: black;opacity: 0.6;border: 0px;font-size: 15px;color: white;">-->
-        <!--</div>-->
-        <!--<div>-->
-            <!--<button id="btnSendSMS" style="font-size: 12px;">发送验证码</button>-->
-        <!--</div>-->
-    <!--</div>-->
-
+    <div class="row pdtb15">
+        <div class="col-xs-12 pr15">
+            <input type="password" id="Pwd" name="Pwd" autocomplete="off" placeholder="请输入登录密码"/></div>
+    </div>
     <div class="row pdtb15">
         <div class="col-xs-12 text-right">
             <button id="btnReg">注 册</button>
@@ -130,7 +118,7 @@
         <div class="col-xs-6">
         </div>
         <div class="col-xs-6 text-right">
-            <a href="Login.html" style="color: white;">已有账号登录》</a>
+            <a href="Login.html" style="font-size: 12px;">已有账号登录》</a>
         </div>
     </div>
 </div>

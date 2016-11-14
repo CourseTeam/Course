@@ -8,21 +8,6 @@
     <link rel="stylesheet" href="../../../Css/Admin/Comm.css">
     <link href="../../../Framework/bootstrap-fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
     <style>
-        button  {
-            width: 70px;
-            height: 30px
-        }
-
-        select {
-            height: 40px;
-            border: 1px solid #dddddd;
-            border-radius: 5px;
-            width: 100%;
-            padding-left: 5px;
-            padding-right: 5px;
-            outline: none;
-        }
-
         .header {
             background: #efefef;
             font-size: 15px;
@@ -54,7 +39,7 @@
 
     <div class="row">
         <div class="col-xs-2">名字：</div>
-        <div class="col-xs-6"><input type="text" id="NickName"/></div>
+        <div class="col-xs-6"><input class="input" type="text" id="NickName"/></div>
     </div>
 
     <div class="row">
@@ -68,31 +53,31 @@
     </div>
     <div class="row">
         <div class="col-xs-2">生日</div>
-        <div class="col-xs-6"><input type="text" class="laydate-icon" id="BirthDay"/></div>
+        <div class="col-xs-6"><input class="input" type="text" class="laydate-icon" id="BirthDay"/></div>
     </div>
 
     <div class="row">
         <div class="col-xs-2">学校：</div>
-        <div class="col-xs-6"><input type="text" id="School"/></div>
+        <div class="col-xs-6"><input class="input" type="text" id="School"/></div>
     </div>
     <div class="row">
         <div class="col-xs-2">年级：</div>
-        <div class="col-xs-6"><input type="text" id="Grade"/></div>
+        <div class="col-xs-6"><input class="input" type="text" id="Grade"/></div>
     </div>
 
     <div class="row">
         <div class="col-xs-2">班级：</div>
-        <div class="col-xs-6"><input type="text" id="ClassName"/></div>
+        <div class="col-xs-6"><input class="input" type="text" id="ClassName"/></div>
     </div>
 
     <div class="row">
         <div class="col-xs-2">邮箱：</div>
-        <div class="col-xs-6"><input type="text" id="Email"/></div>
+        <div class="col-xs-6"><input class="input" type="text" id="Email"/></div>
     </div>
 
     <div class="row" id="phonebox">
         <div class="col-xs-2">学生手机号码：</div>
-        <div class="col-xs-6"><input type="text" id="Phone"/></div>
+        <div class="col-xs-6"><input class="input" type="text" id="Phone"/></div>
     </div>
 
 
@@ -103,19 +88,19 @@
                 <span class="input-group-addon">
                     <input name="dan" value="1" type="radio" style="width: 16px ; height: 16px" checked="checked">
                 </span>
-                <input type="text" class="form-control" id="Phone2" placeholder="选中的手机号为账号">
+                <input type="text" class="form-control input" id="Phone2" placeholder="选中的手机号为账号">
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-2">父亲名字：</div>
-        <div class="col-xs-6"><input type="text" id="FatherName"/></div>
+        <div class="col-xs-6"><input class="input" type="text" id="FatherName"/></div>
     </div>
 
     <div class="row" id="FatherPhonebox">
             <div class="col-xs-2">父亲手机号码：</div>
-            <div class="col-xs-6"><input type="text" id="FatherPhone"/></div>
+            <div class="col-xs-6"><input class="input" type="text" id="FatherPhone"/></div>
     </div>
 
     <div class="row" id="FatherPhonediv">
@@ -125,19 +110,19 @@
                 <span class="input-group-addon">
                     <input name="dan" value="2" type="radio" style="width: 16px ; height: 16px">
                 </span>
-                <input type="text" class="form-control" id="FatherPhone2" placeholder="选中的手机号为账号">
+                <input type="text" class="form-control input" id="FatherPhone2" placeholder="选中的手机号为账号">
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-2">母亲名字：</div>
-        <div class="col-xs-6"><input type="text" id="MotherName"/></div>
+        <div class="col-xs-6"><input class="input" type="text" id="MotherName"/></div>
     </div>
 
     <div class="row" id="MotherPhonebox">
             <div class="col-xs-2">母亲手机号码：</div>
-            <div class="col-xs-6"><input type="text" id="MotherPhone"/></div>
+            <div class="col-xs-6"><input class="input" type="text" id="MotherPhone"/></div>
     </div>
 
     <div class="row" id="MotherPhonediv">
@@ -147,18 +132,18 @@
                 <span class="input-group-addon">
                     <input name="dan" type="radio" value="3" style="width: 16px ; height: 16px">
                 </span>
-                <input type="text" class="form-control" id="MotherPhone2" placeholder="选中的手机号为账号">
+                <input type="text" class="form-control input" id="MotherPhone2" placeholder="选中的手机号为账号">
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-2">固定电话：</div>
-        <div class="col-xs-6"><input type="text" id="Tel"/></div>
+        <div class="col-xs-6"><input class="input" type="text" id="Tel"/></div>
     </div>
     <div class="row">
         <div class="col-xs-2">家庭住址：</div>
-        <div class="col-xs-6"><input type="text" id="Address"/></div>
+        <div class="col-xs-6"><input class="input" type="text" id="Address"/></div>
     </div>
 
     <div class="row">
@@ -174,13 +159,10 @@
 </div>
 <div style="height: 300px;width: 100%"></div>
 <script src="../../../Framework/Jqueryv2.4/jquery.min.js"></script>
-<script src="../../../Framework/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
-<script src="../../../Framework/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
 <script src="../../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
 <script src="../../../Framework/layer-v2.4/layer/layer.js"></script>
+<script src="../../../Framework/jquery-cookies/jquery.cookie.js"></script>
 <script src="../../../Scripts/Commen/CourseCommen.js"></script>
-<script src="../../../Framework/summernote/summernote.min.js"></script>
-<script src="../../../Framework/summernote/lang/summernote-zh-CN.js"></script>
 <script src="../../../Framework/laydate-v1.1/laydate/laydate.js"></script>
 <script src="../../../Scripts/Admin/UserEdit.js"></script>
 

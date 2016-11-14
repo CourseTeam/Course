@@ -49,9 +49,9 @@ function Phase_List() {
             strHtml += '      <div class="col-lg-1">' + row.AccommodationCost + '</div>';
             strHtml += '      <div class="col-lg-1">' + row.ReservationCount + "/" + row.PeopleCount + '</div>';
             strHtml += '      <div class="col-lg-3">';
-            strHtml += '        <button onclick="Phase_Edit('+ CourseID +"," + row.PhaseID+')">编辑</button>';
-            strHtml += '        <button onclick="CourseType_Del('+row.PhaseID+')">删除</button>';
-            strHtml += '        <button onclick="PhaseRegistration_List(' + row.PhaseID + ', this)"  cname = "'+row.CoursePhaseName+'">预约列表</button>';
+            strHtml += '        <button class="autobutton" onclick="Phase_Edit('+ CourseID +"," + row.PhaseID+')">编辑</button>';
+            strHtml += '        <button class="autobutton" onclick="Phase_Del('+row.PhaseID+')">删除</button>';
+            strHtml += '        <button class="autobutton" onclick="PhaseRegistration_List(' + row.PhaseID + ', this)"  cname = "'+row.CoursePhaseName+'">预约列表</button>';
             strHtml += '      </div>';
             strHtml += '    </div>';
             strHtml += '</li>';
@@ -68,8 +68,8 @@ function Phase_Del(id) {
         if (result.Msg == "OK") {
             if (result.Data) {
                 layer.msg("删除成功！", {icon: 1, time: 2000}, function () {
+                    Phase_List();
                     layer.closeAll();
-                    CourseType_List();
                 });
             } else {
                 layer.msg("删除失败，请联系管理员！", {icon: 2, time: 2000}, function () {

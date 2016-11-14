@@ -97,8 +97,8 @@ function CourseType_List() {
                 strHtml += '                <div class="col-xs-5">' + row.CourseTypeName + '</div>';
                 strHtml += '                <div class="col-xs-4">' + row.Type + '</div>';
                 strHtml += '                <div class="col-xs-3">';
-                strHtml += '                    <button cid="' + row.CourseTypeID + '" cname="' + row.CourseTypeName + '" ctype="' + row.Type + '" onclick="Open_CourseType_Edit(this)">修改</button>';
-                strHtml += '                    <button onclick="CourseType_Del(' + row.CourseTypeID + ')">删除</button>';
+                strHtml += '                    <button class="autobutton" cid="' + row.CourseTypeID + '" cname="' + row.CourseTypeName + '" ctype="' + row.Type + '" onclick="Open_CourseType_Edit(this)">修改</button>';
+                strHtml += '                    <button class="autobutton" onclick="CourseType_Del(' + row.CourseTypeID + ')">删除</button>';
                 strHtml += '                </div>';
                 strHtml += '        </div>';
                 strHtml += '</li>';

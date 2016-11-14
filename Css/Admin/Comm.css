@@ -7,7 +7,7 @@ body {
     margin-bottom: 10px;
 }
 
-input {
+.input {
     height: 40px;
     border: 1px solid #dddddd;
     border-radius: 5px;
@@ -44,11 +44,43 @@ input:focus {
     background: #00b38a;
     color: #fff;
 }
-button{
-    height: 40px;
-    width: 100%;
+
+button {
     border: 0;
     border-radius: 8px;
     background: #00b38a;
     color: #ffffff;
+}
+
+.list-group-item {
+    padding: 0 10px 0 15px !important;
+}
+
+.button70X30 {
+    width: 70px;
+    height: 30px
+}
+
+.autobutton {
+    padding: 0 8px 0 8px;
+    height: 25px;
+    font-size: 12px;
+}
+
+select {
+    height: 40px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    outline: none;
+}
+
+.laydate_body .laydate_bottom, .laydate_body .laydate_top {
+    padding: 0 !important;
+}
+
+.laydate_btn {
+    top: 0 !important;
 }

@@ -34,7 +34,7 @@ function CourseInfo_Details() {
             strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">地点：' + PhaseDetials.Place + '</div>';
             strHtml_Detials += '    </li>';
             strHtml_Detials += '    <li class="col-xs-12 pure" style="padding-top: 8px;">';
-            strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">剩余名额：' + residueCount + '</div>';
+            // strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">剩余名额：' + residueCount + '</div>';
             strHtml_Detials += '        <div class="col-xs-6 pure" style="font-size: 12px;text-align: left">预约截止时间：' + PhaseDetials.StartTime.split(" ")[0] + '</div>';
             strHtml_Detials += '    </li>';
         }

@@ -15,6 +15,7 @@ function Login() {
     //     //window.location.href = "http://www.baidu.com";
     //     return;
     // }
+    $.cookie("UserInfo", null, {path: '/'});
     var UserName = $("#UserName").val();
     var Pwd = $("#Pwd").val();
 

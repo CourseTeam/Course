@@ -7,11 +7,6 @@
     <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../../../Css/Admin/Comm.css">
     <style>
-        button {
-            width: 60px;
-            height: 30px
-        }
-
         select {
             height: 40px;
             border: 1px solid #dddddd;
@@ -37,7 +32,7 @@
             <h4><strong>课程类型管理</strong></h4>
         </div>
         <div class="col-xs-6 text-right">
-            <button id="btnAdd">新 增</button>
+            <button class="button70X30" id="btnAdd">新 增</button>
         </div>
     </div>
     <div class="row" style="padding: 10px;background: #e5e5e5">
@@ -59,7 +54,7 @@
     <div class="container" style="width: 500px;margin-top: 20px;">
         <div class="row">
             <div class="col-xs-4">课程类型名称：</div>
-            <div class="col-xs-8"><input type="text" id="CourseTypeName"/></div>
+            <div class="col-xs-8"><input type="text" class="input" id="CourseTypeName"/></div>
         </div>
         <div class="row">
             <div class="col-xs-4">类型：</div>
@@ -72,7 +67,7 @@
         <div class="row">
             <div class="col-xs-9"></div>
             <div class="col-xs-3">
-                <button id="btnSave" style="width: 100%">保 存</button>
+                <button class="button70X30" id="btnSave" style="width: 100%">保 存</button>
             </div>
         </div>
     </div>
@@ -80,6 +75,7 @@
 
 <script src="../../../Framework/Jqueryv2.4/jquery.min.js"></script>
 <script src="../../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+<script src="../../../Framework/jquery-cookies/jquery.cookie.js"></script>
 <script src="../../../Scripts/Commen/CourseCommen.js"></script>
 <script src="../../../Framework/layer-v2.4/layer/layer.js"></script>
 <script src="../../../Scripts/Admin/CourseTypeList.js"></script>
