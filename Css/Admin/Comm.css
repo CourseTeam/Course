@@ -55,10 +55,12 @@ button {
 .list-group-item {
     padding: 0 10px 0 15px !important;
 }
+
 .button70X30 {
     width: 70px;
     height: 30px
 }
+
 .autobutton {
     padding: 0 8px 0 8px;
     height: 25px;
@@ -73,4 +75,12 @@ select {
     padding-left: 5px;
     padding-right: 5px;
     outline: none;
+}
+
+.laydate_body .laydate_bottom, .laydate_body .laydate_top {
+    padding: 0 !important;
+}
+
+.laydate_btn {
+    top: 0 !important;
 }
