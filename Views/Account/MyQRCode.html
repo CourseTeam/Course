@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
+    <meta charset="UTF-8">
+    <title>我的二维码</title>
+    <style>
+        .layout {
+            padding-left: 20px;
+            padding-top: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+        }
+
+        .qrcode {
+            width: 250px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <p>我的二维码</p>
+    <div class="layout">
+        <div class="qrcode" id="qrcode"></div>
+        <button>保存图片</button>
+        <button>分享二维码</button>
+    </div>
+
+    <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+    <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+    <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+    <script src="../../Framework/layer_mobile/layer.js"></script>
+    <script src="../../Scripts/Commen/CourseCommen.js"></script>
+    <!--<script src="../../Scripts/Commen/CheckUserLogin.js"></script>-->
+    <script src="../../Framework/qrcodejs/qrcode.js"></script>
+    <script src="../../Scripts/Account/MyQRCode.js"></script>
+</body>
+</html>
