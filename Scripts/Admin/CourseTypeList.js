@@ -52,6 +52,7 @@ function Open_CourseType_Edit(obj) {
         content: $("#EditBox")
     });
 }
+
 //课程类别新增或编辑
 function CourseType_Edit() {
     var CourseTypeName = $("#CourseTypeName").val();
@@ -93,14 +94,14 @@ function CourseType_List() {
             for (var i = 0; i < result.Data.length; i++) {
                 var row = result.Data[i];
                 strHtml += '<li class="list-group-item">';
-                strHtml += '        <div class="row">';
-                strHtml += '                <div class="col-xs-5">' + row.CourseTypeName + '</div>';
-                strHtml += '                <div class="col-xs-4">' + row.Type + '</div>';
-                strHtml += '                <div class="col-xs-3">';
-                strHtml += '                    <button class="autobutton" cid="' + row.CourseTypeID + '" cname="' + row.CourseTypeName + '" ctype="' + row.Type + '" onclick="Open_CourseType_Edit(this)">修改</button>';
-                strHtml += '                    <button class="autobutton" onclick="CourseType_Del(' + row.CourseTypeID + ')">删除</button>';
-                strHtml += '                </div>';
+                strHtml += '    <div class="row">';
+                strHtml += '        <div class="col-xs-5">' + row.CourseTypeName + '</div>';
+                strHtml += '        <div class="col-xs-4">' + row.Type + '</div>';
+                strHtml += '        <div class="col-xs-3">';
+                strHtml += '            <button class="autobutton" cid="' + row.CourseTypeID + '" cname="' + row.CourseTypeName + '" ctype="' + row.Type + '" onclick="Open_CourseType_Edit(this)">修改</button>';
+                strHtml += '            <button class="autobutton" onclick="CourseType_Del(' + row.CourseTypeID + ')">删除</button>';
                 strHtml += '        </div>';
+                strHtml += '    </div>';
                 strHtml += '</li>';
             }
         }

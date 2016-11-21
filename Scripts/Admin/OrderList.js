@@ -9,10 +9,16 @@ $(document).ready(function () {
     $("#btnSearch").on("click", function () {
         Order_List();
     });
+
+    $("#btnSave").on("click", function () {
+        Order_Logistics_Add();
+    });
+
     Order_List();
 });
 
 var PageIndex = 1;
+var OrderID = 0;
 
 function Order_List() {
     var SearchKey = $("#SearchKey").val();
@@ -44,7 +50,13 @@ function Order_List() {
                 strHtml += '        <div class="col-xs-2">' + row.LogisticsCompanies + '</div>';
                 strHtml += '        <div class="col-xs-2">' + row.OrderNo + '</div>';
                 strHtml += '        <div class="col-xs-1">';
-                strHtml += '            <button class="autobutton" onclick="Edit(' + row.OrderID + ')">编 辑</button>';
+                if (row.Status == 1) {
+                    strHtml += '            <button class="autobutton" onclick="Order_Edit(' + row.OrderID + ')">未发货</button>';
+                } else if (row.Status == 2){
+                    strHtml += '            <button class="autobutton" style="background: gainsboro;outline: none">已发货</button>';
+                } else if (row.Status == 2){
+                    strHtml += '            <button class="autobutton" style="background: gainsboro;outline: none">已收货</button>';
+                }
                 strHtml += '        </div>';
                 strHtml += '    </div>';
                 strHtml += '</li>';
@@ -66,6 +78,42 @@ function Order_List() {
             });
         }
         $("#product_list").html(strHtml);
+    }
+}
+
+function Order_Edit(OrderId) {
+    OrderID = OrderId;
+    $("#OrderNo").val("");
+    $("select").val("顺丰快递");
+    layer.open({
+        skin: 'layui-layer-molv',
+        type: 1,
+        title: "填写快递单号",
+        area: ["500px", "250px"],
+        content: $("#EditBox")
+    });
+}
+
+function Order_Logistics_Add() {
+    var OrderNo = $("#OrderNo").val();
+    if (OrderNo == "") {
+        layer.msg("请输入单号", {icon: 2, time: 2000});
+        return;
+    }
+    var LogisticsCompanies = $("select").val();
+    var param = {OrderID: OrderID, OrderNo: OrderNo, LogisticsCompanies: LogisticsCompanies};
+
+    var result = $Course.PostAjaxJson(param, ApiUrl + "Order/Orders_Logistics_ADD");
+    console.log(result);
+    if (result.Msg == "OK") {
+        layer.msg("保存成功！", {icon: 1, time: 2000}, function () {
+            layer.closeAll();
+            CourseType_List();
+        });
+    } else {
+        layer.msg("保存失败，请联系管理员！", {icon: 2, time: 2000}, function () {
+            layer.closeAll();
+        });
     }
 }
 

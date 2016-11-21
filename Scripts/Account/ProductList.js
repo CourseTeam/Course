@@ -18,15 +18,19 @@ function Product_list() {
         if (result.Data.length > 0) {
             for (var i = 0; i < result.Data.length; i++) {
                 var row = result.Data[i];
-                strHtml += '<div class="col-xs-6 list">';
+                strHtml += '<div class="col-xs-6 list" onclick="Order(' + row.ProductID + ')">';
                 strHtml += '    <img src="' + row.ProductImg + '" style="width: 100%">';
                 strHtml += '    <div class="caption">';
                 strHtml += '        <h4>' + row.ProductName + '</h4>';
-                strHtml += '        <p style="font-size: 10px">' + row.Price + '能量币' + '</p>';
+                strHtml += '        <p style="font-size: 10px;color: #F24C4C">' + row.Price + '能量币' + '</p>';
                 strHtml += '    </div>';
                 strHtml += '</div>';
             }
         }
         $("#product_list").html(strHtml);
     }
+}
+
+function Order(ProductID) {
+    console.log(ProductID);
 }
