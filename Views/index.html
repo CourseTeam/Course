@@ -8,7 +8,26 @@
 <body>
 <div>This is an demo Page</div>
 <script>
-    window.location.href = "Account/Login.html";
+    //是否PC端
+    var IsPC = function () {
+        var userAgentInfo = navigator.userAgent;
+        var Agents = ["Android", "iPhone",
+            "SymbianOS", "Windows Phone",
+            "iPad", "iPod"];
+        var flag = true;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
+    if (IsPC()) {
+        window.location.href = "/Course/Views/Admin/manage/Login.html";
+    } else {
+        window.location.href = "/Course/Views/Account/Login.html";
+    }
 </script>
 </body>
 </html>

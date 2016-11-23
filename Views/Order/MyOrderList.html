@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <title>我的订单</title>
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
+    <style>
+
+        .tab{height: 40px;border-bottom: 1px solid #eee;}
+        .tab >div{margin-top:15px;}
+        .tab a{color:#000;font-size: 16px; padding-bottom: 2px;text-decoration: none;}
+        .active{color:red!important;border-bottom: 2px solid #ff0000;}
+
+        .imgbg { width: 64px;height: 64px; background: url("../../Images/personCenter/backgroundImg.png") no-repeat center;background-size: cover;}
+        .content{position: relative;padding: 15px;background: #EEEEEE;}
+        .order{margin-top: 5px;font-family: 'PingFang SC';}
+        .order .bottom{clear: both;height: 30px;font-size: 13px;border-bottom: 1px solid #eee;line-height: 30px;}
+        .order .status button{height: 28px;width: 65px;border: 1px solid #4A90E2;border-radius: 3px;color:#4A90E2; font-size: 12px;background: transparent;}
+        .main { position:absolute; left:85px; right:85px }
+        .main >p{height: 38px;overflow: hidden; text-overflow: ellipsis;  white-space: normal;color:#808080;font-size: 13px;display: -webkit-box;  -webkit-box-orient: vertical;  -webkit-line-clamp: 2;  }
+        .left, .right { width:64px; }
+        .left { float:left; }
+        .right { float:right; font-size: 12px;}
+        .da_list,.addbtn{display: none;}
+        .da_list >.row{margin-top: 8px;}
+        .da_list >.row>div{font-size: 13px;}
+        .da_lh30{height: 30px;line-height: 30px;}
+        .da_address{border-bottom: 1px solid #eee;padding-bottom: 3px}
+        .addbtn button{ border: none;  border-radius: 5px;  color: #ffffff;  background-color: #F24C4C;  height: 35px;width: 60%;margin-top: 15px}
+
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="row tab">
+        <div class="col-xs-6 text-center" style="padding-right: 0"><a href="#" class="active" id="order_list">我的订单</a></div>
+        <div class="col-xs-6 text-center" style="padding-left: 0"><a href="#" class="" id="da_list">收货地址</a></div>
+    </div>
+    <div class="order_list">
+        <div class="order">
+            <div class="row content">
+                <div class="main">
+                    <span>能量圈鼠标垫</span>
+                    <p>能量圈鼠标垫能量圈鼠标垫能量圈鼠标垫能量圈鼠标垫能量圈鼠标垫能量圈鼠标垫能量圈鼠标垫能量圈鼠标垫</p>
+                </div>
+                <div class="left imgbg" ></div>
+                <div class="right">
+                    <span>30000能量币</span>
+                    <p style="color: #ff0000;">x 1</p>
+                </div>
+            </div>
+            <div class="row text-right bottom">
+                <div class="col-xs-12"><span>共1件商品 <span style="color: #ff0000;">合计：30000能量币</span></span></div>
+            </div>
+            <div class="row text-right status" style="padding: 10px 0;">
+                <div class="col-xs-12"><button>确认收货</button></div>
+            </div>
+            <div class="row" style="height: 8px;background: #eee"></div>
+        </div>
+    </div>
+
+    <div class="da_list">
+        <div class="row">
+            <div class="col-xs-6 text-left da_lh30">网创强</div>
+            <div class="col-xs-6 text-right da_lh30">15901857928</div>
+            <div class="col-xs-12 text-left da_address">上海市浦东新区新金桥路58号8A摩英教育上海市浦东新区新金桥路58号8A摩英教育</div>
+            <div class="col-xs-6 text-left da_lh30"><input type="radio" name="address" /> 默认地址</div>
+            <div class="col-xs-6 text-right da_lh30"><span>编辑</span> <span>删除</span></div>
+            <div style="height: 8px;background: #eee;clear: both;"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 text-left da_lh30">网创强</div>
+            <div class="col-xs-6 text-right da_lh30">15901857928</div>
+            <div class="col-xs-12 text-left da_address">上海市浦东新区新金桥路58号8A摩英教育上海市浦东新区新金桥路58号8A摩英教育</div>
+            <div class="col-xs-6 text-left da_lh30"><input type="radio" name="address" /> 默认地址</div>
+            <div class="col-xs-6 text-right da_lh30"><span>编辑</span> <span>删除</span></div>
+            <div style="height: 8px;background: #eee;clear: both;"></div>
+        </div>
+    </div>
+    <div class="row addbtn">
+        <div class="col-xs-12 text-center"><button class="" style="width: 60%">新增地址</button></div>
+    </div>
+</div>
+
+<script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+<script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+<script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+<script src="../../Framework/layer_mobile/layer.js"></script>
+<script src="../../Scripts/Commen/CourseCommen.js"></script>
+<script src="../../Scripts/Order/MyOrderList.js"></script>
+</body>
+</html>
