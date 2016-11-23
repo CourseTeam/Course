@@ -32,12 +32,12 @@ function MyOrder_List() {
             for (var i = 0; i < result.Data.length; i++) {
                 var row = result.Data[i];
                 strHtml += '<div class="order">';
-                strHtml += '      <div class="row content">';
+                strHtml += '      <div class="row content" onclick="GoOrderDetails(' + row.OrderID + ')">';
                 strHtml += '          <div class="main">';
                 strHtml += '          <span>' + row.ProductName + '</span>';
-                strHtml += '          <p>' + row.Intro + '</p>';
+                strHtml += '          <p>' + $Course.DelHtmlTag(row.Intro) + '</p>';
                 strHtml += '          </div>';
-                strHtml += '          <div class="left imgbg" ></div>';
+                strHtml += '          <div class="left imgbg" style="background-image: url(' + row.ProductImg + ')"></div>';
                 strHtml += '          <div class="right">';
                 strHtml += '          <span>' + row.Price + '能量币</span>';
                 strHtml += '          <p style="color: #ff0000;">x ' + row.ProductNum + '</p>';
@@ -54,7 +54,7 @@ function MyOrder_List() {
                     strHtml += '          <div class="col-xs-12"><button onclick="ConfirmOrder(' + row.OrderID + ')">确认收货</button></div>';
                 }
                 if (row.Status == 3) {
-                    strHtml += '          <div class="col-xs-12 text-right"><span style="color:#808080">已收货</span></div>';
+                    strHtml += '          <div class="col-xs-12 text-right"><span style="color:#808080">交易完成</span></div>';
                 }
                 if (row.Status == 4) {
                     strHtml += '          <div class="col-xs-12 text-right"><span style="color:#808080">已取消订单</span></div>';
@@ -70,7 +70,7 @@ function MyOrder_List() {
 //取消订单
 function CancelOrder(OrderID) {
     layer.open({
-        content: "确定要取消订单吗？",
+        content: "确定要取消订单吗？消费能量币将会全部返回你的账户",
         btn: ["确 定", "取 消"],
         yes: function () {
             var url = ApiUrl + "Order/Order_Cancel";
@@ -79,6 +79,7 @@ function CancelOrder(OrderID) {
             if (result.Msg == "OK" && result.Data) {
                 MyOrder_List();
             }
+            layer.closeAll();
         },
         no: function () {
 
@@ -103,6 +104,11 @@ function ConfirmOrder(OrderID) {
 
         }
     });
+}
+
+//跳转到详情
+function GoOrderDetails(OrderID) {
+    window.location.href = "OrderDetails.html?OrderID=" + OrderID;
 }
 
 //我的收货地址列表
