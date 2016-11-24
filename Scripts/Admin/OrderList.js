@@ -29,7 +29,8 @@ function Order_List() {
         var strHtml = "";
         strHtml += '<li class="list-group-item header">';
         strHtml += '    <div class="row">';
-        strHtml += '        <div class="col-xs-2">商品</div>';
+        strHtml += '        <div class="col-xs-1">商品</div>';
+        strHtml += '        <div class="col-xs-1">数量</div>';
         strHtml += '        <div class="col-xs-1">收货人</div>';
         strHtml += '        <div class="col-xs-2">收货人手机号</div>';
         strHtml += '        <div class="col-xs-2">收货地址</div>';
@@ -43,7 +44,8 @@ function Order_List() {
                 var row = result.Data[i];
                 strHtml += '<li class="list-group-item">';
                 strHtml += '    <div class="row ">';
-                strHtml += '        <div class="col-xs-2">' + row.ProductName + '</div>';
+                strHtml += '        <div class="col-xs-1">' + row.ProductName + '</div>';
+                strHtml += '        <div class="col-xs-1">' + row.ProductNum + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.DeliveryName + '</div>';
                 strHtml += '        <div class="col-xs-2">' + row.Phone + '</div>';
                 strHtml += '        <div class="col-xs-2">' + row.DeliveryAddress + '</div>';
