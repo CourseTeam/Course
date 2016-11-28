@@ -10,35 +10,58 @@
     <meta charset="UTF-8">
     <title>我的二维码</title>
     <style>
-        .layout {
-            padding-left: 20px;
-            padding-top: 20px;
-            padding-right: 20px;
-            padding-bottom: 20px;
+        .qrcode {
+            padding: 30px;
+            border: 1px solid #4A90E2;
+            border-radius: 5px;
         }
 
-        .qrcode {
-            width: 250px;
-            margin: 0 auto;
-            text-align: center;
+        .qrcode img {
+            display: inline-block !important;
+            width: 100%;
         }
+
+        .qrcode canvas {
+            width: 100%;
+        }
+
+        .pd40 {
+            padding: 0px 40px;
+        }
+
+        .container {
+            margin-top: 20%
+        }
+        .imgLogo{display: none;}
     </style>
+
 </head>
 <body>
-    <p>我的二维码</p>
-    <div class="layout">
-        <div class="qrcode" id="qrcode"></div>
-        <button>保存图片</button>
-        <button>分享二维码</button>
-    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 text-center pd40" style="height: 25px">我的专属二维码</div>
+        <div class="col-xs-12 text-center pd40">
+            <img class="imgLogo" src="http://192.168.80.13:1217/Uploads/e37c67f1-ca0d-458b-8f74-1c7478acc979.jpg">
+            <div class="qrcode" id="qrcode"></div>
+        </div>
 
-    <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
-    <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
-    <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
-    <script src="../../Framework/layer_mobile/layer.js"></script>
-    <script src="../../Scripts/Commen/CourseCommen.js"></script>
-    <!--<script src="../../Scripts/Commen/CheckUserLogin.js"></script>-->
-    <script src="../../Framework/qrcodejs/qrcode.js"></script>
-    <script src="../../Scripts/Account/MyQRCode.js"></script>
+        <div class="col-xs-6 text-left" style="padding:10px 0 0 40px;color: #4A90E2;">
+            <a href="#" id="down" download="">保存图片</a>
+        </div>
+        <div class="col-xs-6 text-right" style="padding:10px 40px 0px 0px;color: #4A90E2;">
+            <span>分享二维码</span>
+        </div>
+    </div>
+</div>
+<script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+<script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+<script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+<script src="../../Framework/layer_mobile/layer.js"></script>
+<script src="../../Scripts/Commen/CourseCommen.js"></script>
+<!--<script src="../../Scripts/Commen/CheckUserLogin.js"></script>-->
+<!--<script src="../../Framework/qrcodejs/qrcode.js"></script>-->
+<script src="../../Framework/qrcodejs/jqueryqr.js"></script>
+<script src="../../Framework/qrcodejs/qrcode2.js"></script>
+<script src="../../Scripts/Account/MyQRCode.js"></script>
 </body>
 </html>

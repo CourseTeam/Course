@@ -112,7 +112,9 @@ function Register() {
         return;
     }
     Pwd = $Course.MD5(Pwd);
-    var param = {Phone: PhoneNum, Pwd: Pwd, Code: _VerificationCode};
+    var RefUserID = $Course.RequestUrlParams("UserID");
+    RefUserID = RefUserID == null ? 0 : RefUserID;
+    var param = {Phone: PhoneNum, Pwd: Pwd, Code: _VerificationCode, RefUserID: RefUserID};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Account/Register");
     if (result.Msg == "OK") {
         layer.open({
@@ -120,7 +122,6 @@ function Register() {
             style: 'background-color:#fff; color:#000; border:none;width:60%',
             time: 2,
             end: function () {
-                //15021615315
                 window.location.href = "Login.html";
             }
         });
