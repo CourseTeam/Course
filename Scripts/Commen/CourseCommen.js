@@ -220,6 +220,15 @@ $Course.IsPC = function () {
     return flag;
 }
 
+$Course.IsWeixin = function () {
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 //MD5加密
 $Course.MD5 = function (str) {
     return hex_md5(str);
