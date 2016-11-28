@@ -329,7 +329,7 @@ function phase_book(obj) {
             "content": "预约成功",
             time: 2,
             end: function () {
-                window.location.href = "../Appointment/CourseList.html";
+                window.location.href = "../Course/CourseList.html";
             }
         });
     }
