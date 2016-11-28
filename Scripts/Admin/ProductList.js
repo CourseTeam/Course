@@ -51,7 +51,7 @@ function Product_list() {
                 skin: '#AF0000',
                 groups: 3, //连续显示分页数
                 jump: function (obj, first) { //触发分页后的回调
-                    //alert(obj.curr)
+                    alert(obj.curr)
                     if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
                         PageIndex = obj.curr;
                         User_list();

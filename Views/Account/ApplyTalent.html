@@ -70,18 +70,25 @@
     </style>
 </head>
 <body>
-    <div id="header" class="header">
-        <img src="../../Images/personCenter/applyTalentBackGroundImg.png" style="width: 100%"/>
-        <img src="../../Images/personCenter/applyTalent.png" class="headerImg" id="headerImg"/>
-        <p class="head_field">摩英达人<br/>让分享传递能量</p>
+    <div id="talent">
+        <div id="header" class="header">
+            <img src="../../Images/personCenter/applyTalentBackGroundImg.png" style="width: 100%"/>
+            <img src="../../Images/personCenter/applyTalent.png" class="headerImg" id="headerImg"/>
+            <p class="head_field">摩英达人<br/>让分享传递能量</p>
+        </div>
+        <div>
+            <p class="apply_field" id="unStandard">未达到申请条件</p>
+            <div class="apply_button" id="apply" onclick="Able_Apply()">申请成为摩英达人</div>
+            <!--<button class="apply_button">申请成为摩英达人</button>-->
+            <button class="rule">规则说明></button>
+            <p class="customerService">客服电话:*************</p>
+        </div>
     </div>
-    <div>
-        <p class="apply_field">未达到申请条件</p>
-        <div class="apply_button" id="apply">申请成为摩英达人</div>
-        <!--<button class="apply_button">申请成为摩英达人</button>-->
-        <button class="rule">规则说明></button>
-        <p class="customerService">客服电话:*************</p>
+    <div id="becomeTalent" hidden>
+        <img src="../../Images/personCenter/applyTalent.png" style="width: 100%;padding-left: 35%;padding-right: 35%;padding-top: 33px"/>
+        <p style="width: 100%;text-align: center;color: red;padding-top: 20px;font-size: 18px">恭喜成为摩英达人!</p>
     </div>
+
     <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
     <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
     <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>

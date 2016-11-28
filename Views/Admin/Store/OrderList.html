@@ -38,6 +38,33 @@
             </div>
         </div>
     </div>
+    <div id="EditBox" style="display: none;">
+        <div class="container" style="width: 500px;margin-top: 20px;">
+            <div class="row">
+                <div class="col-xs-4">快递公司：</div>
+                <div class="col-xs-8"><select type="text" id="LogisticsCompanies">
+                    <option value="顺丰快递">顺丰快递</option>
+                    <option value="中通快递">中通快递</option>
+                    <option value="申通快递">申通快递</option>
+                    <option value="圆通快递">圆通快递</option>
+                    <option value="韵达快递">韵达快递</option>
+                    <option value="天天快递">天天快递</option>
+                    <option value="邮政EMS">邮政EMS</option>
+                    <option value="宅急送">宅急送</option>
+                </select></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">快递单号：</div>
+                <div class="col-xs-8"><input type="text" class="input" id="OrderNo"/></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-9"></div>
+                <div class="col-xs-3">
+                    <button class="button70X30" id="btnSave" style="width: 100%">保 存</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="../../../Framework/Jqueryv2.4/jquery.min.js"></script>
     <script src="../../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
     <script src="../../../Framework/jquery-cookies/jquery.cookie.js"></script>

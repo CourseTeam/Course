@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
+    <meta charset="UTF-8">
+    <title>新增收货地址</title>
+    <style>
+
+        .border_btm {
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .border_10btm {
+            border-bottom: 10px solid #eeeeee;
+        }
+
+        .pdtb10 {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .left_field {
+            display: block;
+            padding-left: 15px;
+            padding-right: 5px;
+        }
+
+        .right_field {
+            padding-left: 5px;
+            padding-right: 15px;
+            text-align: right;
+        }
+
+        .right_input {
+            outline: none;
+            padding: 0px;
+            border: 0px;
+        }
+
+        .right_textarea {
+            outline: none;
+            padding: 0px;
+            border: 0px;
+            width: 100%;
+            resize: none;
+            /*border: 1px solid #EEEEEE;*/
+        }
+
+        .default_address {
+            width:100%;
+            text-align: right;
+            padding-left: 15px!important;
+            padding-right: 15px
+        }
+
+        .address_add {
+            padding: 10px;
+            border: 0px;
+            margin: 15px;
+            background-color: #F24D4D;
+            text-align: center;
+            font-size: 16px;
+            color: white;
+            border-radius: 3px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row pdtb10 border_btm">
+            <div class="col-xs-3 left_field">
+                <span>收货人:</span></div>
+            <div class="col-xs-9">
+                <input class="right_input" id="userName" type="text" placeholder="请填写收货人姓名">
+            </div>
+        </div>
+        <div class="row pdtb10 border_btm">
+            <div class="col-xs-3 left_field">
+                <span>联系电话:</span></div>
+            <div class="col-xs-9">
+                <input class="right_input" id="phone" type="text" placeholder="请填写联系电话">
+            </div>
+        </div>
+        <div class="row pdtb10 border_10btm">
+            <div class="col-xs-3 left_field">
+                <span>收货地址:</span></div>
+            <div class="col-xs-9">
+                <textarea class="right_textarea" id="address" placeholder="请填写收货地址"></textarea></div>
+        </div>
+        <div class="row pdtb10 border_10btm">
+            <div class="checkbox" style="margin: 0px">
+                <label class="default_address">
+                    <span style="float: left">设为默认</span>
+                    <input type="checkbox" id="addressCheckbox" value="option1">
+                </label>
+            </div>
+        </div>
+        <div class="row pdtb10 border_10btm" id="delAddress" onclick="DeliveryAddress_Del()">
+            <div class="col-xs-3 left_field">
+                <span style="color: #F24C4C;">删除地址</span></div>
+            <div class="col-xs-9">
+            </div>
+        </div>
+    </div>
+    <div class="address_add" id="address_add" onclick="Address_Save()">保存</div>
+    <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+    <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+    <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+    <script src="../../Framework/layer_mobile/layer.js"></script>
+    <script src="../../Scripts/Commen/CourseCommen.js"></script>
+    <!--<script src="../../Scripts/Commen/CheckUserLogin.js"></script>-->
+    <script src="../../Scripts/Account/ShippingAddressEdit.js"></script>
+</body>
+</html>
