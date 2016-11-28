@@ -86,5 +86,5 @@ function Phase_Edit(CourseID, PhaseID) {
 }
 
 function PhaseRegistration_List(PhaseID, obj) {
-    window.location.href="../Order/PhaseOrder.html?PhaseID=" + PhaseID + "&" + "CoursePhaseName=" + $(obj).attr("cname");;
+    window.location.href="../Order/PhaseOrder.html?PhaseID=" + PhaseID + "&" + "CoursePhaseName=" + $(obj).attr("cname");
 }

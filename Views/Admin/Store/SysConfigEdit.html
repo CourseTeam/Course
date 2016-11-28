@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../../../Css/Admin/Comm.css">
+    <meta charset="UTF-8">
+    <title>新增/编辑系统配置</title>
+</head>
+<body>
+    <div id="header"></div>
+    <div style="height: 80px"></div>
+    <div class="container text-center" style="margin-top: 20px;">
+        <div class="row">
+            <div class="col-xs-3">积分比例</div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="IntegralAndMoneyScale"/></div>
+        </div>
+        <div class="row" style="height: 30px">
+            <div class="col-xs-3">积分类型</div>
+            <div class="col-xs-2">被推荐人</div>
+            <div class="col-xs-2">一级推荐人</div>
+            <div class="col-xs-2">二级推荐人</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">推荐积分</div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="RegIntegral_m"/></div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="RegIntegral_y"/></div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="RegIntegral_t"/></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">单一课程</div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="ZeroPhaseIntegral_m"/></div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="ZeroPhaseIntegral_y"/></div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="ZeroPhaseIntegral_t"/></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">一阶课程</div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="OnePhaseIntegral_m"/></div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="OnePhaseIntegral_y"/></div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="OnePhaseIntegral_t"/></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">二阶课程</div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="TwoPhaseIntegral_m"/></div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="TwoPhaseIntegral_y"/></div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="TwoPhaseIntegral_t"/></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">三阶课程</div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="ThreePhaseIntegral_m"/></div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="ThreePhaseIntegral_y"/></div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="ThreePhaseIntegral_t"/></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">四阶课程</div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="FourPhaseIntegral_m"/></div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="FourPhaseIntegral_y"/></div>
+            <div class="col-xs-2"><input class="input text-center" type="text" id="FourPhaseIntegral_t"/></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+
+            </div>
+            <div class="col-xs-6 checkbox text-left">
+                <label>
+                    <input class="service" type="checkbox" value="0" id="IsEnabled">是否为默认配置
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+
+            </div>
+            <div class="col-xs-2">
+                <button id="btnSave" style="width: 150px;height: 40px;">保 存</button>
+            </div>
+        </div>
+    </div>
+    <script src="../../../Framework/Jqueryv2.4/jquery.min.js"></script>
+    <script src="../../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+    <script src="../../../Framework/jquery-cookies/jquery.cookie.js"></script>
+    <script src="../../../Scripts/Commen/CourseCommen.js"></script>
+    <script src="../../../Framework/layer-v2.4/layer/layer.js"></script>
+    <script src="../../../Framework/laypage-v1.3/laypage/laypage.js"></script>
+    <script src="../../../Scripts/Admin/SysConfigEdit.js"></script>
+</body>
+</html>
