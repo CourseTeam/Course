@@ -1,0 +1,103 @@
+.header {
+    position: relative;
+}
+
+.headerImg {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-top: -30px;
+    margin-left: -30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+}
+
+.integral {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    width: 200px;
+    margin-left: -100px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+
+.name {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    width: 200px;
+    margin-left: -100px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+}
+
+.left_field {
+    display: block;
+    padding-left: 15px;
+    padding-right: 5px;
+}
+
+.right_field {
+    padding-left: 5px;
+    padding-right: 15px;
+    text-align: right;
+}
+
+.border_btm {
+    border-bottom: 1px solid #eeeeee;
+}
+
+.pdtb10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.color_gray {
+    color: gray;
+}
+
+.tab {
+    background-color: white;
+    height: 60px;
+}
+
+.promotionRecords {
+    height: 40px;
+    margin-top: 10px;
+    padding-left: 20%;
+    float: left;
+}
+
+.myQRCode {
+    height: 40px;
+    margin-top: 10px;
+    padding-right: 20%;
+    float: right;
+}
+
+.line {
+    background: gainsboro;
+    height: 10px;
+    width: 100%;
+    padding: 0px;
+}
+
+.arrows {
+    width: 6px;
+}
+
+.exit {
+    padding: 10px;
+    border: 0px;
+    margin: 15px;
+    background-color: #F24D4D;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    border-radius: 5px;
+}
