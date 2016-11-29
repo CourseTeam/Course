@@ -11,40 +11,36 @@
     <title>积分商城</title>
     <style>
 
-        .tab {
-            padding: 5px;
-            background: white;
-            height: 35px;
-            font-size: 16px;
-            text-align: center;
-        }
+        .tab{ height:40px; border-bottom:1px solid #eee; }
 
-        .list {
-            padding: 10px;
+        .tab > div{ margin-top:15px; }
+
+        .tab a{ color:#000; font-size:16px; padding-bottom:2px; text-decoration:none; }
+
+        .list{
+            padding:10px;
         }
 
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row" style="border-bottom: 1px solid #ddd">
-            <div class="col-xs-6 tab">
-                我的订单
-            </div>
-            <div class="col-xs-6 tab">
-                收货地址
-            </div>
-        </div>
-        <div class="row" id="product_list">
-
-        </div>
+<div class="container">
+    <div class="row tab">
+        <div class="col-xs-6 text-center" style="padding-right: 0">
+            <a href="../Order/MyOrderList.html?type=1" id="order_list">我的订单</a></div>
+        <div class="col-xs-6 text-center" style="padding-left: 0">
+            <a href="../Order/MyOrderList.html?type=2" id="da_list">收货地址</a></div>
     </div>
-    <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
-    <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
-    <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
-    <script src="../../Framework/layer_mobile/layer.js"></script>
-    <script src="../../Scripts/Commen/CourseCommen.js"></script>
-    <script src="../../Scripts/Commen/CheckUserLogin.js"></script>
-    <script src="../../Scripts/Product/ProductList.js"></script>
+    <div class="row" id="product_list">
+
+    </div>
+</div>
+<script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+<script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+<script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+<script src="../../Framework/layer_mobile/layer.js"></script>
+<script src="../../Scripts/Commen/CourseCommen.js"></script>
+<script src="../../Scripts/Commen/CheckUserLogin.js"></script>
+<script src="../../Scripts/Product/ProductList.js"></script>
 </body>
 </html>
