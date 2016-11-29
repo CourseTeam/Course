@@ -22,7 +22,7 @@ function Is_Consume(UserID) {
         if (result.Data) {
             $("#unStandard").html("");
         } else {
-            $("#unstandard").html("未达到申请条件");
+            $("#unStandard").html("未达到申请条件");
         }
     }
 }
