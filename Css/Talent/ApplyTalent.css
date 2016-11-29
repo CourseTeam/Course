@@ -33,19 +33,33 @@
 
 .apply_button {
     padding: 10px;
-    border: 0px;
+	outline:none;
+	border:none;
     margin-top: 5px;
     margin-bottom: 10px;
-    margin-left: 25px;
-    margin-right: 25px;
     background-color: #F24D4D;
-    text-align: center;
     font-size: 16px;
     color: white;
+	width:80%;
     border-radius: 3px;
 }
 
+.apply_buttondis {
+	padding: 10px;
+	outline:none;
+	border:none;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: white;
+	width:80%;
+	border-radius: 3px;
+}
+
 .rule {
+	background:transparent;
+	outline:none;
+    border:none;
     width: 100%;
 }
 

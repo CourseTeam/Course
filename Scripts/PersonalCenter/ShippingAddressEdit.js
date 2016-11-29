@@ -20,7 +20,7 @@ function Address_Detials(DeliveryID) {
     $("#userName").val(result.Data.UserName);
     $("#phone").val(result.Data.Phone);
     $("#address").val(result.Data.Address);
-    if (result.Data.IsDefault == 0) {
+    if (result.Data.IsDefault == 1) {
         $("#addressCheckbox").attr("checked", 'true');
     }
 }

@@ -4,14 +4,11 @@
  */
 
 $(function ($) {
-    var ProductID = $Course.RequestUrlParams("ProductID");
-    if (ProductID != null) {
-        Article_Detials(ProductID);
-    }
-    Article_Detials(3)
+    Article_Detials()
 });
 
-function Article_Detials(ProductID) {
+function Article_Detials() {
+    var ProductID = $Course.RequestUrlParams("ProductID");
     var param = {ProductID: ProductID};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Product/Product_Detail");
     console.log(result);
