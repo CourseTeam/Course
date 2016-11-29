@@ -15,7 +15,7 @@ $(function ($) {
     if (UserInfo.RefUserID) {
         Promoter(UserInfo.RefUserID);
     }
-    myQRCode(UserInfo.UserID)
+    myQRCode(UserInfo.UserID);
     $("#headerImg").attr("src", HeaderImg);
     $("#LoginName").html(UserInfo.Account);
     PersonalCenter_Show();
@@ -67,14 +67,8 @@ function PersonalCenter_Show() {
     strHtml += '<img src="../../Images/personCenter/backgroundImg.png" style="width: 100%"/>';
     strHtml += '<img src="' + HeaderImg + '" class="headerImg" id="headerImg">';
     strHtml += '<input type="file" style="position:absolute;top:0px;left:0px;opacity:0;width:100%;height: 60%;" id="imageFile" accept="image/*">';
-<<<<<<< HEAD
-    strHtml += '<p class="name">名字</p>';
-    strHtml += '<p class="integral">积分:无</p>';
-    // strHtml += '<img src="http://192.168.80.13:1217/Uploads/54e8537d-61df-4c75-b889-66b66c76baba.jpg" style="width: 50px;height: 50px;center">';
-=======
     strHtml += '<p class="name">' + UserInfo.NickName + '</p>';
     strHtml += '<p class="integral">' + '积分：' + Integral + '</p>';
->>>>>>> dev
     $("#header").html(strHtml);
 }
 
