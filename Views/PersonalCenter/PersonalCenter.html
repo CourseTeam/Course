@@ -12,82 +12,93 @@
     <title>个人中心</title>
 </head>
 <body>
-    <div id="header" class="header">
-        <img src="../../Images/personCenter/backgroundImg.png" style="width: 100%"/>
-        <!--<img src="http://192.168.80.13:1217/Uploads/54e8537d-61df-4c75-b889-66b66c76baba.jpg" class="headerImg" id="headerImg">-->
-        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTAhA3KbPFFX6zi5VUdY6SDBXOo9y6xyDDzDuD4IMwDRVmZKap0fXUlCRQ" class="headerImg" id="headerImg">
-        <input type="file" style="position:absolute;top:0px;left:0px;opacity:0;width:100%;height: 60%;" id="imageFile" accept="image/*">
-        <p class="name">名字</p>
-        <p class="integral">积分:无</p>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-6 tab">
-                <img src="../../Images/personCenter/myQRCode.png" class="myQRCode"/>
-            </div>
-            <div class="col-xs-6 tab">
-                <img src="../../Images/personCenter/promotionRecords.png" class="promotionRecords"/>
-            </div>
+<div id="header" class="header">
+    <img src="../../Images/personCenter/backgroundImg.png" style="width: 100%"/>
+    <!--<img src="http://192.168.80.13:1217/Uploads/54e8537d-61df-4c75-b889-66b66c76baba.jpg" class="headerImg" id="headerImg">-->
+    <img src="../../Images/defaultphoto.jpg" class="headerImg" id="headerImg">
+    <input type="file" style="position:absolute;top:0px;left:0px;opacity:0;width:100%;height: 60%;" id="imageFile"
+           accept="image/*">
+    <p class="name">名字</p>
+    <p class="integral">积分:无</p>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 tab">
+            <img src="../../Images/personCenter/myQRCode.png" class="myQRCode"/>
+        </div>
+        <div class="col-xs-6 tab">
+            <a href="Spread.html"><img src="../../Images/personCenter/promotionRecords.png"
+                                       class="promotionRecords"/></a>
         </div>
     </div>
-    <div class="line"></div>
-    <div class="container">
-        <div class="row pdtb10 border_btm" id="registerInformation">
+</div>
+<div class="line"></div>
+<div class="container">
+    <div class="row pdtb10 border_btm" id="registerInformation">
+        <a href="RegisterInformation.html">
             <div class="col-xs-6 left_field">
                 <span>报名信息</span></div>
             <div class="col-xs-6 right_field">
                 <img src="../../Images/personCenter/arrows.png" class="arrows"/></div>
-        </div>
-        <div class="row pdtb10 border_btm" id="expensesRecord">
+        </a>
+    </div>
+    <div class="row pdtb10 border_btm" id="expensesRecord">
+        <a href="ExpensesRecord.html">
             <div class="col-xs-6 left_field">
                 <span>消费记录</span></div>
             <div class="col-xs-6 right_field">
                 <img src="../../Images/personCenter/arrows.png" class="arrows"/></div>
-        </div>
-        <div class="row pdtb10 border_btm">
-            <div class="col-xs-6 left_field">
-                <span>我的推广人</span></div>
-            <div class="col-xs-6 right_field">
-                <span class="color_gray" id="promoter"></span></div>
-        </div>
+        </a>
     </div>
-    <div class="line"></div>
-    <div class="container">
-        <div class="row pdtb10 border_btm" id="mall">
+    <div class="row pdtb10 border_btm">
+        <div class="col-xs-6 left_field">
+            <span>我的推广人</span></div>
+        <div class="col-xs-6 right_field">
+            <span class="color_gray" id="promoter"></span></div>
+    </div>
+</div>
+<div class="line"></div>
+<div class="container">
+    <div class="row pdtb10 border_btm" id="mall">
+        <a href="../Product/ProductList.html">
             <div class="col-xs-6 left_field">
                 <span>积分商城</span></div>
             <div class="col-xs-6 right_field">
                 <img src="../../Images/personCenter/arrows.png" class="arrows"/></div>
-        </div>
-        <div class="row pdtb10 border_btm">
+        </a>
+    </div>
+    <div class="row pdtb10 border_btm">
+        <a href="../Talent/ApplyTalent.html">
             <div class="col-xs-6 left_field">
                 <span>申请成为摩英达人</span></div>
             <div class="col-xs-6 right_field">
                 <span class="color_gray" id="talent"></span></div>
-        </div>
+        </a>
     </div>
-    <div class="line"></div>
-    <div class="container">
-        <div class="row pdtb10 border_btm">
-            <div class="col-xs-6 left_field">
-                <span>登录名</span></div>
-            <div class="col-xs-6 right_field">
-                <span class="color_gray" id=""></span></div>
-        </div>
-        <div class="row pdtb10 border_btm" id="changePassword">
-            <div class="col-xs-6 left_field">
-                <span>修改密码</span></div>
-            <div class="col-xs-6 right_field">
-                <img src="../../Images/personCenter/arrows.png" class="arrows"/></div>
-        </div>
+</div>
+<div class="line"></div>
+<div class="container">
+    <div class="row pdtb10 border_btm">
+        <div class="col-xs-6 left_field">
+            <span>登录名</span></div>
+        <div class="col-xs-6 right_field">
+            <span class="color_gray" id="LoginName"></span></div>
     </div>
-    <div class="exit" id="exit">退出登录</div>
-    <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
-    <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
-    <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
-    <script src="../../Framework/layer_mobile/layer.js"></script>
-    <script src="../../Scripts/Commen/CourseCommen.js"></script>
-    <script src="../../Scripts/Commen/CheckUserLogin.js"></script>
-    <script src="../../Scripts/PersonalCenter/PersonalCenter.js"></script>
+    <div class="row pdtb10 border_btm" id="changePassword">
+        <a href="../Account/ChangePassword.html"><div class="col-xs-6 left_field">
+            <span>修改密码</span></div>
+        <div class="col-xs-6 right_field">
+            <img src="../../Images/personCenter/arrows.png" class="arrows"/></div>
+        </a>
+    </div>
+</div>
+<div class="exit" id="exit">退出登录</div>
+<script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+<script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+<script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+<script src="../../Framework/layer_mobile/layer.js"></script>
+<script src="../../Scripts/Commen/CourseCommen.js"></script>
+<script src="../../Scripts/Commen/CheckUserLogin.js"></script>
+<script src="../../Scripts/PersonalCenter/PersonalCenter.js"></script>
 </body>
 </html>
