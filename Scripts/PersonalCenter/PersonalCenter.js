@@ -3,10 +3,7 @@
  */
 
 $(function ($) {
-    // 获取用户ID
-    $("#imageFile").on("change", function (e) {
-        getFile(e);
-    });
+
     $("#exit").on("click", function () {
         Exit();
     });
@@ -54,7 +51,7 @@ function Exit() {
         btn: ['确定', '取消'],
         yes: function (index) {
             $.cookie("UserInfo", null, {expires: 30, path: '/'});
-            window.location.href = "Login.html";
+            window.location.href = "../Account/Login.html";
         }
     });
 }
@@ -70,6 +67,9 @@ function PersonalCenter_Show() {
     strHtml += '<p class="name">' + UserInfo.NickName + '</p>';
     strHtml += '<p class="integral">' + '积分：' + Integral + '</p>';
     $("#header").html(strHtml);
+    $("#imageFile").on("change", function (e) {
+        getFile(e);
+    });
 }
 
 function getFile(e) {
@@ -118,8 +118,9 @@ function getFile(e) {
 }
 
 function ChangeHeaderImg(PhotoUrl) {
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {
-        UserID: UserID,
+        UserID: UserInfo.UserID,
         PhotoUrl: PhotoUrl
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Photo_Upd");

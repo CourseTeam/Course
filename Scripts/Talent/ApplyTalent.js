@@ -30,15 +30,16 @@ function Able_Apply() {
     UserID = UserInfo.UserID;
     var param = {UserID: UserID};
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_IsAble_Upd");
-    console.log(result);
     if (result.Msg == "OK") {
         var param = {UserID: UserID};
         var result = $Course.GetAjaxJson(param, ApiUrl + "User/GetUserInfoByUserID");
         result.Data.Ticket = UserInfo.Ticket;
-        console.log(UserInfo);
         //将用户信息存入Cookie
         $.cookie("UserInfo", $Course.stringify(result.Data), {path: '/'});
         $("#talent").hide();
         $("#becomeTalent").show();
+        setTimeout(function () {
+            window.location.href = "../PersonalCenter/PersonalCenter.html";
+        }, 3000);
     }
 }

@@ -16,7 +16,7 @@
     <img src="../../Images/personCenter/backgroundImg.png" style="width: 100%"/>
     <!--<img src="http://192.168.80.13:1217/Uploads/54e8537d-61df-4c75-b889-66b66c76baba.jpg" class="headerImg" id="headerImg">-->
     <img src="../../Images/defaultphoto.jpg" class="headerImg" id="headerImg">
-    <input type="file" style="position:absolute;top:0px;left:0px;opacity:0;width:100%;height: 60%;" id="imageFile"
+    <input type="file" onchange="getFile(event)" style="position:absolute;top:0px;left:0px;opacity:0;width:100%;height: 60%;" id="imageFile"
            accept="image/*">
     <p class="name">名字</p>
     <p class="integral">积分:无</p>
@@ -85,10 +85,11 @@
             <span class="color_gray" id="LoginName"></span></div>
     </div>
     <div class="row pdtb10 border_btm" id="changePassword">
-        <a href="../Account/ChangePassword.html"><div class="col-xs-6 left_field">
-            <span>修改密码</span></div>
-        <div class="col-xs-6 right_field">
-            <img src="../../Images/personCenter/arrows.png" class="arrows"/></div>
+        <a href="../Account/ChangePassword.html">
+            <div class="col-xs-6 left_field">
+                <span>修改密码</span></div>
+            <div class="col-xs-6 right_field">
+                <img src="../../Images/personCenter/arrows.png" class="arrows"/></div>
         </a>
     </div>
 </div>
