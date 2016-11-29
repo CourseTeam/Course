@@ -4,21 +4,38 @@
 
 $(function ($) {
     // 获取用户ID
-    GetData();
-    $("#imageFile").on("change", function(e){
+    $("#imageFile").on("change", function (e) {
         getFile(e);
-        // var file = e.target.files[0];
-        // console.log(file);
     });
+    $("#exit").on("click", function () {
+        Exit();
+    });
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    var HeaderImg = UserInfo.PhotoUrl || "../../Images/defaultphoto.jpg";
+    if (UserInfo.RefUserID) {
+        Promoter(UserInfo.RefUserID);
+    }
+    myQRCode(UserInfo.UserID)
+    $("#headerImg").attr("src", HeaderImg);
+    $("#LoginName").html(UserInfo.Account);
     PersonalCenter_Show();
 });
 
-var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-var UserID = UserInfo.UserID;
-var HeaderImg = UserInfo.PhotoUrl || "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTAhA3KbPFFX6zi5VUdY6SDBXOo9y6xyDDzDuD4IMwDRVmZKap0fXUlCRQ";
+function myQRCode(UserID) {
+    var strHtml = '<a href="../../Views/PersonalCenter/MyQRCode.html?UserID=' + UserID + '"><img src="../../Images/personCenter/myQRCode.png" class="myQRCode"/></a>';
+    $("#myQRCode").html(strHtml);
+}
+
+function Promoter(RefUserID) {
+    var param = {UserID: RefUserID};
+    var result = $Course.GetAjaxJson(param, ApiUrl + "User/My_Referrer");
+    if (result.Msg == "OK" && result.Data) {
+        $("#promoter").html(result.Data);
+    }
+}
 
 function GetData() {
-    UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {UserID: UserInfo.UserID};
     console.log(UserInfo)
     var result = $Course.GetAjaxJson(param, ApiUrl + "User/GetUserInfoByUserID");
@@ -27,18 +44,37 @@ function GetData() {
     //将用户信息存入Cookie
     $.cookie("UserInfo", $Course.stringify(result.Data), {path: '/'});
     UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    HeaderImg = UserInfo.PhotoUrl || "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTAhA3KbPFFX6zi5VUdY6SDBXOo9y6xyDDzDuD4IMwDRVmZKap0fXUlCRQ";
-    $("#headerImg").attr("src", HeaderImg)
+    HeaderImg = UserInfo.PhotoUrl || "../../Images/defaultphoto.jpg";
+    $("#headerImg").attr("src", HeaderImg);
+}
+
+function Exit() {
+    layer.open({
+        content: "确定退出?",
+        btn: ['确定', '取消'],
+        yes: function (index) {
+            $.cookie("UserInfo", null, {expires: 30, path: '/'});
+            window.location.href = "Login.html";
+        }
+    });
 }
 
 function PersonalCenter_Show() {
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    var HeaderImg = UserInfo.PhotoUrl || "../../Images/defaultphoto.jpg";
+    var Integral = UserInfo.Integral > 0 ? UserInfo.Integral : '无';
     var strHtml = "";
     strHtml += '<img src="../../Images/personCenter/backgroundImg.png" style="width: 100%"/>';
     strHtml += '<img src="' + HeaderImg + '" class="headerImg" id="headerImg">';
     strHtml += '<input type="file" style="position:absolute;top:0px;left:0px;opacity:0;width:100%;height: 60%;" id="imageFile" accept="image/*">';
+<<<<<<< HEAD
     strHtml += '<p class="name">名字</p>';
     strHtml += '<p class="integral">积分:无</p>';
     // strHtml += '<img src="http://192.168.80.13:1217/Uploads/54e8537d-61df-4c75-b889-66b66c76baba.jpg" style="width: 50px;height: 50px;center">';
+=======
+    strHtml += '<p class="name">' + UserInfo.NickName + '</p>';
+    strHtml += '<p class="integral">' + '积分：' + Integral + '</p>';
+>>>>>>> dev
     $("#header").html(strHtml);
 }
 
@@ -54,7 +90,7 @@ function getFile(e) {
 
         if (result.length <= maxSize) {
             var param = {
-                base64Str : result
+                base64Str: result
             };
             var result = $Course.PostAjaxJson(param, ApiUrl + "File/FileUploadBase64");
             if (result.Msg == "OK") {
@@ -73,7 +109,7 @@ function getFile(e) {
         function callback() {
             var data = compress(img);
             var param = {
-                base64Str : data
+                base64Str: data
             };
             var result = $Course.PostAjaxJson(param, ApiUrl + "File/FileUploadBase64");
             if (result.Msg == "OK") {
@@ -81,9 +117,7 @@ function getFile(e) {
                 ChangeHeaderImg(result.Data);
             }
         }
-        //
-        // console.log(reader);
-        // console.log(result);
+
     };
     reader.readAsDataURL(file);
 
@@ -109,18 +143,19 @@ function compress(img) {
     var ctx = canvas.getContext('2d');
     //    瓦片canvas
     var tCanvas = document.createElement("canvas");
-    var tctx = tCanvas.getContext("2d");    var initSize = img.src.length;
+    var tctx = tCanvas.getContext("2d");
+    var initSize = img.src.length;
 
     var width = img.width;
     var height = img.height;
 
     //如果图片大于四百万像素，计算压缩比并将大小压至400万以下
     var ratio;
-    if ((ratio = width * height / 4000000)>1) {
+    if ((ratio = width * height / 4000000) > 1) {
         ratio = Math.sqrt(ratio);
         width /= ratio;
         height /= ratio;
-    }else {
+    } else {
         ratio = 1;
     }
 
@@ -134,7 +169,7 @@ function compress(img) {
     //如果图片像素大于100万则使用瓦片绘制
     var count;
     if ((count = width * height / 1000000) > 1) {
-        count = ~~(Math.sqrt(count)+1); //计算要分成多少块瓦片
+        count = ~~(Math.sqrt(count) + 1); //计算要分成多少块瓦片
 
 //            计算每块瓦片的宽和高
         var nw = ~~(width / count);
