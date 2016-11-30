@@ -8,7 +8,6 @@ $(function ($) {
         Exit();
     });
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    var HeaderImg = UserInfo.PhotoUrl || "../../Images/defaultphoto.jpg";
     if (UserInfo.RefUserID) {
         Promoter(UserInfo.RefUserID);
     }
@@ -19,7 +18,7 @@ $(function ($) {
             layer.open({content: "您还不是摩英达人。"});
         }
     });
-    $("#headerImg").attr("src", HeaderImg);
+    GetData();
     $("#LoginName").html(UserInfo.Account);
     PersonalCenter_Show();
 });
