@@ -20,13 +20,13 @@ function Address_Detials(DeliveryID) {
     $("#userName").val(result.Data.UserName);
     $("#phone").val(result.Data.Phone);
     $("#address").val(result.Data.Address);
-    if (result.Data.IsDefault == 0) {
+    if (result.Data.IsDefault == 1) {
         $("#addressCheckbox").attr("checked", 'true');
     }
 }
 
 function Address_Save() {
-
+    var UserID = $Course.parseJSON($.cookie("UserInfo")).UserID;
     var DeliveryID = $Course.RequestUrlParams("DeliveryID") || 0;
     var UserName = $("#userName").val();
     var Phone = $("#phone").val();
@@ -47,6 +47,7 @@ function Address_Save() {
     }
 
     var param = {
+        UserID: UserID,
         DeliveryID: DeliveryID,
         UserName: UserName,
         Phone: Phone,
@@ -57,7 +58,7 @@ function Address_Save() {
     var result = $Course.PostAjaxJson(param, ApiUrl + "DeliveryAddress/DeliveryAddress_Edit");
     console.log(result);
     if (result.Msg == "OK") {
-        Address_Detials();
+        window.location.href = "javascript:history.go(-1);location.reload()";
     }
 }
 

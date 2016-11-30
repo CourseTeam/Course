@@ -13,9 +13,9 @@ $(function ($) {
         text: ApiUrl + 'Course/Views/Account/Register.html?RefUserID=' + $Course.RequestUrlParams("UserID"),//     最后扫出来的结果
         size: 300,// 二维码大小
         radius: 30,// 点圆滑度,50以内
-        quiet: 0,// 二维码边框
-        mode: 4,//    不显示LOGO：0 / 文字且占整行：1 / 文字居中：2 / 图片且占整行：3 / 图片居中：4
-        mSize:20             ,// logo大小
+        quiet: 2,// 二维码边框
+        mode: 0,//    不显示LOGO：0 / 文字且占整行：1 / 文字居中：2 / 图片且占整行：3 / 图片居中：4
+        mSize: 10,// logo大小
         mPosX: 50,// logo水平坐标,50居中
         mPosY: 50,//  logo垂直坐标,50居中
         label: '扫码注册',//     logo文字
@@ -24,14 +24,17 @@ $(function ($) {
         image: $(".imgLogo")[0]//   设置的时候，需要把mode改成4，调用整个图片控件
     });
     fileupload();
+    $("#share").on("click", function () {
+        layer.open({content: "请点击微信右上角分享"});
+    });
 });
 
 function fileupload() {
-    if ($Course.IsWeixin()){
-        $("#down").on("click",function(){
-            layer.open({content:"请长按图片保存到手机"});
+    if ($Course.IsWeixin()) {
+        $("#down").on("click", function () {
+            layer.open({content: "请长按图片保存到手机"});
         });
-    }else{
+    } else {
         var url = ApiUrl + "File/FileUploadBase64";
         var param = {base64Str: document.getElementsByTagName("canvas")[0].toDataURL("image/png")}
         console.log(param);

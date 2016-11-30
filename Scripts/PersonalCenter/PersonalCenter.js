@@ -3,10 +3,7 @@
  */
 
 $(function ($) {
-    // 获取用户ID
-    $("#imageFile").on("change", function (e) {
-        getFile(e);
-    });
+
     $("#exit").on("click", function () {
         Exit();
     });
@@ -15,16 +12,18 @@ $(function ($) {
     if (UserInfo.RefUserID) {
         Promoter(UserInfo.RefUserID);
     }
-    myQRCode(UserInfo.UserID);
+    $("#myQRCode").on("click", function () {
+        if (UserInfo.IsAble == 1) {
+            window.location.href = "MyQrCode.html?UserID=" + UserInfo.UserID;
+        } else {
+            layer.open({content: "您还不是摩英达人。"});
+        }
+    });
     $("#headerImg").attr("src", HeaderImg);
     $("#LoginName").html(UserInfo.Account);
     PersonalCenter_Show();
 });
 
-function myQRCode(UserID) {
-    var strHtml = '<a href="../../Views/PersonalCenter/MyQRCode.html?UserID=' + UserID + '"><img src="../../Images/personCenter/myQRCode.png" class="myQRCode"/></a>';
-    $("#myQRCode").html(strHtml);
-}
 
 function Promoter(RefUserID) {
     var param = {UserID: RefUserID};
@@ -54,7 +53,7 @@ function Exit() {
         btn: ['确定', '取消'],
         yes: function (index) {
             $.cookie("UserInfo", null, {expires: 30, path: '/'});
-            window.location.href = "Login.html";
+            window.location.href = "../Account/Login.html";
         }
     });
 }
@@ -63,13 +62,17 @@ function PersonalCenter_Show() {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var HeaderImg = UserInfo.PhotoUrl || "../../Images/defaultphoto.jpg";
     var Integral = UserInfo.Integral > 0 ? UserInfo.Integral : '无';
+    var name = (UserInfo.NickName == null || UserInfo.NickName == "") ? UserInfo.Account : UserInfo.NickName;
     var strHtml = "";
     strHtml += '<img src="../../Images/personCenter/backgroundImg.png" style="width: 100%"/>';
     strHtml += '<img src="' + HeaderImg + '" class="headerImg" id="headerImg">';
     strHtml += '<input type="file" style="position:absolute;top:0px;left:0px;opacity:0;width:100%;height: 60%;" id="imageFile" accept="image/*">';
-    strHtml += '<p class="name">' + UserInfo.NickName + '</p>';
+    strHtml += '<p class="name">' + name + '</p>';
     strHtml += '<p class="integral">' + '积分：' + Integral + '</p>';
     $("#header").html(strHtml);
+    $("#imageFile").on("change", function (e) {
+        getFile(e);
+    });
 }
 
 function getFile(e) {
@@ -118,8 +121,9 @@ function getFile(e) {
 }
 
 function ChangeHeaderImg(PhotoUrl) {
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {
-        UserID: UserID,
+        UserID: UserInfo.UserID,
         PhotoUrl: PhotoUrl
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Photo_Upd");

@@ -3,6 +3,7 @@
  */
 var s = 60;
 $(function ($) {
+    $.cookie("UserInfo", null, {path: '/'});
     createCode();
     //发送验证码
     $("#btnSendSMS").on("click", function () {
@@ -112,7 +113,7 @@ function Register() {
         return;
     }
     Pwd = $Course.MD5(Pwd);
-    var RefUserID = $Course.RequestUrlParams("UserID");
+    var RefUserID = $Course.RequestUrlParams("RefUserID");
     RefUserID = RefUserID == null ? 0 : RefUserID;
     var param = {Phone: PhoneNum, Pwd: Pwd, Code: _VerificationCode, RefUserID: RefUserID};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Account/Register");

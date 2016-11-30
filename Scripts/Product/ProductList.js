@@ -32,5 +32,5 @@ function Product_list() {
 }
 
 function Order(ProductID) {
-    console.log(ProductID);
+    window.location.href = "ProductDetials.html?ProductID=" + ProductID;
 }

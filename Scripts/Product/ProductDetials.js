@@ -3,15 +3,12 @@
  * Created by wangbin on 2016/11/15.
  */
 
-$ (function ($) {
-    var ProductID = $Course.RequestUrlParams("ProductID");
-    if (ProductID != null) {
-        Article_Detials(ProductID);
-    }
-    Article_Detials(3)
+$(function ($) {
+    Article_Detials()
 });
 
-function Article_Detials(ProductID) {
+function Article_Detials() {
+    var ProductID = $Course.RequestUrlParams("ProductID");
     var param = {ProductID: ProductID};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Product/Product_Detail");
     console.log(result);
@@ -36,7 +33,12 @@ function Article_Detials(ProductID) {
         strHtml += '        <p style="word-break: break-all">' + row.Intro + '</p>';
         strHtml += '    </div>';
         strHtml += '</div>';
-        strHtml += '<div class="exit" id="exit">立即兑换</div>';
+        strHtml += '<div class="exit" id="exit" onclick="Exchange()">立即兑换</div>';
         $("#article_detials").html(strHtml);
     }
+}
+
+function Exchange() {
+    var ProductID = $Course.RequestUrlParams("ProductID");
+    window.location.href = "Exchange.html?ProductID=" + ProductID;
 }

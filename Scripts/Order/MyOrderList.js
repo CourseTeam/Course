@@ -5,6 +5,19 @@
 $(document).ready(function () {
     MyOrder_List();
     MyDeliveryAddress_List();
+    var type = $Course.RequestUrlParams("type");
+    $(".tab a").removeClass("active");
+    if (type == 1) {
+        $(".da_list").hide();
+        $(".order_list").show();
+        $(".addbtn").hide();
+        $("#order_list").addClass("active");
+    } else {
+        $(".da_list").show();
+        $(".order_list").hide();
+        $(".addbtn").show();
+        $("#da_list").addClass("active");
+    }
     $(".tab a").on("click", function (a, b) {
         $(".tab a").removeClass("active");
         $(this).addClass("active");
@@ -131,7 +144,7 @@ function MyDeliveryAddress_List() {
                 } else {
                     strHtml += '    <div class="col-xs-6 text-left da_lh30"><input type="radio" name="address" onclick="SetDefault_Address(' + row.DeliveryID + ')" /> 默认地址</div>';
                 }
-                strHtml += '    <div class="col-xs-6 text-right da_lh30"><span>编辑</span> <span onclick="DeliveryAddress_Del(' + row.DeliveryID + ')">删除</span></div>';
+                strHtml += '    <div class="col-xs-6 text-right da_lh30"><span onclick="AddressEdit(' + row.DeliveryID + ')">编辑</span> <span onclick="DeliveryAddress_Del(' + row.DeliveryID + ')">删除</span></div>';
                 strHtml += '    <div style="height: 8px;background: #eee;clear: both;"></div>';
                 strHtml += '</div>';
             }
@@ -139,7 +152,14 @@ function MyDeliveryAddress_List() {
         }
     }
 }
-
+//新增或编辑地址
+function AddressEdit(DeliveryID) {
+    if (DeliveryID > 0) {
+        window.location.href = "../PersonalCenter/ShippingAddressEdit.html?DeliveryID=" + DeliveryID;
+    } else {
+        window.location.href = "../PersonalCenter/ShippingAddressEdit.html";
+    }
+}
 //删除收货地址
 function DeliveryAddress_Del(DeliveryID) {
     layer.open({
