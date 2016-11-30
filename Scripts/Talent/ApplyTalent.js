@@ -18,6 +18,7 @@ function Is_Consume() {
                 $("#apply").attr("disabled", "disabled");
                 $("#apply").removeClass("apply_button");
                 $("#apply").addClass("apply_buttondis");
+                $("#apply").html("您已经是摩英达人");
             }
         } else {
             $("#unStandard").html("未达到申请条件");

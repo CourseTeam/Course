@@ -61,6 +61,10 @@ function IntegralResource_List() {
         if (result.Data.length > 0) {
             for (var i = 0;i < result.Data.length;i++) {
                 var row = result.Data[i];
+                var Title="";
+                if(row.SourceName=="消费"){
+                    Title=""
+                }
                 strHtml += '<div class="row btm_Integral">';
                 strHtml += '    <div class="col-xs-8" style="padding-left: 10px">';
                 strHtml += '        <span class="record_Integral">' + row.Title + '</span>';
