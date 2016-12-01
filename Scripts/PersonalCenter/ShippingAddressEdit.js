@@ -3,7 +3,7 @@
  * Created by wangbin on 2016/11/22.
  */
 
-$ (function ($) {
+$(function ($) {
     var DeliveryID = $Course.RequestUrlParams("DeliveryID");
     if (DeliveryID != null) {
         Address_Detials(DeliveryID);
@@ -58,7 +58,11 @@ function Address_Save() {
     var result = $Course.PostAjaxJson(param, ApiUrl + "DeliveryAddress/DeliveryAddress_Edit");
     console.log(result);
     if (result.Msg == "OK") {
-        window.location.href = "javascript:history.go(-1);location.reload()";
+        if ($Course.RequestUrlParams("ReturnUrl") != null) {
+            window.location.href = $Course.RequestUrlParams("ReturnUrl");
+        } else {
+            window.location.href = "../Order/MyOrderList.html?type=2"
+        }
     }
 }
 
