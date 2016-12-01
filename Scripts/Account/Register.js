@@ -4,7 +4,7 @@
 var s = 60;
 $(function ($) {
     $.cookie("UserInfo", null, {path: '/'});
-    createCode();
+    //createCode();
     //发送验证码
     $("#btnSendSMS").on("click", function () {
         if (s == 60) {
@@ -21,14 +21,14 @@ $(function ($) {
 
 //获取验证码
 function GetSMSCode() {
-    if (!validate()) {
-        layer.open({
-            content: '图片验证码错误！',
-            style: 'background-color:#fff; color:#000; border:none;width:60%',
-            time: 2
-        });
-        return;
-    }
+    // if (!validate()) {
+    //     layer.open({
+    //         content: '图片验证码错误！',
+    //         style: 'background-color:#fff; color:#000; border:none;width:60%',
+    //         time: 2
+    //     });
+    //     return;
+    // }
     var PhoneNum = $("#Phone").val();
     if (!PhoneNum) {
         layer.open({
