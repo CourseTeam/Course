@@ -32,7 +32,6 @@ $(function ($) {
     });
 });
 
-
 function canvas() {
     var w = window.screen.width;
     var h = window.screen.height;
@@ -79,7 +78,11 @@ function UserInfo_Photo_Get() {
         if (result.Data) {
             $("#NickName").html("我是摩英达人" + result.Data.NickName);
             $(".imgLogo").attr("src", result.Data);
-            $("#headerImg").attr("src", result.Data.PhotoUrl);
+            if (result.Data.PhotoUrl) {
+                $("#headerImg").attr("src", result.Data.PhotoUrl);
+            } else {
+                $("#headerImg").attr("src", '../../Images/defaultphoto.jpg');
+            }
         }
     }
 }
