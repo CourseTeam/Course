@@ -14,7 +14,7 @@
         .tab{ height:40px; border-bottom:1px solid #eee; }
 
         .tab > div{ margin-top:15px; }
-
+        .active{color:red!important;border-bottom: 2px solid #ff0000;}
         .tab a{ color:#000; font-size:16px; padding-bottom:2px; text-decoration:none; }
         #product_list >.list{padding:10px;}
     </style>
@@ -22,9 +22,11 @@
 <body>
 <div class="container">
     <div class="row tab">
-        <div class="col-xs-6 text-center" style="padding-right: 0">
+        <div class="col-xs-4 text-center" style="padding-right: 0">
+            <a href="ProductList.html" class="active" id="p_list">商品列表</a></div>
+        <div class="col-xs-4 text-center" style="padding-right: 0;padding-left: 0">
             <a href="../Order/MyOrderList.html?type=1" id="order_list">我的订单</a></div>
-        <div class="col-xs-6 text-center" style="padding-left: 0">
+        <div class="col-xs-4 text-center" style="padding-left: 0">
             <a href="../Order/MyOrderList.html?type=2" id="da_list">收货地址</a></div>
     </div>
     <div class="row" id="product_list">
