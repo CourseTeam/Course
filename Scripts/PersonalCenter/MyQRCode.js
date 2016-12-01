@@ -3,7 +3,6 @@
  */
 
 $(function ($) {
-    UserInfo_Photo_Get();
     $("#qrcode").erweima({
         render: 'canvas',// / image / div   渲染模式
         ecLevel: 'Q',//:7% / M:15% / Q:25% / H:30%    二维码识别度（越大越容易扫描）
@@ -23,11 +22,25 @@ $(function ($) {
         fontcolor: 'orange',//       logo字体颜色
         image: $(".imgLogo")[0]//   设置的时候，需要把mode改成4，调用整个图片控件
     });
+    UserInfo_Photo_Get();
     fileupload();
     $("#share").on("click", function () {
         layer.open({content: "请点击微信右上角分享"});
     });
+    imgLoad(headerImg, function() {
+        console.log("加载完成");
+        canvas();
+    });
 });
+
+
+function canvas() {
+    html2canvas(document.body, {
+        onrendered: function(canvas) {
+            $("#MyQRCode").html(canvas);
+        }
+    });
+}
 
 function fileupload() {
     if ($Course.IsWeixin()) {
@@ -44,11 +57,22 @@ function fileupload() {
 }
 
 function UserInfo_Photo_Get() {
-    var result = $Course.GetAjaxJson({UserID: $Course.RequestUrlParams("UserID")}, ApiUrl + "User/UserInfo_Photo_Get");
+    var result = $Course.GetAjaxJson({UserID: $Course.RequestUrlParams("UserID")}, ApiUrl + "User/User_NameAndPhoto_Get");
     console.log(result);
     if (result.Msg == "OK") {
         if (result.Data) {
+            $("#NickName").html("我是摩英达人" + result.Data.NickName);
             $(".imgLogo").attr("src", result.Data);
+            $("#headerImg").attr("src", result.Data.PhotoUrl);
         }
     }
+}
+
+function imgLoad(img, callback) {
+    var timer = setInterval(function() {
+        if (img.complete) {
+            callback(img);
+            clearInterval(timer);
+        }
+    }, 1000)
 }
