@@ -28,18 +28,34 @@ $(function ($) {
         layer.open({content: "请点击微信右上角分享"});
     });
     imgLoad(headerImg, function() {
-        console.log("加载完成");
         canvas();
     });
 });
 
 
 function canvas() {
+    var w = window.screen.width;
+    var h = window.screen.height;
+
+    //要将 canvas 的宽高设置成容器宽高的 2 倍
+    var canvas = document.createElement("canvas");
+    canvas.width = w * 3;
+    canvas.height = h * 3;
+    canvas.style.width = w + "px";
+    canvas.style.height = h + "px";
+    var context = canvas.getContext("2d");
+    //然后将画布缩放，将图像放大两倍画到画布上
+    context.scale(3,3);
+
     html2canvas(document.body, {
+        canvas: canvas,
         onrendered: function(canvas) {
-            $("#MyQRCode").html(canvas);
-        }
+            $("#MyQRCode").html('<img style="width: 100%;" src="'+canvas.toDataURL("image/png")+'" />');
+        },
+        width: w * 3,
+        height: h * 3
     });
+
 }
 
 function fileupload() {
@@ -74,5 +90,5 @@ function imgLoad(img, callback) {
             callback(img);
             clearInterval(timer);
         }
-    }, 1000)
+    }, 300)
 }
