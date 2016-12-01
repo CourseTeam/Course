@@ -34,7 +34,6 @@
             left: 15px;
             width: 50px;
             height: 50px;
-            border-radius: 25px;
         }
 
         .nickName {
@@ -55,11 +54,10 @@
         }
         .imgLogo{display: none;}
     </style>
-
 </head>
 <body>
     <div id="MyQRCode">
-        <img src="../../Images/personCenter/qrcode_backgroundImg.jpg" style="position: absolute;;width: 100%;height: 100%"/>
+        <img src="../../Images/personCenter/qrcode_backgroundImg.jpg" style="position: absolute;width: 100%"/>
         <img class="headerImg" id="headerImg"/>
         <span class="nickName" id="NickName"></span>
         <div class="qrcode" id="qrcode"></div>
@@ -80,7 +78,7 @@
             <!--&lt;!&ndash;</div>&ndash;&gt;-->
         <!--</div>-->
     <!--</div>-->
-    <script src="../../Framework/html2canvas/html2canvas.js"></script>
+    <script src="../../Framework/html2canvas/dist/html2canvas.js"></script>
     <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
     <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
     <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
@@ -89,12 +87,5 @@
     <script src="../../Framework/qrcodejs/jqueryqr.js"></script>
     <script src="../../Framework/qrcodejs/qrcode.js"></script>
     <script src="../../Scripts/PersonalCenter/MyQRCode.js"></script>
-    <!--<script type="text/javascript">-->
-        <!--html2canvas(document.body, {-->
-            <!--onrendered: function(canvas) {-->
-                <!--$("#MyQRCode").html(canvas);-->
-            <!--}-->
-        <!--});-->
-    <!--</script>-->
 </body>
 </html>
