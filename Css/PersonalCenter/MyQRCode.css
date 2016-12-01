@@ -1,7 +1,7 @@
 .qrcode {
     position: absolute;
     top: 25%;
-    padding: 70px;
+    padding: 20%;
     /*border: 1px solid #4A90E2;*/
     /*border-radius: 5px;*/
 }
@@ -21,6 +21,7 @@
     left: 15px;
     width: 50px;
     height: 50px;
+    border-radius: 25px;
 }
 
 .nickName {
