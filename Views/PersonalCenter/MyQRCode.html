@@ -10,12 +10,24 @@
     <link rel="stylesheet" href="../../Css/PersonalCenter/MyQRCode.css">
     <meta charset="UTF-8">
     <title>我的二维码</title>
+    <style>
+        .save_text {
+            position: absolute;
+            top: 45px;
+            left: 70px;
+            width: 70%;
+            color: white;
+            height: 20px;
+            font-size: 12px;
+        }
+    </style>
 </head>
 <body>
     <div id="MyQRCode">
         <img src="../../Images/personCenter/qrcode_backgroundImg.jpg" style="position: absolute;width: 100%"/>
         <img class="headerImg" id="headerImg"/>
         <span class="nickName" id="NickName"></span>
+        <span class="save_text">长按页面可保存二维码</span>
         <div class="qrcode" id="qrcode"></div>
     </div>
     <!--<div class="container">-->
