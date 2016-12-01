@@ -35,8 +35,8 @@ function MyRefer_List(PageIndex, PageSize) {
     var result = $Course.GetAjaxJson(param, ApiUrl + "User/MyRefer_List");
     console.log(result);
     if (result.Msg == "OK") {
-        var strHtml = "";
         if (result.Data.length > 0) {
+            var strHtml = "";
             for (var i = 0; i < result.Data.length; i++) {
                 var row = result.Data[i];
                 strHtml += '<div class="row btm">';
@@ -56,8 +56,8 @@ function IntegralResource_List() {
     };
     var result = $Course.GetAjaxJson(param, ApiUrl + "IntegralResource/MyIntegralResource_List");
     if (result.Msg == "OK") {
-        var strHtml = "";
         if (result.Data.length > 0) {
+            var strHtml = "";
             for (var i = 0; i < result.Data.length; i++) {
                 var row = result.Data[i];
                 var Title = "";
