@@ -129,6 +129,12 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname,servic
             '</div>',
             btn: ['确定', '取消'],
             yes: function (index) {
+                if (document.getElementById("radio1").checked == false && document.getElementById("radio2").checked == false) {
+                    layer.open({
+                        content:"请选择到场人数",
+                        time:2
+                    });
+                }
                 if (document.getElementById("radio1").checked == true) {
                     qinziType = 2;
                 } else if (document.getElementById("radio2").checked == true) {
@@ -138,6 +144,7 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname,servic
                 post_book(param);
             }
         });
+        return;
     }
 
     if (pt == 0) {
@@ -152,6 +159,7 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname,servic
           layer.open(index);
         }
       });
+        return;
     }
 
     if (serviceType == 0) {
@@ -201,6 +209,18 @@ function book(obj, pid, cid, ctid, crid, t, pt, over, name, tspan, cpname,servic
                 param.serviceType = serviceType;
                 layer.close(index);
                 post_book(param);
+            }
+        });
+    }
+
+    if (serviceType == 1) {
+        layer.open({
+            title:"提示",
+            content:"是否预约" + coursename + "?",
+            btn:['确定','取消'],
+            yes:function(index){
+                post_book(param);
+                layer.close(index);
             }
         });
     }
@@ -401,8 +421,8 @@ function create_willbooklist() {
         }
        strHtml += '  </ul>'
        strHtml += '  <ul style="float:right;">'
-       if (disabled == "") {strHtml += '<button class="button" color="' + btnColor + '" type="button"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'}
-                      else {strHtml += '<button class="button" type="button" disabled="' + disabled +'"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'};
+       if (disabled == "") {strHtml += '<button class="button" color="' + btnColor + '" type="button"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ',' + null + ',' + row.ValueAddedServices + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'}
+                      else {strHtml += '<button class="button" type="button" disabled="' + disabled +'"  cname="'+ row.CoursePhaseName + '" onclick="book(this, ' + row.PhaseID +',' + row.CourseID + ',' + row.CouseTypeID + ',' + row.CourseRegistrationID + ',' + row.PhaseStatus + ',' + row.PhaseType + ',' + isOverCount + ',' +  name  + ',' + row.TimeSpan  + ',' + null + ',' + row.ValueAddedServices + ')" style="margin-top:10px;margin-right:10px; background-color:' + btnColor + '">'+type+'</button>'};
 
        strHtml += '  </ul>'
        strHtml += '<div style="clear: both;"></div>'
