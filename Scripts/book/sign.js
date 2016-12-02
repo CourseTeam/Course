@@ -16,7 +16,7 @@ var isHaveService; //是否有增值服务
 var isParentList; //是否是智慧家长课程
 
 $(function ($) {
-
+    GetUserData();
     document.getElementById("radio_zhihui_div").style.display = "none";
     document.getElementById("question-div").style.display = "none";
 
@@ -35,7 +35,6 @@ $(function ($) {
     }
 
 
-
     document.getElementById("channel_radio1").onclick = function () {
         deleteOther();
     }
@@ -49,9 +48,11 @@ $(function ($) {
         deleteOther();
     }
 
+    var result = $Course.GetAjaxJson({}, ApiUrl + "SysConfig/SysConfig_Default");
+    console.log(result);
 
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    if (UserInfo) {
+    if (UserInfo != null || UserInfo != "null") {
         //noinspection JSAnnotator
         document.getElementById("tel").value = UserInfo.Phone;
         document.getElementById("email").value = UserInfo.Email;
@@ -68,11 +69,25 @@ $(function ($) {
         document.getElementById("m_tel").value = UserInfo.MotherPhone;
         document.getElementById("telephone").value = UserInfo.Tel;
         document.getElementById("address").value = UserInfo.Address;
-    }
+        if (parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) > 0) {
+            $("#integral").show();
+            $(".integral").html("可用" + UserInfo.Integral + "抵扣" + parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) + "元");
+        }else{
+            $("#integral").hide();
+        }
 
+    }
     get_joinedState();
 });
-
+function GetUserData() {
+    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+    var param = {UserID: UserInfo.UserID};
+    console.log(UserInfo)
+    var result = $Course.GetAjaxJson(param, ApiUrl + "User/GetUserInfoByUserID");
+    result.Data.Ticket = UserInfo.Ticket;
+    //将用户信息存入Cookie
+    $.cookie("UserInfo", $Course.stringify(result.Data), {path: '/'});
+}
 
 function other() {
     if (!isOpenOther) {
@@ -124,42 +139,42 @@ function sure() {
     var p_birth = $("#p_birth").val();
     var p_email = $("#p_email").val();
     var p_tel = $("#p_tel").val();
-
-
+    var IsIntegral = $("input[name=integral]").is(':checked') ? 1 : 0;
     if (channel == undefined) {
         channel = 0
-        layer.open({content:"请选择渠道"});
+        layer.open({content: "请选择渠道"});
         return;
     }
     ;
     if (server_id == undefined && isHaveService) {
         server_id = 0;
-        layer.open({content:"请选择您的增值服务"});
+        layer.open({content: "请选择您的增值服务"});
         return;
     }
     ;
     if (inputer == undefined && !isParentList) {
-        layer.open({content:"请选择填表人"});
+        layer.open({content: "请选择填表人"});
         return;
-    };
+    }
+    ;
 
     if (p_name == "") {
-        layer.open({content:"请填写姓名"});
+        layer.open({content: "请填写姓名"});
         return;
     }
 
-     if (p_birth == "") {
-        layer.open({content:"请填写生日"});
+    if (p_birth == "") {
+        layer.open({content: "请填写生日"});
         return;
     }
 
-     if (p_email == "") {
-        layer.open({content:"请填写邮箱"});
+    if (p_email == "") {
+        layer.open({content: "请填写邮箱"});
         return;
     }
 
-     if (p_tel == "") {
-        layer.open({content:"请填写联系方式"});
+    if (p_tel == "") {
+        layer.open({content: "请填写联系方式"});
         return;
     }
 
@@ -195,6 +210,7 @@ function sure() {
     param.p_birth = p_birth;
     param.p_email = p_email;
     param.p_tel = p_tel;
+    param.IsIntegral = IsIntegral;
 
     //发送调查问卷
 
@@ -205,7 +221,18 @@ function sure() {
     if (courseTID != 2) {
         updateInfo(param);
     }
-    course_reg(param);
+    layer.open({
+        "content": "是否进行预约？",
+        btn: ["确定", "取消"],
+        yes: function (index) {
+            course_reg(param);
+            layer.close(index);
+        },
+        no: function (index) {
+            layer.close(index);
+        }
+    });
+
 
 }
 
@@ -236,8 +263,8 @@ function updateInfo(obj) {
         //更新个人信息成功 更改cookie
         var param_cookie = {"UserID": UserInfo.UserID};
         var result_cookie = $Course.GetAjaxJson(param_cookie, ApiUrl + "User/GetUserInfoByUserID");
-        result_cookie.Data.Ticket=UserInfo.Ticket;
-        // $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {expires: 30, path: '/'});
+        result_cookie.Data.Ticket = UserInfo.Ticket;
+        $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {path: '/'});
     }
 }
 
@@ -281,33 +308,39 @@ function course_reg(obj) {
 
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {
-        "UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel,
-        "Preparer": obj.inputer, "Sponsor": obj.introduce, "TellMe": obj.tellme,"WorkUnits":obj.factory,"ParentSex":obj.p_sex,
-        "ParentBirthday":obj.p_birth,"ParentName":obj.p_pname,"ParentEmail":obj.p_email,"ParentPhone":obj.p_tel
+        "UserID": UserInfo.UserID,
+        "CourseID": course_id,
+        "Channel": obj.channel,
+        "Preparer": obj.inputer,
+        "Sponsor": obj.introduce,
+        "TellMe": obj.tellme,
+        "WorkUnits": obj.factory,
+        "ParentSex": obj.p_sex,
+        "ParentBirthday": obj.p_birth,
+        "ParentName": obj.p_pname,
+        "ParentEmail": obj.p_email,
+        "ParentPhone": obj.p_tel,
+        IsIntegral: obj.IsIntegral
     };
 
     var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_Add");
 
-    if (result.Msg == "OK" && result.Data != false) {
+    if (result.Msg == "OK" && result.Data) {
         //课程报名成功
-        layer.open({
-            "content": "是否进行预约？",
-            btn: ["确定", "取消"],
-            yes: function (index) {
-                phase_book(obj);
-                layer.close(index);
-            },
-            no: function (index) {
-                layer.close(index);
-            }
-        });
+        phase_book(obj);
     }
 }
 
 //智慧家长报名
 function parent_reg(obj) {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    var param = {"UserID": UserInfo.UserID, "CourseID": course_id, "Channel": obj.channel, "Preparer": obj.inputer,"WorkUnits":obj.factory};
+    var param = {
+        "UserID": UserInfo.UserID,
+        "CourseID": course_id,
+        "Channel": obj.channel,
+        "Preparer": obj.inputer,
+        "WorkUnits": obj.factory
+    };
 
 }
 
@@ -344,7 +377,9 @@ function get_joinedState() {
     var result = $Course.GetAjaxJson(param, ApiUrl + "course/Is_JoinCourse");
     if (result.Msg == "OK") {
         isJoinedCourse = result.Data.IsJoinedCourse;
-        if (isJoinedCourse == 0 && courseTID != 2) {document.getElementById("question-div").style.display="block";}
+        if (isJoinedCourse == 0 && courseTID != 2) {
+            document.getElementById("question-div").style.display = "block";
+        }
     }
 }
 
@@ -378,8 +413,8 @@ function get_request(courseid, CourseType) {
         if (courseTID == 2) {
             //智慧家长课程
             isParentList = true;
-            document.getElementById("question-div").style.display="none";
-            document.getElementById("radio_zhihui_div").style.display="block";
+            document.getElementById("question-div").style.display = "none";
+            document.getElementById("radio_zhihui_div").style.display = "block";
 
             create_parentlist();
         }
@@ -475,7 +510,7 @@ function selectedPhase(phasetype) {
     // body...
     if (phasetype == 4 || phasetype == 3) {
         document.getElementById("zengzhi").style.display = "none";
-    }else {
+    } else {
         document.getElementById("zengzhi").style.display = "block";
     }
 }
@@ -491,7 +526,7 @@ function create_phaselist(data) {
             var EndTime = row.EndTime ? row.EndTime.split(' ')[0] : "待定";
             strHtml += '    <div class="radio">'
             strHtml += '       <label>'
-            strHtml += '          <input type="radio" onclick="selectedPhase('+ row.PhaseType +')" ptype="' + row.PhaseType + '" name="radio_phase" value="' + row.PhaseID + '">'
+            strHtml += '          <input type="radio" onclick="selectedPhase(' + row.PhaseType + ')" ptype="' + row.PhaseType + '" name="radio_phase" value="' + row.PhaseID + '">'
             strHtml += '            <p>' + row.CoursePhaseName + '</p>'
             if (row.PhaseType != 1 && row.PhaseType != 0) {
                 strHtml += '            <p style="color:red;">' + "(仅限参加过一阶课程的老学员)" + '</p>'
@@ -560,7 +595,7 @@ function get_data(cid) {
             zengzhiHtml += '        <p>不需要此项服务</p>'
             zengzhiHtml += '      </label>'
             zengzhiHtml += '    </div>'
-           
+
             $(".zengzhi").append(zengzhiHtml);
         }
     }

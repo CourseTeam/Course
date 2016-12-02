@@ -2,164 +2,164 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>报名信息</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
-	<meta name="format-detection" content="telephone=no"/>
-	<meta name="format-detection" content="email=no"/>
-	<meta name="description" content="course web for morden">
-	<meta name="author" content="vjchu">
-	
-	<link rel="stylesheet" type="text/css" href="../../Css/book/sign.css">
-	<link rel="stylesheet" type="text/css" href="../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
-	<style type="text/css">
-    
-  </style>
+    <title>报名信息</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta name="description" content="course web for morden">
+    <meta name="author" content="vjchu">
+
+    <link rel="stylesheet" type="text/css" href="../../Css/book/sign.css">
+    <link rel="stylesheet" type="text/css" href="../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <style type="text/css">
+
+    </style>
 </head>
 <body>
-	<div class="container">
-	<div class="top" style="margin-top: 0">
-		<div style="text-align: center;" ><h3 id="course_title"></h3></div>
-		<div class="container">
-		</div>
-	</div>
-	<div class="phase">
-		<p class="title">请选择您的期数</p>
-		<div class="phase_container">
-			
-		</div>
-	</div>
-	<div class="sign">
-		<p class="title">报名信息</p>
-		<div class="row text_row" id="stu_tel_row">
-			<div class="col-xs-4"><span style="color: red">  *</span><span class="text">学员手机</span></div>
-			<div class="col-xs-8"><input class="input" id="tel" type="text" ></div>
-		</div>
-		<div class="row" id="email_row">
-			<div class="col-xs-4"><p class="text">电子邮件</p></div>
-			<div class="col-xs-8"><input class="input" id="email" type="text"></div>
-		</div>
-		<div class="row" id="name_text">
-			<div class="col-xs-4"><span style="color: red">  *</span><span class="text">学员姓名</span></div>
-			<div class="col-xs-8"><input class="input" id="name" type="text"></div>
-		</div>
-		<div class="row" id="stu_sex_row">
-			<div class="col-xs-4"><span style="color: red">*</span><span class="text">性别</span></div>
-			<div class="col-xs-8">
-				<div class="radio">
-                  <label>
-                    <input type="radio" name="sexRadio" checked="checked"  value="男">男
-                  </label>
-                </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="sexRadio"  value="女">女
-                  </label>
-                </div>
-			</div>
-		</div>
-		<div  class="row" id="school_text">
-			<div class="col-xs-4"><span style="color: red">*</span><span class="text">就读学校</span></div>
-			<div class="col-xs-8"><input class="input" id="school" type="text"></div>
-		</div>
-		<div  class="row" id="grade_text">
-			<div class="col-xs-4"><p class="text">就读年级</p></div>
-			<div class="col-xs-8"><input class="input" id="grade" type="text"></div>
-		</div>
-		<div  class="row" id="class_text">
-			<div class="col-xs-4"><p class="text">就读班级</p></div>
-			<div class="col-xs-8"><input class="input" id="class" type="text"></div>
-		</div>
-		<div  class="row" id="stu_birth">
-			<div class="col-xs-4"><span style="color: red">*</span><span class="text">出生日期</span></div>
-			<div class="col-xs-8">
-				<input class="input" id="birth" type="text">
-				<p style="color: gray">例如:2001-01-01</p>
-			</div>
-		</div>
-	</div>
+<div class="container">
+    <div class="top" style="margin-top: 0">
+        <div style="text-align: center;"><h3 id="course_title"></h3></div>
+        <div class="container">
+        </div>
+    </div>
+    <div class="phase">
+        <p class="title">请选择您的期数</p>
+        <div class="phase_container">
 
-	<div class="other">
-		<div  class="row" id="f_name_text">
-			<div class="col-xs-4"><span style="color: red">*</span><span class="text">父亲姓名</span></div>
-			<div class="col-xs-8"><input class="input" id="f_name" type="text"></div>
-		</div>
-		<div  class="row" id="f_tel_text">
-			<div class="col-xs-4"><span style="color: red">*</span><span class="text">父亲手机</span></div>
-			<div class="col-xs-8"><input class="input" id="f_tel" type="text"></div>
-		</div>
-		<div  class="row" id="m_name_text">
-			<div class="col-xs-4"><span style="color: red">*</span><span class="text">母亲姓名</span></div>
-			<div class="col-xs-8"><input class="input" id="m_name" type="text"></div>
-		</div>
-		<div  class="row" id="m_tel_text">
-			<div class="col-xs-4"><span style="color: red">*</span><span class="text">母亲手机</span></div>
-			<div class="col-xs-8"><input class="input" id="m_tel" type="text"></div>
-		</div>
-		<div  class="row" id="stu_phone">
-			<div class="col-xs-4"><p class="text">宅电</p></div>
-			<div class="col-xs-8"><input class="input" id="telephone" type="text"></div>
-		</div>
-		<div  class="row">
-			<div class="col-xs-12" ><span style="color: red">*</span><span class="text">快递详细地址</span></div>
-			<div class="col-xs-12"	><input class="input" id="address" type="text" style="width: 100%"></div>
-		</div>
-		<div  class="row" id="inputter">
-			<div class="col-xs-4"><span style="color: red">*</span><span class="text">填表人</span></div>
-			<div class="col-xs-8">
-				<div class="radio">
-                  <label>
-                    <input type="radio" name="inputerRadio"  value="父亲">父亲
-                  </label>
+        </div>
+    </div>
+    <div class="sign">
+        <p class="title">报名信息</p>
+        <div class="row text_row" id="stu_tel_row">
+            <div class="col-xs-4"><span style="color: red">  *</span><span class="text">学员手机</span></div>
+            <div class="col-xs-8"><input class="input" id="tel" type="text"></div>
+        </div>
+        <div class="row" id="email_row">
+            <div class="col-xs-4"><p class="text">电子邮件</p></div>
+            <div class="col-xs-8"><input class="input" id="email" type="text"></div>
+        </div>
+        <div class="row" id="name_text">
+            <div class="col-xs-4"><span style="color: red">  *</span><span class="text">学员姓名</span></div>
+            <div class="col-xs-8"><input class="input" id="name" type="text"></div>
+        </div>
+        <div class="row" id="stu_sex_row">
+            <div class="col-xs-4"><span style="color: red">*</span><span class="text">性别</span></div>
+            <div class="col-xs-8">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="sexRadio" checked="checked" value="男">男
+                    </label>
                 </div>
                 <div class="radio">
-                  <label>
-                    <input type="radio" name="inputerRadio"  value="母亲">母亲
-                  </label>
+                    <label>
+                        <input type="radio" name="sexRadio" value="女">女
+                    </label>
                 </div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12"><span style="color: red">*</span><span class="text">你是通过什么渠道了解我们的</span></div>
-			<div class="channel-row col-xs-12">
-				<div class="radio">
-                  <label>
-                    <input id="channel_radio1" type="radio" name="channelRadio"  value="1">演讲
-                  </label>
+            </div>
+        </div>
+        <div class="row" id="school_text">
+            <div class="col-xs-4"><span style="color: red">*</span><span class="text">就读学校</span></div>
+            <div class="col-xs-8"><input class="input" id="school" type="text"></div>
+        </div>
+        <div class="row" id="grade_text">
+            <div class="col-xs-4"><p class="text">就读年级</p></div>
+            <div class="col-xs-8"><input class="input" id="grade" type="text"></div>
+        </div>
+        <div class="row" id="class_text">
+            <div class="col-xs-4"><p class="text">就读班级</p></div>
+            <div class="col-xs-8"><input class="input" id="class" type="text"></div>
+        </div>
+        <div class="row" id="stu_birth">
+            <div class="col-xs-4"><span style="color: red">*</span><span class="text">出生日期</span></div>
+            <div class="col-xs-8">
+                <input class="input" id="birth" type="text">
+                <p style="color: gray">例如:2001-01-01</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="other">
+        <div class="row" id="f_name_text">
+            <div class="col-xs-4"><span style="color: red">*</span><span class="text">父亲姓名</span></div>
+            <div class="col-xs-8"><input class="input" id="f_name" type="text"></div>
+        </div>
+        <div class="row" id="f_tel_text">
+            <div class="col-xs-4"><span style="color: red">*</span><span class="text">父亲手机</span></div>
+            <div class="col-xs-8"><input class="input" id="f_tel" type="text"></div>
+        </div>
+        <div class="row" id="m_name_text">
+            <div class="col-xs-4"><span style="color: red">*</span><span class="text">母亲姓名</span></div>
+            <div class="col-xs-8"><input class="input" id="m_name" type="text"></div>
+        </div>
+        <div class="row" id="m_tel_text">
+            <div class="col-xs-4"><span style="color: red">*</span><span class="text">母亲手机</span></div>
+            <div class="col-xs-8"><input class="input" id="m_tel" type="text"></div>
+        </div>
+        <div class="row" id="stu_phone">
+            <div class="col-xs-4"><p class="text">宅电</p></div>
+            <div class="col-xs-8"><input class="input" id="telephone" type="text"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12"><span style="color: red">*</span><span class="text">快递详细地址</span></div>
+            <div class="col-xs-12"><input class="input" id="address" type="text" style="width: 100%"></div>
+        </div>
+        <div class="row" id="inputter">
+            <div class="col-xs-4"><span style="color: red">*</span><span class="text">填表人</span></div>
+            <div class="col-xs-8">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="inputerRadio" value="父亲">父亲
+                    </label>
                 </div>
                 <div class="radio">
-                  <label>
-                    <input id="channel_radio2" type="radio" name="channelRadio"  value="2">网络搜索
-                  </label>
+                    <label>
+                        <input type="radio" name="inputerRadio" value="母亲">母亲
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12"><span style="color: red">*</span><span class="text">你是通过什么渠道了解我们的</span></div>
+            <div class="channel-row col-xs-12">
+                <div class="radio">
+                    <label>
+                        <input id="channel_radio1" type="radio" name="channelRadio" value="1">演讲
+                    </label>
                 </div>
                 <div class="radio">
-                  <label>
-                    <input id="channel_radio3" type="radio" name="channelRadio"  value="3">摩英教育微信公众账号
-                  </label>
+                    <label>
+                        <input id="channel_radio2" type="radio" name="channelRadio" value="2">网络搜索
+                    </label>
                 </div>
                 <div class="radio">
-                  <label>
-                    <input id="channel_radio4" type="radio" name="channelRadio"  value="4">微信朋友圈
-                  </label>
+                    <label>
+                        <input id="channel_radio3" type="radio" name="channelRadio" value="3">摩英教育微信公众账号
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input id="channel_radio4" type="radio" name="channelRadio" value="4">微信朋友圈
+                    </label>
                 </div>
                 <div class="radio" id="radio_zhihui_div">
-                  <label>
-                    <input id="other_radio6"  type="radio" name="channelRadio"  value="6">智慧家长一阶课程
-                  </label>
+                    <label>
+                        <input id="other_radio6" type="radio" name="channelRadio" value="6">智慧家长一阶课程
+                    </label>
                 </div>
-                 <div class="radio">
-                  <label>
-                    <input id="other_radio5"  type="radio" name="channelRadio"  value="5">其他学员介绍
-                  </label>
+                <div class="radio">
+                    <label>
+                        <input id="other_radio5" type="radio" name="channelRadio" value="5">其他学员介绍
+                    </label>
                 </div>
-             
-			</div>
-		</div>
-	</div>
 
-	<div class="zengzhi" id="zengzhi">
-		<!-- <p class="zengzhi_title">请选择您的增值服务</p>
-		<div class="radio">
+            </div>
+        </div>
+    </div>
+
+    <div class="zengzhi" id="zengzhi">
+        <!-- <p class="zengzhi_title">请选择您的增值服务</p>
+        <div class="radio">
             <label>
                 <input type="radio" name="radio_server" value="1">
                 <p>统一版摩英回忆视频300元（单阶7天）</p>
@@ -195,51 +195,61 @@
             <p>不需要此项服务</p>
           </label>
         </div> -->
-	</div>
-	<div class="question" id="question-div">
-		<div style="margin-bottom: 8px">以下内容请务必认真填写，确保内容真实，便于讲师和助教针对性辅导您的孩子，帮助他成长。谢谢您的配合。</div>
-			<div>
-				<span style="color:gray;">1.您最希望孩子在现阶段改掉的坏习惯，养成的好习惯有哪些？</span>
-				<textarea class="q1" style="width:100%; resize:none;" ></textarea>
-			</div>
-			<div>
-				<span style="color:gray;">2.孩子目前在班级中学习成绩处于班级上、中、下哪一等？最近一年的变化情况是怎样的？</span>
-				<textarea class="q2" style="width:100%; resize:none;" ></textarea>
-			</div>
-			<div>
-				<span style="color:gray;">3.孩子目前在班级、社团或学生会担任的什么领导职位？或参加过哪些比赛，获得什么级别的什么奖项？</span>
-				<textarea class="q3" style="width:100%; resize:none;" ></textarea>
-			</div>
-			<div>
-				<span style="color:gray;">4.孩子的兴趣、爱好、特长有哪些？最喜欢的偶像是谁？</span>
-				<textarea class="q4" style="width:100%; resize:none;" ></textarea>
-			</div>
-			<div>
-				<span style="color:gray;">5.用3~5个词概括孩子的性格特点。</span>
-				<textarea class="q5" style="width:100%; resize:none;" ></textarea>
-			</div>
-			<div>
-				<span style="color:gray;">6.最近一年孩子动过什么手术？身体有什么不适？对什么食物敏？或注明其他需要老师特别注意的地方。</span>
-				<textarea class="q6" style="width:100%; resize:none;" ></textarea>
-			</div>
-			<div>
-				<span style="color:gray;">7.如果方便，请注明孩子现有的坏习惯可能的成因，及家庭环境的特殊情况，如：单亲家庭，父母或他人曾对孩子有过暴力行为，或由爷爷奶奶带大等。</span>
-				<textarea class="q7" style="width:100%; resize:none;" ></textarea>
-			</div>
+    </div>
+    <div class="question" id="question-div">
+        <div style="margin-bottom: 8px">以下内容请务必认真填写，确保内容真实，便于讲师和助教针对性辅导您的孩子，帮助他成长。谢谢您的配合。</div>
+        <div>
+            <span style="color:gray;">1.您最希望孩子在现阶段改掉的坏习惯，养成的好习惯有哪些？</span>
+            <textarea class="q1" style="width:100%; resize:none;"></textarea>
+        </div>
+        <div>
+            <span style="color:gray;">2.孩子目前在班级中学习成绩处于班级上、中、下哪一等？最近一年的变化情况是怎样的？</span>
+            <textarea class="q2" style="width:100%; resize:none;"></textarea>
+        </div>
+        <div>
+            <span style="color:gray;">3.孩子目前在班级、社团或学生会担任的什么领导职位？或参加过哪些比赛，获得什么级别的什么奖项？</span>
+            <textarea class="q3" style="width:100%; resize:none;"></textarea>
+        </div>
+        <div>
+            <span style="color:gray;">4.孩子的兴趣、爱好、特长有哪些？最喜欢的偶像是谁？</span>
+            <textarea class="q4" style="width:100%; resize:none;"></textarea>
+        </div>
+        <div>
+            <span style="color:gray;">5.用3~5个词概括孩子的性格特点。</span>
+            <textarea class="q5" style="width:100%; resize:none;"></textarea>
+        </div>
+        <div>
+            <span style="color:gray;">6.最近一年孩子动过什么手术？身体有什么不适？对什么食物敏？或注明其他需要老师特别注意的地方。</span>
+            <textarea class="q6" style="width:100%; resize:none;"></textarea>
+        </div>
+        <div>
+            <span style="color:gray;">7.如果方便，请注明孩子现有的坏习惯可能的成因，及家庭环境的特殊情况，如：单亲家庭，父母或他人曾对孩子有过暴力行为，或由爷爷奶奶带大等。</span>
+            <textarea class="q7" style="width:100%; resize:none;"></textarea>
+        </div>
 
-	</div>
-	
-	<div class="sure">
-		<center>
-	      <button id="sureButton" class="sureButton">确认信息</button>
-	    </center>
-	</div>
-	
+    </div>
+    <div id="integral">
+    <div class="row" style="height: 8px;background: #eee;margin-top: 8px;"></div>
+    <div class="row" style="color: #000;border-bottom: 1px solid #eee;font-size: 14px;margin-bottom: 8px;">
+        <div class="col-xs-9 integral" style="padding: 10px">
+
+        </div>
+        <div class="col-xs-3 text-right" style="padding: 10px">
+            <input style="width: 18px;height: 18px;" name="integral" type="checkbox"/>
+        </div>
+    </div>
+    </div>
+    <div class="sure">
+        <center>
+            <button id="sureButton" class="sureButton">确认信息</button>
+        </center>
+    </div>
+
     <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
     <script src="../../Scripts/Commen/CourseCommen.js"></script>
     <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
     <script src="../../Framework/layer_mobile/layer.js"></script>
-	<script src="../../Scripts/Commen/CheckUserLogin.js"></script>
+    <script src="../../Scripts/Commen/CheckUserLogin.js"></script>
     <script src="../../Scripts/book/sign.js"></script>
 </div>
 </body>
