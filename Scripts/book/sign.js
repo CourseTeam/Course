@@ -71,7 +71,7 @@ $(function ($) {
         document.getElementById("address").value = UserInfo.Address;
         if (parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) > 0) {
             $("#integral").show();
-            $(".integral").html("可用" + UserInfo.Integral + "抵扣" + parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) + "元");
+            $(".integral").html("可用" + UserInfo.Integral + "个能量币抵扣" + parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) + "元学费");
         }else{
             $("#integral").hide();
         }
