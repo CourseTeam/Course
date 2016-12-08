@@ -16,7 +16,7 @@ var PageIndex = 1;
 //学员列表
 function User_list() {
     var SearchKey = $("#SearchKey").val();
-    var param = {SearchKey: SearchKey, PageIndex: PageIndex, PageSize: 8};
+    var param = {SearchKey: SearchKey, PageIndex: PageIndex, PageSize: 10};
     console.log(param);
     var result = $Course.GetAjaxJson(param, ApiUrl + "User/UserInfo_List");
     console.log(result);
@@ -56,7 +56,7 @@ function User_list() {
 
             laypage({
                 cont: $("#Page"), //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
-                pages: Math.ceil(result.Data[0].RowsCount / 8), //通过后台拿到的总页数
+                pages: Math.ceil(result.Data[0].RowsCount / 10), //通过后台拿到的总页数
                 curr: PageIndex || 1, //当前页,
                 skip: true, //是否开启跳页
                 skin: '#AF0000',
