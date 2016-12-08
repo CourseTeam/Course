@@ -1,24 +1,8 @@
 body{
     background: #fff;
 }
-.container {
-    margin-top: 30px !important;
-}
 .border_btm{
     border-bottom: 1px solid #eeeeee;}
-input {
-    height: 40px;
-    border: 1px solid #eeeeee;
-    border-radius: 5px;
-    width: 100%;
-    padding-left: 5px;
-    padding-right: 5px;
-    outline: none;
-}
-
-/*input:focus {*/
-    /*border: 1px solid #F24C4C;;*/
-/*}*/
 
 #btnLogin,#btnSendSMS,#btnReg {
     width: 100%;
@@ -56,4 +40,29 @@ input:-ms-input-placeholder {
 
 input::-webkit-input-placeholder {
     color: #fff;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+.row{margin-top: 10px;}
+
+input {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 25px;
+    padding-left: 24px;
+    height: 45px;
+    outline: none;
+    color: #fff;
+}
+
+.top {
+    margin-top: 35px;
 }
