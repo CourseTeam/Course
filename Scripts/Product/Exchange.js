@@ -90,7 +90,7 @@ function Address_List() {
         } else {
             strHtml += '<div class="noAddress">';
             strHtml += '    <p style="text-align: center;padding-top: 20px">你还没有填写地址</p>';
-            strHtml += '    <button style="text-align: center;width: 100%;color: red" onclick="AddressEdit(0)">添加地址</button>';
+            strHtml += '    <button style="text-align: center;background:transparent;border: none; outline: none; width: 100%;color: red" onclick="AddressEdit(0)">添加地址</button>';
             strHtml += '</div>';
         }
         $("#address").html(strHtml);
@@ -101,7 +101,7 @@ function AddressEdit(DeliveryID) {
     if (DeliveryID > 0) {
         window.location.href = "../PersonalCenter/ShippingAddressEdit.html?DeliveryID=" + DeliveryID;
     } else {
-        window.location.href = "../PersonalCenter/ShippingAddressEdit.html";
+        window.location.href = "../PersonalCenter/ShippingAddressEdit.html?ReturnUrl="+window.location.href;
     }
 
 }

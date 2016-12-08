@@ -70,6 +70,9 @@ function IntegralResource_List() {
                 if (row.SourceName == "消费" || row.SourceName == "邀请>消费") {
                     Title = row.Title + "成功签到"
                 }
+                if (row.SourceName == "月结奖励") {
+                    Title = row.Title;
+                }
 
                 strHtml += '<div class="row btm_Integral">';
                 strHtml += '    <div class="col-xs-8" style="padding-left: 10px">';

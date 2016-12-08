@@ -126,6 +126,7 @@ function GoOrderDetails(OrderID) {
 
 //我的收货地址列表
 function MyDeliveryAddress_List() {
+    $(".da_list").html("");
     var url = ApiUrl + 'DeliveryAddress/MyDeliveryAddress_List';
     var UserID = $Course.parseJSON($.cookie("UserInfo")).UserID;
     param = {UserID: UserID};
