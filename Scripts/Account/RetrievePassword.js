@@ -82,14 +82,6 @@ function ChangePwd() {
         });
         return;
     }
-    // if (VerificationCode != _VerificationCode) {
-    //     layer.open({
-    //         content: '验证码错误!',
-    //         style: 'background-color:#fff; color:#000; border:none;width:60%',
-    //         time: 2
-    //     });
-    //     return;
-    // }
     var Pwd = $("#Pwd").val();
     if (!Pwd) {
         layer.open({
@@ -103,7 +95,14 @@ function ChangePwd() {
     var param = {Account: PhoneNum, Pwd: Pwd, Code: _VerificationCode};
     var result = $Course.PostAjaxJson(param, ApiUrl + "Account/UserInfo_ChangePwd_ByPhone");
     if (result.Msg == "OK") {
-        window.location.href = "Login.html";
+        layer.open({
+            content: "密码修改成功！",
+            style: 'background-color:#fff; color:#000; border:none;width:60%',
+            time: 2,
+            end: function () {
+                window.location.href = "Login.html";
+            }
+        });
     } else {
         layer.open({
             content: result.Msg,

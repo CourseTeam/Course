@@ -12,6 +12,7 @@ body{
     color: #ffffff;
     background-color: #F24C4C;
     height: 45px;
+    outline: none;
 }
 
 ::selection {
