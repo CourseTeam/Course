@@ -1,33 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="stylesheet" href="../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../Css/Account/Index.css">
     <meta charset="UTF-8">
-    <title>This is an demo Page</title>
+    <title>首页</title>
 
 </head>
-<body>
-<div>This is an demo Page</div>
-<script>
-    //是否PC端
-    var IsPC = function () {
-        var userAgentInfo = navigator.userAgent;
-        var Agents = ["Android", "iPhone",
-            "SymbianOS", "Windows Phone",
-            "iPad", "iPod"];
-        var flag = true;
-        for (var v = 0; v < Agents.length; v++) {
-            if (userAgentInfo.indexOf(Agents[v]) > 0) {
-                flag = false;
-                break;
-            }
-        }
-        return flag;
-    }
-    if (IsPC()) {
-        window.location.href = "/Course/Views/Admin/manage/Login.html";
-    } else {
-        window.location.href = "/Course/Views/Account/Login.html";
-    }
-</script>
+<body style="background: url('../Images/account/Account_Background.png') no-repeat;background-size: 100%;">
+    <div class="container">
+        <div style="text-align: center;padding-bottom: 20px;padding-top: 20%;">
+            <img src="../Images/account/Account_Logo.png" style="height: 100px;width: 100px;"/>
+            <!--<p style="font-size: 16px;color: #F24C4C; font-family: 华文新魏">摩英教育</p>-->
+        </div>
+        <div class="row pt50">
+            <div class="col-xs-12 text-center">
+                <a href="Account/Login.html"><button id="btnLogin">登 录</button></a></div>
+        </div>
+        <div class="row pt15">
+            <div class="col-xs-12 text-center">
+                <a href="Account/Register.html"><button id="btnRegister">注 册</button></a></div>
+        </div>
+    </div>
+<!--<script>-->
+    <!--//是否PC端-->
+    <!--var IsPC = function () {-->
+        <!--var userAgentInfo = navigator.userAgent;-->
+        <!--var Agents = ["Android", "iPhone",-->
+            <!--"SymbianOS", "Windows Phone",-->
+            <!--"iPad", "iPod"];-->
+        <!--var flag = true;-->
+        <!--for (var v = 0; v < Agents.length; v++) {-->
+            <!--if (userAgentInfo.indexOf(Agents[v]) > 0) {-->
+                <!--flag = false;-->
+                <!--break;-->
+            <!--}-->
+        <!--}-->
+        <!--return flag;-->
+    <!--}-->
+    <!--if (IsPC()) {-->
+        <!--window.location.href = "/Course/Views/Admin/manage/Login.html";-->
+    <!--} else {-->
+        <!--window.location.href = "/Course/Views/Account/Login.html";-->
+    <!--}-->
+<!--</script>-->
+
+    <script src="../Framework/Jqueryv2.4/jquery.min.js"></script>
+    <script src="../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+    <script src="../Framework/jquery-cookies/jquery.cookie.js"></script>
+    <script src="../Framework/layer_mobile/layer.js"></script>
+    <script src="../Scripts/Commen/CourseCommen.js"></script>
+
 </body>
 </html>

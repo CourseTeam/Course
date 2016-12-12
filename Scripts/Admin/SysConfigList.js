@@ -98,7 +98,7 @@ function SysConfig_List() {
                 strHtml += '                    <button class="autobutton" onclick="SysConfig_Edit(' + row.SysID + ')">编辑</button>';
                 strHtml += '                    <button class="autobutton" onclick="SysConfig_Del(' + row.SysID + ')">删除</button>';
                 if (!row.IsEnabled) {
-                    strHtml += '                    <button class="autobutton" onclick="SysConfig_Default(' + row.SysID + ')">默认配置</button>';
+                    strHtml += '                    <button class="autobutton" onclick="SysConfig_Default(' + row.SysID + ')">设为配置</button>';
                 }
                 strHtml += '                </div>';
                 strHtml += '            </div>';
