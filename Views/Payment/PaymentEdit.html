@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
+    <meta charset="UTF-8">
+    <title>我的银行卡</title>
+    <style>
+        #btnSave {
+            width: 90%;
+            border: none;
+            border-radius: 25px;
+            color: #ffffff;
+            background-color: #F24C4C;
+            height: 45px;
+            outline: none;
+        }
+
+        .itembg {
+            background: rgba(0,0,0,0.5);
+            height: 60px;
+            line-height: 60px;
+            color: #fff;
+        }
+
+        .pdr0 {
+            padding-right: 0;
+        }
+
+        .input {
+            background: transparent;
+            border: none;
+            outline: none;
+            height: 45px;
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body style="background: url('../../Images/personbackgroung.png') no-repeat;background-size: 100%;">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 text-right" style="color: #F24C4C;margin-top: 10px;">
+            删除
+        </div>
+    </div>
+    <div class="row itembg" style="margin-top: 10px;">
+        <div class="col-xs-3 text-right pdr0">
+            银行卡号:
+        </div>
+        <div class="col-xs-9 text-right">
+            <input class="input" type="text" name="PayNo" placeholder="请输入您的银行卡"/>
+        </div>
+    </div>
+    <div class="row itembg" style="margin-top: 1px;">
+        <div class="col-xs-3 text-right pdr0" style="color: #fff;padding-right: 0;">
+            开户行:
+        </div>
+        <div class="col-xs-9 text-right">
+            <input class="input" type="text" name="BankType" placeholder="请输入您的开户银行"/>
+        </div>
+    </div>
+    <div class="row itembg" style="margin-top: 1px;">
+        <div class="col-xs-3 text-right pdr0" style="color: #fff;padding-right: 0;">
+            姓名:
+        </div>
+        <div class="col-xs-9 text-right">
+            <input class="input" type="text" name="PayName" placeholder="请此卡的户主名"/>
+        </div>
+    </div>
+    <div class="row itembg" style="margin-top: 10px;">
+        <div class="col-xs-3 text-right pdr0">
+            设为默认
+        </div>
+        <div class="col-xs-9 text-right">
+            <img class="isDefault" switch="off" src="../../Images/icon_off.png" height="25" width="45"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-xs-12 text-center">
+            <button id="btnSave">保 存</button>
+        </div>
+    </div>
+</div>
+<script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+<script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+<script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+<script src="../../Framework/layer_mobile/layer.js"></script>
+<script src="../../Scripts/Commen/CourseCommen.js"></script>
+<script src="../../Scripts/Commen/CheckUserLogin.js"></script>
+<script src="../../Scripts/Payment/PaymentEdit.js"></script>
+</body>
+</html>

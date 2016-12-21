@@ -9,7 +9,7 @@ $(function ($) {
         minVersion: 6,//  二维码密度，推荐0-10
         fill: '#4A90E2',//  二维码颜色
         background: '#fff',//    二维码背景颜色
-        text: ApiUrl + 'Course/Views/Account/Register.html?RefUserID=' + $Course.RequestUrlParams("UserID"),//     最后扫出来的结果
+        text: ApiUrl + '/Views/Account/Register.html?RefUserID=' + $Course.RequestUrlParams("UserID"),//     最后扫出来的结果
         size: 300,// 二维码大小
         radius: 30,// 点圆滑度,50以内
         quiet: 2,// 二维码边框
