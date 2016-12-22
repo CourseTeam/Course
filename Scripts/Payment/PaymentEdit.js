@@ -95,8 +95,6 @@ function Payment_Del() {
             var PayID = $Course.RequestUrlParams("PayID");
             var param = {PayID: PayID};
             var result = $Course.PostAjaxJson(param, ApiUrl + "Payment/Payment_Del");
-            console.log(result);
-            return;
             if (result.Msg == "OK") {
                 layer.open({
                     content: "删除成功！", time: 2, end: function () {

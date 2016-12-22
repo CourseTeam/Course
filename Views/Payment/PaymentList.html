@@ -9,11 +9,51 @@
     <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
     <meta charset="UTF-8">
     <title>我的银行卡</title>
+    <style>
+        #btnAdd {
+            width: 90%;
+            border: none;
+            border-radius: 25px;
+            color: #ffffff;
+            background-color: #F24C4C;
+            height: 45px;
+            outline: none;
+        }
 
+        .itembg {
+            background: rgba(0, 0, 0, 0.5);
+            height: 60px;
+            line-height: 60px;
+            color: #fff;
+        }
+
+        .pdr0 {
+            padding-right: 0;
+        }
+
+        .btr {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px
+        }
+
+        .bbr {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px
+        }
+
+        .F24C4C {
+            color: #F24C4C
+        }
+    </style>
 </head>
 <body style="background: url('../../Images/personbackgroung.png') no-repeat;background-size: 100%;">
 <div class="container">
-
+    <div id="payList"></div>
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-xs-12 text-center">
+            <button id="btnAdd">添加银行卡</button>
+        </div>
+    </div>
 </div>
 <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
 <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
