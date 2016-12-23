@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
+    <meta charset="UTF-8">
+    <title>提现记录</title>
+    <style>
+        .record {
+            margin-top: 10px;
+            background-color: rgba(0,0,0,0.5);
+            height: 100px;
+        }
+
+        .day {
+            padding-top: 8px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .integral {
+            text-align: right;
+            padding-top: 8px;
+            font-size: 16px;
+            color: #fd5454;
+        }
+
+        .createtime {
+            padding-top: 5px;
+            color: #cbcbcb;
+            font-size: 10px;
+        }
+
+        .stage {
+            padding-top: 10px;
+            text-align: center;
+            font-size: 16px;
+            color: #cbcbcb;
+        }
+
+        .bank {
+            margin-top: 1px;
+            background-color: rgba(0,0,0,0.5);
+            height: 80px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="withdraw_record">
+        <div class="record">
+            <div class="col-xs-4 day">今天</div>
+            <div class="col-xs-4 integral">-10000积分</div>
+            <div class="col-xs-4 integral">提现1000元</div>
+            <div class="col-xs-9 createtime">2015.01.01</div>
+            <div class="col-xs-3" style="color: #ffffff;text-align: right;font-size: 16px;padding-top: 5px">成功</div>
+            <!--<div class="col-xs-4 stage">申请</div>-->
+            <!--<div class="col-xs-4 stage">通过审核</div>-->
+            <!--<div class="col-xs-4 stage">已汇款</div>-->
+            <div class="col-xs-12 stage" style="color: #F24C4C">你的提现账户有误,请仔细核对再重新申请</div>
+        </div>
+        <div class="bank">
+            <div class="col-xs-3" style="padding-top: 5px">银行卡号:</div>
+            <div class="col-xs-9" style="padding-top: 5px">123</div>
+            <div class="col-xs-3">开户行:</div>
+            <div class="col-xs-9">123</div>
+            <div class="col-xs-3">姓名:</div>
+            <div class="col-xs-6">123</div>
+            <div class="col-xs-3" style="text-align: right;color: ">修改</div>
+        </div>
+        <div class="record">
+
+        </div>
+    </div>
+
+    <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+    <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+    <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+    <script src="../../Framework/layer_mobile/layer.js"></script>
+    <script src="../../Scripts/Commen/CourseCommen.js"></script>
+    <script src="../../Scripts/Commen/CheckUserLogin.js"></script>
+    <script src="../../Scripts/Withdraw/WithdrawRecord.js"></script>
+</body>
+</html>
