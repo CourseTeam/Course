@@ -72,6 +72,12 @@ function PersonalCenter_Show() {
     $("#imageFile").on("change", function (e) {
         getFile(e);
     });
+    // 申请提现权限
+    if (UserInfo.Role == 3) {
+        $("#withdraw").show();
+    } else {
+        $("#withdraw").hide();
+    }
 }
 
 function getFile(e) {

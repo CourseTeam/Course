@@ -7,6 +7,7 @@ $(function ($) {
     MaxMoney();
     $("#withdraw_add").click(Withdraw_ADD);
     $("#allwithdraw").click(AllWithdraw);
+    $("#withdraw_record").click(WithdrawRecord);
 });
 
 var PayID = 0;
@@ -37,7 +38,7 @@ function PaymentData() {
                     $("#checked_bank").click(Payment_List);
                 }
             }
-            bankListHtml += '<div class="manage">管理银行卡</div>';
+            bankListHtml += '<div class="manage" onclick="PaymentList()">管理银行卡</div>';
             $("#bank_list").html(bankListHtml);
         } else {
             strHtml += '<div class="col-xs-2">';
@@ -49,10 +50,22 @@ function PaymentData() {
             strHtml += '    <div class="col-xs-2 text-right" style="color: #fff;">';
             strHtml += '    <img class="more" src="../../Images/payment/more.png"/>';
             strHtml += '</div>';
-            $("#checked_bank").click();
+            $("#checked_bank").click(PaymentAdd());
         }
         $("#checked_bank").html(strHtml);
     }
+}
+
+function PaymentAdd() {
+    window.location.href = "../Payment/PaymentEdit.html";
+}
+
+function PaymentList() {
+    window.location.href = "../Payment/PaymentList.html";
+}
+
+function WithdrawRecord() {
+    window.location.href = "WithdrawRecord.html";
 }
 
 // 最高可提现
@@ -114,6 +127,9 @@ function Withdraw_ADD() {
     if (result.Msg == "OK") {
         $("#payment").hide();
         $("#succeed").show();
+        setTimeout(function () {
+            window.location.href = "../PersonalCenter/PersonalCenter.html";
+        }, 3000);
     } else {
         layer.open({content: result.Msg, time: 2});
     }
