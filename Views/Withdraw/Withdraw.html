@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
+    <meta charset="UTF-8">
+    <title>提现到银行卡</title>
+    <style>
+        .bank {
+            margin-top: 10px;
+            background: #000;
+            opacity: 0.5;
+            height: 60px;
+            line-height: 60px;
+        }
+        .addBank {
+            margin-left: 20px;
+            height: 20px;
+            width: 20px;
+        }
+
+        .more {
+            margin-right: 20px;
+            height: 18px;
+            width: 13px;
+        }
+
+        .left_field {
+            display: block;
+            padding: 0px;
+        }
+
+        .pay_money {
+            margin-top: 10px;
+            height: 150px;
+            background-color: rgba(0,0,0,0.5);
+            padding-top: 50px;
+        }
+
+        .money {
+            border: 0px;
+            border-bottom: 1px solid #ffffff;
+            background-color: transparent;
+            outline: none;
+            font-size: 24px;
+            padding-bottom: 5px;
+            margin-top: -20px;
+            color: white;
+        }
+
+        .withdraw {
+            border: 0px;
+            margin: 50px;
+            background-color: #fd5454;
+            text-align: center;
+            font-size: 18px;
+            color: white;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 25px;
+        }
+
+        .withdraw_rule {
+            margin: 40px;
+            font-size: 14px;
+            color: #bfbfbf;
+        }
+
+        .bank_list {
+            margin-top: 10px;
+        }
+
+        .bank_num {
+            font-size: 16px;
+            margin-bottom: 1px;
+            height: 60px;
+            line-height: 60px;
+            background-color: rgba(0,0,0,0.5);
+            color: #ffffff;
+        }
+
+        .manage {
+            border: 0px;
+            margin: 50px;
+            background-color: #fd5454;
+            text-align: center;
+            font-size: 18px;
+            color: white;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 25px;
+        }
+
+        .succeed {
+            margin: 50px;
+            color: #fe5454;
+            font-size: 16px;
+            text-align: center;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="succeed" id="succeed">
+        你的申请已成功提交,<br/>请留意银行预留短信提示
+    </div>
+    <div id="payment">
+        <div class="bank" id="checked_bank">
+            <div class="col-xs-2">
+                <img class="addBank" src="../../Images/payment/addBank.png"/>
+            </div>
+            <div class="col-xs-8" style="color: #fff;font-size: 16px">
+                新增银行卡
+            </div>
+            <div class="col-xs-2 text-right" style="color: #fff;">
+                <img class="more" src="../../Images/payment/more.png"/>
+            </div>
+        </div>
+        <div class="pay_money">
+            <div class="col-xs-3 left_field">
+                <span style="font-size: 16px;color: #ffffff;padding-left: 20px">提现金额</span>
+            </div>
+            <div class="col-xs-9">
+                <!--<input class="money" id="money" placeholder="￥"/>-->
+                <input class="money" id="money" placeholder="￥" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" />
+            </div>
+            <div id="not_overrun">
+                <div class="col-xs-6" style="margin-top: 30px;color: #bfbfbf" id="maxmoney">
+                    最高可提现￥2000.00元
+                </div>
+                <div class="col-xs-6" style="margin-top: 28px">
+                    <button style="color: #fe5454" id="allwithdraw">全部提现</button>
+                    <button style="color: #fe5454">提现记录</button>
+                </div>
+            </div>
+            <div class="col-xs-12" style="margin-top: 30px;color: #fe5454;display: none" id="overrun">金额超限</div>
+        </div>
+        <div class="withdraw" id="withdraw_add">确认提现</div>
+        <div class="withdraw_rule"><div style="text-align: center;font-size: 16px">提现规则：</div><br/>
+            1. 每月最多提现两次，每次提现金额不得少于1000元<br/>
+            2. 根据国家法律规定，推广费按照劳务费缴税，税率为4.46%，提现到账金额中将自动扣除
+        </div>
+    </div>
+    <div class="bank_list" style="display: none" id="bank_list">
+        <div class="bank_num">
+            <div class="col-xs-3">
+                银行卡号:
+            </div>
+            <div class="col-xs-9">
+                3495846985369853
+            </div>
+        </div>
+        <div class="bank_num">
+            <div class="col-xs-3">
+                银行卡号:
+            </div>
+            <div class="col-xs-9">
+                3495846985369853
+            </div>
+        </div>
+        <div class="manage">管理银行卡</div>
+    </div>
+    <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+    <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+    <script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+    <script src="../../Framework/layer_mobile/layer.js"></script>
+    <script src="../../Scripts/Commen/CourseCommen.js"></script>
+    <script src="../../Scripts/Commen/CheckUserLogin.js"></script>
+    <script src="../../Scripts/Withdraw/Withdraw.js"></script>
+</body>
+</html>
