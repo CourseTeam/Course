@@ -18,7 +18,7 @@ $(function ($) {
         } else {
             layer.open({
                 content: '请输入原密码和新密码',
-                style: 'background-color:#F24C4C; color:#fff; border:none;',
+                //style: 'background-color:#F24C4C; color:#fff; border:none;',
                 time: 2
             });
             return;

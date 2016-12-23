@@ -36,7 +36,7 @@ function Able_Apply() {
         var result = $Course.GetAjaxJson(param, ApiUrl + "User/GetUserInfoByUserID");
         result.Data.Ticket = UserInfo.Ticket;
         //将用户信息存入Cookie
-        $.cookie("UserInfo", $Course.stringify(result.Data), {path: '/'});
+        $.cookie("UserInfo", $Course.stringify(result.Data), {expires: 7, path: '/'});
         $("#talent").hide();
         $("#becomeTalent").show();
         setTimeout(function () {

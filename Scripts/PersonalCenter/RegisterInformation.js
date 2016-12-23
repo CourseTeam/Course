@@ -112,12 +112,10 @@ function DateView(values) {
 function GetData() {
     UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {UserID: UserInfo.UserID};
-    console.log(UserInfo)
     var result = $Course.GetAjaxJson(param, ApiUrl + "User/GetUserInfoByUserID");
-    //$.cookie("UserInfo", 1);
     result.Data.Ticket = UserInfo.Ticket;
     //将用户信息存入Cookie
-    $.cookie("UserInfo", $Course.stringify(result.Data), {path: '/'});
+    $.cookie("UserInfo", $Course.stringify(result.Data), {expires: 7, path: '/'});
 
     $("#account").html(result.Data.Account);
     $("#nickName").html(result.Data.NickName);

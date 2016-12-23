@@ -40,7 +40,7 @@ function GetData() {
     //$.cookie("UserInfo", 1);
     result.Data.Ticket = UserInfo.Ticket;
     //将用户信息存入Cookie
-    $.cookie("UserInfo", $Course.stringify(result.Data), {path: '/'});
+    $.cookie("UserInfo", $Course.stringify(result.Data), {expires: 7, path: '/'});
     UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     HeaderImg = UserInfo.PhotoUrl || "../../Images/defaultphoto.jpg";
     $("#headerImg").attr("src", HeaderImg);
@@ -51,7 +51,7 @@ function Exit() {
         content: "确定退出?",
         btn: ['确定', '取消'],
         yes: function (index) {
-            $.cookie("UserInfo", null, {expires: 30, path: '/'});
+            $.cookie("UserInfo", null, {expires: 7, path: '/'});
             window.location.href = "../Account/Login.html";
         }
     });

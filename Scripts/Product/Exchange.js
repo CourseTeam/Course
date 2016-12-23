@@ -152,7 +152,7 @@ function Exchange() {
             result.Data.Ticket = UserInfo.Ticket;
             console.log(UserInfo);
             //将用户信息存入Cookie
-            $.cookie("UserInfo", $Course.stringify(result.Data), {path: '/'});
+            $.cookie("UserInfo", $Course.stringify(result.Data), {expires: 7, path: '/'});
             layer.open({
                 content: "下单成功，我们会及时为你安排发货", time: 2, end: function () {
                     window.location.href = "../Order/MyOrderList.html?type=1";

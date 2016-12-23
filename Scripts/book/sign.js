@@ -86,7 +86,7 @@ function GetUserData() {
     var result = $Course.GetAjaxJson(param, ApiUrl + "User/GetUserInfoByUserID");
     result.Data.Ticket = UserInfo.Ticket;
     //将用户信息存入Cookie
-    $.cookie("UserInfo", $Course.stringify(result.Data), {path: '/'});
+    $.cookie("UserInfo", $Course.stringify(result.Data), {expires: 7, path: '/'});
 }
 
 function other() {
@@ -264,7 +264,7 @@ function updateInfo(obj) {
         var param_cookie = {"UserID": UserInfo.UserID};
         var result_cookie = $Course.GetAjaxJson(param_cookie, ApiUrl + "User/GetUserInfoByUserID");
         result_cookie.Data.Ticket = UserInfo.Ticket;
-        $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {path: '/'});
+        $.cookie("UserInfo", $Course.stringify(result_cookie.Data), {expires: 7, path: '/'});
     }
 }
 
