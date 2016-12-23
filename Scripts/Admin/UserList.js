@@ -49,6 +49,7 @@ function User_list() {
                 strHtml += '        <div class="col-xs-2">';
                 strHtml += '            <button class="autobutton" onclick="Edit(' + row.UserID + ')" >编 辑</button>';
                 strHtml += '            <button class="autobutton" onclick="UserInfo_Del(' + row.UserID + ')">删 除</button>';
+                strHtml += '            <button class="autobutton" onclick="UserInfo_Del(' + row.UserID + ')">删 除</button>';
                 strHtml += '        </div>';
                 strHtml += '    </div>';
                 strHtml += '</li>';
