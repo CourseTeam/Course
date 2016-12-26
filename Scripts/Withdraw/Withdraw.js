@@ -25,13 +25,13 @@ function PaymentData() {
             for (var i = 0; i < result.Data.length; i++) {
                 var row = result.Data[i];
                     bankListHtml += '<div class="bank_num" onclick="Default_Payment('+ row.PayID +', ' + row.PayNo + ')">';
-                    bankListHtml += '    <div class="col-xs-3">银行卡号:</div>';
-                    bankListHtml += '    <div class="col-xs-9">' + row.PayNo + '</div>';
+                    bankListHtml += '    <div class="col-xs-4">银行卡号:</div>';
+                    bankListHtml += '    <div class="col-xs-8">' + row.PayNo + '</div>';
                     bankListHtml += '</div>';
                 if (row.IsDefault == 1) {
                     PayID = row.PayID;
-                    strHtml += '<div class="col-xs-3" style="color: #ffffff;font-size: 16px">银行卡号:</div>';
-                    strHtml += '<div class="col-xs-7" style="color: #ffffff;font-size: 16px" id="payno">' + row.PayNo + '</div>';
+                    strHtml += '<div class="col-xs-4" style="color: #ffffff;font-size: 16px;padding-right: 0px">银行卡号:</div>';
+                    strHtml += '<div class="col-xs-6" style="color: #ffffff;font-size: 16px;padding-left: 0px" id="payno">' + row.PayNo + '</div>';
                     strHtml += '<div class="col-xs-2 text-right" style="color: #fff;">';
                     strHtml += '    <img class="more" src="../../Images/payment/more.png"/>';
                     strHtml += '</div>';
@@ -50,14 +50,16 @@ function PaymentData() {
             strHtml += '    <div class="col-xs-2 text-right" style="color: #fff;">';
             strHtml += '    <img class="more" src="../../Images/payment/more.png"/>';
             strHtml += '</div>';
-            $("#checked_bank").click(PaymentAdd());
+            $("#checked_bank").on("click", function(){
+                PaymentAdd();
+            });
         }
         $("#checked_bank").html(strHtml);
     }
 }
 
 function PaymentAdd() {
-    window.location.href = "../Payment/PaymentEdit.html";
+    window.location.href = "../Payment/PaymentEdit.html?ReturnUrl=" + window.location.href;
 }
 
 function PaymentList() {
