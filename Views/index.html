@@ -55,7 +55,7 @@
         window.location.href = "/Course/Views/Admin/manage/Login.html";
     } else {
         var UserInfo = $.cookie("UserInfo");
-        if (UserInfo != null || UserInfo != undefined) {
+        if (UserInfo != "" && UserInfo != "null" && UserInfo != null && UserInfo != undefined) {
             window.location.href = "Course/CourseList.html"
         }
     }
