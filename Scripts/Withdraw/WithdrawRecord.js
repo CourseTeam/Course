@@ -24,8 +24,8 @@ function MyIntegral_List_Withdraw() {
                     strHtml += '    <div class="col-xs-4 integral" style="color: #cbcbcb">' + row.Integral + '积分' + '</div>';
                     strHtml += '    <div class="col-xs-4 integral" style="color: #cbcbcb">' + '提现' + row.Money + '元' + '</div>';
                     strHtml += '    <div class="col-xs-9 createtime">' + time + '</div>';
-                    strHtml += '    <div class="col-xs-3" style="color: #cbcbcb;text-align: right;font-size: 16px;padding-top: 5px">成功</div>';
-                    strHtml += '<div class="col-xs-12 stage" style="color: #F24C4C;text-align: left">你的提现账户有误,请仔细核对再重新申请</div>';
+                    strHtml += '    <div class="col-xs-3" style="color: #cbcbcb;text-align: right;font-size: 14px;padding-top: 5px">成功</div>';
+                    strHtml += '    <div class="col-xs-12 stage" style="color: #F24C4C;text-align: left;margin-top: 10px">你的提现账户有误,请仔细核对再重新申请</div>';
                     strHtml += '</div>';
                     strHtml += '<div class="bank">';
                     strHtml += '    <div class="col-xs-3 pdr0" style="padding-top: 5px">银行卡号:</div>';
@@ -42,7 +42,7 @@ function MyIntegral_List_Withdraw() {
                     strHtml += '    <div class="col-xs-5 integral">' + row.Integral + '积分' + '</div>';
                     strHtml += '    <div class="col-xs-4 integral">' + '提现' + row.Money + '元' + '</div>';
                     strHtml += '    <div class="col-xs-6 createtime">' + time + '</div>';
-                    strHtml += '    <div class="col-xs-6" style="color: #ffffff;text-align: right;font-size: 16px;padding-top: 5px">' + Withdraw_Status(row.Status) + '</div>';
+                    strHtml += '    <div class="col-xs-6" style="color: #ffffff;text-align: right;font-size: 14px;padding-top: 5px">' + Withdraw_Status(row.Status) + '</div>';
                     strHtml += '    <div class="col-xs-4 stage">申请</div>';
                     strHtml += '    <div class="col-xs-4 stage">通过审核</div>';
                     strHtml += '    <div class="col-xs-4 stage">已汇款</div>';

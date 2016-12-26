@@ -29,8 +29,8 @@ function PaymentData() {
                     bankListHtml += '</div>';
                 if (row.IsDefault == 1) {
                     PayID = row.PayID;
-                    strHtml += '<div class="col-xs-4" style="color: #ffffff;font-size: 16px;padding-right: 0px">银行卡号:</div>';
-                    strHtml += '<div class="col-xs-6" style="color: #ffffff;font-size: 16px;padding-left: 0px" id="payno">' + row.PayNo + '</div>';
+                    strHtml += '<div class="col-xs-4" style="color: #ffffff;font-size: 14px;padding-right: 0px">银行卡号:</div>';
+                    strHtml += '<div class="col-xs-6" style="color: #ffffff;font-size: 14px;padding-left: 0px" id="payno">' + row.PayNo + '</div>';
                     strHtml += '<div class="col-xs-2 text-right" style="color: #fff;">';
                     strHtml += '    <img class="more" src="../../Images/payment/more.png"/>';
                     strHtml += '</div>';
@@ -43,7 +43,7 @@ function PaymentData() {
             strHtml += '<div class="col-xs-2">';
             strHtml += '    <img class="addBank" src="../../Images/payment/addBank.png"/>';
             strHtml += '</div>';
-            strHtml += '    <div class="col-xs-8" style="color: #fff;font-size: 16px">';
+            strHtml += '    <div class="col-xs-8" style="color: #fff;font-size: 14px">';
             strHtml += '    新增银行卡';
             strHtml += '</div>';
             strHtml += '    <div class="col-xs-2 text-right" style="color: #fff;">';
