@@ -41,8 +41,8 @@ function MyIntegral_List_Withdraw() {
                     strHtml += '    <div class="col-xs-3 day">' + date + '</div>';
                     strHtml += '    <div class="col-xs-5 integral">' + row.Integral + '积分' + '</div>';
                     strHtml += '    <div class="col-xs-4 integral">' + '提现' + row.Money + '元' + '</div>';
-                    strHtml += '    <div class="col-xs-9 createtime">' + time + '</div>';
-                    strHtml += '    <div class="col-xs-3" style="color: #ffffff;text-align: right;font-size: 16px;padding-top: 5px">' + Withdraw_Status(row.Status) + '</div>';
+                    strHtml += '    <div class="col-xs-6 createtime">' + time + '</div>';
+                    strHtml += '    <div class="col-xs-6" style="color: #ffffff;text-align: right;font-size: 16px;padding-top: 5px">' + Withdraw_Status(row.Status) + '</div>';
                     strHtml += '    <div class="col-xs-4 stage">申请</div>';
                     strHtml += '    <div class="col-xs-4 stage">通过审核</div>';
                     strHtml += '    <div class="col-xs-4 stage">已汇款</div>';
