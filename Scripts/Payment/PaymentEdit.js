@@ -34,15 +34,15 @@ function Payment_Edit() {
     var BankType = $("input[name=BankType]").val();
     var IsDefault = $(".isDefault").attr("switch") == "on" ? 1 : 0;
     if (!PayNo) {
-        layer.open({content: "请输入银行卡号！"});
+        layer.open({content: "请输入银行卡号！", time: 2});
         return;
     }
     if (!PayName) {
-        layer.open({content: "请输入户主名！"});
+        layer.open({content: "请输入户主名！", time: 2});
         return;
     }
     if (!BankType) {
-        layer.open({content: "请输入开户银行！"});
+        layer.open({content: "请输入开户银行！", time: 2});
         return;
     }
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));

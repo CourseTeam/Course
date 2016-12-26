@@ -23,7 +23,8 @@ $Course.PostAjaxJson = function (params, url) {
         beforeSend: function (XHR) {
             var UserInfo = $Course.parseJSON($.cookie("UserInfo") || 'null');
             var Ticket = "";
-            if (UserInfo == null || UserInfo == "null" || UserInfo == "") {
+            if (UserInfo == null || UserInfo == "null" || UserInfo == "")
+            {
                 Ticket = "";
             } else {
                 Ticket = UserInfo.Ticket;
