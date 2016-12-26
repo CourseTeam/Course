@@ -12,6 +12,9 @@ $(document).ready(function () {
     $("#Select").on("change", function () {
         Withdraw_List();
     });
+    $("#btnImport").on("click", function () {
+        window.location.href = ApiUrl + "File/WithdrawList_Excel";
+    });
     Withdraw_List();
 });
 
@@ -22,7 +25,7 @@ var PageSize = 10;
 function Withdraw_List() {
     var SearchKey = $("#SearchKey").val();
     var Status = $("#Select").val();
-    var param = {SearchKey: SearchKey, Status:Status, PageIndex: PageIndex, PageSize: PageSize};
+    var param = {SearchKey: SearchKey, Status: Status, PageIndex: PageIndex, PageSize: PageSize};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Withdraw/Withdraw_List");
     console.log(result);
     if (result.Msg == "OK") {
