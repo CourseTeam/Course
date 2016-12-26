@@ -32,8 +32,9 @@ function Withdraw_List() {
         strHtml += '        <div class="col-lg-2">提现人</div>';
         strHtml += '        <div class="col-lg-2">支付银行</div>';
         strHtml += '        <div class="col-lg-2">卡号</div>';
-        strHtml += '        <div class="col-lg-2">提现数额</div>';
+        strHtml += '        <div class="col-lg-1">提现数额</div>';
         strHtml += '        <div class="col-lg-2">提现人手机</div>';
+        strHtml += '        <div class="col-lg-1">状态</div>';
         strHtml += '        <div class="col-lg-2">操作</div>';
         strHtml += '    </div> ';
         strHtml += '</li>';
@@ -45,14 +46,17 @@ function Withdraw_List() {
                 strHtml += '        <div class="col-lg-2">' + row.PayName + '</div>';
                 strHtml += '        <div class="col-lg-2">' + row.BankType + '</div>';
                 strHtml += '        <div class="col-lg-2">' + row.PayNo + '</div>';
-                strHtml += '        <div class="col-lg-2">' + row.Money + '</div>';
+                strHtml += '        <div class="col-lg-1">' + row.Money + '</div>';
                 strHtml += '        <div class="col-lg-2">' + row.Account + '</div>';
+                strHtml += '        <div class="col-lg-1">' + Withdraw_Status(row.Status) + '</div>';
                 strHtml += '        <div class="col-lg-2">';
-                if (row.Status == 1) {
-                    strHtml += '            <button class="autobutton" onclick="Withdraw_Finish(' + row.WithID + ')">完成提现</button>';
-                } else {
-                    strHtml += '            <button class="autobutton" style="background-color: gainsboro">已提现</button>';
-                }
+                strHtml += '            <button class="autobutton" onclick="Withdraw_Finish(' + row.WithID + ')">编辑状态</button>';
+
+                // if (row.Status == 1) {
+                //     strHtml += '            <button class="autobutton" onclick="Withdraw_Finish(' + row.WithID + ')">编辑状态</button>';
+                // } else {
+                //     strHtml += '            <button class="autobutton" style="background-color: gainsboro">已提现</button>';
+                // }
                 strHtml += '        </div>';
                 strHtml += '    </div>';
                 strHtml += '</li>';
@@ -77,17 +81,41 @@ function Withdraw_List() {
     }
 }
 
+function Withdraw_Status(status) {
+    switch (status) {
+        case 1:
+            return "审核中";
+            break;
+        case 2:
+            return "审核成功";
+            break;
+        case 3:
+            return "已汇款";
+            break;
+        case 4:
+            return "失败";
+            break;
+    }
+}
+
 function Withdraw_Finish(WithID) {
-    layer.confirm("确认已经完成提现？", function () {
-        var param = {WithID: WithID};
-        console.log(WithID);
-        var result = $Course.PostAjaxJson(param, ApiUrl + "Withdraw/Withdraw_Finish");
-        console.log(result);
-        if (result.Msg == "OK") {
-            layer.msg("修改成功", {icon: 1, time: 2000}, function () {
-                Withdraw_List();
-                layer.closeAll();
-            })
+    layer.open({
+        type: 1,
+        skin: "layui-layer-molv",
+        title: "编辑状态",
+        content: '<div style="padding: 10px 30px;"><select id="role"><option value="2">审核成功</option><option value="3">已汇款</option><option value="4">失败</option></select></div>',
+        btn: ["确定", "取消"],
+        area: ["250px", "160px"],
+        yes: function (index) {
+            var param = {WithID: WithID, Status: $("#role").val()};
+            console.log(param);
+            var result = $Course.PostAjaxJson(param, ApiUrl + "Withdraw/Withdraw_Status_Upd");
+            if (result.Msg == "OK") {
+                layer.msg("修改成功", {icon: 1, time: 2000}, function () {
+                    Withdraw_List();
+                    layer.closeAll();
+                })
+            }
         }
     });
 }
