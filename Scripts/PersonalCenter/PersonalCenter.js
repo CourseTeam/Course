@@ -3,7 +3,6 @@
  */
 
 $(function ($) {
-
     $("#exit").on("click", function () {
         Exit();
     });
