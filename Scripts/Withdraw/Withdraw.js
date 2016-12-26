@@ -17,7 +17,6 @@ function PaymentData() {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {UserID: UserInfo.UserID};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Payment/Payment_List");
-    console.log(result);
     if (result.Msg == "OK") {
         var strHtml = "";
         if (result.Data.length) {
@@ -73,9 +72,7 @@ function WithdrawRecord() {
 // 最高可提现
 function MaxMoney() {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-    console.log(UserInfo);
     var result = $Course.GetAjaxJson({}, ApiUrl + "SysConfig/SysConfig_Default");
-    console.log(result);
     for (var i = 0;i < result.Data.length; i++) {
         var config = result.Data[i];
         if (config.IsEnabled) {
@@ -125,7 +122,6 @@ function Withdraw_ADD() {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {UserID: UserInfo.UserID, PayID: PayID, Money: money};
     var result = $Course.PostAjaxJson(param, ApiUrl + "Withdraw/Withdraw_ADD");
-    console.log(result);
     if (result.Msg == "OK") {
         $("#payment").hide();
         $("#succeed").show();

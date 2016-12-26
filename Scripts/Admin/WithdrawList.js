@@ -24,16 +24,16 @@ function Withdraw_List() {
     var Status = $("#Select").val();
     var param = {SearchKey: SearchKey, Status:Status, PageIndex: PageIndex, PageSize: PageSize};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Withdraw/Withdraw_List");
-    console.log(result);
     if (result.Msg == "OK") {
         var strHtml = "";
         strHtml += '<li class="list-group-item header">';
         strHtml += '    <div class="row ">';
-        strHtml += '        <div class="col-lg-2">提现人</div>';
+        strHtml += '        <div class="col-lg-1">提现人</div>';
         strHtml += '        <div class="col-lg-2">支付银行</div>';
         strHtml += '        <div class="col-lg-2">卡号</div>';
-        strHtml += '        <div class="col-lg-1">提现数额</div>';
         strHtml += '        <div class="col-lg-2">提现人手机</div>';
+        strHtml += '        <div class="col-lg-1">提现数额</div>';
+        strHtml += '        <div class="col-lg-1">税后数额</div>';
         strHtml += '        <div class="col-lg-1">状态</div>';
         strHtml += '        <div class="col-lg-2">操作</div>';
         strHtml += '    </div> ';
@@ -43,11 +43,12 @@ function Withdraw_List() {
                 var row = result.Data[i];
                 strHtml += '<li class="list-group-item">';
                 strHtml += '    <div class="row">';
-                strHtml += '        <div class="col-lg-2">' + row.PayName + '</div>';
+                strHtml += '        <div class="col-lg-1">' + row.PayName + '</div>';
                 strHtml += '        <div class="col-lg-2">' + row.BankType + '</div>';
                 strHtml += '        <div class="col-lg-2">' + row.PayNo + '</div>';
-                strHtml += '        <div class="col-lg-1">' + row.Money + '</div>';
                 strHtml += '        <div class="col-lg-2">' + row.Account + '</div>';
+                strHtml += '        <div class="col-lg-1">' + row.Money + '</div>';
+                strHtml += '        <div class="col-lg-1">' + (row.Money * 0.9554).toFixed(2) + '</div>';
                 strHtml += '        <div class="col-lg-1">' + Withdraw_Status(row.Status) + '</div>';
                 strHtml += '        <div class="col-lg-2">';
                 strHtml += '            <button class="autobutton" onclick="Withdraw_Finish(' + row.WithID + ')">编辑状态</button>';
