@@ -24,6 +24,13 @@ function Is_Consume() {
             $("#unStandard").html("未达到申请条件");
         }
     }
+    if (UserInfo.IsAble == 1) {
+        $("#unStandard").hide();
+        $("#apply").attr("disabled", "disabled");
+        $("#apply").removeClass("apply_button");
+        $("#apply").addClass("apply_buttondis");
+        $("#apply").html("您已经是摩英达人");
+    }
 }
 
 function Able_Apply() {

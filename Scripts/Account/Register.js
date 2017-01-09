@@ -115,7 +115,9 @@ function Register() {
     Pwd = $Course.MD5(Pwd);
     var RefUserID = $Course.RequestUrlParams("RefUserID");
     RefUserID = RefUserID == null ? 0 : RefUserID;
-    var param = {Phone: PhoneNum, Pwd: Pwd, Code: _VerificationCode, RefUserID: RefUserID};
+    var IsAble = $Course.RequestUrlParams("IsAble");
+    IsAble = IsAble || 0;
+    var param = {Phone: PhoneNum, Pwd: Pwd, Code: _VerificationCode, RefUserID: RefUserID,IsAble:IsAble};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Account/Register");
     if (result.Msg == "OK") {
         layer.open({

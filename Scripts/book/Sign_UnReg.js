@@ -18,16 +18,15 @@ function GetAllPhase() {
     // alert(111111);
     var param = {};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_All");
-    console.log(result);
+
     var CourseData = result.Data;
     var CourseNameArr = {};
     for (var i = 0; i < CourseData.length; i++) {
         CourseNameArr[CourseData[i].CoursePhaseName] = CourseData[i].CoursePhaseName;
     }
-    console.log(CourseNameArr);
     // console.log(CourseNameArr[1]);
     var strHtml = "";
-    for(var a in CourseNameArr) {
+    for (var a in CourseNameArr) {
         var NameArr = CourseData.FilterItem({CoursePhaseName: CourseNameArr[a]});
         // console.log(CourseNameArr[a]);
         for (var i = 0; i < NameArr.length; i++) {
@@ -162,7 +161,7 @@ function Submit() {
     }
 
     // 判断手机号是否正确的正则表达式
-    var filter =  /^1\d{10}$/;
+    var filter = /^1\d{10}$/;
     if (!filter.test(Account)) {
         layer.open({
             content: '请输入正确的手机号来作为账号',
@@ -171,7 +170,7 @@ function Submit() {
         });
         return;
     }
-    
+
     // 判断手机号是否已注册
     var register = GetUserInfoByAccount(Account);
     if (register) {
@@ -285,8 +284,10 @@ function PhaseRegistration_Add(Info) {
     if (result.Msg == "OK") {
         layer.open({
             content: '报名成功!',
-            style: 'background-color:#fff; color:red; border:none;width:70%',
-            time: 4
+            time: 2,
+            end: function () {
+                window.location.href = "booking.html";
+            }
         });
         return;
     }
