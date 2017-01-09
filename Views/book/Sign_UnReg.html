@@ -34,7 +34,7 @@
     <div class="row mgt8">
         <div class="col-xs-12">
             <span>就读学校：</span>
-            <input style="width: 80%;" type="text" name="shool" id="shool" value=""> 学校
+            <input style="width: 80%;" type="text" name="school" id="school" value=""> 学校
             <input style="width: 80%;margin-top: 8px" type="text" name="grade" id="grade" value=""> 年级
             <input style="width: 80%;margin-top: 8px" type="text" name="ban" id="ban" value=""> 班
         </div>
@@ -45,12 +45,24 @@
             <input type="text" name="birthday" id="birthday">
         </div>
     </div>
+    <!--<div class="row mgt8">-->
+        <!--<div class="col-xs-12">-->
+            <!--<span>学员手机：</span>-->
+            <!--<input type="text" name="mob" id="Phone">-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="row mgt8">
         <div class="col-xs-12">
             <span>学员手机：</span>
-            <input type="text" name="mob" id="Phone">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input type="radio" name="account" value="1">
+                </span>
+                <input type="text" class="form-control" name="mob" id="Phone" placeholder="选中的手机号为账号">
+            </div>
         </div>
     </div>
+
     <div class="row mgt8">
         <div class="col-xs-12">
             <span>电子邮件：</span>
@@ -66,9 +78,20 @@
     <div class="row mgt8">
         <div class="col-xs-12">
             <span>父亲手机：*</span>
-            <input type="text" name="f_mobile" id="f_mobile">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input type="radio" name="account" value="2">
+                </span>
+                <input type="text" class="form-control" name="f_mobile" id="f_mobile" placeholder="选中的手机号为账号">
+            </div>
         </div>
     </div>
+    <!--<div class="row mgt8">-->
+        <!--<div class="col-xs-12">-->
+            <!--<span>父亲手机：*</span>-->
+            <!--<input type="text" name="f_mobile" id="f_mobile">-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="row mgt8">
         <div class="col-xs-12">
             <span>母亲姓名：*</span>
@@ -78,9 +101,20 @@
     <div class="row mgt8">
         <div class="col-xs-12">
             <span>母亲手机：*</span>
-            <input type="text" name="m_mobile" id="m_mobile">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input type="radio" name="account" value="3">
+                </span>
+                <input type="text" class="form-control" name="m_mobile" id="m_mobile" placeholder="选中的手机号为账号">
+            </div>
         </div>
     </div>
+    <!--<div class="row mgt8">-->
+        <!--<div class="col-xs-12">-->
+            <!--<span>母亲手机：*</span>-->
+            <!--<input type="text" name="m_mobile" id="m_mobile">-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="row mgt8">
         <div class="col-xs-12">
             <span>宅电：</span>
@@ -117,6 +151,10 @@
             </div>
             <div class="radio-item">
                 <input type="radio" name="from" value="5">其他学员介绍
+            </div>
+            <div class="col-xs-12" id="sponsor" style="display: none">
+                <span>请输入介绍人(学生)姓名</span>
+                <input type="text" name="sponsor">
             </div>
             <div class="from_oldfriend" style="display:none;">
                 请输入介绍人（学生）姓名：<input type="text" name="oldfriend" id="oldfriend" value="">
@@ -309,37 +347,39 @@
             <img src="../../Images/serviceImg/p_13.png"/>
         </div>
     </div>
-    <div class="row mgt8">
-        <div class="col-xs-12">
-            <h4 style="background: rgb(0, 176, 240);color:rgb(255, 255, 0);font-size: 20px;line-height: 24px;">
-                <label style="color:rgb(255, 255, 0);">360°蜕变全记录</label>
-            </h4>
+    <div id="ValueAddedServices">
+        <div class="row mgt8">
+            <div class="col-xs-12">
+                <h4 style="background: rgb(0, 176, 240);color:rgb(255, 255, 0);font-size: 20px;line-height: 24px;">
+                    <label style="color:rgb(255, 255, 0);">360°蜕变全记录</label>
+                </h4>
+            </div>
         </div>
-    </div>
-    <div class="row mgt8">
-        <div class="col-xs-12">
-            <h5>请选择您需要增值服务：</h5>
-            <div>
-                <input type="radio" name="service" value="1" />统一版摩英回忆视频：
-                <label style="color: red;">300元</label> (单阶7天)
-            </div>
-            <div>
-                <input type="radio" name="service" value="2" />VIP摩英大电影：
-                <label style="color: red;">1980元</label> (单阶7天)
-            </div>
-            <div>
-                <input type="radio" name="service" value="3" />VIP蜕变水晶相册：
-                <label style="color: red;">1280元</label> (单阶7天)
-            </div>
-            <div>
-                <input type="radio" name="service" value="4" />VIP摩英大电影+VIP蜕变水晶相册:
-                <label style="color: red;">2680元</label> (单阶7天)
-                <label style="color: red;">强烈推荐 性价比极高</label>
-            </div>
-            <div>
-                <input type="radio" name="service" value="5" />VIP摩英大电影+VIP蜕变水晶相册:
-                <label style="color: red;">3980元</label> （两阶14天）
-                <label style="color: red;">狂烈推荐 性价比最高</label>
+        <div class="row mgt8">
+            <div class="col-xs-12">
+                <h5>请选择您需要增值服务：</h5>
+                <div>
+                    <input type="radio" name="service" value="1" />统一版摩英回忆视频：
+                    <label style="color: red;">300元</label> (单阶7天)
+                </div>
+                <div>
+                    <input type="radio" name="service" value="2" />VIP摩英大电影：
+                    <label style="color: red;">1980元</label> (单阶7天)
+                </div>
+                <div>
+                    <input type="radio" name="service" value="3" />VIP蜕变水晶相册：
+                    <label style="color: red;">1280元</label> (单阶7天)
+                </div>
+                <div>
+                    <input type="radio" name="service" value="4" />VIP摩英大电影+VIP蜕变水晶相册:
+                    <label style="color: red;">2680元</label> (单阶7天)
+                    <label style="color: red;">强烈推荐 性价比极高</label>
+                </div>
+                <div id="DoubleServices">
+                    <input type="radio" name="service" value="5" />VIP摩英大电影+VIP蜕变水晶相册:
+                    <label style="color: red;">3980元</label> （两阶14天）
+                    <label style="color: red;">狂烈推荐 性价比最高</label>
+                </div>
             </div>
         </div>
     </div>
@@ -359,10 +399,10 @@
             </div>
             <div>
                 备注（填写其他需要校方特别注意的内容）：
-                <textarea style="resize: none;width: 100%;height: 70px;outline: none;"></textarea>
+                <textarea id="tellme" style="resize: none;width: 100%;height: 70px;outline: none;"></textarea>
             </div>
             <div class="text-center">
-                <button style="height: 35px;background-color: #cc3333;outline: none;border-radius: 10px;width: 70%;color: #FFF;border: 0;">提 交</button>
+                <button style="height: 35px;background-color: #cc3333;outline: none;border-radius: 10px;width: 70%;color: #FFF;border: 0;" onclick="Submit()">提 交</button>
             </div>
         </div>
     </div>
@@ -371,8 +411,11 @@
     </div>
 </div>
 <script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+<script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
 <script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
 <script src="../../Framework/layer_mobile/layer.js"></script>
 <script src="../../Scripts/Commen/CourseCommen.js"></script>
+<script src="../../Scripts/book/Sign_UnReg.js"></script>
+
 </body>
 </html>
