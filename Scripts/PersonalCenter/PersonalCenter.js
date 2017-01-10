@@ -66,7 +66,7 @@ function PersonalCenter_Show() {
     strHtml += '<img src="' + HeaderImg + '" class="headerImg" id="headerImg">';
     strHtml += '<input type="file" style="position:absolute;top:0px;left:0px;opacity:0;width:100%;height: 60%;" id="imageFile" accept="image/*">';
     strHtml += '<p class="name">' + name + '</p>';
-    strHtml += '<p class="integral">' + '能量币：' + Integral + '</p>';
+    strHtml += '<p class="integral">' + '积分：' + Integral + '</p>';
     $("#header").html(strHtml);
     $("#imageFile").on("change", function (e) {
         getFile(e);

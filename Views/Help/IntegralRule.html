@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap-theme.css">
+    <title>获取积分，以及积分规则</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <strong>如何获得积分？</strong>
+        </div>
+        <div class="col-xs-12">
+            <h5>1. 所有摩英达人(摩英达人的达标条件详见个人中心-申请成为摩英达人)都拥有一个专属二维码</h5>
+            <h5>2. 被推广人扫描您的二维码注册报名并现场签到后，您都可以获得一笔积分，积分规则如下：</h5>
+        </div>
+        <div class="col-xs-12">
+            <h5>3. 系统会不定期奖励活跃用户一些积分，作为回馈</h5>
+            <h5>4. 积分可以直接兑换课程以及衍生物</h5>
+        </div>
+    </div>
+</div>
+
+<script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+<script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+<script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+<script src="../../Scripts/Commen/CheckUserLogin.js"></script>
+<script src="../../Framework/layer_mobile/layer.js"></script>
+<script src="../../Scripts/Commen/CourseCommen.js"></script>
+<script>
+    function SysConfig_Default() {
+        var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
+        var result = $Course.GetAjaxJson({}, ApiUrl + "SysConfig/SysConfig_Default");
+    }
+</script>
+</body>
+</html>

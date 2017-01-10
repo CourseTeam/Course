@@ -31,7 +31,7 @@ function IntegralResource_List() {
                 strHtml += '        <span class="record">' + row.Title + '</span>';
                 strHtml += '        <span style="color: grey">' + row.AddTime.split(" ")[0] + '</span>';
                 strHtml += '    </div>';
-                strHtml += '    <div class="col-xs-4" style="text-align: right;padding-left: 0px;padding-top: 10px;color: red">' + row.Integral + '能量币' + '</div>';
+                strHtml += '    <div class="col-xs-4" style="text-align: right;padding-left: 0px;padding-top: 10px;color: red">' + row.Integral + '积分' + '</div>';
                 strHtml += '</div>';
             }
             $("#consume").html(strHtml);

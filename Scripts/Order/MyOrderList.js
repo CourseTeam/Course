@@ -52,12 +52,12 @@ function MyOrder_List() {
                 strHtml += '          </div>';
                 strHtml += '          <div class="left imgbg" style="background-image: url(' + row.ProductImg + ')"></div>';
                 strHtml += '          <div class="right">';
-                strHtml += '          <span>' + row.Price + '能量币</span>';
+                strHtml += '          <span>' + row.Price + '积分</span>';
                 strHtml += '          <p style="color: #ff0000;">x ' + row.ProductNum + '</p>';
                 strHtml += '          </div>';
                 strHtml += '      </div>';
                 strHtml += '      <div class="row text-right bottom">';
-                strHtml += '          <div class="col-xs-12"><span>共' + row.ProductNum + '件商品 <span style="color: #ff0000;">合计：' + row.TotalPrice + '能量币</span></span></div>';
+                strHtml += '          <div class="col-xs-12"><span>共' + row.ProductNum + '件商品 <span style="color: #ff0000;">合计：' + row.TotalPrice + '积分</span></span></div>';
                 strHtml += '      </div>';
                 strHtml += '      <div class="row text-right status" style="padding: 10px 0;">';
                 if (row.Status == 1) {

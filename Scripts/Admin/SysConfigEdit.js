@@ -12,6 +12,7 @@ $(function ($) {
     if (SysID != null) {
         SysConfigDetails_Get(SysID);
     }
+    //IntegralAndWithdrawScale
     // SysConfigDetails_Get(1)
 });
 
@@ -52,11 +53,13 @@ function SysConfigDetails_Get(SysID) {
         $("#FourPhaseIntegral_m").val(four.m);
         $("#FourPhaseIntegral_y").val(four.y);
         $("#FourPhaseIntegral_t").val(four.t);
+        $("#IntegralAndWithdrawScale").val(row.IntegralAndWithdrawScale);
     }
 }
 
 function SysConfig_Edit() {
     var IntegralAndMoneyScale = $("#IntegralAndMoneyScale").val();
+    var IntegralAndWithdrawScale = $("#IntegralAndWithdrawScale").val();
     var RegIntegral = 'm*' + $("#RegIntegral_m").val() + ',' + 'y*' + $("#RegIntegral_y").val() + ',' + 't*' + $("#RegIntegral_t").val();
     var ZeroPhaseIntegral = 'm*' + $("#ZeroPhaseIntegral_m").val() + ',' + 'y*' + $("#ZeroPhaseIntegral_y").val() + ',' + 't*' + $("#ZeroPhaseIntegral_t").val();
     var OnePhaseIntegral = 'm*' + $("#OnePhaseIntegral_m").val() + ',' + 'y*' + $("#OnePhaseIntegral_y").val() + ',' + 't*' + $("#OnePhaseIntegral_t").val();
@@ -66,7 +69,7 @@ function SysConfig_Edit() {
 
     var IsEnabled = $("#IsEnabled").is(":checked") ? 1 : 0;
 
-    $("input[type=text]").each(function(){
+    $("input[type=text]").each(function () {
         if ($(this).val() == "") {
             layer.msg("请将所有数据填写完整！", {icon: 2, time: 2000});
             return;
@@ -77,6 +80,7 @@ function SysConfig_Edit() {
         SysID: SysID,
         IsEnabled: IsEnabled,
         IntegralAndMoneyScale: IntegralAndMoneyScale,
+        IntegralAndWithdrawScale: IntegralAndWithdrawScale,
         RegIntegral: RegIntegral,
         ZeroPhaseIntegral: ZeroPhaseIntegral,
         OnePhaseIntegral: OnePhaseIntegral,

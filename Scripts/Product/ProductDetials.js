@@ -22,7 +22,7 @@ function Article_Detials() {
         strHtml += '            <span class="productName">' + row.ProductName + '<p class="repertory">' + '数量' + row.Repertory + '个' + '</p></span>';
         strHtml += '        </div>';
         strHtml += '        <div class="col-xs-6 tab">';
-        strHtml += '        <p class="price">' + row.Price + '能量币' + '</p>';
+        strHtml += '        <p class="price">' + row.Price + '积分' + '</p>';
         strHtml += '        </div>';
         strHtml += '    </div>';
         strHtml += '</div>';

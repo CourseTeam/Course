@@ -92,13 +92,19 @@ function SysConfig_List() {
                 strHtml += '        </li>';
                 strHtml += '        <li class="list-group-item" style="border-top: 4px solid #c0c0c0">';
                 strHtml += '            <div class="row">';
-                strHtml += '                <div class="col-xs-3"><strong>积分比例</strong></div>';
-                strHtml += '                <div class="col-xs-3"><strong>' + row.IntegralAndMoneyScale + '</strong></div>';
+                strHtml += '                <div class="col-xs-4"><strong>积分提现比例</strong></div>';
+                strHtml += '                <div class="col-xs-2">' + row.IntegralAndWithdrawScale + '：1</div>';
+                strHtml += '            </div>';
+                strHtml += '        </li>';
+                strHtml += '        <li class="list-group-item" style="border-top: 4px solid #c0c0c0">';
+                strHtml += '            <div class="row">';
+                strHtml += '                <div class="col-xs-4"><strong>积分兑换课程比例</strong></div>';
+                strHtml += '                <div class="col-xs-2"><strong>' + row.IntegralAndMoneyScale + '：1</strong></div>';
                 strHtml += '                <div class="col-xs-6 text-right">';
                 strHtml += '                    <button class="autobutton" onclick="SysConfig_Edit(' + row.SysID + ')">编辑</button>';
                 strHtml += '                    <button class="autobutton" onclick="SysConfig_Del(' + row.SysID + ')">删除</button>';
                 if (!row.IsEnabled) {
-                    strHtml += '                    <button class="autobutton" onclick="SysConfig_Default(' + row.SysID + ')">设为配置</button>';
+                    strHtml += '                    <button class="autobutton" onclick="SysConfig_Default(' + row.SysID + ')">设为默认</button>';
                 }
                 strHtml += '                </div>';
                 strHtml += '            </div>';
@@ -123,7 +129,7 @@ function GetIntegral(str) {
 
 // 编辑系统配置
 function SysConfig_Edit(SysID) {
-    window.location.href="SysConfigEdit.html?SysID=" + SysID + "";
+    window.location.href = "SysConfigEdit.html?SysID=" + SysID + "";
 }
 
 // 设置默认的系统配置

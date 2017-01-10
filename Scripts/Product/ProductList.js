@@ -22,7 +22,7 @@ function Product_list() {
                 strHtml += '    <img src="' + row.ProductImg + '" style="width: 100%">';
                 strHtml += '    <div class="caption">';
                 strHtml += '        <h4>' + row.ProductName + '</h4>';
-                strHtml += '        <p style="font-size: 10px;color: #F24C4C">' + row.Price + '能量币' + '</p>';
+                strHtml += '        <p style="font-size: 10px;color: #F24C4C">' + row.Price + '积分' + '</p>';
                 strHtml += '    </div>';
                 strHtml += '</div>';
             }

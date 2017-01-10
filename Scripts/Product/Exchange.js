@@ -30,7 +30,7 @@ function Product_Detials() {
         strHtml += '            <img src="' + row.ProductImg + '" class="leftImg">';
         strHtml += '        </div>';
         strHtml += '        <div class="right">';
-        strHtml += '            <span style="float: right">' + row.Price + '能量币' + '</span>';
+        strHtml += '            <span style="float: right">' + row.Price + '积分' + '</span>';
         strHtml += '            <div style="float:right;margin-top: 30px">';
         strHtml += '                <span>数量</span>';
         strHtml += '                <button style="border:0px;background:none;outline:none;" onclick="reduceGoodsNum(' + row.Price + ')">➖</button>';
@@ -42,10 +42,10 @@ function Product_Detials() {
         strHtml += '</div>';
         strHtml += '<div class="price" id="total">';
         total = row.Price
-        strHtml += '    <span style="float:right;padding-right: 15px">' + '共' + ProductNum + '件商品' + '<span style="font-size: 14px;color: red;padding-left: 5px">' + '合计:' + total + '能量币' + '</span></span>';
+        strHtml += '    <span style="float:right;padding-right: 15px">' + '共' + ProductNum + '件商品' + '<span style="font-size: 14px;color: red;padding-left: 5px">' + '合计:' + total + '积分' + '</span></span>';
         strHtml += '</div>';
         strHtml += '<div class="price" style="height: 45px;border-bottom: 10px solid #EEEEEE;" id="price">';
-        strHtml += '    <span style="float: right;font-size: 14px;color: gray;padding-right: 15px">' + '我的能量币:' + UserInfo.Integral + '</span>';
+        strHtml += '    <span style="float: right;font-size: 14px;color: gray;padding-right: 15px">' + '我的积分:' + UserInfo.Integral + '</span>';
         strHtml += '</div>';
         $("#article_detials").html(strHtml);
     }
@@ -172,7 +172,7 @@ function reduceGoodsNum(Price) {
         total = (ProductNum - 1) * Price;
         if (total <= UserInfo.Integral) {
             ProductNum -= 1;
-            var totalHtml = '<span style="float:right;padding-right: 15px">' + '共' + ProductNum + '件商品' + '<span style="font-size: 14px;color: red;padding-left: 5px">' + '合计:' + total + '能量币' + '</span></span>';
+            var totalHtml = '<span style="float:right;padding-right: 15px">' + '共' + ProductNum + '件商品' + '<span style="font-size: 14px;color: red;padding-left: 5px">' + '合计:' + total + '积分' + '</span></span>';
             $("#total").html(totalHtml);
             $("#goodsNums").html(ProductNum);
         }
@@ -185,7 +185,7 @@ function addGoodsNum(Repertory, Price) {
         total = (ProductNum + 1) * Price;
         if (total <= UserInfo.Integral) {
             ProductNum += 1;
-            var totalHtml = '<span style="float:right;padding-right: 15px">' + '共' + ProductNum + '件商品' + '<span style="font-size: 14px;color: red;padding-left: 5px">' + '合计:' + total + '能量币' + '</span></span>';
+            var totalHtml = '<span style="float:right;padding-right: 15px">' + '共' + ProductNum + '件商品' + '<span style="font-size: 14px;color: red;padding-left: 5px">' + '合计:' + total + '积分' + '</span></span>';
             $("#total").html(totalHtml);
             $("#goodsNums").html(ProductNum);
         }

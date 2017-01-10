@@ -76,7 +76,7 @@ function MaxMoney() {
     for (var i = 0;i < result.Data.length; i++) {
         var config = result.Data[i];
         if (config.IsEnabled) {
-            maxMoney = UserInfo.Integral / config.IntegralAndMoneyScale;
+            maxMoney = UserInfo.Integral / config.IntegralAndWithdrawScale;
         }
     }
     $("#maxmoney").html("最高可提现￥" + maxMoney);
