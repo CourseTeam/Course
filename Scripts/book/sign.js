@@ -14,7 +14,6 @@ var isJoinedCourse; //是否参加过课程
 var isHaveService; //是否有增值服务
 
 var isParentList; //是否是智慧家长课程
-
 $(function ($) {
     GetUserData();
     document.getElementById("radio_zhihui_div").style.display = "none";
@@ -33,8 +32,6 @@ $(function ($) {
         other();
         isOpenOther = true;
     }
-
-
     document.getElementById("channel_radio1").onclick = function () {
         deleteOther();
     }
@@ -49,7 +46,6 @@ $(function ($) {
     }
 
     var result = $Course.GetAjaxJson({}, ApiUrl + "SysConfig/SysConfig_Default");
-    console.log(result);
 
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     if (UserInfo != null || UserInfo != "null") {
@@ -69,20 +65,22 @@ $(function ($) {
         document.getElementById("m_tel").value = UserInfo.MotherPhone;
         document.getElementById("telephone").value = UserInfo.Tel;
         document.getElementById("address").value = UserInfo.Address;
-        if (parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) > 0) {
+        if (parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) > 0 && request.CourseName != "摩英牛津剑桥领袖特训营") {
             $("#integral").show();
-            $(".integral").html("可用" + UserInfo.Integral + "个积分抵扣" + parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) + "元学费");
-        }else{
+            if (parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) > request.Tuition) {
+                $(".integral").html("可用" + (parseInt(request.Tuition) * parseInt(result.Data[0].IntegralAndMoneyScale)) + "个积分抵扣" + request.Tuition + "元学费");
+            } else {
+                $(".integral").html("可用" + UserInfo.Integral + "个积分抵扣" + parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) + "元学费");
+            }
+        } else {
             $("#integral").hide();
         }
-
     }
     get_joinedState();
 });
 function GetUserData() {
     var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var param = {UserID: UserInfo.UserID};
-    console.log(UserInfo)
     var result = $Course.GetAjaxJson(param, ApiUrl + "User/GetUserInfoByUserID");
     result.Data.Ticket = UserInfo.Ticket;
     //将用户信息存入Cookie
@@ -100,17 +98,13 @@ function other() {
         $(".channel-row").append(otherHtml);
     }
 }
-
 function deleteOther() {
     if (isOpenOther) {
         isOpenOther = false;
         $(".other_text_radio").remove();
     }
 }
-
-
 function sure() {
-
     var server_id = $('input[name="radio_server"]:checked').val();
     var tel = $("#tel").val();
     var email = $("#email").val();
@@ -442,48 +436,48 @@ function create_parentlist() {
     document.getElementById("class_text").style.display = "none";
 
     var topHtml = "";
-    topHtml += ' <div  class="row" id="f_name_text">'
-    topHtml += '     <div class="col-xs-4"><p class="text">家长性别</p></div>'
-    topHtml += '<div class="radio">'
-    topHtml += '     <label>'
-    topHtml += '         <input type="radio" name="p_sexRadio" checked="checked"  value="男">男'
-    topHtml += '     </label>'
-    topHtml += '</div>'
-    topHtml += '<div class="radio">'
-    topHtml += '  <label>'
-    topHtml += '     <input type="radio" name="p_sexRadio"  value="女">女'
-    topHtml += '  </label>'
-    topHtml += '</div>'
-    topHtml += ' </div>'
-    topHtml += ' <div  class="row" id="f_tel_text">'
-    topHtml += '     <div class="col-xs-4"><p class="text">联系方式</p></div>'
-    topHtml += '     <div class="col-xs-8"><input class="input" id="p_tel" type="text" style="height:40px; width:100%;"></div>'
-    topHtml += ' </div>'
-    topHtml += ' </div>'
-    topHtml += ' <div  class="row" id="f_tel_text">'
-    topHtml += '     <div class="col-xs-4"><p class="text">出生日期</p></div>'
-    topHtml += '     <div class="col-xs-8"><input class="input" id="p_birth" type="text" style="height:40px; width:100%;"></div>'
-    topHtml += ' </div>'
-    topHtml += ' <div  class="row" id="f_tel_text">'
-    topHtml += '     <div class="col-xs-4"><p class="text">姓名</p></div>'
-    topHtml += '     <div class="col-xs-8"><input class="input" id="p_name" type="text" style="height:40px; width:100%;"></div>'
-    topHtml += ' </div>'
-    topHtml += ' <div  class="row" id="f_tel_text">'
-    topHtml += '     <div class="col-xs-4"><p class="text">邮件</p></div>'
-    topHtml += '     <div class="col-xs-8"><input class="input" id="p_email" type="text" style="height:40px; width:100%;"></div>'
-    topHtml += ' </div>'
+    topHtml += ' <div  class="row" id="f_name_text">';
+    topHtml += '     <div class="col-xs-4"><p class="text">家长性别</p></div>';
+    topHtml += '<div class="radio">';
+    topHtml += '     <label>';
+    topHtml += '         <input type="radio" name="p_sexRadio" checked="checked"  value="男">男';
+    topHtml += '     </label>';
+    topHtml += '</div>';
+    topHtml += '<div class="radio">';
+    topHtml += '  <label>';
+    topHtml += '     <input type="radio" name="p_sexRadio"  value="女">女';
+    topHtml += '  </label>';
+    topHtml += '</div>';
+    topHtml += ' </div>';
+    topHtml += ' <div  class="row" id="f_tel_text">';
+    topHtml += '     <div class="col-xs-4"><p class="text">联系方式</p></div>';
+    topHtml += '     <div class="col-xs-8"><input class="input" id="p_tel" type="text" style="height:40px; width:100%;"></div>';
+    topHtml += ' </div>';
+    topHtml += ' </div>';
+    topHtml += ' <div  class="row" id="f_tel_text">';
+    topHtml += '     <div class="col-xs-4"><p class="text">出生日期</p></div>';
+    topHtml += '     <div class="col-xs-8"><input class="input" id="p_birth" type="text" style="height:40px; width:100%;"></div>';
+    topHtml += ' </div>';
+    topHtml += ' <div  class="row" id="f_tel_text">';
+    topHtml += '     <div class="col-xs-4"><p class="text">姓名</p></div>';
+    topHtml += '     <div class="col-xs-8"><input class="input" id="p_name" type="text" style="height:40px; width:100%;"></div>';
+    topHtml += ' </div>';
+    topHtml += ' <div  class="row" id="f_tel_text">';
+    topHtml += '     <div class="col-xs-4"><p class="text">邮件</p></div>';
+    topHtml += '     <div class="col-xs-8"><input class="input" id="p_email" type="text" style="height:40px; width:100%;"></div>';
+    topHtml += ' </div>';
     $(".sign").append(topHtml);
 
 
     var parentHtml = "";
-    parentHtml += ' <div  class="row" id="f_name_text">'
-    parentHtml += '     <div class="col-xs-4"><p class="text">工作单位</p></div>'
-    parentHtml += '     <div class="col-xs-8"><input class="input" id="factory" type="text" style="height:40px; width:100%;"></div>'
-    parentHtml += ' </div>'
-    parentHtml += ' <div  class="row" id="f_tel_text">'
-    parentHtml += '     <div class="col-xs-12"><p class="text">备注(说说您相对摩英说的话)</p></div>'
-    parentHtml += '     <div class="col-xs-12"><textarea class="input" id="remark" type="text" style="resize:none; height:60px; width:100%;"></textarea></div>'
-    parentHtml += ' </div>'
+    parentHtml += ' <div  class="row" id="f_name_text">';
+    parentHtml += '     <div class="col-xs-4"><p class="text">工作单位</p></div>';
+    parentHtml += '     <div class="col-xs-8"><input class="input" id="factory" type="text" style="height:40px; width:100%;"></div>';
+    parentHtml += ' </div>';
+    parentHtml += ' <div  class="row" id="f_tel_text">';
+    parentHtml += '     <div class="col-xs-12"><p class="text">备注(说说您相对摩英说的话)</p></div>';
+    parentHtml += '     <div class="col-xs-12"><textarea class="input" id="remark" type="text" style="resize:none; height:60px; width:100%;"></textarea></div>';
+    parentHtml += ' </div>';
     $(".other").append(parentHtml);
 
 }
@@ -554,7 +548,7 @@ function get_data(cid) {
         request = result.Data.courseInfo;
         phaseinfo = result.Data.phaselist[0];
         $("#course_title").html(result.Data.courseInfo.CourseName);
-
+        courseName = result.Data.courseInfo.CourseName;
         if (phaseinfo.PhaseType == 1 || phaseinfo.PhaseType == 2) {
             isHaveService = true;
             var zengzhiHtml = "";

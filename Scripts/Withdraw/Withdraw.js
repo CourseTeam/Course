@@ -5,9 +5,15 @@
 $(function ($) {
     PaymentData();
     MaxMoney();
-    $("#withdraw_add").click(Withdraw_ADD);
-    $("#allwithdraw").click(AllWithdraw);
-    $("#withdraw_record").click(WithdrawRecord);
+    $("#withdraw_add").on("click",function () {
+        Withdraw_ADD();
+    });
+    $("#allwithdraw").on("click",function(){
+        AllWithdraw();
+    })
+    $("#withdraw_record").on("click",function(){
+        WithdrawRecord();
+    })
 });
 
 var PayID = 0;
