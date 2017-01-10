@@ -68,9 +68,9 @@ $(function ($) {
         if (parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) > 0 && request.CourseName != "摩英牛津剑桥领袖特训营") {
             $("#integral").show();
             if (parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) > request.Tuition) {
-                $(".integral").html("可用" + (parseInt(request.Tuition) * parseInt(result.Data[0].IntegralAndMoneyScale)) + "个积分抵扣" + request.Tuition + "元学费");
+                $(".integral").html("使用" + (parseInt(request.Tuition) * parseInt(result.Data[0].IntegralAndMoneyScale)) + "个积分抵扣" + request.Tuition + "元学费");
             } else {
-                $(".integral").html("可用" + UserInfo.Integral + "个积分抵扣" + parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) + "元学费");
+                $(".integral").html("使用" + UserInfo.Integral + "个积分抵扣" + parseInt(UserInfo.Integral / result.Data[0].IntegralAndMoneyScale) + "元学费");
             }
         } else {
             $("#integral").hide();
