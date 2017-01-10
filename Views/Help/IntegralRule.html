@@ -13,15 +13,31 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
+            <br/>
             <strong>如何获得积分？</strong>
         </div>
         <div class="col-xs-12">
             <h5>1. 所有摩英达人(摩英达人的达标条件详见个人中心-申请成为摩英达人)都拥有一个专属二维码</h5>
             <h5>2. 被推广人扫描您的二维码注册报名并现场签到后，您都可以获得一笔积分，积分规则如下：</h5>
         </div>
+        <div class="col-xs-12" id="integralList">
+
+        </div>
         <div class="col-xs-12">
             <h5>3. 系统会不定期奖励活跃用户一些积分，作为回馈</h5>
             <h5>4. 积分可以直接兑换课程以及衍生物</h5>
+        </div>
+        <div class="col-xs-12">
+            <h5>积分兑换课程政策：（兑现以下课程时食宿费自理）</h5>
+            <h5>摩英青少年领袖特训营（单阶复训名额）：仅需11840积分</h5>
+            <h5>摩英青少年领袖特训营（单阶新训名额）：仅需43520积分</h5>
+            <h5>摩英青少年领袖特训营（奇迹套餐名额）：仅需67520积分</h5>
+            <h5>摩英一对一网络外教课（30节*17分钟）：仅需3196积分</h5>
+            <h5>摩英梦想风暴（单阶新训名额）：仅需35520积分</h5>
+            <h5>摩英领袖演说（单阶新训名额） ： 仅需35520积分</h5>
+            <h5>摩英智慧家长高级班（单阶新训名额）：仅需27520积分</h5>
+            <h5>摩英全脑能量开发（单阶新训名额）：仅需35520积分</h5>
+            <h5>摩英中外教网络英语（一年新训名额）：仅需15920积分</h5>
         </div>
     </div>
 </div>
@@ -32,11 +48,7 @@
 <script src="../../Scripts/Commen/CheckUserLogin.js"></script>
 <script src="../../Framework/layer_mobile/layer.js"></script>
 <script src="../../Scripts/Commen/CourseCommen.js"></script>
-<script>
-    function SysConfig_Default() {
-        var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
-        var result = $Course.GetAjaxJson({}, ApiUrl + "SysConfig/SysConfig_Default");
-    }
-</script>
+<script src="../../Scripts/Help/IntergralRule.js"></script>
+
 </body>
 </html>
