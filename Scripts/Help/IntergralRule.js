@@ -5,6 +5,7 @@
 
 $(function ($) {
     SysConfig_Default();
+    initLiNodes();
 });
 
 function SysConfig_Default() {
@@ -20,49 +21,49 @@ function SysConfig_Default() {
         var two = GetIntegral(data.TwoPhaseIntegral);
         var three = GetIntegral(data.ThreePhaseIntegral);
         var four = GetIntegral(data.FourPhaseIntegral);
-        strHtml += '<li class="list-group-item">';
+        strHtml += '<li class="list-group-item table" style="background-color: #ee5c50;color: #ffffff;border-top-left-radius: 10px;border-top-right-radius: 10px;">';
         strHtml += '    <div class="row">';
         strHtml += '        <div class="col-xs-4">积分类型</div>';
         strHtml += '        <div class="col-xs-4">被推荐人</div>';
         strHtml += '        <div class="col-xs-4">推荐人</div>';
         strHtml += '    </div>';
         strHtml += '</li>';
-        strHtml += '<li class="list-group-item">';
+        strHtml += '<li class="list-group-item table">';
         strHtml += '    <div class="row">';
         strHtml += '        <div class="col-xs-4">推荐积分</div>';
         strHtml += '        <div class="col-xs-4">' + reg.m + '</div>';
         strHtml += '        <div class="col-xs-4">' + reg.y + '</div>';
         strHtml += '    </div>';
         strHtml += '</li>';
-        strHtml += '<li class="list-group-item">';
+        strHtml += '<li class="list-group-item table">';
         strHtml += '    <div class="row">';
         strHtml += '        <div class="col-xs-4">单一课程</div>';
         strHtml += '        <div class="col-xs-4">' + zero.m + '</div>';
         strHtml += '        <div class="col-xs-4">' + zero.y + '</div>';
         strHtml += '    </div>';
         strHtml += '</li>';
-        strHtml += '<li class="list-group-item">';
+        strHtml += '<li class="list-group-item table">';
         strHtml += '    <div class="row">';
         strHtml += '        <div class="col-xs-4">一阶课程</div>';
         strHtml += '        <div class="col-xs-4">' + one.m + '</div>';
         strHtml += '        <div class="col-xs-4">' + one.y + '</div>';
         strHtml += '    </div>';
         strHtml += '</li>';
-        strHtml += '<li class="list-group-item">';
+        strHtml += '<li class="list-group-item table">';
         strHtml += '    <div class="row">';
         strHtml += '        <div class="col-xs-4">二阶课程</div>';
         strHtml += '        <div class="col-xs-4">' + two.m + '</div>';
         strHtml += '        <div class="col-xs-4">' + two.y + '</div>';
         strHtml += '    </div>';
         strHtml += '</li>';
-        strHtml += '<li class="list-group-item">';
+        strHtml += '<li class="list-group-item table">';
         strHtml += '    <div class="row">';
         strHtml += '        <div class="col-xs-4">三阶课程</div>';
         strHtml += '        <div class="col-xs-4">' + three.m + '</div>';
         strHtml += '        <div class="col-xs-4">' + three.y + '</div>';
         strHtml += '    </div>';
         strHtml += '</li>';
-        strHtml += '<li class="list-group-item">';
+        strHtml += '<li class="list-group-item table" style="border-bottom: 1px solid #ee5c50;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px">';
         strHtml += '    <div class="row">';
         strHtml += '        <div class="col-xs-4">四阶课程</div>';
         strHtml += '        <div class="col-xs-4">' + four.m + '</div>';
@@ -81,4 +82,15 @@ function GetIntegral(str) {
         flag[arr[i].split("*")[0]] = arr[i].split("*")[1];
     }
     return flag;
+}
+
+function initLiNodes() {
+    var nextDataNumber = 5;
+
+    var ulNode = $('ul.timeline');
+
+    var liNodes = ulNode.find('li'), count = liNodes.length, i, liNode, leftCount = nextDataNumber * 20;
+    for(i=0; i<count; i++) {
+        liNode = $(liNodes.get(i));
+    }
 }
