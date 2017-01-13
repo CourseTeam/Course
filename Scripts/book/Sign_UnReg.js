@@ -3,6 +3,8 @@
  */
 
 $(function ($) {
+    $('#birthday').date();
+    // $('#birthday').date();
     GetAllPhase();
     $("input[name=from]").on("change", function () {
         var from = $("input[name=from]:checked").val();
@@ -11,7 +13,15 @@ $(function ($) {
         } else {
             $("#sponsor").hide();
         }
-    })
+    });
+    $("input[name=tbr]").on("change", function () {
+        var tbr = $("input[name=tbr]:checked").val();
+        if (tbr == "其他") {
+            $("#preparer").show();
+        } else {
+            $("#preparer").hide();
+        }
+    });
 });
 
 function GetAllPhase() {
@@ -24,8 +34,8 @@ function GetAllPhase() {
     for (var i = 0; i < CourseData.length; i++) {
         CourseNameArr[CourseData[i].CoursePhaseName] = CourseData[i].CoursePhaseName;
     }
-    // console.log(CourseNameArr[1]);
-    var strHtml = "";
+    // console.log(CourseNameArr);
+    var strHtml = "<br/><h5>请选择您的课程和期数</h5>";
     for (var a in CourseNameArr) {
         var NameArr = CourseData.FilterItem({CoursePhaseName: CourseNameArr[a]});
         // console.log(CourseNameArr[a]);
@@ -54,7 +64,7 @@ function GetAllPhase() {
                 strHtml += '</div>';
             }
         }
-        console.log(NameArr);
+        // console.log(NameArr);
     }
     $("div.course_list").html(strHtml);
 }
@@ -243,7 +253,8 @@ function CourseRegistration_Add(UserInfo) {
     if (from == 5) {
         Channel = $("input[name=sponsor]").val()
     }
-    var Preparer = $("input[name=tbr]:checked").val();
+    var tbr = $("input[name=tbr]:checked").val();
+    var Preparer = tbr == "其他" ? $("#preparer").val() : tbr;
     var CourseID = $("input[name=radio_phase]:checked").attr("cid");
     console.log(CourseID);
     var TellMe = $("#tellme").val();
@@ -264,11 +275,12 @@ function CourseRegistration_Add(UserInfo) {
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_Add");
     if (result.Msg == "OK") {
-        PhaseRegistration_Add(param);
+        param.Account = UserInfo.Account;
+        PhaseRegistration_Add_Fast(param);
     }
 }
 
-function PhaseRegistration_Add(Info) {
+function PhaseRegistration_Add_Fast(Info) {
     var PhaseID = $("input[name=radio_phase]:checked").val();
     var ValueAddedServices = $("input[name=service]:checked").val();
     var PhaseType = $("input[name=radio_phase]:checked").attr("ptype");
@@ -280,10 +292,10 @@ function PhaseRegistration_Add(Info) {
         ValueAddedServices: ValueAddedServices,
         PhaseType: PhaseType
     };
-    var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add");
+    var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add_Fast");
     if (result.Msg == "OK") {
         layer.open({
-            content: '报名成功!',
+            content: '报名成功!</br>用户名:' + Info.Account + '</br>初始密码:123456</br>为了您的安全请尽快修改密码',
             time: 2,
             end: function () {
                 window.location.href = "booking.html";
