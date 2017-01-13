@@ -276,11 +276,11 @@ function CourseRegistration_Add(UserInfo) {
     var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_Add");
     if (result.Msg == "OK") {
         param.Account = UserInfo.Account;
-        PhaseRegistration_Add(param);
+        PhaseRegistration_Add_Fast(param);
     }
 }
 
-function PhaseRegistration_Add(Info) {
+function PhaseRegistration_Add_Fast(Info) {
     var PhaseID = $("input[name=radio_phase]:checked").val();
     var ValueAddedServices = $("input[name=service]:checked").val();
     var PhaseType = $("input[name=radio_phase]:checked").attr("ptype");
@@ -292,7 +292,7 @@ function PhaseRegistration_Add(Info) {
         ValueAddedServices: ValueAddedServices,
         PhaseType: PhaseType
     };
-    var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add");
+    var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add_Fast");
     if (result.Msg == "OK") {
         layer.open({
             content: '报名成功!</br>用户名:' + Info.Account + '</br>初始密码:123456</br>为了您的安全请尽快修改密码',

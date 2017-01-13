@@ -126,7 +126,7 @@
         }		
         function extendOptions(){
             $("#datePage").show(); 
-            // $("#dateshadow").show();
+            $("#dateshadow").show();
         }
         //日期滑动
         function init_iScrll() { 

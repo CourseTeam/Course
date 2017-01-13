@@ -27,8 +27,8 @@ ul,li{ list-style: none;list-style-type:none;}
 #setcancle ul li{border-radius:3px;float: left;width: 40%;height: 30px;list-style-type: none;font-family:'microsoft yahei';font-size:16px;}
 #dateconfirm{position: absolute;background:#79C12F;left:20px;color:#fff;}
 #datecancle{position: absolute;background:  #dcdddd;right:20px;width: 40%;color:#666;}
-#dateshadow{display: none;position: absolute;width: 100%;height: 100%;top:0;left:0;background: #000; filter:alpha(Opacity=50);-moz-opacity:0.5;opacity: 0.5;}
-#datePage{font-size: 22px; border-radius: 3px; position:absolute;top:110px;MARGIN-RIGHT: auto;vertical-align:middle;
+#dateshadow{display: none;position: fixed;width: 100%;height: 100%;top:0;left:0;background: #000; filter:alpha(Opacity=50);-moz-opacity:0.5;opacity: 0.5;z-index: 1}
+#datePage{font-size: 22px; border-radius: 3px; position:fixed;top:110px;MARGIN-RIGHT: auto;vertical-align:middle;
 MARGIN-LEFT: auto;width: 80%;;height: 240px;background: #FFFFFF;z-index:9999999;}
 #datetitle{width: 100%;height:50px;background: #79C12F;text-align: center;color: #fff;line-height: 50px;font-size: 20px;font-family:'microsoft yahei';}
 #datetitle h1{font-weight:normal;}
