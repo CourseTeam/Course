@@ -4,7 +4,6 @@
 
 $(function ($) {
     $('#birthday').date();
-    // $('#birthday').date();
     GetAllPhase();
     $("input[name=from]").on("change", function () {
         var from = $("input[name=from]:checked").val();
@@ -25,7 +24,6 @@ $(function ($) {
 });
 
 function GetAllPhase() {
-    // alert(111111);
     var param = {};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List_All");
 
@@ -114,8 +112,8 @@ function Submit() {
         });
         return;
     }
-
-    var birth = /^(\d{4})\-(\d{2})\-(\d{2})$/;
+    //var a = /^(\d{4})-(\d{2})-(\d{2})$/;
+    var birth = /^(\d{4})-(\d{2})-(\d{2})$/;
     if (!birth.test(BirthDay)) {
         layer.open({
             content: '出生日期格式错误',

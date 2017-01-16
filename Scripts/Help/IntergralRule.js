@@ -9,7 +9,6 @@ $(function ($) {
 });
 
 function SysConfig_Default() {
-    var UserInfo = $Course.parseJSON($.cookie("UserInfo"));
     var result = $Course.GetAjaxJson({}, ApiUrl + "SysConfig/SysConfig_Default");
     // console.log(result);
     if (result.Msg == "OK") {

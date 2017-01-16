@@ -11,7 +11,6 @@
     <title>在线报名</title>
     <link rel="stylesheet" href="../../Css/book/Sign_UnReg.css">
     <link rel="stylesheet" href="../../Framework/DatePicker/common.css">
-
 </head>
 <body>
 <div id="datePlugin"></div>
@@ -51,17 +50,8 @@
     <div class="row mgt8">
         <div class="col-xs-12">
             <span>学员手机：</span>
-<<<<<<< HEAD
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <input type="radio" name="account" value="1">
-                </span>
-                <input type="text" class="form-control" name="mob" id="Phone" placeholder="选中的手机号为您下次登录的账号">
-            </div>
-=======
             <!--<input type="text" class="form-control" name="mob" id="Phone" placeholder="选中的手机号为您下次登录的账号">-->
             <input type="text" name="mob" id="Phone">
->>>>>>> adf219fd38cced0af093bbea8869127101d21ded
         </div>
     </div>
 
@@ -80,16 +70,7 @@
     <div class="row mgt8">
         <div class="col-xs-12">
             <span>父亲手机：*</span>
-<<<<<<< HEAD
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <input type="radio" name="account" value="2">
-                </span>
-                <input type="text" class="form-control" name="f_mobile" id="f_mobile" placeholder="选中的手机号为您下次登录的账号">
-            </div>
-=======
             <input type="text" name="f_mobile" id="f_mobile">
->>>>>>> adf219fd38cced0af093bbea8869127101d21ded
         </div>
     </div>
     <div class="row mgt8">
@@ -101,14 +82,6 @@
     <div class="row mgt8">
         <div class="col-xs-12">
             <span>母亲手机：*</span>
-<<<<<<< HEAD
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <input type="radio" name="account" value="3">
-                </span>
-                <input type="text" class="form-control" name="m_mobile" id="m_mobile" placeholder="选中的手机号为您下次登录的账号">
-            </div>
-=======
             <input type="text" name="m_mobile" id="m_mobile">
         </div>
     </div>
@@ -118,7 +91,6 @@
             <input type="radio" name="account" value="1" checked>学生
             <input type="radio" name="account" value="2">父亲
             <input type="radio" name="account" value="3">母亲
->>>>>>> adf219fd38cced0af093bbea8869127101d21ded
         </div>
     </div>
     <div class="row mgt8">
@@ -166,7 +138,7 @@
                 <input type="text" name="sponsor">
             </div>
             <!--<div class="from_oldfriend" style="display:none;">-->
-                <!--请输入介绍人（学生）姓名：<input type="text" name="oldfriend" id="oldfriend" value="">-->
+            <!--请输入介绍人（学生）姓名：<input type="text" name="oldfriend" id="oldfriend" value="">-->
             <!--</div>-->
         </div>
     </div>
@@ -193,9 +165,9 @@
     </div>
     <div class="row mgt8">
         <div class="col-xs-12">
-            <iframe class="video_iframe" frameborder="0"
-                    style="z-index: 1; overflow: hidden; width: 100%; min-height: 201px;"
-                    src="http://v.qq.com/iframe/player.html?vid=o0158futpv3&auto=0" scrolling="no"></iframe>
+            <video controls="controls" width="100%">
+               <source src="../../Res/Video/video1.mp4">
+            </video>
         </div>
     </div>
     <div class="row mgt8">
@@ -210,10 +182,9 @@
     </div>
     <div class="row mgt8">
         <div class="col-xs-12">
-            <iframe class="video_iframe" frameborder="0"
-                    data-src="http://v.qq.com/iframe/player.html?vid=h015815krze&auto=0" allowfullscreen=""
-                    style="z-index: 1; overflow: hidden; width: 100%; min-height: 201px;"
-                    src="http://v.qq.com/iframe/player.html?vid=h015815krze&auto=0" scrolling="no"></iframe>
+            <video controls="controls" width="100%">
+                <source src="../../Res/Video/video2.mp4">
+            </video>
         </div>
     </div>
     <div class="row mgt8">
@@ -323,7 +294,8 @@
             </div>
             <div style="margin-top: 10px">
                 因个性化定制占用摄制组团队大量的时间和精力，每期集训营
-                <span style="color: red;">每班仅限<label style="color: red;font-size: 18px;">3个</label>名额，摄影摄像师会时刻关注您的孩子，</span>
+                <span style="color: red;">每班仅限<label
+                        style="color: red;font-size: 18px;">3个</label>名额，摄影摄像师会时刻关注您的孩子，</span>
                 记录他们在这八天中的幸福、快乐、感动、蜕变……
             </div>
             <div style="margin-top: 10px;">
@@ -368,36 +340,37 @@
             <div class="col-xs-12">
                 <h5>请选择您需要增值服务：</h5>
                 <div>
-                    <input type="radio" name="service" value="1" />统一版摩英回忆视频：
+                    <input type="radio" name="service" value="1"/>统一版摩英回忆视频：
                     <label style="color: red;">300元</label> (单阶7天)
                 </div>
                 <div>
-                    <input type="radio" name="service" value="2" />VIP摩英大电影：
+                    <input type="radio" name="service" value="2"/>VIP摩英大电影：
                     <label style="color: red;">1980元</label> (单阶7天)
                 </div>
                 <div>
-                    <input type="radio" name="service" value="3" />VIP蜕变水晶相册：
+                    <input type="radio" name="service" value="3"/>VIP蜕变水晶相册：
                     <label style="color: red;">1280元</label> (单阶7天)
                 </div>
                 <div>
-                    <input type="radio" name="service" value="4" />VIP摩英大电影+VIP蜕变水晶相册:
+                    <input type="radio" name="service" value="4"/>VIP摩英大电影+VIP蜕变水晶相册:
                     <label style="color: red;">2680元</label> (单阶7天)
                     <label style="color: red;">强烈推荐 性价比极高</label>
                 </div>
                 <div id="DoubleServices">
-                    <input type="radio" name="service" value="5" />VIP摩英大电影+VIP蜕变水晶相册:
+                    <input type="radio" name="service" value="5"/>VIP摩英大电影+VIP蜕变水晶相册:
                     <label style="color: red;">3980元</label> （两阶14天）
                     <label style="color: red;">狂烈推荐 性价比最高</label>
                 </div>
                 <div>
-                    <input type="radio" name="service" value="0" />我不需要此项服务
+                    <input type="radio" name="service" value="0"/>我不需要此项服务
                 </div>
             </div>
         </div>
     </div>
     <div class="row mgt8">
         <div class="col-xs-12">
-            <div style="background-color:rgb(146, 208, 80);color: #FFF; line-height: 24px;font-size: 18px">火爆抢定有惊喜！~</div>
+            <div style="background-color:rgb(146, 208, 80);color: #FFF; line-height: 24px;font-size: 18px">火爆抢定有惊喜！~
+            </div>
             <div>
                 每期<span style="background-color: yellow;">前30名</span>成功预定<label>VIP摩英大电影+VIP蜕变水晶相册</label>
                 （单阶或双阶套餐）的学员均赠送价值300元的“统一版摩英回忆视频”！
@@ -414,7 +387,9 @@
                 <textarea id="tellme" style="resize: none;width: 100%;height: 70px;outline: none;"></textarea>
             </div>
             <div class="text-center">
-                <button style="height: 35px;background-color: #cc3333;outline: none;border-radius: 10px;width: 70%;color: #FFF;border: 0;" onclick="Submit()">提 交</button>
+                <button style="height: 35px;background-color: #cc3333;outline: none;border-radius: 10px;width: 70%;color: #FFF;border: 0;"
+                        onclick="Submit()">提 交
+                </button>
             </div>
         </div>
     </div>
@@ -431,6 +406,5 @@
 <script src="../../Framework/DatePicker/date.js"></script>
 <script src="../../Framework/DatePicker/iscroll.js"></script>
 <script src="../../Scripts/book/Sign_UnReg.js"></script>
-
 </body>
 </html>
