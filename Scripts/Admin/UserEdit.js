@@ -9,7 +9,10 @@ $(function ($) {
         $("#btnSave").hide();
     }
     $("#btnSave").on("click", function () {
-        UserInfo_Edit(UserID);
+        UserInfo_Edit(UserID, 0);
+    });
+    $("#btnSaveAndAdd").on("click", function () {
+        UserInfo_Edit(UserID, 1);
     });
     if (UserID != null) {
         $("#phonediv").hide();
@@ -51,7 +54,7 @@ function UserInfoEdit_Get(UserID) {
 
 
 //编辑或新增
-function UserInfo_Edit(UserID) {
+function UserInfo_Edit(UserID, Entry) {
     var NickName = $("#NickName").val();//
     var Sex = $("#Sex").val();//
     var BirthDay = $("#BirthDay").val();//
@@ -148,7 +151,11 @@ function UserInfo_Edit(UserID) {
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_Edit");
     if (result.Msg == "OK") {
         layer.msg("保存成功！", {icon: 1, time: 2000}, function () {
-            window.location.href = "UserList.html";
+            if (Entry == 1) {
+                window.location.href = "../User/UserInfoEntry.html?UserID=" + result.Data + '&NickName=' + NickName;
+            } else {
+                window.location.href = "UserList.html";
+            }
         });
     }
 }
