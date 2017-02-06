@@ -17,6 +17,15 @@ $(document).ready(function () {
 
 var PageIndex = 1;
 
+function CourseInfo_Get() {
+    var CourseID = $Course.RequestUrlParams("CourseID");
+    var param = {CourseID: CourseID};
+    var result = $Course.GetAjaxJson(param, ApiUrl + "Course/CourseInfo_Get");
+    var tuition = result.Data.Tuition;
+    console.log(tuition);
+    $("#TuitionFeesPaid").val(tuition);
+}
+
 function CourseRegistration_List() {
     var SearchKey = $("#SearchKey").val();
     var CourseID = $Course.RequestUrlParams("CourseID");
@@ -168,6 +177,9 @@ function TuitionFeesPaid_Eidt(UserID,TuitionFeesPaid, CourseRegistrationID) {
         },
         success: function () {
             $("#TuitionFeesPaid").val(TuitionFeesPaid);
+            if (TuitionFeesPaid == 0) {
+                CourseInfo_Get();
+            }
         }
     });
 }

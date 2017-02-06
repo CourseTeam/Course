@@ -270,7 +270,10 @@
         function createDAY_UL(){
               $("#daywrapper ul").html("");
             var str="<li>&nbsp;</li>";
-                for(var i=opts.beginday;i<=opts.endday;i++){
+            for(var i=opts.beginday;i<=opts.endday;i++){
+                if(i<10){
+                    i="0"+i
+                }
                 str+='<li>'+i+'日</li>'
             }
             return str+"<li>&nbsp;</li>";;                     

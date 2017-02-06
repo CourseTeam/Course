@@ -62,7 +62,7 @@
             <div class="input-group">
                 <input placeholder="请选择要录入的学生" type="text" class="form-control" id="StudentName" disabled>
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" style="height: 34px;width: 100px;outline: none;" id="choose">选择学生</button>
+                    <button class="btn btn-default" type="button" style="height: 34px;width: 100px;outline: none;" id="choose_student">选择学生</button>
                 </span>
             </div>
         </div>
@@ -70,7 +70,13 @@
     <div class="row">
         <div class="col-xs-2">预约课程</div>
         <div class="col-xs-6">
-            <input type="text" class="form-control" id="CourseName_PhaseName" disabled>
+            <div class="input-group">
+                <input placeholder="请选择课程" type="text" class="form-control" id="CourseName" name="CourseName_PhaseName" disabled>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" style="height: 34px;width: 100px;outline: none;" id="choose_course">选择课程</button>
+                </span>
+            </div>
+            <!--<input type="text" class="form-control" id="CourseName_PhaseName" disabled>-->
         </div>
     </div>
     <div class="row" id="experience">
@@ -160,6 +166,9 @@
     </div>
 
     <div class="row" style="padding: 10px;background: #e5e5e5;margin: 0px;display: none;" id="studentlist">
+
+    </div>
+    <div class="row" style="padding: 10px;background: #e5e5e5;margin: 0px;display: none;" id="courselist">
 
     </div>
 </div>

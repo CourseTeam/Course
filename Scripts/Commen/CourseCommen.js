@@ -177,19 +177,16 @@ Array.prototype.FilterItem = function (odds) {
 
         for (var m in odds) {
             b++;  //计算属性的个数
-            if (item[m] == odds[m] || odds[m] == -1) {
-                c++; //计算符合条件的个数
+            var a = m.split("_");
+            if (a.length > 1) {
+               if (item[a[0]].indexOf(odds[m]) > -1) {
+                   c++;  //计算符合条件的个数
+               }
+            } else {
+               if (item[m] == odds[m] || odds[m] == -1) {
+                   c++; //计算符合条件的个数
+               }
             }
-            //var a = m.split("_");
-            //if (a.length > 1) {
-            //    if (item[a[0]].indexOf(odds[m]) > -1) {
-            //        c++;  //计算符合条件的个数
-            //    }
-            //} else {
-            //    if (item[m] == odds[m] || odds[m] == -1) {
-            //        c++; //计算符合条件的个数
-            //    }
-            //}
 
         }
         return b == c;  //条件全部满足返回true
