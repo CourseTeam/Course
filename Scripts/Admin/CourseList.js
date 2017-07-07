@@ -40,10 +40,10 @@ function Course_list(PageIndex, PageSize) {
                 // strHtml += '        <div class="col-xs-3" style="height: 20px;overflow: hidden;" title="' + $Course.DelHtmlTag(row.Intro) + '">' + row.Intro + '</div>';
                 strHtml += '        <div class="col-xs-2">' + row.Tuition + '</div>';
                 strHtml += '        <div class="col-xs-4">';
+                strHtml += '            <button class="autobutton" onclick="CourseRegistration_List(' + row.CourseID + ',this)" cname = "' + row.CourseName + '">报名表</button>';
+                strHtml += '            <button class="autobutton" onclick="Phase_Edit(' + row.CourseID + ')">阶段管理</button>';
                 strHtml += '            <button class="autobutton" onclick="Edit(' + row.CourseID + ')">编 辑</button>';
                 strHtml += '            <button class="autobutton" onclick="CourseInfo_Del(' + row.CourseID + ')">删 除</button>';
-                strHtml += '            <button class="autobutton" onclick="Phase_Edit(' + row.CourseID + ')">阶段管理</button>';
-                strHtml += '            <button class="autobutton" onclick="CourseRegistration_List(' + row.CourseID + ',this)" cname = "' + row.CourseName + '">报名表</button>';
                 strHtml += '        </div>';
                 strHtml += '    </div>';
                 strHtml += '</li>';
@@ -82,4 +82,8 @@ function Phase_Edit(id) {
 
 function CourseRegistration_List(CourseID, obj) {
     window.location.href = "CourseRegistrationList.html?CourseID=" + CourseID + "&" + "CourseName=" + $(obj).attr("cname");
+}
+
+function PhaseRegistration_List(PhaseID, obj) {
+    window.location.href="../Order/PhaseOrder.html?PhaseID=" + PhaseID + "&" + "CoursePhaseName=" + $(obj).attr("cname");
 }

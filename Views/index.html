@@ -13,7 +13,7 @@
 
 </head>
 <body style="background: url('../Images/account/Account_Background.png') no-repeat;background-size: 100%;">
-<div class="container">
+<div class="container"  style="display: none;">
     <div style="text-align: center;padding-bottom: 20px;padding-top: 20%;">
         <img src="../Images/account/Account_Logo.png" style="height: 100px;width: 100px;"/>
         <!--<p style="font-size: 16px;color: #F24C4C; font-family: 华文新魏">摩英教育</p>-->
@@ -67,6 +67,7 @@
     if (IsPC()) {
         window.location.href = "/Course/Views/Admin/manage/Login.html";
     } else {
+        $(".container").show();
         var UserInfo = $.cookie("UserInfo");
         if (UserInfo != "" && UserInfo != "null" && UserInfo != null && UserInfo != undefined) {
             window.location.href = "Course/CourseList.html"

@@ -1,14 +1,16 @@
 body {
     background: #fff;
 }
-
+.list-group-item:hover{
+    background: #cccccc;
+}
 .row {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .input {
-    height: 40px;
+    height: 30px;
     border: 1px solid #dddddd;
     border-radius: 5px;
     width: 100%;

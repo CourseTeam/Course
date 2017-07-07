@@ -7,11 +7,15 @@ $(document).ready(function () {
     $("#header").load("../Commen/header.html");
 
     var CourseName = decodeURIComponent($Course.RequestUrlParams("CourseName"));
-    $("#CourseName").html('课程预约列表 — ' + CourseName);
+    $("#CourseName").html('<a href="CourseList.html">课程列表</a> > 报名名单(' + CourseName + ')');
 
     $("#btnSearch").on("click", function () {
         CourseRegistration_List();
     });
+    $("#selYear").on("change", function () {
+        CourseRegistration_List();
+    });
+    CourseReg_Year_Get();
     CourseRegistration_List();
 });
 
@@ -29,7 +33,13 @@ function CourseInfo_Get() {
 function CourseRegistration_List() {
     var SearchKey = $("#SearchKey").val();
     var CourseID = $Course.RequestUrlParams("CourseID");
-    var param = {CourseID: CourseID, SearchKey: SearchKey, PageIndex: PageIndex, PageSize: 10};
+    var param = {
+        CourseID: CourseID,
+        SearchKey: SearchKey,
+        PageIndex: PageIndex,
+        PageSize: 10,
+        Year: $("#selYear").val()
+    };
     console.log(param);
     var result = $Course.GetAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_List");
     console.log(result);
@@ -38,13 +48,13 @@ function CourseRegistration_List() {
         strHtml += '<li class="list-group-item header">';
         strHtml += '    <div class="row ">';
         strHtml += '        <div class="col-xs-2">学员姓名</div>';
-        strHtml += '        <div class="col-xs-1">电话</div>';
+        strHtml += '        <div class="col-xs-2">电话</div>';
         strHtml += '        <div class="col-xs-1">性别</div>';
         strHtml += '        <div class="col-xs-1">生日</div>';
         strHtml += '        <div class="col-xs-1">已交学费</div>';
         strHtml += '        <div class="col-xs-1">增值服务</div>';
         strHtml += '        <div class="col-xs-2">课程预约时间</div>';
-        strHtml += '        <div class="col-xs-2">操作</div>';
+        //strHtml += '        <div class="col-xs-2">操作</div>';
         strHtml += '    </div>';
         strHtml += '</li>';
         if (result.Data.length > 0) {
@@ -60,10 +70,10 @@ function CourseRegistration_List() {
                     strHtml += '        <img title="体验名额" style="width: 20px; height: 20px;" src="../../../Images/experience.png">';
                 }
                 strHtml += '        </div>';
-                strHtml += '        <div class="col-xs-1">' + row.Phone + '</div>';
+                strHtml += '        <div class="col-xs-2">' + row.Phone + '</div>';
                 strHtml += '        <div class="col-xs-1">' + row.Sex + '</div>';
                 strHtml += '        <div class="col-xs-1">' + Birthday + '</div>';
-                strHtml += '        <div class="col-xs-1" style="text-align: right;"><a href="#" onclick="TuitionFeesPaid_Eidt(' + row.UserID + ',' + row.TuitionFeesPaid + ',' + row.CourseRegistrationID + ')">' + row.TuitionFeesPaid + '</a>元</div>';
+                strHtml += '        <div class="col-xs-1"><a href="#" onclick="TuitionFeesPaid_Eidt(' + row.UserID + ',' + row.TuitionFeesPaid + ',' + row.CourseRegistrationID + ')">' + row.TuitionFeesPaid + '</a>元</div>';
                 strHtml += '        <div class="col-xs-1"><a href="#" onclick="ValueAddedServicesShow(this)" va="' + row.ValueAddedServices + '">查看</a></div>';
                 strHtml += '        <div class="col-xs-2">' + CreateTime + '</div>';
                 strHtml += '        <div class="col-xs-2">';
@@ -156,7 +166,7 @@ function NoteEdit(CourseRegistrationID) {
     });
 }
 
-function TuitionFeesPaid_Eidt(UserID,TuitionFeesPaid, CourseRegistrationID) {
+function TuitionFeesPaid_Eidt(UserID, TuitionFeesPaid, CourseRegistrationID) {
     layer.open({
         type: 1,
         title: "已交学费",
@@ -166,7 +176,12 @@ function TuitionFeesPaid_Eidt(UserID,TuitionFeesPaid, CourseRegistrationID) {
         btn: ["确 定", '取 消'],
         yes: function (index) {
             var CourseName = decodeURIComponent($Course.RequestUrlParams("CourseName"));
-            var param = {UserID: UserID, CourseRegistrationID: CourseRegistrationID, TuitionFeesPaid: $("#TuitionFeesPaid").val(), CourseName: CourseName};
+            var param = {
+                UserID: UserID,
+                CourseRegistrationID: CourseRegistrationID,
+                TuitionFeesPaid: $("#TuitionFeesPaid").val(),
+                CourseName: CourseName
+            };
             var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseReg_TuitionFeesPaid_Upd");
             if (result.Msg == "OK") {
                 CourseRegistration_List();
@@ -184,6 +199,7 @@ function TuitionFeesPaid_Eidt(UserID,TuitionFeesPaid, CourseRegistrationID) {
     });
 }
 
+//退费
 function CourseRegistration_Refund(CourseRegistrationID) {
     layer.confirm("确定要退费吗？", function () {
         var param = {CourseRegistrationID: CourseRegistrationID};
@@ -196,4 +212,28 @@ function CourseRegistration_Refund(CourseRegistrationID) {
         }
     });
 
+}
+
+//课程预约年份
+function CourseReg_Year_Get() {
+    var result = $Course.GetAjaxJson({}, ApiUrl + "CourseRegistration/CourseReg_Year_Get");
+    if (result.Msg == "OK") {
+        var strHtml = '<option value="0" selected="selected">全部</option>';
+        if (result.Data.length > 0) {
+            for (var i = 0; i < result.Data.length; i++) {
+                strHtml += "<option value=" + result.Data[i] + ">" + result.Data[i] + "</option>";
+            }
+            $("#selYear").html(strHtml);
+        }
+    }
+}
+
+//阶段列表
+function Phase_Edit() {
+    var CourseID = $Course.RequestUrlParams("CourseID");
+    window.location.href = "../Phase/PhaseList.html?CourseID=" + CourseID;
+}
+
+function PhaseRegistration_List(PhaseID, obj) {
+    window.location.href="../Order/PhaseOrder.html?PhaseID=" + PhaseID + "&" + "CoursePhaseName=" + $(obj).attr("cname");
 }

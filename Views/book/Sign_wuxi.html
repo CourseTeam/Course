@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="icon" href="/Course/favicon.ico"  mce_href="/Course/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Framework/Bootstrap3.3.0/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../../Framework/DatePicker/common.css">
+    <title>摩英无锡分校在线报名</title>
+    <style>
+        img {
+            width: 100%;
+        }
+
+        .pl0 {
+            padding-left: 0px;
+        }
+
+        .pl4 {
+            padding-left: 4px;
+        }
+
+        .pr25 {
+            padding-right: 25px;
+        }
+        .pr8 {
+            padding-right: 8px;
+        }
+        .input {
+            height: 35px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            width: 100%;
+            padding-left: 5px;
+            padding-right: 5px;
+            outline: none;
+        }
+
+        .ptb10 {
+            padding: 10px 0
+        }
+    </style>
+</head>
+<body>
+<div id="datePlugin"></div>
+<div class="container">
+    <div class="row">
+        <img src="../../Images/wuxi/logo.jpg"/>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px">学生姓名:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left"><input class="input" name="stuName" type="text"/></div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px">性别:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left">
+            <input name="sex" checked="checked" type="radio" style="margin-left: 20px;" value="男"/>&nbsp;男
+            <input name="sex" type="radio" style="margin-left: 20px;" value="女"/>&nbsp;女
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px">学校:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left"><input class="input" name="school" type="text"/></div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px">年级:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left"><input class="input" name="grade" type="text"/></div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px">班级:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left"><input class="input" name="className" type="text"/></div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px">出生日期:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left">
+            <input type="text" class="input" name="birthday" id="birthday" placeholder="格式：2000-01-01">
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px">学员手机:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left">
+            <div><input class="input" name="stuPhone" type="text"/></div>
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px">电子邮箱:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left">
+            <div><input class="input" name="email" type="text"/></div>
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px">父亲姓名:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left">
+            <div><input class="input" name="fName" type="text"/></div>
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px">父亲手机:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left">
+            <div><input class="input" name="fPhone" type="text"/></div>
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px 0px">父亲微信号:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left">
+            <div><input class="input" name="fVX" type="text"/></div>
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px">母亲姓名:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left">
+            <div><input class="input" name="mName" type="text"/></div>
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding: 8px">母亲手机:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left">
+            <div><input class="input" name="mPhone" type="text"/></div>
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-4 pl0 text-right pr25">
+            <div style="padding:8px 0px">母亲微信号:</div>
+        </div>
+        <div class="col-xs-8 pl4 text-left">
+            <div><input class="input" name="mVX" type="text"/></div>
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-12 text-left pr25">
+            <div style="padding: 8px">你是通过什么渠道了解我们的:</div>
+        </div>
+        <div class="col-xs-4 text-left pr25"></div>
+        <div class="col-xs-8 pl4 text-left">
+            <div style="margin-top: 8px;"><input name="qudao" checked="checked" type="radio" value="演讲"/>&nbsp;演讲</div>
+            <div style="margin-top: 8px;"><input name="qudao" type="radio" value="网络搜索"/>&nbsp;网络搜索</div>
+            <div style="margin-top: 8px;"><input name="qudao" type="radio" value="摩英教育微信公众号"/>&nbsp;摩英教育微信公众号</div>
+            <div style="margin-top: 8px;"><input name="qudao" type="radio" value="微信朋友圈"/>&nbsp;微信朋友圈</div>
+            <div style="margin-top: 8px;"><input name="qudao" type="radio" value="其他学员介绍"/>&nbsp;其他学员介绍</div>
+            <div style="margin-top: 8px;"><input name="qitaName" id="preparer" style="display: none;" class="input"
+                                                 type="text"/></div>
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-12 text-left pr25">
+            <div style="padding: 8px">请选择你的课程和期数:</div>
+        </div>
+        <div class="col-xs-2 text-left pr25"></div>
+        <div class="col-xs-10 pl4 text-left">
+            <!--<div style="padding: 10px 0">-->
+                <!--<input name="course" checked="checked" type="radio" value="第一期摩英(无锡)亲少年精英特训营"/>&nbsp;第一期摩英(无锡)亲少年精英特训营-->
+                <!--<div style="margin-left: 20px">开始时间:2017-07-24</div>-->
+                <!--<div style="margin-left: 20px">结束时间:2017-07-30</div>-->
+            <!--</div>-->
+            <div style="padding: 10px 0">
+                <input name="course" type="radio" value="第一期(无锡)亲少年精英特训营"/>&nbsp;第一期(无锡)亲少年精英特训营
+                <div style="margin-left: 20px">开始时间:2017-08-02</div>
+                <div style="margin-left: 20px">结束时间:2017-08-08</div>
+            </div>
+            <div style="padding: 10px 0">
+                <input name="course" type="radio" value="音领未来》音标班"/>&nbsp;《音领未来》音标班
+                <div style="margin-left: 20px">时间:暑假(7月开课)</div>
+            </div>
+            <div style="padding: 10px 0">
+                <input name="course" type="radio" value="《高效口语精品班》"/>&nbsp;《高效口语精品班》
+                <div style="margin-left: 20px">时间:暑假</div>
+            </div>
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-12 text-left pr25">
+            <div style="padding: 8px;font-size: 15px;color:red;">特别提醒:</div>
+        </div>
+        <div class="col-xs-1 text-left pr8"></div>
+        <div class="col-xs-11 pl4 text-left">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;集训营地址：以开课前一个月电话通知为准。</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;外来学员请自行来无锡，如需接站请提前预约。</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每期开营前一天12:00-18:00接受报到，当晚入住营地。因学员报到时间不统一，报到当天中餐自理。</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;《摩英青少年精英特训营》报到时须携带物品：少量现金，洗漱用品（毛巾牙刷等）、饮水杯（有盖）、换洗衣物、塑料拖鞋、笔、笔记本、常用药品、润喉片、录音设备、雨伞、身份证或户口本复印件2张。</div>
+        </div>
+    </div>
+    <div class="row ptb10">
+        <div class="col-xs-12 text-center">
+            <button id="btnOk"
+                    style="height: 35px;width:70%;border: 0;outline: none;border-radius: 5px;background: #3b99fd;color:#FFF;">
+                提交
+            </button>
+        </div>
+    </div>
+    <div style="height: 40px;width: 100%;"></div>
+</div>
+
+<script src="../../Framework/Jqueryv2.4/jquery.min.js"></script>
+<script src="../../Framework/jquery-cookies/jquery.cookie.js"></script>
+<script src="../../Framework/Bootstrap3.3.0/js/bootstrap.min.js"></script>
+<script src="../../Framework/layer_mobile/layer.js"></script>
+<script src="../../Scripts/Commen/CourseCommen.js"></script>
+<script src="../../Framework/DatePicker/date.js"></script>
+<script src="../../Framework/DatePicker/iscroll.js"></script>
+
+<script>
+    $(function ($) {
+        $('#birthday').date();
+        $("input[name=qudao]").on("change", function () {
+            var tbr = $("input[name=qudao]:checked").val();
+            if (tbr == "其他学员介绍") {
+                $("#preparer").show();
+            } else {
+                $("#preparer").hide();
+            }
+        });
+        $("#btnOk").on("click", function () {
+            Sign_WX();
+        });
+    })
+
+    function Sign_WX() {
+        var stuName = $("input[name=stuName]").val();
+        var school = $("input[name=school]").val();
+        var email = $("input[name=email]").val();
+        var grade = $("input[name=grade]").val();
+        var sex = $("input[name=sex]:checked").val();
+        var className = $("input[name=className]").val();
+        var birthday = $("#birthday").val();
+        var stuPhone = $("input[name=stuPhone]").val();
+        var fName = $("input[name=fName]").val();
+        var fPhone = $("input[name=fPhone]").val();
+        var fVX = $("input[name=fVX]").val();
+        var mName = $("input[name=mName]").val();
+        var mPhone = $("input[name=mPhone]").val();
+        var mVX = $("input[name=mVX]").val();
+        var qudao = $("input[name=qudao]:checked").val();
+        var course = $("input[name=course]:checked").val();
+        var preparer = $("#preparer").val();
+        if (!stuName) {
+            layer.open({
+                content: '请输入姓名',
+                style: 'background-color:#fff; color:#000; border:none;width:70%',
+                time: 2
+            });
+            return;
+        }
+        if (!birthday) {
+            layer.open({
+                content: '请选择出生日期',
+                style: 'background-color:#fff; color:#000; border:none;width:70%',
+                time: 2
+            });
+            return;
+        }
+        if (!fName) {
+            layer.open({
+                content: '请输入父亲姓名',
+                style: 'background-color:#fff; color:#000; border:none;width:70%',
+                time: 2
+            });
+            return;
+        }
+        if (!fPhone) {
+            layer.open({
+                content: '请输入父亲手机',
+                style: 'background-color:#fff; color:#000; border:none;width:70%',
+                time: 2
+            });
+            return;
+        }
+        if (!mName) {
+            layer.open({
+                content: '请输入母亲姓名',
+                style: 'background-color:#fff; color:#000; border:none;width:70%',
+                time: 2
+            });
+            return;
+        }
+        if (!mPhone) {
+            layer.open({
+                content: '请输入母亲手机',
+                style: 'background-color:#fff; color:#000; border:none;width:70%',
+                time: 2
+            });
+            return;
+        }
+        if (!qudao) {
+            layer.open({
+                content: '请选择渠道',
+                style: 'background-color:#fff; color:#000; border:none;width:70%',
+                time: 2
+            });
+            return;
+        }
+        if (!course) {
+            layer.open({
+                content: '请选择课程',
+                style: 'background-color:#fff; color:#000; border:none;width:70%',
+                time: 2
+            });
+            return;
+        }
+        if (!preparer && qudao == "其他学员介绍") {
+            layer.open({
+                content: '请输入介绍人',
+                style: 'background-color:#fff; color:#000; border:none;width:70%',
+                time: 2
+            });
+            return;
+        }
+        var param = {
+            StuName: stuName,
+            School: school,
+            Grade: grade,
+            ClassName: className,
+            Birthday: birthday,
+            StuPhone: stuPhone,
+            FName: fName,
+            FPhone: fPhone,
+            FVX: fVX,
+            MName: mName,
+            MPhone: mPhone,
+            MVX: mVX,
+            Qudao: qudao,
+            Course: course,
+            Preparer: preparer,
+            Email: email,
+            Sex: sex
+        };
+        var result = $Course.PostAjaxJson(param, ApiUrl + "Account/WuXiRegister");
+        if (result.Msg == "OK") {
+            layer.open({
+                content: '报名成功!',
+                time: 2
+            });
+            return;
+        }
+    }
+</script>
+</body>
+</html>

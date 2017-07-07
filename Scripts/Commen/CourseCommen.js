@@ -7,9 +7,9 @@
 jQuery.support.cors = true;
 //测试服务器地址
 var ApiUrl = "http://192.168.1.111:1217/";
- //ApiUrl = 'http://localhost:60182/';
+ApiUrl = 'http://localhost:60182/';
 //正式服务器地址
-//ApiUrl = "http://120.26.218.68:1217/";
+//ApiUrl = "https://www.woodybear.cn/Course/";
 
 //==============================以下为公用脚本==============================
 

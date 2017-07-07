@@ -45,15 +45,22 @@ function GetAllPhase() {
             if (row.PhaseType > 0) {
                 CoursePhaseName += row.PhaseType + "阶课程";
             }
+            var disabled = "";
+            var manyuan = "";
+            if (row.Periods == 19 || row.Periods == 20) {
+                disabled = "disabled";
+                manyuan = "<span style='color: #ff0000;'>已爆滿</span>";
+            }
             strHtml += '<div class="radio">';
             strHtml += '    <label>';
-            strHtml += '        <input onclick="SelectPhase(' + row.PhaseType + ')" name="radio_phase" value="' + row.PhaseID + '" ptype="' + row.PhaseType + '" cid="' + row.CourseID + '" type="radio">';
-            strHtml += '        <p>' + CoursePhaseName + '</p>';
+            strHtml += '        <input ' + disabled + ' onclick="SelectPhase(' + row.PhaseType + ')" name="radio_phase" value="' + row.PhaseID + '" ptype="' + row.PhaseType + '" cid="' + row.CourseID + '" type="radio">';
+            strHtml += '        <p>' + row.CoursePhaseName + '</p>';
             if (row.PhaseType != 1 && row.PhaseType != 0) {
                 strHtml += '            <p style="color:red;">' + "(仅限参加过一阶课程的老学员)" + '</p>'
             }
             strHtml += '        <p>开始时间：' + StartTime + '</p>';
             strHtml += '        <p>结束时间：' + EndTime + '</p>';
+            strHtml += '        <p>' + manyuan + '</p>';
             strHtml += '    </label>';
             strHtml += '</div>';
             if (i == NameArr.length - 1) {
@@ -94,21 +101,16 @@ function Submit() {
     if (account == 3) {
         Account = MotherPhone;
     }
-
     if (!NickName) {
         layer.open({
-            content: '学员姓名不能为空',
-            style: 'background-color:#fff; color:#000; border:none;width:70%',
-            time: 2
+            content: '学员姓名不能为空', style: 'background-color:#fff; color:#000; border:none;width:70%', time: 2
         });
         return;
     }
 
     if (!BirthDay) {
         layer.open({
-            content: '出生日期不能为空',
-            style: 'background-color:#fff; color:#000; border:none;width:70%',
-            time: 2
+            content: '出生日期不能为空', style: 'background-color:#fff; color:#000; border:none;width:70%', time: 2
         });
         return;
     }
@@ -116,27 +118,21 @@ function Submit() {
     var birth = /^(\d{4})-(\d{2})-(\d{2})$/;
     if (!birth.test(BirthDay)) {
         layer.open({
-            content: '出生日期格式错误',
-            style: 'background-color:#fff; color:#000; border:none;width:70%',
-            time: 2
+            content: '出生日期格式错误', style: 'background-color:#fff; color:#000; border:none;width:70%', time: 2
         });
         return;
     }
 
     if (!FatherName) {
         layer.open({
-            content: '父亲姓名不能为空',
-            style: 'background-color:#fff; color:#000; border:none;width:70%',
-            time: 2
+            content: '父亲姓名不能为空', style: 'background-color:#fff; color:#000; border:none;width:70%', time: 2
         });
         return;
     }
 
     if (!FatherPhone) {
         layer.open({
-            content: '父亲手机号不能为空',
-            style: 'background-color:#fff; color:#000; border:none;width:70%',
-            time: 2
+            content: '父亲手机号不能为空', style: 'background-color:#fff; color:#000; border:none;width:70%', time: 2
         });
         return;
     }
@@ -152,18 +148,14 @@ function Submit() {
 
     if (!MotherPhone) {
         layer.open({
-            content: '母亲手机号不能为空',
-            style: 'background-color:#fff; color:#000; border:none;width:70%',
-            time: 2
+            content: '母亲手机号不能为空', style: 'background-color:#fff; color:#000; border:none;width:70%', time: 2
         });
         return;
     }
 
     if (!Account) {
         layer.open({
-            content: '选中的手机号不能为空',
-            style: 'background-color:#fff; color:#000; border:none;width:70%',
-            time: 2
+            content: '选中的手机号不能为空', style: 'background-color:#fff; color:#000; border:none;width:70%', time: 2
         });
         return;
     }
@@ -209,29 +201,14 @@ function Submit() {
     }
 
     var param = {
-        NickName: NickName,
-        Sex: Sex,
-        BirthDay: BirthDay,
-        School: School,
-        Grade: Grade,
-        ClassName: ClassName,
-        Email: Email,
-        Phone: Phone,
-        FatherName: FatherName,
-        FatherPhone: FatherPhone,
-        MotherName: MotherName,
-        MotherPhone: MotherPhone,
-        Tel: Tel,
-        Address: Address,
-        Account: Account,
-        Pwd: $Course.MD5("123456")
+        NickName: NickName, Sex: Sex, BirthDay: BirthDay, School: School, Grade: Grade,
+        ClassName: ClassName, Email: Email, Phone: Phone, FatherName: FatherName, FatherPhone: FatherPhone,
+        MotherName: MotherName, MotherPhone: MotherPhone, Tel: Tel,
+        Address: Address, Account: Account, Pwd: $Course.MD5("123456")
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_ADD");
     if (result.Msg == "OK") {
-        console.log("obobdsaoibf");
-        console.log(result);
         param.UserID = result.Data.UserID;
-        console.log(param);
         var Login_param = {Tel: Account, Pwd: $Course.MD5("123456")};
         var Login_result = $Course.GetAjaxJson(Login_param, ApiUrl + "Account/Login");
         console.log(Login_result);
@@ -257,19 +234,9 @@ function CourseRegistration_Add(UserInfo) {
     console.log(CourseID);
     var TellMe = $("#tellme").val();
     var param = {
-        UserID: UserInfo.UserID,
-        CourseID: CourseID,
-        Channel: from,
-        Preparer: Preparer,
-        Sponsor: Channel,
-        TellMe: TellMe,
-        WorkUnits: null,
-        ParentSex: null,
-        ParentBirthday: null,
-        ParentName: null,
-        ParentEmail: null,
-        ParentPhone: null,
-        IsIntegral: 0
+        UserID: UserInfo.UserID, CourseID: CourseID, Channel: from, Preparer: Preparer,
+        Sponsor: Channel, TellMe: TellMe, WorkUnits: null, ParentSex: null,
+        ParentBirthday: null, ParentName: null, ParentEmail: null, ParentPhone: null, IsIntegral: 0
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "CourseRegistration/CourseRegistration_Add");
     if (result.Msg == "OK") {
@@ -304,7 +271,6 @@ function PhaseRegistration_Add_Fast(Info) {
 }
 
 function SelectPhase(PhaseType) {
-
     if (PhaseType > 0 && PhaseType < 3) {
         $("#ValueAddedServices").show();
         // 如果选择的是二阶课程那么两阶14天的增值服务就隐藏

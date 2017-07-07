@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>课程预约列表</title>
+    <title>课程报名名单</title>
     <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../Framework/Bootstrap3.3.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../../../Css/Admin/Comm.css">
@@ -32,12 +32,22 @@
 <div id="header"></div>
 <div style="height: 80px"></div>
 <div class="container">
-    <div class="row" style="padding: 10px;background: #e5e5e5">
+    <div class="row" >
+        <div class="col-xs-12 text-left">
+            <h4><span id="CourseName"></span></h4>
+        </div>
+    </div>
+    <div class="row" style="padding: 5px;background: #e5e5e5">
         <div class="col-xs-6 text-left">
-            <h4><strong id="CourseName"></strong></h4>
+            按年份筛选：
+            <select class="form-control" id="selYear" style="display: inline-block;width: 100px;">
+                <option value="0">全部</option>
+            </select>
         </div>
         <div class="col-xs-6 text-right">
-            <input type="text" style="width: 60%" id="SearchKey" placeholder="请输入搜索关键字" />
+            <button onclick="Phase_Edit()">阶段课程</button>
+            <button>预约名单</button>
+            <input class="input" type="text" style="width: 200px" id="SearchKey" placeholder="请输入搜索关键字"/>
             <button id="btnSearch">搜 索</button>
         </div>
     </div>

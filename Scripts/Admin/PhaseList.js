@@ -7,6 +7,10 @@ $(document).ready(function () {
     $("#btnAdd").on("click", function () {
         Phase_Add();
     });
+    $("#selYear").on("change", function () {
+        Phase_List();
+    });
+    CoursePhase_Year_Get();
     Phase_List();
 });
 
@@ -17,7 +21,7 @@ function Phase_Add() {
 }
 
 function Phase_List() {
-    var param = {CourseID: CourseID};
+    var param = {CourseID: CourseID, Year: $("#selYear").val()};
     var result = $Course.GetAjaxJson(param, ApiUrl + "Phase/Phase_List");
     console.log(result);
     if (result.Msg == "OK") {
@@ -36,8 +40,8 @@ function Phase_List() {
         strHtml += '</li>';
         for (var i = 0; i < result.Data.length; i++) {
             var row = result.Data[i];
-            var startDate = row.StartTime?row.StartTime.split(' ')[0]:"待定";
-            var endDate = row.EndTime? row.EndTime.split(' ')[0]:"待定";
+            var startDate = row.StartTime ? row.StartTime.split(' ')[0] : "待定";
+            var endDate = row.EndTime ? row.EndTime.split(' ')[0] : "待定";
             var Place = row.Place || "待定";
             strHtml += '<li class="list-group-item">';
             strHtml += '    <div class="row ">';
@@ -49,9 +53,9 @@ function Phase_List() {
             strHtml += '      <div class="col-lg-1">' + row.AccommodationCost + '</div>';
             strHtml += '      <div class="col-lg-1">' + row.ReservationCount + "/" + row.PeopleCount + '</div>';
             strHtml += '      <div class="col-lg-3">';
-            strHtml += '        <button class="autobutton" onclick="Phase_Edit('+ CourseID +"," + row.PhaseID+')">编辑</button>';
-            strHtml += '        <button class="autobutton" onclick="Phase_Del('+row.PhaseID+')">删除</button>';
-            strHtml += '        <button class="autobutton" onclick="PhaseRegistration_List(' + row.PhaseID + ', this)"  cname = "'+row.CoursePhaseName+'">预约列表</button>';
+            strHtml += '        <button class="autobutton" onclick="Phase_Edit(' + CourseID + "," + row.PhaseID + ')">编辑</button>';
+            strHtml += '        <button class="autobutton" onclick="Phase_Del(' + row.PhaseID + ')">删除</button>';
+            strHtml += '        <button class="autobutton" onclick="PhaseRegistration_List(' + row.PhaseID + ', this)"  cname = "' + row.CoursePhaseName + '">预约列表</button>';
             strHtml += '      </div>';
             strHtml += '    </div>';
             strHtml += '</li>';
@@ -82,9 +86,23 @@ function Phase_Del(id) {
 
 //编辑
 function Phase_Edit(CourseID, PhaseID) {
-    window.location.href="PhaseEdit.html?CourseID=" + CourseID + "&" + "PhaseID=" + PhaseID;
+    window.location.href = "PhaseEdit.html?CourseID=" + CourseID + "&" + "PhaseID=" + PhaseID;
 }
 
 function PhaseRegistration_List(PhaseID, obj) {
-    window.location.href="../Order/PhaseOrder.html?PhaseID=" + PhaseID + "&" + "CoursePhaseName=" + $(obj).attr("cname");
+    window.location.href = "../Order/PhaseOrder.html?PhaseID=" + PhaseID + "&" + "CoursePhaseName=" + $(obj).attr("cname");
+}
+
+//阶段课程年份
+function CoursePhase_Year_Get() {
+    var result = $Course.GetAjaxJson({}, ApiUrl + "Phase/CoursePhase_Year_Get");
+    if (result.Msg == "OK") {
+        var strHtml = '<option value="0" selected="selected">全部</option>';
+        if (result.Data.length > 0) {
+            for (var i = 0; i < result.Data.length; i++) {
+                strHtml += "<option value=" + result.Data[i] + ">" + result.Data[i] + "</option>";
+            }
+            $("#selYear").html(strHtml);
+        }
+    }
 }

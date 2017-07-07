@@ -133,6 +133,10 @@ function Phase_Edit() {
     var StartTime = $("#StartTime").val();
     var EndTime = $("#EndTime").val();
     var Periods = $("#Periods").val();
+    var CourseDec = $("#CourseDec").val();
+    if (CourseDec == '无') {
+        CourseDec = '';
+    }
     var Teachers = ""
     for (var i = 0; i < teacherids.length; i++) {
         Teachers += teacherids[i] + ',';
@@ -142,7 +146,7 @@ function Phase_Edit() {
     var PeopleCount = $("#PeopleCount").val();
     var param = {
         PhaseID: PhaseID,
-        PhaseType:PhaseType,
+        PhaseType: PhaseType,
         CourseTypeID: CourseTypeID,
         CourseID: CourseID,
         StartTime: StartTime,
@@ -151,7 +155,8 @@ function Phase_Edit() {
         Teachers: Teachers,
         Place: Place,
         AccommodationCost: AccommodationCost,
-        PeopleCount: PeopleCount
+        PeopleCount: PeopleCount,
+        CourseDec: CourseDec
     }
     console.log(param);
     var result = $Course.PostAjaxJson(param, ApiUrl + "Phase/Phase_Edit");
