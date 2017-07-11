@@ -4,6 +4,9 @@
 
 $(function ($) {
     $('#birthday').date();
+    $("#distpicker").distpicker({
+        autoSelect: false
+    });
     GetAllPhase();
     $("input[name=from]").on("change", function () {
         var from = $("input[name=from]:checked").val();
@@ -81,15 +84,39 @@ function Submit() {
     var Grade = $("input[name=grade]").val();
     var ClassName = $("input[name=ban]").val();
     var BirthDay = $("input[name=birthday]").val();
+
+    // var Province = $('input[id=province] option:selected').val();
+    // var City = $('input[id=city] option:selected').val();
+    // var District = $('input[id=district] option:selected').val();
+
     var Phone = $("input[name=mob]").val();
+    var IDCard = $("input[name=idcard]").val();
     var Email = $("input[name=email]").val();
     var FatherName = $("input[name=f_name]").val();
     var FatherPhone = $("input[name=f_mobile]").val();
     var MotherName = $("input[name=m_name]").val();
     var MotherPhone = $("input[name=m_mobile]").val();
     var Tel = $("input[name=telphone]").val();
-    var Address = $("input[name=address]").val();
+
+    var ProvinceSel=document.getElementById("province");
+    var ProvinceIndex = ProvinceSel.selectedIndex; // 选中索引
+    var Province = ProvinceSel.options[ProvinceIndex].value;//要的值
+
+    var CitySel=document.getElementById("city");
+    var CityIndex = CitySel.selectedIndex; // 选中索引
+    var City = CitySel.options[CityIndex].value;//要的值
+
+    var DistrictSel=document.getElementById("district");
+    var DistrictIndex = DistrictSel.selectedIndex; // 选中索引
+    var District = DistrictSel.options[DistrictIndex].value;//要的值
+
+    var Detailed_Address = $("input[name=address]").val();
+    // var Address = $("input[name=address]").val();
+
+    var Address = Province + City + District + Detailed_Address;
+
     var account = $("input[name=account]:checked").val();
+    var Is_Old = $("input[name=isOldstudents]:checked").val();
     var Course = $("input[name=radio_phase]:checked").val();
     var Account = null;
     if (account == 1) {
@@ -101,6 +128,7 @@ function Submit() {
     if (account == 3) {
         Account = MotherPhone;
     }
+
     if (!NickName) {
         layer.open({
             content: '学员姓名不能为空', style: 'background-color:#fff; color:#000; border:none;width:70%', time: 2
@@ -182,14 +210,41 @@ function Submit() {
         return;
     }
 
-    if (!Address) {
+    if (!IDCard) {
         layer.open({
-            content: '快递地址不能为空',
+            content: '学员身份证不能为空',
             style: 'background-color:#fff; color:#000; border:none;width:70%',
             time: 2
         });
         return;
     }
+
+    if (!Province || Province == "" || !City || City == "" || !District || District == "") {
+        layer.open({
+            content: '地区不能为空',
+            style: 'background-color:#fff; color:#000; border:none;width:70%',
+            time: 2
+        });
+        return;
+    }
+
+    if (!Detailed_Address) {
+        layer.open({
+            content: '详细地址不能为空',
+            style: 'background-color:#fff; color:#000; border:none;width:70%',
+            time: 2
+        });
+        return;
+    }
+
+    // if (!Address) {
+    //     layer.open({
+    //         content: '快递地址不能为空',
+    //         style: 'background-color:#fff; color:#000; border:none;width:70%',
+    //         time: 2
+    //     });
+    //     return;
+    // }
 
     if (!Course) {
         layer.open({
@@ -201,10 +256,24 @@ function Submit() {
     }
 
     var param = {
-        NickName: NickName, Sex: Sex, BirthDay: BirthDay, School: School, Grade: Grade,
-        ClassName: ClassName, Email: Email, Phone: Phone, FatherName: FatherName, FatherPhone: FatherPhone,
-        MotherName: MotherName, MotherPhone: MotherPhone, Tel: Tel,
-        Address: Address, Account: Account, Pwd: $Course.MD5("123456")
+        NickName: NickName,
+        Sex: Sex,
+        BirthDay: BirthDay,
+        School: School,
+        Grade: Grade,
+        ClassName: ClassName,
+        Email: Email,
+        Phone: Phone,
+        FatherName: FatherName,
+        FatherPhone: FatherPhone,
+        MotherName: MotherName,
+        MotherPhone: MotherPhone,
+        Tel: Tel,
+        IDCard: IDCard,
+        Is_Old: Is_Old,
+        Address: Address,
+        Account: Account,
+        Pwd: $Course.MD5("123456")
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "User/UserInfo_ADD");
     if (result.Msg == "OK") {

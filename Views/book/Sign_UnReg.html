@@ -47,6 +47,8 @@
             <input type="text" name="birthday" id="birthday" placeholder="格式：2000-01-01">
         </div>
     </div>
+
+
     <div class="row mgt8">
         <div class="col-xs-12">
             <span>学员手机：</span>
@@ -57,10 +59,17 @@
 
     <div class="row mgt8">
         <div class="col-xs-12">
-            <span>电子邮件：</span>
-            <input type="text" name="email" id="mail">
+            <span>学员身份证：*</span>
+            <input type="text" name="idcard" id="idcard">
         </div>
     </div>
+
+    <!--<div class="row mgt8">-->
+        <!--<div class="col-xs-12">-->
+            <!--<span>电子邮件：</span>-->
+            <!--<input type="text" name="email" id="mail">-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="row mgt8">
         <div class="col-xs-12">
             <span>父亲姓名：*</span>
@@ -101,7 +110,26 @@
     </div>
     <div class="row mgt8">
         <div class="col-xs-12">
-            <span>快递地址(详细)：*</span>
+            <span>地区：*</span>
+            <div id="distpicker">
+                <div class="form-group">
+                    <label class="sr-only" for="province">Province</label>
+                    <select class="form-control" id="province"></select>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="city">City</label>
+                    <select class="form-control" id="city"></select>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="district">District</label>
+                    <select class="form-control" id="district"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mgt8">
+        <div class="col-xs-12">
+            <span>详细地址：*</span>
             <input type="text" name="address" id="address">
         </div>
     </div>
@@ -113,6 +141,15 @@
             <input type="radio" name="tbr" class="np" value="学生本人">学生本人
             <input type="radio" name="tbr" class="np" value="其他">其他
             <input type="text" id="preparer" style="display: none" placeholder="请输入其他填表人">
+        </div>
+    </div>
+
+    <div class="row mgt8">
+        <div class="col-xs-12">是否是老学员:*
+            <span style="margin-left: 10px">
+                <input type="radio" name="isOldstudents" value="true"/>是
+                <input type="radio" name="isOldstudents" value="false" checked="checked"/>不是
+            </span>
         </div>
     </div>
     <div class="row mgt8">
@@ -407,6 +444,8 @@
 <script src="../../Scripts/Commen/CourseCommen.js"></script>
 <script src="../../Framework/DatePicker/date.js"></script>
 <script src="../../Framework/DatePicker/iscroll.js"></script>
+<script src="../../Framework/SitePicker/distpicker.data.js"></script>
+<script src="../../Framework/SitePicker/distpicker.js"></script>
 <script src="../../Scripts/book/Sign_UnReg.js"></script>
 </body>
 </html>

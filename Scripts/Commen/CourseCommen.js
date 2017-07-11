@@ -6,8 +6,9 @@
 //启用浏览器跨域
 jQuery.support.cors = true;
 //测试服务器地址
-var ApiUrl = "http://192.168.1.111:1217/ ";
-ApiUrl = 'http://localhost:60182/';
+
+var ApiUrl = "http://172.16.0.111:1217/";
+ //ApiUrl = 'http://localhost:60182/';
 //正式服务器地址
 //ApiUrl = "https://www.woodybear.cn/Course/";
 
