@@ -131,7 +131,7 @@ function GetData() {
     $("#motherName").html(result.Data.MotherName);
     $("#motherPhone").html(result.Data.MotherPhone);
     $("#tel").html(result.Data.Tel);
-    $("#address").html(result.Data.Address);
+    $("#address").html(result.Data.Address.replace("-",""));
 }
 
 function Edit() {
