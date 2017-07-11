@@ -113,7 +113,7 @@ function Submit() {
     var Detailed_Address = $("input[name=address]").val();
     // var Address = $("input[name=address]").val();
 
-    var Address = Province + City + District + Detailed_Address;
+    var Address = Province + City + District + "-" + Detailed_Address;
 
     var account = $("input[name=account]:checked").val();
     var Is_Old = $("input[name=isOldstudents]:checked").val();
