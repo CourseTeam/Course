@@ -219,6 +219,17 @@ function Submit() {
         return;
     }
 
+    // 判断身份证是否正确的正则表达式
+    var filter_idcard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+    if (!filter_idcard.test(IDCard)) {
+        layer.open({
+            content: '请输入正确的身份证',
+            style: 'background-color:#fff; color:#000; border:none;width:70%',
+            time: 2
+        });
+        return;
+    }
+
     if (!Province || Province == "" || !City || City == "" || !District || District == "") {
         layer.open({
             content: '地区不能为空',
