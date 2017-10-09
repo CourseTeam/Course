@@ -339,8 +339,15 @@ function PhaseRegistration_Add_Fast(Info) {
     };
     var result = $Course.PostAjaxJson(param, ApiUrl + "PhaseRegistration/PhaseRegistration_Add_Fast");
     if (result.Msg == "OK") {
+        // layer.open({
+        //     content: '报名成功!</br>用户名:' + Info.Account + '</br>初始密码:123456</br>为了您的安全请尽快修改密码',
+        //     time: 2,
+        //     end: function () {
+        //         window.location.href = "booking.html";
+        //     }
+        // });
         layer.open({
-            content: '报名成功!</br>用户名:' + Info.Account + '</br>初始密码:123456</br>为了您的安全请尽快修改密码',
+            content: '【摩英客服】您的报名信息已提交，本回执不代表您已获得本期课程名额。课程名额最终确定以学费及食宿会场费到账为准。\n会有客服人员尽快和您联系，请保持手机畅通，谢谢',
             time: 2,
             end: function () {
                 window.location.href = "booking.html";

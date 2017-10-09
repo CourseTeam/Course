@@ -549,7 +549,7 @@ function get_data(cid) {
         phaseinfo = result.Data.phaselist[0];
         $("#course_title").html(result.Data.courseInfo.CourseName);
         courseName = result.Data.courseInfo.CourseName;
-        if (phaseinfo.PhaseType == 1 || phaseinfo.PhaseType == 2) {
+        if (phaseinfo.PhaseType == 1 || phaseinfo.PhaseType == 3) {
             isHaveService = true;
             var zengzhiHtml = "";
             zengzhiHtml += '<span style="color: red">*</span><span class="zengzhi_title">请选择您的增值服务</span>'
